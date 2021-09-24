@@ -36,7 +36,7 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Camera.cs" />
+     <Compile Include="Assets\PanCam.cs" />
      <Compile Include="Assets\WorldGen.cs" />
      <Compile Include="Assets\Tile.cs" />
     <Reference Include="UnityEngine">
