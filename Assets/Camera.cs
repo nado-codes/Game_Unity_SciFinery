@@ -5,14 +5,22 @@ using UnityEngine;
 public class Camera : MonoBehaviour
 {
     private Vector3 speed = Vector3.zero;
-    private float acceleration = 0.1f;
-    private bool isAccelerating = false;
+    public Vector3 speedDeadZone = new Vector3(.1f,.1f,0);
+    public float acceleration = 0.1f;
+    public float braking = 1;
+    public int zoomAmount = 25;
+    private float lastZoom = 0;
+    private bool shouldBrakeX = false;
+    private bool shouldBrakeY = false;
 
     // Start is called before the first frame update
     void Start()
     {
         
     }
+
+    float GetRealSpeed(float speed)
+        => speed < 0 ? -speed : speed;
 
     // Update is called once per frame
     void Update()
@@ -24,21 +32,34 @@ public class Camera : MonoBehaviour
         bool isS = Input.GetKey(KeyCode.S);
         bool isA = Input.GetKey(KeyCode.A);
         bool isD = Input.GetKey(KeyCode.D);
+        bool isSprint = Input.GetKey(KeyCode.LeftShift);
 
-        if(isW) speed.y += acceleration * Time.deltaTime;
-        if(isS) speed.y -= acceleration * Time.deltaTime;
-        if(isA) speed.x += acceleration * Time.deltaTime;
-        if(isD) speed.x -= acceleration * Time.deltaTime;
+        
+        float scroll = Input.mouseScrollDelta.y;
 
-        isAccelerating = isW || isS  || isA || isD;
+        bool isZoomIn = scroll > lastZoom;
+        bool isZoomOut = scroll < lastZoom;
 
-        //TODO: Implement deceleration when releasing the movement keys for each axis (if no left/right, decelerate)
-        //(if no forward back, decelerate)
+        lastZoom = scroll;
 
-        //if(!isAccelerating) speed = Vector3.Lerp(speed,speed*(float)(1-acceleration*0.1),Time.deltaTime);
-        Debug.Log(speed);
+        if(isZoomIn)
+            transform.Translate(Vector3.forward*zoomAmount*4*Time.deltaTime);
+        
+        if(isZoomOut)
+            transform.Translate(Vector3.back*zoomAmount*4*Time.deltaTime);
 
-        transform.Translate(panForward*speed.y,Space.World);
-        transform.Translate(panRight*speed.x,Space.World);
+        if(isW) speed.y += acceleration * (isSprint ? 2 : 1);
+        if(isS) speed.y -= acceleration * (isSprint ? 2 : 1);
+        if(isA) speed.x += acceleration * (isSprint ? 2 : 1);
+        if(isD) speed.x -= acceleration * (isSprint ? 2 : 1);
+
+        shouldBrakeX = !isA && !isD;
+        shouldBrakeY = !isW && !isS;
+
+        if(shouldBrakeX) speed.x = GetRealSpeed(speed.x) > speedDeadZone.x ? Mathf.Lerp(speed.x,speed.x*.9f,braking*.1f) : 0;
+        if(shouldBrakeY) speed.y = GetRealSpeed(speed.y) > speedDeadZone.y ? Mathf.Lerp(speed.y,speed.y*.9f,braking*.1f) : 0;
+
+        transform.Translate(panForward*speed.y*Time.deltaTime,Space.World);
+        transform.Translate(panRight*speed.x*Time.deltaTime,Space.World);
     }
 }

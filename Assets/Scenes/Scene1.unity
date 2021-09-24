@@ -219,6 +219,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db6f775f938172e4da083fb508e3f0d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speedDeadZone: {x: 0.1, y: 0.1, z: 0}
+  acceleration: 0.1
+  braking: 1
+  zoomAmount: 50
 --- !u!1 &1613719555
 GameObject:
   m_ObjectHideFlags: 0
