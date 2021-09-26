@@ -39,6 +39,7 @@
      <Compile Include="Assets\PanCam.cs" />
      <Compile Include="Assets\WorldGen.cs" />
      <Compile Include="Assets\Tile.cs" />
+     <Compile Include="Assets\CoilAnim.cs" />
     <Reference Include="UnityEngine">
         <HintPath>D:\Program Files (x86)\Unity\2021.1.22f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>
