@@ -7,10 +7,12 @@ public class PanCam : MonoBehaviour
     private Vector3 speed = Vector3.zero;
     public Vector3 speedDeadZone = new Vector3(.1f,.1f,0);
     public float acceleration = 0.1f;
+    public float edgeSize = 25;
+    public float maxSpeed = 5;
     public float braking = 1;
     public int zoomAmount = 25;
-    private bool shouldBrakeX = false;
-    private bool shouldBrakeY = false;
+    private bool isIdleX = false;
+    private bool isIdleY = false;
 
     // Start is called before the first frame update
     void Start()
@@ -25,13 +27,13 @@ public class PanCam : MonoBehaviour
     void Update()
     {
         // movement
-        var panForward = new Vector3(-transform.forward.z,0,-transform.forward.x);
-        var panRight = new Vector3(-transform.right.x,0,-transform.right.z);
+        var myForward = new Vector3(-transform.forward.z,0,-transform.forward.x);
+        var myRight = new Vector3(-transform.right.x,0,-transform.right.z);
 
-        bool isW = Input.GetKey(KeyCode.W);
-        bool isS = Input.GetKey(KeyCode.S);
-        bool isA = Input.GetKey(KeyCode.A);
-        bool isD = Input.GetKey(KeyCode.D);
+        bool panForward = Input.GetKey(KeyCode.W) || Input.mousePosition.y > (Screen.height-edgeSize);
+        bool panBackward = Input.GetKey(KeyCode.S) || Input.mousePosition.y < edgeSize;
+        bool panLeft = Input.GetKey(KeyCode.A) || Input.mousePosition.x < edgeSize;
+        bool panRight = Input.GetKey(KeyCode.D) || Input.mousePosition.x > (Screen.width-edgeSize);
         bool isSprint = Input.GetKey(KeyCode.LeftShift);
 
         // zoom
@@ -47,18 +49,19 @@ public class PanCam : MonoBehaviour
             transform.Translate(Vector3.back*zoomAmount*4*Time.deltaTime);
 
         // movement
-        if(isW) speed.y += acceleration * (isSprint ? 2 : 1);
-        if(isS) speed.y -= acceleration * (isSprint ? 2 : 1);
-        if(isA) speed.x += acceleration * (isSprint ? 2 : 1);
-        if(isD) speed.x -= acceleration * (isSprint ? 2 : 1);
+        if(panForward && speed.y < maxSpeed) speed.y += acceleration * (isSprint ? 2 : 1);
+        if(panBackward && speed.y > -maxSpeed) speed.y -= acceleration * (isSprint ? 2 : 1);
+        if(panLeft && speed.x < maxSpeed) speed.x += acceleration * (isSprint ? 2 : 1);
+        if(panRight && speed.x > -maxSpeed) speed.x -= acceleration * (isSprint ? 2 : 1);
 
-        // braking
-        shouldBrakeX = !isA && !isD;
-        shouldBrakeY = !isW && !isS;
+        // braking & cursor
+        isIdleX = !panLeft && !panRight;
+        isIdleY = !panForward && !panBackward;
 
-        if(shouldBrakeX) speed.x = GetRealSpeed(speed.x) > speedDeadZone.x ? Mathf.Lerp(speed.x,speed.x*.9f,braking*.1f) : 0;
-        if(shouldBrakeY) speed.y = GetRealSpeed(speed.y) > speedDeadZone.y ? Mathf.Lerp(speed.y,speed.y*.9f,braking*.1f) : 0;
+        if(isIdleX) speed.x = GetRealSpeed(speed.x) > speedDeadZone.x ? Mathf.Lerp(speed.x,speed.x*.9f,braking*.1f) : 0;
+        if(isIdleY) speed.y = GetRealSpeed(speed.y) > speedDeadZone.y ? Mathf.Lerp(speed.y,speed.y*.9f,braking*.1f) : 0;
 
+        // .. selection
         if( Input.GetMouseButtonDown(0) )
         {
             Ray ray = Camera.main.ScreenPointToRay( Input.mousePosition );
@@ -71,7 +74,7 @@ public class PanCam : MonoBehaviour
         }
 
         // translation
-        transform.Translate(panForward*speed.y*Time.deltaTime,Space.World);
-        transform.Translate(panRight*speed.x*Time.deltaTime,Space.World);
+        transform.Translate(myForward*speed.y*Time.deltaTime,Space.World);
+        transform.Translate(myRight*speed.x*Time.deltaTime,Space.World);
     }
 }

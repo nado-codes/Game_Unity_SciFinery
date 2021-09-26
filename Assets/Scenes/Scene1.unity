@@ -221,6 +221,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speedDeadZone: {x: 0.1, y: 0.1, z: 0}
   acceleration: 0.1
+  edgeSize: 25
+  maxSpeed: 10
   braking: 1
   zoomAmount: 50
 --- !u!1 &1613719555
@@ -254,6 +256,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tilePrefab: {fileID: 6197933807371195911, guid: e7c16db63937c954c866cff4898891ee,
     type: 3}
+  worldSizeX: 20
+  worldSizeY: 20
 --- !u!4 &1613719557
 Transform:
   m_ObjectHideFlags: 0

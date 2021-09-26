@@ -6,6 +6,8 @@ public class WorldGen : MonoBehaviour
 {
     public GameObject tilePrefab;
     private GameObject worldContainer;
+    public int worldSizeX = 20;
+    public int worldSizeY = 20;
 
     // Start is called before the first frame update
     void Start()
@@ -17,9 +19,9 @@ public class WorldGen : MonoBehaviour
     {
         worldContainer = new GameObject();
 
-        for(int x = 0; x < 10; ++x)
+        for(int x = 0; x < worldSizeX; ++x)
         {
-            for(int y = 0; y < 10; ++y)
+            for(int y = 0; y < worldSizeY; ++y)
             {
                 MakeTile(x,y);
             }
