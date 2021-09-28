@@ -40,10 +40,6 @@ public class CoilAnim : MonoBehaviour
             currentCoilRenderer.material.EnableKeyword("_EMISSION");
 
             referenceTime = currentTime;
-            Debug.Log("animation has changed");
         }
-
-        Debug.Log(currentTime.Subtract(referenceTime).Milliseconds+"/"+animIntervalMS);
-        Debug.ClearDeveloperConsole();
     }
 }

@@ -6,9 +6,10 @@ public class Tile : MonoBehaviour
 {
     private bool selected = false;
     private Collider col;
-    private Color highlightColor;
+    private Color hoverColor;
     private Color stdColor;
     private MeshRenderer mesh;
+    private WorldGen worldGen;
     private float fadeSpeed = 2.5f;
     private float fadeDeadZone = .25f;
     // Start is called before the first frame update
@@ -16,28 +17,32 @@ public class Tile : MonoBehaviour
     {
         col = GetComponent<BoxCollider>();
         mesh = GetComponent<MeshRenderer>();
-
+        worldGen = GetComponentInParent<WorldGen>();
+    
         stdColor = mesh.material.color;
-        highlightColor = Color.red; //mesh.material.color*new Vector4(1.1f,1.1f,1.1f,1);
+        hoverColor = stdColor*1.25f;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Deselect()
     {
-        var currentColor = mesh.material.color;
-        var targetColor = selected ? highlightColor : stdColor;
-
-        if(currentColor != targetColor)
-        {
-            var snap = Vector4.Distance(currentColor,targetColor) < fadeDeadZone;
-            mesh.material.color = !snap ? Color.Lerp(currentColor,targetColor,Time.deltaTime*fadeSpeed) : targetColor;
-        }
+        selected = false;
+        ShowHover(false);
     }
 
-    public void ToggleSelect()
+    private void ShowHover(bool show) => mesh.material.color = !show ? stdColor : hoverColor;
+    void OnMouseEnter()
     {
-        selected = !selected;
+        ShowHover(true);
+    }
 
-        
+    void OnMouseExit()
+    {
+        if(!selected) ShowHover(false);
+    }
+
+    void OnMouseUp()
+    {
+        WorldGen.SelectTile(this);
+        selected = true;
     }
 }

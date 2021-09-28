@@ -61,18 +61,6 @@ public class PanCam : MonoBehaviour
         if(isIdleX) speed.x = GetRealSpeed(speed.x) > speedDeadZone.x ? Mathf.Lerp(speed.x,speed.x*.9f,braking*.1f) : 0;
         if(isIdleY) speed.y = GetRealSpeed(speed.y) > speedDeadZone.y ? Mathf.Lerp(speed.y,speed.y*.9f,braking*.1f) : 0;
 
-        // .. selection
-        if( Input.GetMouseButtonDown(0) )
-        {
-            Ray ray = Camera.main.ScreenPointToRay( Input.mousePosition );
-            RaycastHit hit;
-            
-            if( Physics.Raycast( ray, out hit, 100 ) )
-            {
-                hit.transform.GetComponent<Tile>().ToggleSelect();
-            }
-        }
-
         // translation
         transform.Translate(myForward*speed.y*Time.deltaTime,Space.World);
         transform.Translate(myRight*speed.x*Time.deltaTime,Space.World);
