@@ -12,7 +12,7 @@ public class WorldGen : MonoBehaviour
 
     private static List<Tile> selectedTiles = new List<Tile>();
 
-    // Start is called before the first frame update
+    // TODO: Use the debug text in the canvas to show the grid position
     void Start()
     {
         MakeWorld();
@@ -43,6 +43,18 @@ public class WorldGen : MonoBehaviour
     void Update()
     {
 
+    }
+
+    private static bool isDrag = false;
+
+    public static void StartDrag()
+    {
+        isDrag = true;
+    }
+
+    public static void StopDrag()
+    {
+        isDrag = false;
     }
 
     public static void SelectTile(Tile tile)

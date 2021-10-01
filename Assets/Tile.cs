@@ -12,6 +12,7 @@ public class Tile : MonoBehaviour
     private WorldGen worldGen;
     private float fadeSpeed = 2.5f;
     private float fadeDeadZone = .25f;
+
     // Start is called before the first frame update
     void Start()
     {
