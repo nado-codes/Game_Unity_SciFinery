@@ -42,19 +42,47 @@ public class WorldGen : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        Debug.Log("GRID POS="+GetMouseGridPosition(1));
     }
+
+    private static Vector3 Vec3Down(Vector3 vec,float offset)
+        => new Vector3(Mathf.Floor(vec.x)+offset,Mathf.Floor(vec.y)+offset,Mathf.Floor(vec.z)+offset);
 
     private static bool isDrag = false;
 
     public static void StartDrag()
     {
         isDrag = true;
+        Debug.Log("WORLD POS="+GetMouseWorldPosition());
     }
 
     public static void StopDrag()
     {
         isDrag = false;
+        Debug.Log("WORLD POS="+GetMouseWorldPosition());
+    }
+
+    private static Vector2 GetMouseGridPosition(float cellSize)
+    {
+        var worldPosition = GetMouseWorldPosition();
+
+        return new Vector2(
+            Mathf.FloorToInt(worldPosition.x / cellSize)+1,
+            Mathf.FloorToInt(worldPosition.y / cellSize)+1
+        );
+    }
+
+    private static Vector2 GetMouseWorldPosition()
+    {
+        var cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        
+        if(Physics.Raycast(cameraRay.origin,cameraRay.direction,out hit, 250))
+        {
+            return new Vector2(hit.point.x,hit.point.z);
+        }
+        else
+            return Vector2.negativeInfinity;
     }
 
     public static void SelectTile(Tile tile)
