@@ -42,6 +42,9 @@
      <Compile Include="Assets\WorldGen.cs" />
      <Compile Include="Assets\Tile.cs" />
      <Compile Include="Assets\CoilAnim.cs" />
+     <Compile Include="Assets\ElementDesigner\Electron.cs" />
+     <Compile Include="Assets\ElementDesigner\Proton.cs" />
+     <Compile Include="Assets\ElementDesigner\Neutron.cs" />
     <Reference Include="UnityEngine">
         <HintPath>D:\Program Files (x86)\Unity\2021.1.22f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>
