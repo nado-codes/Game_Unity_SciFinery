@@ -8,6 +8,7 @@ public class Proton : Particle
     private Light _light;
     private Vector3 _velocity;
     private Vector3 _orbitOrigin;
+    public Vector3 Axis = new Vector3(0,1,0);
     private bool frozen = false;
     
 
@@ -17,14 +18,14 @@ public class Proton : Particle
         _nucleus = transform.parent.GetComponentInChildren<Nucleus>();
         _light = GetComponentInChildren<Light>();
 
-        var v = (_nucleus.transform.position- transform.position);
+        var v = (_nucleus.transform.position- transform.position).normalized;
         _orbitOrigin = new Vector3(v.x,-v.y,v.z);
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.RotateAround(_nucleus.transform.position,Vector3.up,200*Time.deltaTime);
+        transform.RotateAround(_nucleus.transform.position,Axis,200*Time.deltaTime);
         /* if(!frozen)
         {
             // ApplyGravity();
