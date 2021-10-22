@@ -37,16 +37,18 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\FaceCam.cs" />
+     <Compile Include="Assets\ElementDesigner\Atom\Particle.cs" />
+     <Compile Include="Assets\ElementDesigner\Atom\Nucleus.cs" />
      <Compile Include="Assets\PanCam.cs" />
      <Compile Include="Assets\FlyCam.cs" />
      <Compile Include="Assets\WorldGen.cs" />
      <Compile Include="Assets\Tile.cs" />
+     <Compile Include="Assets\ElementDesigner\Atom\Proton.cs" />
+     <Compile Include="Assets\ElementDesigner\Atom\Neutron.cs" />
      <Compile Include="Assets\CoilAnim.cs" />
-     <Compile Include="Assets\ElementDesigner\Electron.cs" />
-     <Compile Include="Assets\ElementDesigner\Proton.cs" />
-     <Compile Include="Assets\ElementDesigner\Neutron.cs" />
-     <Compile Include="Assets\ElementDesigner\Particle.cs" />
-     <Compile Include="Assets\ElementDesigner\Nucleus.cs" />
+     <Compile Include="Assets\ElementDesigner\Atom\Electron.cs" />
+     <Compile Include="Assets\ElementDesigner\UI\panelCreateParticle.cs" />
+     <Compile Include="Assets\ElementDesigner\UI\panelButton.cs" />
     <Reference Include="UnityEngine">
         <HintPath>D:\Program Files (x86)\Unity\2021.1.22f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>

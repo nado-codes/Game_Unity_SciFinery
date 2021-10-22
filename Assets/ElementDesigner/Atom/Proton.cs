@@ -25,7 +25,7 @@ public class Proton : Particle
     // Update is called once per frame
     void Update()
     {
-        transform.RotateAround(_nucleus.transform.position,Axis,200*Time.deltaTime);
+        // transform.RotateAround(_nucleus.transform.position,Axis,200*Time.deltaTime);
         /* if(!frozen)
         {
             // ApplyGravity();
