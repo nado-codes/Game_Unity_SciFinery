@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Proton : Particle
+public class Proton : MonoBehaviour
 {
     private Nucleus _nucleus;
     private Light _light;

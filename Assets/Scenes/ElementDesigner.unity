@@ -556,6 +556,7 @@ GameObject:
   - component: {fileID: 209457492}
   - component: {fileID: 209457491}
   - component: {fileID: 209457490}
+  - component: {fileID: 209457493}
   m_Layer: 5
   m_Name: btnElectron
   m_TagString: Untagged
@@ -664,6 +665,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 209457488}
   m_CullTransparentMesh: 1
+--- !u!114 &209457493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 209457488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02bf06dc57ca8c94b938b8c73c753ab3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particleType: 0
 --- !u!1 &230787934
 GameObject:
   m_ObjectHideFlags: 0
@@ -803,6 +817,7 @@ GameObject:
   - component: {fileID: 451936334}
   - component: {fileID: 451936333}
   - component: {fileID: 451936332}
+  - component: {fileID: 451936335}
   m_Layer: 5
   m_Name: btnProton
   m_TagString: Untagged
@@ -911,6 +926,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 451936330}
   m_CullTransparentMesh: 1
+--- !u!114 &451936335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 451936330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02bf06dc57ca8c94b938b8c73c753ab3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particleType: 0
 --- !u!1 &482236165
 GameObject:
   m_ObjectHideFlags: 0
@@ -1366,6 +1394,7 @@ GameObject:
   - component: {fileID: 952821659}
   - component: {fileID: 952821661}
   - component: {fileID: 952821660}
+  - component: {fileID: 952821662}
   m_Layer: 5
   m_Name: panelCreateParticle
   m_TagString: Untagged
@@ -1433,6 +1462,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 952821658}
   m_CullTransparentMesh: 1
+--- !u!114 &952821662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 952821658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64d378b1464d85743a6162c3ce40b374, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  creationState: 0
+  particleToCreate: 0
 --- !u!1 &1474404154
 GameObject:
   m_ObjectHideFlags: 0
@@ -1634,6 +1677,7 @@ GameObject:
   - component: {fileID: 1493542793}
   - component: {fileID: 1493542792}
   - component: {fileID: 1493542791}
+  - component: {fileID: 1493542794}
   m_Layer: 5
   m_Name: btnNeutron
   m_TagString: Untagged
@@ -1742,6 +1786,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1493542789}
   m_CullTransparentMesh: 1
+--- !u!114 &1493542794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1493542789}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02bf06dc57ca8c94b938b8c73c753ab3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particleType: 1
 --- !u!1 &1682496633
 GameObject:
   m_ObjectHideFlags: 0
