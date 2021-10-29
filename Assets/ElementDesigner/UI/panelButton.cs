@@ -9,18 +9,15 @@ public class panelButton : MonoBehaviour, IPointerDownHandler
     private panelCreateParticle panel;
     
 
-    public Particle particleType;
+    public ParticleType particleType;
 
     void Start()
     {
-        
         panel = GetComponentInParent<panelCreateParticle>();
-        Debug.Log(panel);
     }
 
     public void OnPointerDown(PointerEventData ev)
     {
-        Debug.Log("mouse is down");
         if(panel.creationState == CreationState.None)
         {
             panel.particleToCreate = particleType;
