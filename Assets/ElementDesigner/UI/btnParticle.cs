@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class panelButton : MonoBehaviour, IPointerDownHandler
+public class btnParticle : MonoBehaviour, IPointerDownHandler
 {
     private panelCreateParticle panel;
     
@@ -24,15 +24,5 @@ public class panelButton : MonoBehaviour, IPointerDownHandler
             panel.creationState = CreationState.Start;
             Debug.Log("start create");
         }
-    }
-
-    void OnPointerExit()
-    {
-        Debug.Log("pointer has exited");
-    }
-
-    void OnPointerUp()
-    {
-        // panel.FinishCreate();
     }
 }
