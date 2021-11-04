@@ -10,21 +10,52 @@ public class Editor : MonoBehaviour
 
     private GameObject dragBox;
     private Vector3 dragBoxStart, dragBoxEnd;
+    private Vector2 mouseStart,mouseEnd;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        // BeginDragSelect();
     }
 
     // Update is called once per frame
     void Update()
     {   
-        if(Input.GetMouseButtonUp(0))
-            Select(LastHovered);
+        //if(Input.GetMouseButtonDown(0))
+          //  BeginDragSelect();
 
-        /* if(Input.GetMouseButtonDown(0))
-            StartDragSelect(); */
+        if(Input.GetMouseButton(0))
+        {
+            /*var cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+            dragBoxEnd = cameraRay.origin;
+            mouseEnd = Input.mousePosition;
+
+            //TODO: update position of drag box
+            var dist = new Vector3(
+                Mathf.Abs(dragBoxStart.x-dragBoxEnd.x),
+                Mathf.Abs(dragBoxStart.y-dragBoxEnd.y),
+                Mathf.Abs(dragBoxStart.z-dragBoxEnd.z)
+            );
+
+            var mouseDist = new Vector2(
+                Mathf.Abs(mouseStart.x-mouseEnd.x),
+                Mathf.Abs(mouseStart.y-mouseEnd.y)
+            );
+
+            Debug.Log("dist="+dist);
+            Debug.Log("mouseDist="+mouseDist);
+
+            // currentParticle.transform.position = cameraRay.origin + (cameraRay.direction * particleDistance);
+
+            dragBox.transform.localScale = new Vector3(1,0,1);
+            dragBox.transform.position = dragBoxEnd + (cameraRay.direction * 2); */
+        }
+
+        if(Input.GetMouseButtonUp(0))
+        {
+            Select(LastHovered);
+            //FinishDragSelect();
+        }
 
         if(Input.GetKeyDown(KeyCode.Delete))
         {
@@ -33,24 +64,33 @@ public class Editor : MonoBehaviour
         }
     }
 
-    /* void StartDragSelect()
+    void BeginDragSelect()
     {
-        dragBox = GameObject.CreatePrimitive(PrimitiveType.Plane);
-        dragBox.AddComponent<FaceCam>();
-
         var cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+        mouseStart = Input.mousePosition;
         dragBoxStart = cameraRay.origin;
         Debug.Log("start drag select");
+
+        Material dragboxMat = Resources.Load("ElementDesigner/DragboxMat.mat", typeof(Material)) as Material;
+        dragBox = GameObject.CreatePrimitive(PrimitiveType.Plane);
+
+        var dragboxRenderer = dragBox.GetComponent<Renderer>();
+        dragboxRenderer.material.color = Color.blue;
+        dragBox.transform.parent = Camera.main.transform;
+        dragBox.transform.localPosition = dragBoxStart + Vector3.forward;
+        dragBox.transform.localRotation = Quaternion.Euler(270,0,0);
+
+        
     }
 
-    void StopDragSelect()
+    void FinishDragSelect()
     {
         var cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
         dragBoxEnd = cameraRay.origin;
 
         GameObject.Destroy(dragBox);
         Debug.Log("stop drag select");
-    } */
+    }
 
     public static void SetHover(Interact objectToHover)
     {

@@ -52,6 +52,7 @@
      <Compile Include="Assets\ElementDesigner\World\Atom\Neutron.cs" />
      <Compile Include="Assets\Main\CoilAnim.cs" />
      <Compile Include="Assets\ElementDesigner\World\Atom\Electron.cs" />
+     <Compile Include="Assets\ElementDesigner\World\TranslateAxis.cs" />
     <Reference Include="UnityEngine">
         <HintPath>D:\Program Files (x86)\Unity\2021.1.22f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>

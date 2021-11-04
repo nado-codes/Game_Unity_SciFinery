@@ -30,7 +30,7 @@ public class Interact : MonoBehaviour
         highlightCube.transform.parent = transform;
         highlightCube.transform.localPosition = Vector3.zero;
 
-        highlightCubeRenderer.material = new Material(Shader.Find("Transparent/Diffuse"));;
+        highlightCubeRenderer.material = new Material(Shader.Find("Transparent/Diffuse"));
         highlightCube.SetActive(false);
 
         highlightCube.transform.localScale = Vector3.one * 1.1f;
