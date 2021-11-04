@@ -34,78 +34,48 @@ public class Interact : MonoBehaviour
         highlightCube.SetActive(false);
 
         highlightCube.transform.localScale = Vector3.one * 1.1f;
-
-        Debug.Log("interact has started");
     }
 
     void Update()
     {
         if(Input.GetMouseButtonUp(0) && !Selectable)
-        {
-            if(Editor.CurrentHighlight == this)
-                highlightCubeRenderer.material.color = HighlightedColor;
-            else
-                highlightCube.SetActive(false);
-        }
+            highlightCubeRenderer.material.color = HighlightedColor;
     }
-
 
     public void Deselect()
     {
         isSelected = false;
-
-        if(Editor.CurrentHighlight != this)
-            highlightCube.SetActive(false);
-        else
-            highlightCubeRenderer.material.color = HighlightedColor;
+        highlightCube.SetActive(false);
     }
 
-    // Highlight behaviour
+    // Hover behaviour
     void OnMouseEnter()
     {
-        // Editor.Highlight(this);
         if(!isSelected)
-        {
             highlightCubeRenderer.material.color = HighlightedColor;
-            highlightCube.SetActive(true);
 
-            // interactionState = InteractionState.Highlight;
-        }
-
-        // Editor.CurrentHighlight = this;
-        // isHovered = true;
-        
+        highlightCube.SetActive(true);
+        Editor.SetHover(this);
+        isHovered = true;
     }
 
-    // De-highlight behaviour
+    // Unhover behaviour
     void OnMouseExit()
     {
-        // Editor.Highlight(false);
         if(!isSelected)
-        {
             highlightCube.SetActive(false);
-            // interactionState = InteractionState.None;
-        }
 
-        // isHovered = false;
-        Editor.CurrentHighlight = null;
+        Editor.ClearHover();
+        isHovered = false;
     }
 
     // Select behaviour
     void OnMouseDown()
     {
-        Editor.Select(this);
+        if(Selectable)
+            Editor.Select(this);
+
         highlightCubeRenderer.material.color = SelectedColor;
         isSelected = true;
-        // isSelected = true;
-        /* if(interactionState == InteractionState.Highlight)
-        {
-            Debug.Log("selected object");
-
-            
-
-            highlightCubeRenderer.material.color = SelectedColor;
-            interactionState = InteractionState.Select;
-        }*/
     }
 }

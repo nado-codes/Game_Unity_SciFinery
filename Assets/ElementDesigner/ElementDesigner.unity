@@ -248,24 +248,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!1 &100451585 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4647999250056569783, guid: 4b7e18c45fb074d4fbf9306120f033dd,
-    type: 3}
-  m_PrefabInstance: {fileID: 4647999251347240620}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &100451586
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 100451585}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05ebb6476376aed4c870222d11101941, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &110781834 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 604647183620525177, guid: ad00babb03a126747bbe368fc9693bf8,
@@ -549,7 +531,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b976efad3a2874a4bbd55cca68252ffb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Selectable: 1
+  Selectable: 0
 --- !u!1 &451936330
 GameObject:
   m_ObjectHideFlags: 0
@@ -794,24 +776,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfe0148bd6553944e88a239e69b06c7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &677276922 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 604647183620525178, guid: ad00babb03a126747bbe368fc9693bf8,
-    type: 3}
-  m_PrefabInstance: {fileID: 604647183664163315}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &677276923
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 677276922}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05ebb6476376aed4c870222d11101941, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &787963555 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6257400964855648983, guid: 50707adb5562e824cbd5ccbe329df73f,
@@ -917,24 +881,6 @@ MonoBehaviour:
   electron: {fileID: 6257400964855648982, guid: 50707adb5562e824cbd5ccbe329df73f,
     type: 3}
   particleDefaultDistance: 5
---- !u!1 &1010795852 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6257400964855648982, guid: 50707adb5562e824cbd5ccbe329df73f,
-    type: 3}
-  m_PrefabInstance: {fileID: 6257400964087483508}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1010795853
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1010795852}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05ebb6476376aed4c870222d11101941, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1025986586
 GameObject:
   m_ObjectHideFlags: 0
@@ -1867,7 +1813,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b976efad3a2874a4bbd55cca68252ffb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Selectable: 1
+  Selectable: 0
 --- !u!1 &1886782817
 GameObject:
   m_ObjectHideFlags: 0
@@ -2203,7 +2149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b976efad3a2874a4bbd55cca68252ffb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Selectable: 1
+  Selectable: 0
 --- !u!1 &2068782369
 GameObject:
   m_ObjectHideFlags: 0
