@@ -6,56 +6,37 @@ using UnityEngine;
 public class Editor : MonoBehaviour
 {
     private static List<Interact> selection = new List<Interact>();
+    private static List<Interact> tempSelection = new List<Interact>();
     public static Interact LastHovered;
 
-    private GameObject dragBox;
-    private Vector3 dragBoxStart, dragBoxEnd;
-    private Vector2 mouseStart,mouseEnd;
+    public RectTransform selectionBoxRect;
+    private BoxCollider dragSelectCollider;
+    private Vector2 dragSelectStartPosition, endDragSelectPosition;
+    private Ray dragSelectStartWorld, dragSelectEndWorld;
+
+    public enum DragState{Init,Active,None}
+    private DragState dragState = DragState.None;
+
+    private Interact[] interactables;
 
     // Start is called before the first frame update
     void Start()
     {
-        // BeginDragSelect();
+        dragSelectCollider = gameObject.AddComponent<BoxCollider>();
+        dragSelectCollider.enabled = false;
+
+        var rigidbody = gameObject.AddComponent<Rigidbody>();
+        rigidbody.useGravity = false;
+        rigidbody.isKinematic = true;
     }
 
     // Update is called once per frame
     void Update()
-    {   
-        //if(Input.GetMouseButtonDown(0))
-          //  BeginDragSelect();
-
-        if(Input.GetMouseButton(0))
-        {
-            /*var cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-            dragBoxEnd = cameraRay.origin;
-            mouseEnd = Input.mousePosition;
-
-            //TODO: update position of drag box
-            var dist = new Vector3(
-                Mathf.Abs(dragBoxStart.x-dragBoxEnd.x),
-                Mathf.Abs(dragBoxStart.y-dragBoxEnd.y),
-                Mathf.Abs(dragBoxStart.z-dragBoxEnd.z)
-            );
-
-            var mouseDist = new Vector2(
-                Mathf.Abs(mouseStart.x-mouseEnd.x),
-                Mathf.Abs(mouseStart.y-mouseEnd.y)
-            );
-
-            Debug.Log("dist="+dist);
-            Debug.Log("mouseDist="+mouseDist);
-
-            // currentParticle.transform.position = cameraRay.origin + (cameraRay.direction * particleDistance);
-
-            dragBox.transform.localScale = new Vector3(1,0,1);
-            dragBox.transform.position = dragBoxEnd + (cameraRay.direction * 2); */
-        }
+    {  
+        HandleDragSelect();
 
         if(Input.GetMouseButtonUp(0))
-        {
             Select(LastHovered);
-            //FinishDragSelect();
-        }
 
         if(Input.GetKeyDown(KeyCode.Delete))
         {
@@ -64,38 +45,114 @@ public class Editor : MonoBehaviour
         }
     }
 
-    void BeginDragSelect()
+    void HandleDragSelect()
     {
+        if(Input.GetMouseButtonDown(0))
+            InitDragSelect();
+
         var cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-        mouseStart = Input.mousePosition;
-        dragBoxStart = cameraRay.origin;
+        dragSelectEndWorld = cameraRay;
+
+        if(Vector3.Distance(dragSelectStartWorld.origin,dragSelectEndWorld.origin) > .05f && dragState == DragState.Init)
+            StartDragSelect();
+
+        if(Input.GetMouseButton(0) && dragState == DragState.Active)
+        {
+            
+
+            // .. collider
+            var hudRectTransform = GameObject.Find("HUD").GetComponent<RectTransform>();
+
+            var dragOffset = ((hudRectTransform.position-transform.position)*.9f).magnitude;
+            var dragMin = dragSelectStartWorld.origin + (dragSelectStartWorld.direction*dragOffset);
+            var dragMinLocal = transform.InverseTransformPoint(dragMin);
+            var dragMax = dragSelectEndWorld.origin + (dragSelectEndWorld.direction*dragOffset);;
+            var dragMaxLocal = transform.InverseTransformPoint(dragMax);
+            var dragCenter = dragMin+(dragMax-dragMin)*.5f;
+            var dragCenterLocal = transform.InverseTransformPoint(dragCenter);
+
+            Debug.DrawRay(dragMin,transform.forward,Color.green,.01f);
+            Debug.DrawRay(dragMax,transform.forward,Color.red,.01f);
+            Debug.DrawRay(dragCenter,transform.forward,Color.blue,.01f);
+
+            var colliderSizeBase = (dragMaxLocal-dragMinLocal);
+            dragSelectCollider.size = new Vector3(colliderSizeBase.x*2,colliderSizeBase.y*2,20);
+            dragSelectCollider.center = dragCenterLocal + (Vector3.forward*dragSelectCollider.size.z*.5f);
+
+            // .. HUD selection box 
+            float selectionBoxWidth = Input.mousePosition.x - dragSelectStartPosition.x;
+            float selectionBoxHeight = Input.mousePosition.y - dragSelectStartPosition.y;
+            selectionBoxRect.anchoredPosition = dragSelectStartPosition - new Vector2(-selectionBoxWidth / 2, -selectionBoxHeight / 2);
+            selectionBoxRect.sizeDelta = new Vector2(Mathf.Abs(selectionBoxWidth),Mathf.Abs(selectionBoxHeight));
+        }
+
+        if(Input.GetMouseButtonUp(0))
+        {
+            if(dragState == DragState.Active)
+                FinishDragSelect();
+
+            dragState = DragState.None;
+        }
+    }
+
+    void OnTriggerEnter(Collider col)
+    {
+        var interact = col.gameObject.GetComponent<Interact>();
+    
+        if(interact && !tempSelection.Contains(interact))
+        {
+            interact.Hover();
+            tempSelection.Add(interact);
+        }
+    }
+
+    void OnTriggerExit(Collider col)
+    {
+        var interact = col.gameObject.GetComponent<Interact>();
+
+        if(interact)
+        {
+            interact.ClearHover();
+            tempSelection.Remove(interact);
+        }
+    }
+
+    void InitDragSelect()
+    {
+        dragState = DragState.Init;
+        dragSelectStartWorld = Camera.main.ScreenPointToRay(Input.mousePosition);
+        dragSelectStartPosition = Input.mousePosition;
+        Debug.Log("init drag select");
+    }
+
+    void StartDragSelect()
+    {
+        selectionBoxRect.gameObject.SetActive(true);
+        selectionBoxRect.sizeDelta = Vector2.zero;
+        dragSelectCollider.enabled = true;
+        dragSelectCollider.isTrigger = true;
+
+        dragState = DragState.Active;
         Debug.Log("start drag select");
-
-        Material dragboxMat = Resources.Load("ElementDesigner/DragboxMat.mat", typeof(Material)) as Material;
-        dragBox = GameObject.CreatePrimitive(PrimitiveType.Plane);
-
-        var dragboxRenderer = dragBox.GetComponent<Renderer>();
-        dragboxRenderer.material.color = Color.blue;
-        dragBox.transform.parent = Camera.main.transform;
-        dragBox.transform.localPosition = dragBoxStart + Vector3.forward;
-        dragBox.transform.localRotation = Quaternion.Euler(270,0,0);
-
-        
     }
 
     void FinishDragSelect()
     {
-        var cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-        dragBoxEnd = cameraRay.origin;
+        endDragSelectPosition = Input.mousePosition;
+        selectionBoxRect.gameObject.SetActive(false);
+        dragSelectCollider.enabled = false;
+        dragSelectCollider.isTrigger = false;
+        SelectMany(tempSelection);
 
-        GameObject.Destroy(dragBox);
-        Debug.Log("stop drag select");
+        Debug.Log("finish drag select");
+        
+        
     }
 
     public static void SetHover(Interact objectToHover)
     {
         LastHovered = objectToHover;
-        Debug.Log("hovering "+objectToHover.gameObject.name);
+        // Debug.Log("hovering "+objectToHover.gameObject.name);
     }
 
     public static void ClearHover()
@@ -103,20 +160,36 @@ public class Editor : MonoBehaviour
         LastHovered = null;
     }
 
+    public static void SelectMany(IEnumerable<Interact> objectsToSelect)
+    {
+        Debug.Log("try to SelectMany on "+objectsToSelect.Count()+" objects");
+        objectsToSelect.ToList().ForEach(s => s.Select());
+    }
+
     public static void Select(Interact objectToSelect)
     {
+        Debug.Log("selecting "+objectToSelect);
+
         var isMultiSelect = Input.GetKey(KeyCode.LeftShift);
         var isMultiDeselect = Input.GetKey(KeyCode.LeftControl);
 
+        Debug.Log("there are "+selection.Count+" objects currently selected");        
+
         if(!isMultiSelect && !isMultiDeselect)
         {
-            Debug.Log("cleared other selection");
-            var objectsToDeselect = selection.Where(s => s != objectToSelect).ToList();
+            
+            var objectsToDeselect = selection.Where(s => s != objectToSelect && !tempSelection.Contains(s)).ToList();
+            if(objectsToDeselect.Count > 0) Debug.Log("cleared "+objectsToDeselect.Count+" other objects from selection");
             objectsToDeselect.ForEach(s => s.Deselect());
             selection.RemoveAll(s => objectsToDeselect.Contains(s));
+            
         }
 
+        LastHovered = null;
+
         if(!objectToSelect) return;
+
+        
 
         if(!isMultiDeselect)
         {
@@ -134,6 +207,8 @@ public class Editor : MonoBehaviour
             objectToSelect.Deselect();
             selection.Remove(objectToSelect);
         }
+
+        
     }
 
     public static void Deselect(Interact objectToDeselect)

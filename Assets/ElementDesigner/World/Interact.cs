@@ -42,11 +42,16 @@ public class Interact : MonoBehaviour
             highlightCubeRenderer.material.color = HighlightedColor;
     }
 
+    public void Hover() => OnMouseEnter();
+    public void ClearHover() => OnMouseExit();
+    public void Select() => OnMouseDown();
     public void Deselect()
     {
         isSelected = false;
         highlightCube.SetActive(false);
     }
+
+    
 
     // Hover behaviour
     void OnMouseEnter()
@@ -54,7 +59,7 @@ public class Interact : MonoBehaviour
         if(!isSelected)
             highlightCubeRenderer.material.color = HighlightedColor;
 
-        highlightCube.SetActive(true);
+        highlightCube?.SetActive(true);
         Editor.SetHover(this);
         isHovered = true;
     }
@@ -63,7 +68,7 @@ public class Interact : MonoBehaviour
     void OnMouseExit()
     {
         if(!isSelected)
-            highlightCube.SetActive(false);
+            highlightCube?.SetActive(false);
 
         Editor.ClearHover();
         isHovered = false;
@@ -73,7 +78,7 @@ public class Interact : MonoBehaviour
     void OnMouseDown()
     {
         if(Selectable)
-            Editor.Select(this);
+          Editor.Select(this);
 
         highlightCubeRenderer.material.color = SelectedColor;
         isSelected = true;
