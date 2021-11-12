@@ -35,8 +35,6 @@ public class panelCreateParticle : MonoBehaviour, IPointerExitHandler
     // Update is called once per frame
     void Update()
     {
-        
-
         if(creationState == CreationState.Drag)
         {
             // zoom
@@ -66,6 +64,7 @@ public class panelCreateParticle : MonoBehaviour, IPointerExitHandler
                 particleDistance = particleDefaultDistance;
                 currentParticle = null;
                 creationState = CreationState.None;
+                Editor.SetDragSelectEnabled(true);
             }
         }
     }
@@ -92,6 +91,7 @@ public class panelCreateParticle : MonoBehaviour, IPointerExitHandler
                 currentParticle = Instantiate(electron);
 
             creationState = CreationState.Drag;
+            Editor.SetDragSelectEnabled(false);
         }
         // if(!isEdit) isHover = false;
     }

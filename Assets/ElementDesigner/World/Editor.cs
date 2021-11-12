@@ -1,25 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 using UnityEngine;
 
 public class Editor : MonoBehaviour
 {
-    private static List<Interact> selection = new List<Interact>();
-    private static List<Interact> tempSelection = new List<Interact>();
-    public static Interact LastHovered;
+    private static List<Interact> selectedObjects = new List<Interact>();
+    private static List<Interact> hoveredObjects = new List<Interact>();
 
+    public enum DragState{Init,Active,None}
+    private static bool dragSelectIsEnabled = true;
+    private DragState dragState = DragState.None;
     public RectTransform selectionBoxRect;
     private BoxCollider dragSelectCollider;
     private Vector2 dragSelectStartPosition, endDragSelectPosition;
     private Ray dragSelectStartWorld, dragSelectEndWorld;
 
-    public enum DragState{Init,Active,None}
-    private DragState dragState = DragState.None;
-
-    private Interact[] interactables;
-
-    // Start is called before the first frame update
     void Start()
     {
         dragSelectCollider = gameObject.AddComponent<BoxCollider>();
@@ -30,20 +27,25 @@ public class Editor : MonoBehaviour
         rigidbody.isKinematic = true;
     }
 
-    // Update is called once per frame
     void Update()
     {  
-        HandleDragSelect();
+        if(dragSelectIsEnabled)
+            HandleDragSelect();
 
         if(Input.GetMouseButtonUp(0))
-            Select(LastHovered);
+        {
+            Select(hoveredObjects);
+            hoveredObjects.Clear();
+        }
 
         if(Input.GetKeyDown(KeyCode.Delete))
         {
-            selection.ForEach(s => GameObject.Destroy(s.gameObject));
-            selection.Clear();
+            selectedObjects.ForEach(s => GameObject.Destroy(s.gameObject));
+            selectedObjects.Clear();
         }
     }
+
+    public static void SetDragSelectEnabled(bool enable) => dragSelectIsEnabled = enable;
 
     void HandleDragSelect()
     {
@@ -99,10 +101,12 @@ public class Editor : MonoBehaviour
     {
         var interact = col.gameObject.GetComponent<Interact>();
     
-        if(interact && !tempSelection.Contains(interact))
+        if(interact && !hoveredObjects.Contains(interact))
         {
             interact.Hover();
-            tempSelection.Add(interact);
+
+            Debug.Log("adding "+interact.gameObject.name+" to selection");
+            hoveredObjects.Add(interact);
         }
     }
 
@@ -113,7 +117,7 @@ public class Editor : MonoBehaviour
         if(interact)
         {
             interact.ClearHover();
-            tempSelection.Remove(interact);
+            hoveredObjects.Remove(interact);
         }
     }
 
@@ -142,70 +146,64 @@ public class Editor : MonoBehaviour
         selectionBoxRect.gameObject.SetActive(false);
         dragSelectCollider.enabled = false;
         dragSelectCollider.isTrigger = false;
-        SelectMany(tempSelection);
-
-        Debug.Log("finish drag select");
-        
-        
     }
 
-    public static void SetHover(Interact objectToHover)
+    public static void Hover(Interact objectToHover)
     {
-        LastHovered = objectToHover;
-        // Debug.Log("hovering "+objectToHover.gameObject.name);
+        if(!hoveredObjects.Contains(objectToHover))
+            hoveredObjects.Add(objectToHover);
     }
 
-    public static void ClearHover()
+    public static void RemoveHover(Interact objectToDehover)
     {
-        LastHovered = null;
+        hoveredObjects.Remove(objectToDehover);
     }
 
-    public static void SelectMany(IEnumerable<Interact> objectsToSelect)
-    {
-        Debug.Log("try to SelectMany on "+objectsToSelect.Count()+" objects");
-        objectsToSelect.ToList().ForEach(s => s.Select());
-    }
+    public static void Select(Interact objectToSelect) => Select(new Interact[1]{objectToSelect});
 
-    public static void Select(Interact objectToSelect)
+    public static void Select(IEnumerable<Interact> objectsToSelect)
     {
-        Debug.Log("selecting "+objectToSelect);
-
         var isMultiSelect = Input.GetKey(KeyCode.LeftShift);
         var isMultiDeselect = Input.GetKey(KeyCode.LeftControl);
 
-        Debug.Log("there are "+selection.Count+" objects currently selected");        
+        // Debug.Log("there are "+selectedObjects.Count+" objects currently selected");
+        Debug.Log("..."+objectsToSelect.Count()+" more objects will be selected/deselected");        
 
         if(!isMultiSelect && !isMultiDeselect)
         {
-            
-            var objectsToDeselect = selection.Where(s => s != objectToSelect && !tempSelection.Contains(s)).ToList();
-            if(objectsToDeselect.Count > 0) Debug.Log("cleared "+objectsToDeselect.Count+" other objects from selection");
+            var objectsToDeselect = selectedObjects.Where(s => !objectsToSelect.Contains(s)).ToList();
+            // if(objectsToDeselect.Count > 0) Debug.Log("cleared "+objectsToDeselect.Count+" other objects from selection");
             objectsToDeselect.ForEach(s => s.Deselect());
-            selection.RemoveAll(s => objectsToDeselect.Contains(s));
-            
+            selectedObjects.RemoveAll(s => objectsToDeselect.Contains(s));
         }
 
-        LastHovered = null;
-
-        if(!objectToSelect) return;
-
-        
+        if(objectsToSelect.Count() == 0) return;
 
         if(!isMultiDeselect)
         {
-            if(!selection.Contains(objectToSelect))
-            {
-                Debug.Log("added "+objectToSelect.gameObject.name+" to selection");
-                selection.Add(objectToSelect);
-            }
+            objectsToSelect.ToList().ForEach(objectToSelect => objectToSelect.Select());
+
+            selectedObjects.AddRange(objectsToSelect.Where(objectToSelect => {
+                if(!selectedObjects.Contains(objectToSelect))
+                {
+                    Debug.Log("trying to add"+objectToSelect);
+                    Debug.Log("added "+objectToSelect.gameObject.name+" to selection");
+                    return true;
+                }
+                return false;
+            }));
         }
         else
         {
-            if(selection.Contains(objectToSelect))
-                Debug.Log("removed "+objectToSelect.gameObject.name+" from selection");
-            
-            objectToSelect.Deselect();
-            selection.Remove(objectToSelect);
+            objectsToSelect.ToList().ForEach(objectToSelect => objectToSelect.Deselect());
+
+            objectsToSelect.ToList().ForEach(objectToDeselect => {
+                if(selectedObjects.Contains(objectToDeselect))
+                    Debug.Log("removed "+objectToDeselect.gameObject.name+" from selection");
+
+                objectToDeselect.Deselect();
+                selectedObjects.Remove(objectToDeselect);
+            });
         }
 
         
@@ -219,7 +217,7 @@ public class Editor : MonoBehaviour
         {
             Debug.Log("removed "+objectToDeselect.gameObject.name+" from selection");
             objectToDeselect.Deselect();
-            selection.Remove(objectToDeselect);
+            selectedObjects.Remove(objectToDeselect);
         }
     }
 }

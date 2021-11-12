@@ -17,10 +17,9 @@ public class Interact : MonoBehaviour
     private Renderer highlightCubeRenderer {
         get => highlightCube?.GetComponent<Renderer>(); 
     }
-    private bool isHovered = false;
+    public bool isHovered = false;
     private bool isSelected = false;
 
-    // Start is called before the first frame update
     void Start()
     {
         Material tMat = Resources.Load("ElementDesigner/TransparentWhite.mat", typeof(Material)) as Material;
@@ -35,52 +34,59 @@ public class Interact : MonoBehaviour
 
         highlightCube.transform.localScale = Vector3.one * 1.1f;
     }
-
     void Update()
     {
         if(Input.GetMouseButtonUp(0) && !Selectable)
             highlightCubeRenderer.material.color = HighlightedColor;
     }
 
-    public void Hover() => OnMouseEnter();
-    public void ClearHover() => OnMouseExit();
-    public void Select() => OnMouseDown();
-    public void Deselect()
-    {
-        isSelected = false;
-        highlightCube.SetActive(false);
-    }
-
-    
-
     // Hover behaviour
-    void OnMouseEnter()
+    public void Hover()
     {
         if(!isSelected)
             highlightCubeRenderer.material.color = HighlightedColor;
 
         highlightCube?.SetActive(true);
-        Editor.SetHover(this);
         isHovered = true;
+    }
+    void OnMouseEnter()
+    {
+        Editor.Hover(this);
+        Hover();
     }
 
     // Unhover behaviour
-    void OnMouseExit()
+    public void ClearHover()
     {
         if(!isSelected)
             highlightCube?.SetActive(false);
 
-        Editor.ClearHover();
         isHovered = false;
+    }
+    void OnMouseExit()
+    {
+        Editor.RemoveHover(this);
+        ClearHover();
     }
 
     // Select behaviour
+    public void Select()
+    {
+        highlightCubeRenderer.material.color = SelectedColor;
+        isSelected = true;
+    }
+    public void Deselect()
+    {
+        isSelected = false;
+        highlightCube.SetActive(false);
+    }
     void OnMouseDown()
     {
         if(Selectable)
           Editor.Select(this);
 
-        highlightCubeRenderer.material.color = SelectedColor;
-        isSelected = true;
+        Select();
     }
+
+    
 }
