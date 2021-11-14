@@ -34,7 +34,7 @@ public class Editor : MonoBehaviour
 
         if(Input.GetMouseButtonUp(0))
         {
-            Select(hoveredObjects);
+            Select(hoveredObjects.Where(sel => sel.Selectable));
             hoveredObjects.Clear();
         }
 
@@ -55,13 +55,16 @@ public class Editor : MonoBehaviour
         var cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
         dragSelectEndWorld = cameraRay;
 
-        if(Vector3.Distance(dragSelectStartWorld.origin,dragSelectEndWorld.origin) > .05f && dragState == DragState.Init)
+        bool canDrag = (
+            Vector3.Distance(dragSelectStartWorld.origin,dragSelectEndWorld.origin) > .05f &&
+            !Translate.IsActive
+        );
+
+        if(canDrag && dragState == DragState.Init)
             StartDragSelect();
 
         if(Input.GetMouseButton(0) && dragState == DragState.Active)
         {
-            
-
             // .. collider
             var hudRectTransform = GameObject.Find("HUD").GetComponent<RectTransform>();
 
@@ -101,7 +104,7 @@ public class Editor : MonoBehaviour
     {
         var interact = col.gameObject.GetComponent<Interact>();
     
-        if(interact && !hoveredObjects.Contains(interact))
+        if(interact && interact.Selectable && !hoveredObjects.Contains(interact))
         {
             interact.Hover();
 

@@ -9,18 +9,19 @@ public class Interact : MonoBehaviour
 
     public bool Selectable = true;
 
+    private float transparency = .5f;
     private Color HighlightedColor = new Color(1,1,1,.5f);
-    private Color SelectedColor = new Color(0,1,0,.5f);
+    public Color SelectedColor = new Color(0,1,0,.5f);
 
     private InteractionState interactionState = InteractionState.None;
     private GameObject highlightCube;
-    private Renderer highlightCubeRenderer {
+    protected Renderer highlightCubeRenderer {
         get => highlightCube?.GetComponent<Renderer>(); 
     }
     public bool isHovered = false;
     private bool isSelected = false;
 
-    void Start()
+    protected void Start()
     {
         Material tMat = Resources.Load("ElementDesigner/TransparentWhite.mat", typeof(Material)) as Material;
 
@@ -34,10 +35,16 @@ public class Interact : MonoBehaviour
 
         highlightCube.transform.localScale = Vector3.one * 1.1f;
     }
-    void Update()
+    public void Update()
     {
+        SelectedColor.a = transparency;
+        HighlightedColor.a = transparency;
+
         if(Input.GetMouseButtonUp(0) && !Selectable)
             highlightCubeRenderer.material.color = HighlightedColor;
+
+        if(!Input.GetMouseButton(0) && !isHovered)
+            highlightCube?.SetActive(false);
     }
 
     // Hover behaviour
@@ -51,7 +58,9 @@ public class Interact : MonoBehaviour
     }
     void OnMouseEnter()
     {
-        Editor.Hover(this);
+        if(Selectable)
+            Editor.Hover(this);
+        
         Hover();
     }
 
@@ -80,7 +89,7 @@ public class Interact : MonoBehaviour
         isSelected = false;
         highlightCube.SetActive(false);
     }
-    void OnMouseDown()
+    protected void OnMouseDown()
     {
         if(Selectable)
           Editor.Select(this);

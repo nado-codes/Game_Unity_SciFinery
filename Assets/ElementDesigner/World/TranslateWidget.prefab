@@ -44,7 +44,6 @@ GameObject:
   - component: {fileID: 4706210146578040605}
   - component: {fileID: 4706210146578040604}
   - component: {fileID: 4706210146578040607}
-  - component: {fileID: 4706210146578040594}
   m_Layer: 5
   m_Name: Sphere
   m_TagString: Untagged
@@ -129,20 +128,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4706210146578040594
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4706210146578040601}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83aa344921ebb1942820d82d5b2d8206, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Selectable: 1
-  axis: 2
 --- !u!1 &4706210147025690334
 GameObject:
   m_ObjectHideFlags: 0
@@ -379,7 +364,6 @@ GameObject:
   - component: {fileID: 4706210147835015134}
   - component: {fileID: 4706210147835015129}
   - component: {fileID: 4706210147835015128}
-  - component: {fileID: 4706210147835015135}
   m_Layer: 5
   m_Name: Sphere
   m_TagString: Untagged
@@ -464,20 +448,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4706210147835015135
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4706210147835015130}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83aa344921ebb1942820d82d5b2d8206, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Selectable: 1
-  axis: 1
 --- !u!1 &4706210147881505641
 GameObject:
   m_ObjectHideFlags: 0
@@ -615,7 +585,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4706210147913047924}
-  - component: {fileID: 4706210147913047925}
   m_Layer: 5
   m_Name: TranslateWidget
   m_TagString: Untagged
@@ -641,18 +610,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4706210147913047925
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4706210147913047927}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0fa3621e3924f5c4aad5d65154f3e1b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &4706210148170884480
 GameObject:
   m_ObjectHideFlags: 0
@@ -665,7 +622,6 @@ GameObject:
   - component: {fileID: 4706210148170884484}
   - component: {fileID: 4706210148170884487}
   - component: {fileID: 4706210148170884486}
-  - component: {fileID: 4706210148170884485}
   m_Layer: 5
   m_Name: Sphere
   m_TagString: Untagged
@@ -750,20 +706,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4706210148170884485
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4706210148170884480}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83aa344921ebb1942820d82d5b2d8206, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Selectable: 1
-  axis: 0
 --- !u!1 &4706210148204176776
 GameObject:
   m_ObjectHideFlags: 0
@@ -874,3 +816,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Selectable: 1
+  isHovered: 0
