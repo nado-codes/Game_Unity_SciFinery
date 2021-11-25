@@ -1,11 +1,15 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 
 public class FlyCam : MonoBehaviour {
 
-    float xSense = 300, ySense = 300;
-    float speed = 30, speedActual = 0, speedStrafe = 0, speedLev = 0;
-    int dir = 1, strafeDir = 1, levDir = 1;
+    private float xSense = 300, ySense = 300;
+    public float baseSpeed = 10, accelerationMultiplier = 1f;
+    private float speedSprint = 0, speedStrafe = 0, speedLev = 0;
+    int forwardDir = 1, strafeDir = 1, levDir = 1;
+
+    private DateTime lastMovementTime;
 
 	// Use this for initialization
 	void Start () {
@@ -34,14 +38,14 @@ public class FlyCam : MonoBehaviour {
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S))
         {
             if (Input.GetKey(KeyCode.W))
-                dir = 1;
+                forwardDir = 1;
             else if (Input.GetKey(KeyCode.S))
-                dir = -1;
+                forwardDir = -1;
 
-            speedActual = speed;
+            lastMovementTime = DateTime.Now;
         }
         else
-            speedActual = 0;
+            forwardDir = 0;
 
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
         {
@@ -50,30 +54,31 @@ public class FlyCam : MonoBehaviour {
             else if (Input.GetKey(KeyCode.D))
                 strafeDir = 1;
 
-            speedStrafe = speed;
+            lastMovementTime = DateTime.Now;
         }
         else
-            speedStrafe = 0;
+            strafeDir = 0;
 
         if (Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.E))
         {
             if (Input.GetKey(KeyCode.Q))
-                levDir = -1;
-            else if (Input.GetKey(KeyCode.E))
                 levDir = 1;
+            else if (Input.GetKey(KeyCode.E))
+                levDir = -1;
 
-            speedLev = speed;
+            lastMovementTime = DateTime.Now;
         }
         else
-            speedLev = 0;
+            levDir = 0;
 
         if (Input.GetKey(KeyCode.LeftShift))
-            speed = Mathf.Lerp(speed,speed*1.8f,Time.deltaTime*1.1f);
-        else
-            speed = 10;
+            speedSprint = Mathf.Lerp(speedSprint,speedSprint*accelerationMultiplier,Time.deltaTime);
+        
+        if(!Input.GetKey(KeyCode.LeftShift) || (DateTime.Now-lastMovementTime).TotalMilliseconds > 100)
+            speedSprint = baseSpeed;
 
-        transform.Translate(Vector3.forward * speedActual * dir * Time.deltaTime, Space.Self);
-        transform.Translate(Vector3.right * speedStrafe * strafeDir * Time.deltaTime, Space.Self);
-        transform.Translate(Vector3.up * speedLev * levDir * Time.deltaTime, Space.Self);
+        transform.Translate(Vector3.forward * baseSpeed * speedSprint * forwardDir * Time.deltaTime);
+        transform.Translate(Vector3.right * baseSpeed * speedSprint * strafeDir * Time.deltaTime);
+        transform.Translate(Vector3.up * baseSpeed * speedSprint * levDir * Time.deltaTime);
     }
 }

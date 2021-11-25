@@ -15,11 +15,11 @@ public class Proton : Particle
     // Start is called before the first frame update
     void Start()
     {
-        _nucleus = transform.parent.GetComponentInChildren<Nucleus>();
+        // _nucleus = transform.parent.GetComponentInChildren<Nucleus>();
         _light = GetComponentInChildren<Light>();
 
-        var v = (_nucleus.transform.position- transform.position).normalized;
-        _orbitOrigin = new Vector3(v.x,-v.y,v.z);
+        // var v = (_nucleus.transform.position- transform.position).normalized;
+        // _orbitOrigin = new Vector3(v.x,-v.y,v.z);
     }
 
     // Update is called once per frame

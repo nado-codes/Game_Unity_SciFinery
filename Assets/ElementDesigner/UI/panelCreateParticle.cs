@@ -14,22 +14,22 @@ public class panelCreateParticle : MonoBehaviour, IPointerExitHandler
     private bool isHover = false;
     public CreationState creationState = CreationState.None;
     public ParticleType particleToCreate = ParticleType.Proton;
-    private GameObject currentParticle;
+    private GameObject currentParticleObject;
 
     public GameObject proton;
     public GameObject neutron;
     public GameObject electron;
 
     public float particleDefaultDistance = 5;
-    private float particleDistance = 5;
-    private float zoomSensitivity = 200;
+    private float particleDistance = 1;
+    private float zoomSensitivity = 400;
 
     
 
     // Start is called before the first frame update
     void Start()
     {
-
+        particleDistance = particleDefaultDistance;
     }
 
     // Update is called once per frame
@@ -57,12 +57,12 @@ public class panelCreateParticle : MonoBehaviour, IPointerExitHandler
 
             var cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-            currentParticle.transform.position = cameraRay.origin + (cameraRay.direction * particleDistance);
+            currentParticleObject.transform.position = cameraRay.origin + (cameraRay.direction * particleDistance);
 
             if(Input.GetMouseButtonUp(0))
             {
                 particleDistance = particleDefaultDistance;
-                currentParticle = null;
+                currentParticleObject = null;
                 creationState = CreationState.None;
                 Editor.SetDragSelectEnabled(true);
             }
@@ -84,11 +84,13 @@ public class panelCreateParticle : MonoBehaviour, IPointerExitHandler
             Debug.Log("start drag");
             
             if(particleToCreate == ParticleType.Proton)
-                currentParticle = Instantiate(proton);
+                currentParticleObject = Instantiate(proton);
             else if(particleToCreate == ParticleType.Neutron)
-                currentParticle = Instantiate(neutron);
+                currentParticleObject = Instantiate(neutron);
             else if(particleToCreate == ParticleType.Electron)
-                currentParticle = Instantiate(electron);
+                currentParticleObject = Instantiate(electron);
+
+            World.AddParticle(currentParticleObject.GetComponent<Particle>());
 
             creationState = CreationState.Drag;
             Editor.SetDragSelectEnabled(false);

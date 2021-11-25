@@ -1,23 +1,60 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity;
 using UnityEngine;
 
 public class Particle : MonoBehaviour
 {
+    public enum Charge{Positive = 1, None = 0, Negative = -1}
     private Vector3 velocity = Vector3.zero;
     private bool allStopIsActive = false;
 
+    public Charge charge = Charge.None;
+    Vector3 startPosition;
+
     void Start()
     {
-        
+        startPosition = transform.position;
     }
+
+    // priv
 
     protected void Update()
     {
         transform.Translate(velocity*Time.deltaTime);
 
-        Debug.Log("vel of "+gameObject.name+"="+velocity);
+        // Debug.Log("vel of "+gameObject.name+"="+velocity);
+        
+        // Apply charges
+        var worldParticles = World.Particles.Where(x => x != this);
+        // Debug.Log(gameObject.name+" checking "+worldParticles.Count()+" other particles");
+
+        var velocityDirection = Vector3.zero;
+        worldParticles.ToList().ForEach(x => {
+            var effectiveCharge = (int)x.charge*(int)charge;
+            var xBody = x.transform.Find("Body");
+            var body = transform.Find("Body");
+            var sizeOffset = xBody.lossyScale.magnitude / body.lossyScale.magnitude;
+            // Debug.Log(gameObject.name+"->"+x.gameObject.name+"="+sizeOffset);
+
+            effectiveCharge = effectiveCharge == 1 ? -1 : effectiveCharge;
+
+            var dirTo = transform.position-x.transform.position;
+            velocityDirection += dirTo * effectiveCharge * sizeOffset;
+            // Debug.DrawRay(transform.position,dirTo,Color.red,.01f);
+            // Debug.DrawRay(transform.position,dirTo * effectiveCharge,Color.yellow,.01f);
+        });
+
+        velocity += velocityDirection * Time.deltaTime * .5f;
+
+        // Debug.DrawRay(transform.position,velocityDirection.normalized,Color.blue,.01f);
+
+         if(Vector3.Distance(transform.position,Vector3.zero) > 40)
+        {
+            // transform.position = transform.position - (transform.position-startPosition).normalized*.1f;
+            // velocity = -velocity;
+        }
 
         if(allStopIsActive)
             velocity = Vector3.Lerp(velocity,velocity*.9f,Time.deltaTime);

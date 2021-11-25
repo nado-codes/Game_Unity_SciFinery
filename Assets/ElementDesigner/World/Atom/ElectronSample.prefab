@@ -222,7 +222,7 @@ Transform:
   m_GameObject: {fileID: 6257400964169490330}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.50938, y: 0.50938, z: 0.50938}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 6257400963991126637}
   - {fileID: 6257400964012137330}
@@ -350,6 +350,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e24b3f865adaed644a2ea52b63f81cf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  charge: -1
 --- !u!114 &802318359027500632
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -362,10 +363,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b976efad3a2874a4bbd55cca68252ffb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HighlightedColor: {r: 1, g: 1, b: 1, a: 0.5}
+  Selectable: 1
   SelectedColor: {r: 0, g: 1, b: 0, a: 0.5}
-  IsToggleSelect: 1
-  CanTranslate: 1
+  isHovered: 0
 --- !u!65 &1644496329627995310
 BoxCollider:
   m_ObjectHideFlags: 0

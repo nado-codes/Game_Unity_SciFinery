@@ -66,7 +66,7 @@ public class Translate : MonoBehaviour
 
     void Update()
     {
-        if(brake.IsActive)
+        /* if(brake.IsActive)
         {
             Brake();
         }
@@ -105,7 +105,7 @@ public class Translate : MonoBehaviour
             }
 
             handle.transform.position = referencePosition + zoomOffset;
-        }
+        } */
     }
 
     public void SetTranslateIsActive(bool active)
@@ -123,5 +123,15 @@ public class Translate : MonoBehaviour
         }
 
         IsActive = active;
+    }
+
+    void OnMouseDown()
+    {
+        SetTranslateIsActive(true);
+    }
+
+    void OnMouseUp()
+    {
+        SetTranslateIsActive(false);
     }
 }

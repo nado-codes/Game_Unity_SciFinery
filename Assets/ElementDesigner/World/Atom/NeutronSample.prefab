@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd79b3c69295c4743be1962738e0bfb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  charge: 0
 --- !u!114 &-2939634838974247702
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58,10 +59,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b976efad3a2874a4bbd55cca68252ffb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HighlightedColor: {r: 1, g: 1, b: 1, a: 0.5}
+  Selectable: 1
   SelectedColor: {r: 0, g: 1, b: 0, a: 0.5}
-  IsToggleSelect: 1
-  CanTranslate: 1
+  isHovered: 0
 --- !u!65 &1711421356170641089
 BoxCollider:
   m_ObjectHideFlags: 0

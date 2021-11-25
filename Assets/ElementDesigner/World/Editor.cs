@@ -41,8 +41,12 @@ public class Editor : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Delete))
         {
-            _selectedObjects.ForEach(s => GameObject.Destroy(s.gameObject));
+            _selectedObjects.ForEach(s => {
+                GameObject.Destroy(s.gameObject);
+                World.RemoveParticle(s.GetComponent<Particle>());
+            });
             _selectedObjects.Clear();
+            
         }
 
         if(_selectedObjects.Any())
