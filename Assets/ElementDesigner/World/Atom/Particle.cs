@@ -36,20 +36,17 @@ public class Particle : MonoBehaviour
             var xBody = x.transform.Find("Body");
             var body = transform.Find("Body");
             var sizeOffset = xBody.lossyScale.magnitude / body.lossyScale.magnitude;
-            // Debug.Log(gameObject.name+"->"+x.gameObject.name+"="+sizeOffset);
 
+            // .. remove this to re-enable repulsive forces
             effectiveCharge = effectiveCharge == 1 ? -1 : effectiveCharge;
 
             var dirTo = transform.position-x.transform.position;
             velocityDirection += dirTo * effectiveCharge * sizeOffset;
-            // Debug.DrawRay(transform.position,dirTo,Color.red,.01f);
-            // Debug.DrawRay(transform.position,dirTo * effectiveCharge,Color.yellow,.01f);
         });
 
         velocity += velocityDirection * Time.deltaTime * .5f;
 
-        // Debug.DrawRay(transform.position,velocityDirection.normalized,Color.blue,.01f);
-
+        // .. this keeps the particles within a certain range of the center
          if(Vector3.Distance(transform.position,Vector3.zero) > 40)
         {
             // transform.position = transform.position - (transform.position-startPosition).normalized*.1f;
