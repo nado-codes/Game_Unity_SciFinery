@@ -6,7 +6,8 @@ using UnityEngine;
 
 public class Editor : MonoBehaviour
 {
-    private static List<Interact> selectedObjects = new List<Interact>();
+    private static List<Interact> _selectedObjects = new List<Interact>();
+    public static IEnumerable<Interact> SelectedObjects => _selectedObjects;
     private static List<Interact> hoveredObjects = new List<Interact>();
 
     public enum DragState{Init,Active,None}
@@ -40,8 +41,17 @@ public class Editor : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Delete))
         {
-            selectedObjects.ForEach(s => GameObject.Destroy(s.gameObject));
-            selectedObjects.Clear();
+            _selectedObjects.ForEach(s => GameObject.Destroy(s.gameObject));
+            _selectedObjects.Clear();
+        }
+
+        if(_selectedObjects.Any())
+        {
+            var selectionCenter = _selectedObjects.Count() > 1 ? 
+                _selectedObjects.Aggregate(Vector3.zero,(total,next) => total += next.transform.position*.5f) :
+                _selectedObjects.FirstOrDefault().transform.position;
+        
+            Translate.Instance.transform.position = selectionCenter;
         }
     }
 
@@ -174,11 +184,13 @@ public class Editor : MonoBehaviour
 
         if(!isMultiSelect && !isMultiDeselect)
         {
-            var objectsToDeselect = selectedObjects.Where(s => !objectsToSelect.Contains(s)).ToList();
+            var objectsToDeselect = _selectedObjects.Where(s => !objectsToSelect.Contains(s)).ToList();
             // if(objectsToDeselect.Count > 0) Debug.Log("cleared "+objectsToDeselect.Count+" other objects from selection");
             objectsToDeselect.ForEach(s => s.Deselect());
-            selectedObjects.RemoveAll(s => objectsToDeselect.Contains(s));
+            _selectedObjects.RemoveAll(s => objectsToDeselect.Contains(s));
         }
+
+        Translate.SetActive((objectsToSelect.Count() > 0));
 
         if(objectsToSelect.Count() == 0) return;
 
@@ -186,8 +198,8 @@ public class Editor : MonoBehaviour
         {
             objectsToSelect.ToList().ForEach(objectToSelect => objectToSelect.Select());
 
-            selectedObjects.AddRange(objectsToSelect.Where(objectToSelect => {
-                if(!selectedObjects.Contains(objectToSelect))
+            _selectedObjects.AddRange(objectsToSelect.Where(objectToSelect => {
+                if(!_selectedObjects.Contains(objectToSelect))
                 {
                     Debug.Log("trying to add"+objectToSelect);
                     Debug.Log("added "+objectToSelect.gameObject.name+" to selection");
@@ -201,15 +213,13 @@ public class Editor : MonoBehaviour
             objectsToSelect.ToList().ForEach(objectToSelect => objectToSelect.Deselect());
 
             objectsToSelect.ToList().ForEach(objectToDeselect => {
-                if(selectedObjects.Contains(objectToDeselect))
+                if(_selectedObjects.Contains(objectToDeselect))
                     Debug.Log("removed "+objectToDeselect.gameObject.name+" from selection");
 
                 objectToDeselect.Deselect();
-                selectedObjects.Remove(objectToDeselect);
+                _selectedObjects.Remove(objectToDeselect);
             });
         }
-
-        
     }
 
     public static void Deselect(Interact objectToDeselect)
@@ -220,7 +230,7 @@ public class Editor : MonoBehaviour
         {
             Debug.Log("removed "+objectToDeselect.gameObject.name+" from selection");
             objectToDeselect.Deselect();
-            selectedObjects.Remove(objectToDeselect);
+            _selectedObjects.Remove(objectToDeselect);
         }
     }
 }

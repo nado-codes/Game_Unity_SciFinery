@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,8 @@ public class TranslateBrake : Interact
     private Translate parent;
     private Color rendererOriginColor;
     public bool IsActive = false;
+
+    private DateTime lastClick;
     new void Start()
     {
         parent = GetComponentInParent<Translate>();
@@ -26,6 +29,12 @@ public class TranslateBrake : Interact
 
     private new void OnMouseDown()
     {
+        var currentTime = DateTime.Now;
+
+        if((currentTime-lastClick).Milliseconds < 500)
+            parent.AllStop();
+
+        lastClick = DateTime.Now;
         parent.SetTranslateIsActive(true);
         IsActive = true;
         base.OnMouseDown();

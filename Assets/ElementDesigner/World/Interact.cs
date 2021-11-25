@@ -75,7 +75,9 @@ public class Interact : MonoBehaviour
     void OnMouseExit()
     {
         Editor.RemoveHover(this);
-        ClearHover();
+
+        if(!isSelected && Selectable)
+            ClearHover();
     }
 
     // Select behaviour

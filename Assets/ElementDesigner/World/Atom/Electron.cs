@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Electron : MonoBehaviour
+public class Electron : Particle
 {
     // Start is called before the first frame update
     void Start()
@@ -11,8 +11,8 @@ public class Electron : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    new void Update()
     {
-        
+        base.Update();
     }
 }

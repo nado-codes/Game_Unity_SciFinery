@@ -5,13 +5,13 @@ using UnityEngine;
 public class TranslateHandle : Interact
 {
     private Translate parent;
-    public Vector3 startPosition {get; private set;}
+    public Vector3 startLocalPosition {get; private set;}
     public bool IsActive = false;
-    
+
     new void Start()
     {
         parent = GetComponentInParent<Translate>();
-        startPosition = transform.position;
+        startLocalPosition = transform.position;
         base.Start();
     }
 
@@ -19,7 +19,7 @@ public class TranslateHandle : Interact
     {
         parent.SetTranslateIsActive(true);
         IsActive = true;
-        startPosition = transform.position;
+        startLocalPosition = transform.position;
         base.OnMouseDown();
     }
 
@@ -27,6 +27,6 @@ public class TranslateHandle : Interact
     {
         parent.SetTranslateIsActive(false);
         IsActive = false;
-        transform.position = startPosition;
+        transform.localPosition = startLocalPosition;
     }
 }

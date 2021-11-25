@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Proton : MonoBehaviour
+public class Proton : Particle
 {
     private Nucleus _nucleus;
     private Light _light;
@@ -23,7 +23,7 @@ public class Proton : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    new void Update()
     {
         // transform.RotateAround(_nucleus.transform.position,Axis,200*Time.deltaTime);
         /* if(!frozen)
@@ -45,6 +45,8 @@ public class Proton : MonoBehaviour
         {
             PulseLight();
         } */
+
+        base.Update();
     }
 
     private float t = 0;

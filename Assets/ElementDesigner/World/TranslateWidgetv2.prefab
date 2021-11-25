@@ -24,7 +24,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7036636195365235353}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.3056974, y: -0.023300173, z: -3.695283}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fa3621e3924f5c4aad5d65154f3e1b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  zoomAmount: 25
 --- !u!1 &7036636195440286260
 GameObject:
   m_ObjectHideFlags: 0
@@ -59,7 +60,7 @@ GameObject:
   - component: {fileID: 7036636195440286262}
   - component: {fileID: 7036636195440286257}
   m_Layer: 5
-  m_Name: Sphere
+  m_Name: Handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -73,7 +74,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7036636195440286260}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.88, y: -0.059000015, z: -0.0049991608}
+  m_LocalPosition: {x: 0, y: -0.059000015, z: 0}
   m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_Children: []
   m_Father: {fileID: 7036636195365235354}
@@ -154,9 +155,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83aa344921ebb1942820d82d5b2d8206, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Selectable: 1
+  Selectable: 0
   SelectedColor: {r: 0, g: 1, b: 0, a: 0.5}
   isHovered: 0
+  IsActive: 0
 --- !u!1 &7036636195607597158
 GameObject:
   m_ObjectHideFlags: 0
@@ -169,8 +171,9 @@ GameObject:
   - component: {fileID: 7036636195607597154}
   - component: {fileID: 7036636195607597153}
   - component: {fileID: 7036636195607597152}
+  - component: {fileID: 67557298}
   m_Layer: 5
-  m_Name: FreeTrans
+  m_Name: Brake
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -184,7 +187,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7036636195607597158}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.88, y: -0.51, z: -0.0049991608}
+  m_LocalPosition: {x: 0, y: -0.51, z: 0}
   m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_Children: []
   m_Father: {fileID: 7036636195365235354}
@@ -253,3 +256,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &67557298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7036636195607597158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14609e684ac7ad24d9a229e3fc4976b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Selectable: 0
+  SelectedColor: {r: 1, g: 0.019000754, b: 0, a: 0.5}
+  isHovered: 0
+  IsActive: 0
