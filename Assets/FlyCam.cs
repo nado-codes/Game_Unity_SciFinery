@@ -4,7 +4,7 @@ using System.Collections;
 
 public class FlyCam : MonoBehaviour {
 
-    private float xSense = 300, ySense = 300;
+    private float xSensitivity = 300, ySensitivity = 300;
     public float baseSpeed = 10, accelerationMultiplier = 1f;
     private float speedSprint = 0, speedStrafe = 0, speedLev = 0;
     int forwardDir = 1, strafeDir = 1, levDir = 1;
@@ -12,12 +12,12 @@ public class FlyCam : MonoBehaviour {
     private DateTime lastMovementTime;
 
 	// Use this for initialization
-	void Start () {
+	protected void Start () {
 	
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	protected void Update () {
 
         UpdateAim();
         UpdateMovement();
@@ -28,8 +28,8 @@ public class FlyCam : MonoBehaviour {
     {
         if (Input.GetMouseButton(1))
         {
-            transform.Rotate(new Vector3(0, Input.GetAxis("Mouse X") * xSense, 0) * Time.deltaTime, Space.World);
-            transform.Rotate(new Vector3(Input.GetAxis("Mouse Y") * -ySense, 0, 0) * Time.deltaTime, Space.Self);
+            transform.Rotate(new Vector3(0, Input.GetAxis("Mouse X") * xSensitivity, 0) * Time.deltaTime, Space.World);
+            transform.Rotate(new Vector3(Input.GetAxis("Mouse Y") * -ySensitivity, 0, 0) * Time.deltaTime, Space.Self);
         }
     }
 

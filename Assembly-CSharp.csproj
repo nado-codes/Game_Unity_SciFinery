@@ -40,6 +40,7 @@
      <Compile Include="Assets\ElementDesigner\World\Translate.cs" />
      <Compile Include="Assets\ElementDesigner\World\TranslateHandle.cs" />
      <Compile Include="Assets\ElementDesigner\World\Atom\Nucleus.cs" />
+     <Compile Include="Assets\ElementDesigner\World\World.cs" />
      <Compile Include="Assets\ElementDesigner\World\DragboxTest.cs" />
      <Compile Include="Assets\ElementDesigner\UI\btnParticle.cs" />
      <Compile Include="Assets\ElementDesigner\World\TranslateBrake.cs" />
@@ -49,6 +50,7 @@
      <Compile Include="Assets\ElementDesigner\World\Editor.cs" />
      <Compile Include="Assets\ElementDesigner\World\Interact.cs" />
      <Compile Include="Assets\Main\WorldGen.cs" />
+     <Compile Include="Assets\ElementDesigner\UI\panelName.cs" />
      <Compile Include="Assets\ElementDesigner\World\Selectable.cs" />
      <Compile Include="Assets\Main\Tile.cs" />
      <Compile Include="Assets\ElementDesigner\World\Atom\Proton.cs" />
@@ -56,7 +58,12 @@
      <Compile Include="Assets\ElementDesigner\World\Atom\Particle.cs" />
      <Compile Include="Assets\Main\CoilAnim.cs" />
      <Compile Include="Assets\ElementDesigner\World\Atom\Electron.cs" />
-     <Compile Include="Assets\ElementDesigner\World\World.cs" />
+     <Compile Include="Assets\ElementDesigner\UI\DialogEditName.cs" />
+     <Compile Include="Assets\ElementDesigner\UI\HUD.cs" />
+     <Compile Include="Assets\ElementDesigner\World\ElementDesignerCamera.cs" />
+     <Compile Include="Assets\ElementDesigner\UI\DialogPeriodicTable.cs" />
+     <Compile Include="Assets\ElementDesigner\UI\PeriodicTableGridItem.cs" />
+     <Compile Include="Assets\ElementDesigner\UI\EditorMode_TableGridGen.cs" />
     <Reference Include="UnityEngine">
         <HintPath>D:\Program Files (x86)\Unity\2021.1.22f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>

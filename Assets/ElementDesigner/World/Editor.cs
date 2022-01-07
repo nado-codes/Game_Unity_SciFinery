@@ -46,7 +46,7 @@ public class Editor : MonoBehaviour
                 World.RemoveParticle(s.GetComponent<Particle>());
             });
             _selectedObjects.Clear();
-            
+            World.RemoveParticles(_selectedObjects);
         }
 
         if(_selectedObjects.Any())

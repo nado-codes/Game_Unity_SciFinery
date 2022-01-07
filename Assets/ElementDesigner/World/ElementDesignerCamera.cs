@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Neutron : Particle
+public class ElementDesignerCamera : FlyCam
 {
     // Start is called before the first frame update
     new void Start()
@@ -13,6 +13,7 @@ public class Neutron : Particle
     // Update is called once per frame
     new void Update()
     {
-        base.Update();
+        if(!HUD.LockedFocus)
+            base.Update();
     }
 }

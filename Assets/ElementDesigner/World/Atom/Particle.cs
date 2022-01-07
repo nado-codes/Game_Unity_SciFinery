@@ -11,11 +11,36 @@ public class Particle : MonoBehaviour
     private bool allStopIsActive = false;
 
     public Charge charge = Charge.None;
+    public float massMultiplier = 1;
+    Vector3 apoapsis;
+    Vector3 periapsis;
     Vector3 startPosition;
 
-    void Start()
+    protected void Start()
     {
+        apoapsis = transform.position;
+        periapsis = transform.position;
         startPosition = transform.position;
+
+        var closest = World.OtherParticles(this).Aggregate((closest,next) => 
+            Vector3.Distance(next.transform.position, transform.position) <
+            Vector3.Distance(closest.transform.position, transform.position) ?
+            next : closest
+        );
+
+        Debug.Log(gameObject.name+" CLOSEST="+closest);
+
+        if(closest != null)
+        {
+            var xBody = closest.transform.Find("Body");
+            var body = transform.Find("Body");
+            var massOffset =  1/ (body.lossyScale.magnitude / xBody.lossyScale.magnitude) * massMultiplier;
+            var distanceOffset = 10* (1 / Vector3.Distance(xBody.transform.position,transform.position));
+
+            apoapsis = (transform.position-closest.transform.position) * massOffset * distanceOffset;
+            periapsis = apoapsis*2;
+            Debug.Log(gameObject.name+" apo="+apoapsis+", peri: "+periapsis);
+        }
     }
 
     // priv
@@ -30,21 +55,29 @@ public class Particle : MonoBehaviour
         var worldParticles = World.Particles.Where(x => x != this);
         // Debug.Log(gameObject.name+" checking "+worldParticles.Count()+" other particles");
 
-        var velocityDirection = Vector3.zero;
+        var effectiveForce = Vector3.zero;
         worldParticles.ToList().ForEach(x => {
             var effectiveCharge = (int)x.charge*(int)charge;
             var xBody = x.transform.Find("Body");
             var body = transform.Find("Body");
-            var sizeOffset = xBody.lossyScale.magnitude / body.lossyScale.magnitude;
+            var massOffset =  1/ (body.lossyScale.magnitude / xBody.lossyScale.magnitude) * massMultiplier;
+            var distanceOffset = 10* (1 / Vector3.Distance(xBody.transform.position,transform.position));
 
-            // .. remove this to re-enable repulsive forces
+            // .. comment this out to enable repulsive forces
             effectiveCharge = effectiveCharge == 1 ? -1 : effectiveCharge;
 
             var dirTo = transform.position-x.transform.position;
-            velocityDirection += dirTo * effectiveCharge * sizeOffset;
+            effectiveForce += dirTo * effectiveCharge * massOffset * distanceOffset;
+
+            // Debug.DrawRay(transform.position,-dirTo,Color.yellow,.01f);
+            
         });
 
-        velocity += velocityDirection * Time.deltaTime * .5f;
+        Debug.DrawRay(startPosition,apoapsis,Color.red,.01f);
+        // Debug.DrawRay(startPosition,-periapsis,Color.green,.01f);
+        
+
+        velocity += effectiveForce * Time.deltaTime * .5f;
 
         // .. this keeps the particles within a certain range of the center
          if(Vector3.Distance(transform.position,Vector3.zero) > 40)

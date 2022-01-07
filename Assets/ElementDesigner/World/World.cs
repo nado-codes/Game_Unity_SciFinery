@@ -1,11 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class World : MonoBehaviour
 {
     private static List<Particle> particles = new List<Particle>();
-    public static Particle[] Particles => particles.ToArray();
+    public static IEnumerable<Particle> Particles {
+        get {
+            if(particles.Count == 0)
+                particles = FindObjectsOfType<Particle>().ToList();
+
+            return particles;
+        }
+    }
+
+    public static IEnumerable<Particle> OtherParticles(Particle particle) =>
+        Particles.Where(x => x != particle);
 
     // Start is called before the first frame update
     void Start()
@@ -28,7 +39,11 @@ public class World : MonoBehaviour
     }
 
     public static void RemoveParticle(Particle particle)
-    {
-        particles.Remove(particle);
-    }
+        => particles.Remove(particle);
+
+    public static void RemoveParticles(IEnumerable<Particle> particlesToRemove)
+        => particlesToRemove.Select(p => particles.Remove(p));
+
+    public static void RemoveParticles(IEnumerable<Interact> particlesToRemove)
+        => particlesToRemove.Select(p => particles.Remove(p.GetComponent<Particle>()));
 }
