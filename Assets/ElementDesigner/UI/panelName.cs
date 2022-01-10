@@ -27,13 +27,13 @@ public class panelName : MonoBehaviour
 
     void Update()
     {
-        var protons = World.Particles.Where(p => p.charge == Particle.Charge.Positive);
-        var neutrons = World.Particles.Where(p => p.charge == Particle.Charge.None);
-        numberText.text = protons.Count().ToString();
-        weightText.text = (protons.Count()+neutrons.Count()).ToString()+".00";
+        var protonCount = FileSystem.ActiveAtom.ProtonCount;
+        var neutronCount = FileSystem.ActiveAtom.NeutronCount;
 
-        var nameWithoutVowels = new string(nameText.text.Where(c => !("aeiou").Contains(c)).ToArray());
-        var newShortName = (nameWithoutVowels[0].ToString() + nameWithoutVowels[1].ToString()).ToUpper();
-        shortNameText.text = newShortName;
+        numberText.text = protonCount.ToString();
+        weightText.text = FileSystem.ActiveAtom.Weight.ToString()+".00";
+
+        shortNameText.text = FileSystem.ActiveAtom.ShortName;
+        nameText.text = FileSystem.ActiveAtom.Name;
     }
 }

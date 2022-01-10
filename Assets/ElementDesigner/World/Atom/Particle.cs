@@ -22,13 +22,13 @@ public class Particle : MonoBehaviour
         periapsis = transform.position;
         startPosition = transform.position;
 
-        var closest = World.OtherParticles(this).Aggregate((closest,next) => 
+        // .. Work out which particle is closest to orbit
+        // .. Is this obsolete? Probably needs a refactor at least
+        var closest = Editor.OtherParticles(this).Aggregate((closest,next) => 
             Vector3.Distance(next.transform.position, transform.position) <
             Vector3.Distance(closest.transform.position, transform.position) ?
             next : closest
         );
-
-        Debug.Log(gameObject.name+" CLOSEST="+closest);
 
         if(closest != null)
         {
@@ -39,7 +39,6 @@ public class Particle : MonoBehaviour
 
             apoapsis = (transform.position-closest.transform.position) * massOffset * distanceOffset;
             periapsis = apoapsis*2;
-            Debug.Log(gameObject.name+" apo="+apoapsis+", peri: "+periapsis);
         }
     }
 
@@ -52,7 +51,7 @@ public class Particle : MonoBehaviour
         // Debug.Log("vel of "+gameObject.name+"="+velocity);
         
         // Apply charges
-        var worldParticles = World.Particles.Where(x => x != this);
+        var worldParticles = Editor.Particles.Where(x => x != this);
         // Debug.Log(gameObject.name+" checking "+worldParticles.Count()+" other particles");
 
         var effectiveForce = Vector3.zero;

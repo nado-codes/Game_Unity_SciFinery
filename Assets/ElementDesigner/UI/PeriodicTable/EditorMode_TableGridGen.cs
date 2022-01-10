@@ -18,11 +18,6 @@ public class EditorMode_TableGridGen : MonoBehaviour
     private Vector3 gridStartPos;
     private Vector3 gridLastStartPos;
 
-    void Awake()
-    {
-        ClearGrid();
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -34,11 +29,11 @@ public class EditorMode_TableGridGen : MonoBehaviour
             gridStartObject.gameObject.SetActive(!EditorApplication.isPlaying);
             gridEnd.gameObject.SetActive(!EditorApplication.isPlaying);
 
-            gridStartPos = gridStartObject.GetComponent<RectTransform>().localPosition;
-            gridEnd.transform.localPosition = gridStartPos + new Vector3(itemWidth*(columns-1),itemWidth*-(rows-1),0);
-
-            if(refreshGrid || gridStartPos != gridLastStartPos)
+            if((refreshGrid || gridStartPos != gridLastStartPos) && !EditorApplication.isPlaying)
             {
+                gridStartPos = gridStartObject.GetComponent<RectTransform>().localPosition;
+                gridEnd.transform.localPosition = gridStartPos + new Vector3(itemWidth*(columns-1),itemWidth*-(rows-1),0);
+
                 GenerateGrid();
                 refreshGrid = false;
             }
@@ -64,14 +59,19 @@ public class EditorMode_TableGridGen : MonoBehaviour
 
         if(gridItemPrefab == null) return;
 
-        for(var x = 0; x < columns; ++x)
+        for(var y = 0; y < rows; ++y)
         {
-            for(var y = 0; y < rows; ++y)
+            for(var x = 0; x < columns; ++x)
             {
                 var newGridItem = Instantiate(gridItemPrefab);
                 newGridItem.name = y.ToString()+"_"+x.ToString();
                 newGridItem.transform.parent = transform;
                 newGridItem.transform.localScale = Vector3.one;
+
+                // TODO: We don't need this. To be removed. Only used to visualise the numbers on the grid
+                var script = newGridItem.GetComponent<PeriodicTableGridItem>();
+                script.Start();
+                script.SetNumber(x+(y*columns)+1);
 
                 var newGridItemRect = newGridItem.GetComponent<RectTransform>();
                 newGridItemRect.localPosition = gridStartPos + new Vector3(itemWidth*x,itemWidth*-y,0);

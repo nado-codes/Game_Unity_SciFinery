@@ -18,6 +18,20 @@ public class Editor : MonoBehaviour
     private Vector2 dragSelectStartPosition, endDragSelectPosition;
     private Ray dragSelectStartWorld, dragSelectEndWorld;
 
+    // PARTICLES
+    private static List<Particle> particles = new List<Particle>();
+    public static IEnumerable<Particle> Particles {
+        get {
+            if(particles.Count == 0)
+                particles = FindObjectsOfType<Particle>().ToList();
+
+            return particles;
+        }
+    }
+
+    public static IEnumerable<Particle> OtherParticles(Particle particle) =>
+        Particles.Where(x => x != particle);
+
     void Start()
     {
         dragSelectCollider = gameObject.AddComponent<BoxCollider>();
@@ -26,10 +40,49 @@ public class Editor : MonoBehaviour
         var rigidbody = gameObject.AddComponent<Rigidbody>();
         rigidbody.useGravity = false;
         rigidbody.isKinematic = true;
+
+        FileSystem.NewActiveAtom();
+        FileSystem.LoadAtoms();
     }
 
     void Update()
     {  
+        if(!HUD.LockedFocus)
+            UpdateInputs();
+        
+        UpdateActiveAtom();
+
+        if(_selectedObjects.Any())
+        {
+            var selectionCenter = _selectedObjects.Count() > 1 ? 
+                _selectedObjects.Aggregate(Vector3.zero,(total,next) => total += next.transform.position*.5f) :
+                _selectedObjects.FirstOrDefault().transform.position;
+        
+            Translate.Instance.transform.position = selectionCenter;
+        }
+    }
+
+    public static void LoadAtomData(Atom atomData)
+    {
+        
+    }
+
+    void UpdateActiveAtom()
+    {
+        var protons = Particles.Where(p => p.charge == Particle.Charge.Positive);
+        var neutrons = Particles.Where(p => p.charge == Particle.Charge.None);
+
+        FileSystem.ActiveAtom.Number = protons.Count();
+        FileSystem.ActiveAtom.ProtonCount = protons.Count();
+        FileSystem.ActiveAtom.NeutronCount = neutrons.Count();
+        FileSystem.ActiveAtom.Weight = protons.Count()+neutrons.Count();
+
+        var charges = Particles.Select(p => (int)p.charge);
+        FileSystem.ActiveAtom.Charge = charges.Aggregate((totalCharge,charge) => totalCharge += charge);
+    }
+
+    void UpdateInputs()
+    {
         if(dragSelectIsEnabled)
             HandleDragSelect();
 
@@ -43,19 +96,10 @@ public class Editor : MonoBehaviour
         {
             _selectedObjects.ForEach(s => {
                 GameObject.Destroy(s.gameObject);
-                World.RemoveParticle(s.GetComponent<Particle>());
+                RemoveParticle(s.GetComponent<Particle>());
             });
             _selectedObjects.Clear();
-            World.RemoveParticles(_selectedObjects);
-        }
-
-        if(_selectedObjects.Any())
-        {
-            var selectionCenter = _selectedObjects.Count() > 1 ? 
-                _selectedObjects.Aggregate(Vector3.zero,(total,next) => total += next.transform.position*.5f) :
-                _selectedObjects.FirstOrDefault().transform.position;
-        
-            Translate.Instance.transform.position = selectionCenter;
+            RemoveParticles(_selectedObjects);
         }
     }
 
@@ -237,4 +281,21 @@ public class Editor : MonoBehaviour
             _selectedObjects.Remove(objectToDeselect);
         }
     }
+
+    public static void AddParticle(Particle particle)
+    {
+        if(!particles.Contains(particle))
+            particles.Add(particle);
+
+        Debug.Log("Adding particle: "+particle);
+    }
+
+    public static void RemoveParticle(Particle particle)
+        => particles.Remove(particle);
+
+    public static void RemoveParticles(IEnumerable<Particle> particlesToRemove)
+        => particlesToRemove.Select(p => particles.Remove(p));
+
+    public static void RemoveParticles(IEnumerable<Interact> particlesToRemove)
+        => particlesToRemove.Select(p => particles.Remove(p.GetComponent<Particle>()));
 }

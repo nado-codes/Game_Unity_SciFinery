@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public static class HUD
+public class HUD : MonoBehaviour
 {
     public static bool LockedFocus = false;
+    public static void LockFocus() => LockedFocus = true;
+    public static void ClearFocus() => LockedFocus = false;
 }

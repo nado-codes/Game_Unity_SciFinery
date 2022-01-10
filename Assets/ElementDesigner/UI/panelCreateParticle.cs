@@ -90,7 +90,8 @@ public class panelCreateParticle : MonoBehaviour, IPointerExitHandler
             else if(particleToCreate == ParticleType.Electron)
                 currentParticleObject = Instantiate(electron);
 
-            World.AddParticle(currentParticleObject.GetComponent<Particle>());
+            // TODO: make this into "Editor.CreateParticle" and move all the code over ... use this for loading an atom
+            Editor.AddParticle(currentParticleObject.GetComponent<Particle>());
 
             creationState = CreationState.Drag;
             Editor.SetDragSelectEnabled(false);

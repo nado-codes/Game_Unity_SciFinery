@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using System;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -25,7 +25,7 @@ public class DialogEditName : MonoBehaviour
     public void Open()
     {
         gameObject.SetActive(true);
-        inputName.text = panelName.NameText.text;
+        inputName.text = FileSystem.ActiveAtom.Name;
         HUD.LockedFocus = true;
     }
 
@@ -37,7 +37,12 @@ public class DialogEditName : MonoBehaviour
 
     public void Accept()
     {
-        panelName.NameText.text = inputName.text;
+        var nameWithoutVowels = new string(inputName.text.Where(c => !("aeiou").Contains(c)).ToArray());
+        var newShortName = (nameWithoutVowels[0].ToString() + nameWithoutVowels[1].ToString()).ToUpper();
+
+        FileSystem.ActiveAtom.Name = inputName.text;
+        FileSystem.ActiveAtom.ShortName = newShortName;
+
         Close();
     }
 }
