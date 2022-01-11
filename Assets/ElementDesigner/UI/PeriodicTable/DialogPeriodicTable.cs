@@ -88,7 +88,11 @@ public class DialogPeriodicTable : MonoBehaviour
     }
 
     public void HandleLoadSelectedItem()
-        => FileSystem.ActiveAtom = selectedItem.atom;
+    {
+        FileSystem.ActiveAtom = selectedItem.atom;
+        Editor.LoadAtomData(selectedItem.atom);
+        Close();
+    }
 
     public void HandleDeleteSelectedItem()
     {

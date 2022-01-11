@@ -4,16 +4,22 @@ using System.Linq;
 using System;
 using UnityEngine;
 
+public enum DragState{ Init, Active, None }
+
 public class Editor : MonoBehaviour
 {
+    private static Editor instance;
+    public RectTransform selectionBoxRect;
+    public GameObject protonPrefab, neutronPrefab, electronPrefab;
+
+    private Vector3 cameraStartPos;
+    private Quaternion cameraStartAngle;
     private static List<Interact> _selectedObjects = new List<Interact>();
     public static IEnumerable<Interact> SelectedObjects => _selectedObjects;
     private static List<Interact> hoveredObjects = new List<Interact>();
-
-    public enum DragState{Init,Active,None}
     private static bool dragSelectIsEnabled = true;
     private DragState dragState = DragState.None;
-    public RectTransform selectionBoxRect;
+    
     private BoxCollider dragSelectCollider;
     private Vector2 dragSelectStartPosition, endDragSelectPosition;
     private Ray dragSelectStartWorld, dragSelectEndWorld;
@@ -34,6 +40,21 @@ public class Editor : MonoBehaviour
 
     void Start()
     {
+        if(instance == null)
+            instance = this;
+        else
+            throw new ApplicationException("There may be only one instance of Editor");
+
+        if(protonPrefab == null)
+            throw new ArgumentNullException("protonPrefab must be set in Editor");
+        if(neutronPrefab == null)
+            throw new ArgumentNullException("neutronPrefab must be set in Editor");
+        if(electronPrefab == null)
+            throw new ArgumentNullException("electronPrefab must be set in Editor");
+
+        cameraStartPos = Camera.main.transform.position;
+        cameraStartAngle = Camera.main.transform.rotation;
+
         dragSelectCollider = gameObject.AddComponent<BoxCollider>();
         dragSelectCollider.enabled = false;
 
@@ -41,8 +62,11 @@ public class Editor : MonoBehaviour
         rigidbody.useGravity = false;
         rigidbody.isKinematic = true;
 
-        FileSystem.NewActiveAtom();
+        var newAtom = FileSystem.NewActiveAtom();
+        LoadAtomData(newAtom);
+
         FileSystem.LoadAtoms();
+        
     }
 
     void Update()
@@ -62,19 +86,16 @@ public class Editor : MonoBehaviour
         }
     }
 
-    public static void LoadAtomData(Atom atomData)
-    {
-        
-    }
-
     void UpdateActiveAtom()
     {
         var protons = Particles.Where(p => p.charge == Particle.Charge.Positive);
         var neutrons = Particles.Where(p => p.charge == Particle.Charge.None);
+        var electrons = Particles.Where(p => p.charge == Particle.Charge.Negative);
 
         FileSystem.ActiveAtom.Number = protons.Count();
         FileSystem.ActiveAtom.ProtonCount = protons.Count();
         FileSystem.ActiveAtom.NeutronCount = neutrons.Count();
+        FileSystem.ActiveAtom.ElectronCount = electrons.Count();
         FileSystem.ActiveAtom.Weight = protons.Count()+neutrons.Count();
 
         var charges = Particles.Select(p => (int)p.charge);
@@ -95,11 +116,11 @@ public class Editor : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Delete))
         {
             _selectedObjects.ForEach(s => {
-                GameObject.Destroy(s.gameObject);
+                //GameObject.Destroy(s.gameObject);
                 RemoveParticle(s.GetComponent<Particle>());
             });
             _selectedObjects.Clear();
-            RemoveParticles(_selectedObjects);
+            //RemoveParticles(_selectedObjects);
         }
     }
 
@@ -282,20 +303,82 @@ public class Editor : MonoBehaviour
         }
     }
 
-    public static void AddParticle(Particle particle)
+    public static void LoadAtomData(Atom atomData)
     {
-        if(!particles.Contains(particle))
-            particles.Add(particle);
+        ClearParticles();
+        Camera.main.transform.position = instance.cameraStartPos;
+        Camera.main.transform.rotation = instance.cameraStartAngle;
+        
+        var particlesToCreate = new List<ParticleType>();
 
-        Debug.Log("Adding particle: "+particle);
+        particlesToCreate.AddRange(Enumerable.Range(0,atomData.ProtonCount).Select(n => ParticleType.Proton));
+        particlesToCreate.AddRange(Enumerable.Range(0,atomData.NeutronCount).Select(n => ParticleType.Neutron));
+        particlesToCreate.AddRange(Enumerable.Range(0,atomData.ElectronCount).Select(n => ParticleType.Electron));
+
+        // .. create each particle in a random position, with electrons further away than protons and neutrons
+        particlesToCreate.ForEach(particleToCreate => {
+            var radius = particleToCreate != ParticleType.Electron ? 1 : 5;
+            var randPos = UnityEngine.Random.insideUnitSphere*radius;
+
+            CreateParticle(particleToCreate,randPos);
+        });
     }
 
-    public static void RemoveParticle(Particle particle)
-        => particles.Remove(particle);
+    public static Particle CreateParticle(ParticleType type)
+    {
+        GameObject particleGameObject = null;
+
+        if(type == ParticleType.Proton)
+            particleGameObject = Instantiate(instance.protonPrefab);
+        else if(type == ParticleType.Neutron)
+            particleGameObject = Instantiate(instance.neutronPrefab);
+        else
+            particleGameObject = Instantiate(instance.electronPrefab);
+
+        
+
+        var newParticle = particleGameObject.GetComponent<Particle>();
+
+        var atomParent = GameObject.Find("Atom") ?? new GameObject();
+        atomParent.name = "Atom";
+        newParticle.transform.parent = atomParent.transform;
+
+        if(newParticle.type != type)
+            Debug.LogWarning($"Failed to create a particle of type {type}. Created an electron by default");
+
+        particles.Add(newParticle);
+
+        return newParticle;
+    }
+
+    public static Particle CreateParticle(ParticleType type, Vector3 position)
+    {
+        var particle = CreateParticle(type);
+        particle.transform.position = position;
+
+        
+
+        return particle;
+    }
+
+    public static bool RemoveParticle(Particle particle)
+    {
+        particles.Remove(particle);
+        GameObject.Destroy(particle.gameObject);
+        Debug.Log($"removing {particle.name}");
+
+        return true;
+    }
 
     public static void RemoveParticles(IEnumerable<Particle> particlesToRemove)
-        => particlesToRemove.Select(p => particles.Remove(p));
+        => particlesToRemove.Select(p => RemoveParticle(p));
 
     public static void RemoveParticles(IEnumerable<Interact> particlesToRemove)
-        => particlesToRemove.Select(p => particles.Remove(p.GetComponent<Particle>()));
+        => particlesToRemove.Select(p => RemoveParticle(p.GetComponent<Particle>()));
+
+    public static void ClearParticles()
+    {
+        var particlesToDelete = new List<Particle>(particles);
+        particlesToDelete.ForEach(p => RemoveParticle(p));
+    }
 }

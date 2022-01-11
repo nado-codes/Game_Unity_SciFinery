@@ -840,6 +840,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 54142413}
   m_CullTransparentMesh: 1
+--- !u!4 &55758712 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6257400964855648983, guid: 50707adb5562e824cbd5ccbe329df73f,
+    type: 3}
+  m_PrefabInstance: {fileID: 6257400964087483508}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &60203019
 GameObject:
   m_ObjectHideFlags: 0
@@ -2460,6 +2466,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    BondType: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &177028461
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2757,6 +2781,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    BondType: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &179849291
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3131,6 +3173,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    BondType: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &193981172
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3347,6 +3407,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    BondType: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &195775799
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3727,6 +3805,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    BondType: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &204546614
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5355,6 +5451,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    BondType: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &305857514
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6557,6 +6671,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 369973004}
   m_CullTransparentMesh: 1
+--- !u!4 &371650928 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 604647183620525177, guid: ad00babb03a126747bbe368fc9693bf8,
+    type: 3}
+  m_PrefabInstance: {fileID: 604647183664163315}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &374648685
 GameObject:
   m_ObjectHideFlags: 0
@@ -6693,6 +6813,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    BondType: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &384233546
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7345,6 +7483,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    BondType: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &445327286
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7969,6 +8125,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    BondType: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &475353394
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8426,6 +8600,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    BondType: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &494903262
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8806,6 +8998,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    BondType: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &509528421
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9263,6 +9473,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    BondType: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &520658857
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9479,6 +9707,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    BondType: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &538109825
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10263,7 +10509,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 612247306}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -15.35}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1547308052}
@@ -10298,6 +10544,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectionBoxRect: {fileID: 1374604300}
+  protonPrefab: {fileID: 604647183620525178, guid: ad00babb03a126747bbe368fc9693bf8,
+    type: 3}
+  neutronPrefab: {fileID: 4647999250056569783, guid: 4b7e18c45fb074d4fbf9306120f033dd,
+    type: 3}
+  electronPrefab: {fileID: 6257400964855648982, guid: 50707adb5562e824cbd5ccbe329df73f,
+    type: 3}
 --- !u!114 &612247313
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11146,9 +11398,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cb1300d014821347bbf6f1a2ebfd366, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputName: {fileID: 0}
-  editMode: 1
-  gridItems: []
 --- !u!114 &704659248
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11479,6 +11728,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    BondType: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &754409368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11778,6 +12045,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    BondType: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &761394599
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12189,6 +12474,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    BondType: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &780159595
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12326,6 +12629,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    BondType: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &785950503
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12463,6 +12784,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    BondType: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &800805293
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12681,6 +13020,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    BondType: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &810139322
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13522,7 +13879,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 879659165}
   m_OnClick:
     m_PersistentCalls:
@@ -13846,6 +14203,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    BondType: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &885463288
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14382,6 +14757,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    BondType: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &898280798
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14839,6 +15232,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    BondType: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &933645053
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15317,6 +15728,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    BondType: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &967293952
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15776,6 +16205,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    BondType: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &1031813543
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16229,6 +16676,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    BondType: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &1070815372
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16526,6 +16991,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    BondType: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &1110622789
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16608,6 +17091,39 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1110622786}
   m_CullTransparentMesh: 1
+--- !u!1 &1114095899
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1114095900}
+  m_Layer: 0
+  m_Name: Atom
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1114095900
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1114095899}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 371650928}
+  - {fileID: 1767538159}
+  - {fileID: 55758712}
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1119606279
 GameObject:
   m_ObjectHideFlags: 0
@@ -17178,6 +17694,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    BondType: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &1165101802
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17933,6 +18467,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    BondType: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &1196632299
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18949,6 +19501,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    BondType: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &1290414561
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19562,6 +20132,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    BondType: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &1359032552
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20351,6 +20939,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    BondType: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &1404551792
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20559,9 +21165,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Load
-
-'
+  m_Text: View Atoms
 --- !u!222 &1422874096
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -20625,6 +21229,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    BondType: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &1423882928
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21036,6 +21658,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    BondType: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &1451063294
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21331,6 +21971,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    BondType: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &1473306946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21681,6 +22339,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    BondType: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &1502845344
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21818,6 +22494,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    BondType: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &1512516410
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21978,7 +22672,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1519415654}
   m_OnClick:
     m_PersistentCalls:
@@ -22410,6 +23104,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    BondType: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &1533922906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22781,6 +23493,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    BondType: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &1553652168
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23434,6 +24164,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    BondType: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &1637012524
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23889,6 +24637,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    BondType: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &1658382704
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24064,7 +24830,7 @@ RectTransform:
   m_Children:
   - {fileID: 1374604300}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -24207,6 +24973,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    BondType: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &1672174863
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24905,6 +25689,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    BondType: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &1711636332
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25160,7 +25962,7 @@ GameObject:
   - component: {fileID: 1718447629}
   - component: {fileID: 1718447628}
   m_Layer: 5
-  m_Name: btnLoad
+  m_Name: btnViewAtoms
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25654,6 +26456,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1760945469}
   m_CullTransparentMesh: 1
+--- !u!4 &1767538159 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4647999250056569776, guid: 4b7e18c45fb074d4fbf9306120f033dd,
+    type: 3}
+  m_PrefabInstance: {fileID: 4647999251347240620}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1779516054
 GameObject:
   m_ObjectHideFlags: 0
@@ -26149,7 +26957,7 @@ Transform:
   m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1834991227
 MonoBehaviour:
@@ -26313,6 +27121,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    BondType: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &1838735797
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26450,6 +27276,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    BondType: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &1839175130
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26587,6 +27431,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    BondType: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &1847510677
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27081,6 +27943,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    BondType: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &1886209912
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27299,6 +28179,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    BondType: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &1892941263
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27524,7 +28422,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1908357414
 GameObject:
@@ -27581,6 +28479,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    BondType: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &1908357417
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27718,6 +28634,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    BondType: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &1914056577
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28170,6 +29104,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    BondType: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &1942681412
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29012,6 +29964,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    BondType: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &1995605187
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29149,6 +30119,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    BondType: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &2001765850
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29365,6 +30353,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    BondType: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &2003708958
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30514,7 +31520,7 @@ RectTransform:
   - {fileID: 40339267}
   - {fileID: 566333229}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -30795,6 +31801,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    BondType: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &2083801275
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31468,6 +32492,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    BondType: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &2123381248
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31877,7 +32919,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1114095900}
     m_Modifications:
     - target: {fileID: 604647182004325630, guid: ad00babb03a126747bbe368fc9693bf8,
         type: 3}
@@ -31897,22 +32939,22 @@ PrefabInstance:
     - target: {fileID: 604647183620525177, guid: ad00babb03a126747bbe368fc9693bf8,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 604647183620525177, guid: ad00babb03a126747bbe368fc9693bf8,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.7
+      value: 0.64
       objectReference: {fileID: 0}
     - target: {fileID: 604647183620525177, guid: ad00babb03a126747bbe368fc9693bf8,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.15
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 604647183620525177, guid: ad00babb03a126747bbe368fc9693bf8,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 6.04
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 604647183620525177, guid: ad00babb03a126747bbe368fc9693bf8,
         type: 3}
@@ -31961,27 +33003,27 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1114095900}
     m_Modifications:
     - target: {fileID: 4647999250056569776, guid: 4b7e18c45fb074d4fbf9306120f033dd,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4647999250056569776, guid: 4b7e18c45fb074d4fbf9306120f033dd,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.75999975
+      value: -0.27
       objectReference: {fileID: 0}
     - target: {fileID: 4647999250056569776, guid: 4b7e18c45fb074d4fbf9306120f033dd,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 14.43
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4647999250056569776, guid: 4b7e18c45fb074d4fbf9306120f033dd,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 8.46
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4647999250056569776, guid: 4b7e18c45fb074d4fbf9306120f033dd,
         type: 3}
@@ -32030,13 +33072,18 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1114095900}
     m_Modifications:
     - target: {fileID: 6257400964012137341, guid: 50707adb5562e824cbd5ccbe329df73f,
         type: 3}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 612247308}
+    - target: {fileID: 6257400964855648976, guid: 50707adb5562e824cbd5ccbe329df73f,
+        type: 3}
+      propertyPath: type
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6257400964855648982, guid: 50707adb5562e824cbd5ccbe329df73f,
         type: 3}
       propertyPath: m_Name
@@ -32045,22 +33092,22 @@ PrefabInstance:
     - target: {fileID: 6257400964855648983, guid: 50707adb5562e824cbd5ccbe329df73f,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6257400964855648983, guid: 50707adb5562e824cbd5ccbe329df73f,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.21
+      value: -3.75
       objectReference: {fileID: 0}
     - target: {fileID: 6257400964855648983, guid: 50707adb5562e824cbd5ccbe329df73f,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.5100002
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6257400964855648983, guid: 50707adb5562e824cbd5ccbe329df73f,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 8.685001
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6257400964855648983, guid: 50707adb5562e824cbd5ccbe329df73f,
         type: 3}

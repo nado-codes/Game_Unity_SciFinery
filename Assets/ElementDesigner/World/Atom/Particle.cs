@@ -4,6 +4,8 @@ using System.Linq;
 using Unity;
 using UnityEngine;
 
+public enum ParticleType {Proton, Neutron, Electron}
+
 public class Particle : MonoBehaviour
 {
     public enum Charge{Positive = 1, None = 0, Negative = -1}
@@ -11,6 +13,8 @@ public class Particle : MonoBehaviour
     private bool allStopIsActive = false;
 
     public Charge charge = Charge.None;
+    public ParticleType type = ParticleType.Proton;
+
     public float massMultiplier = 1;
     Vector3 apoapsis;
     Vector3 periapsis;
@@ -63,7 +67,7 @@ public class Particle : MonoBehaviour
             var distanceOffset = 10* (1 / Vector3.Distance(xBody.transform.position,transform.position));
 
             // .. comment this out to enable repulsive forces
-            effectiveCharge = effectiveCharge == 1 ? -1 : effectiveCharge;
+            //effectiveCharge = effectiveCharge == 1 ? -1 : effectiveCharge;
 
             var dirTo = transform.position-x.transform.position;
             effectiveForce += dirTo * effectiveCharge * massOffset * distanceOffset;

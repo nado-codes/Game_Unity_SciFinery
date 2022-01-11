@@ -13,12 +13,16 @@ public class FileSystem : MonoBehaviour
 
     public static List<Atom> LoadedAtoms { get; private set; } = new List<Atom>();
 
-    public static void NewActiveAtom()
+    public static Atom NewActiveAtom()
     {
         ActiveAtom = new Atom();
         ActiveAtom.Number = 1;
         ActiveAtom.Name = "NewAtom";
         ActiveAtom.ShortName = "NE";
+        ActiveAtom.ProtonCount = 1;
+        ActiveAtom.ElectronCount = 1;
+
+        return ActiveAtom;
     }
 
     public static void SaveActiveAtom()

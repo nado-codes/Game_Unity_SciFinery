@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public enum ParticleType {Proton, Neutron, Electron}
+
     public enum CreationState{None, Start, Drag}
 
 public class panelCreateParticle : MonoBehaviour, IPointerExitHandler
@@ -83,17 +83,9 @@ public class panelCreateParticle : MonoBehaviour, IPointerExitHandler
         {
             Debug.Log("start drag");
             
-            if(particleToCreate == ParticleType.Proton)
-                currentParticleObject = Instantiate(proton);
-            else if(particleToCreate == ParticleType.Neutron)
-                currentParticleObject = Instantiate(neutron);
-            else if(particleToCreate == ParticleType.Electron)
-                currentParticleObject = Instantiate(electron);
-
-            // TODO: make this into "Editor.CreateParticle" and move all the code over ... use this for loading an atom
-            Editor.AddParticle(currentParticleObject.GetComponent<Particle>());
-
+            currentParticleObject = Editor.CreateParticle(particleToCreate).gameObject;
             creationState = CreationState.Drag;
+
             Editor.SetDragSelectEnabled(false);
         }
         // if(!isEdit) isHover = false;

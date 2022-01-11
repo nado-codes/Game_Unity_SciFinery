@@ -258,6 +258,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   charge: 1
+  type: 0
+  massMultiplier: 0.005
   Axis: {x: 0, y: 1, z: 0}
 --- !u!65 &677276925
 BoxCollider:

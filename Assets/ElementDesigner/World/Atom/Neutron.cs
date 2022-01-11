@@ -7,6 +7,8 @@ public class Neutron : Particle
     // Start is called before the first frame update
     new void Start()
     {
+        type = ParticleType.Neutron;
+        
         base.Start();
     }
 

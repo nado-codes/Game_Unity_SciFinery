@@ -17,6 +17,7 @@ public class Proton : Particle
     {
         // _nucleus = transform.parent.GetComponentInChildren<Nucleus>();
         _light = GetComponentInChildren<Light>();
+        type = ParticleType.Proton;
 
         // var v = (_nucleus.transform.position- transform.position).normalized;
         // _orbitOrigin = new Vector3(v.x,-v.y,v.z);

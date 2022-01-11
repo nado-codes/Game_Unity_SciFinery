@@ -70,7 +70,7 @@ public class EditorMode_TableGridGen : MonoBehaviour
 
                 // TODO: We don't need this. To be removed. Only used to visualise the numbers on the grid
                 var script = newGridItem.GetComponent<PeriodicTableGridItem>();
-                script.Start();
+                script.Awake();
                 script.SetNumber(x+(y*columns)+1);
 
                 var newGridItemRect = newGridItem.GetComponent<RectTransform>();

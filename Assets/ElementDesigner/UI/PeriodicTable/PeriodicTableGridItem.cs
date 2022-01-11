@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
+using System;
 
 public class PeriodicTableGridItem : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class PeriodicTableGridItem : MonoBehaviour
 
     public Atom atom;
 
-    public void Start()
+    public void Awake()
     {
         numberText = transform.Find("Number").GetComponent<Text>();
         shortNameText = transform.Find("ShortName").GetComponent<Text>();
@@ -54,6 +55,9 @@ public class PeriodicTableGridItem : MonoBehaviour
 
     public void SetAtomData(Atom atomData)
     {
+        if(atomData == null)
+            throw new ApplicationException("Expected atomData in call to SetAtomData in PeriodicTableGridItem, got null");
+        
         numberText.text = atomData.Number.ToString();
         shortNameText.text = atomData.ShortName;
         nameText.text = atomData.Name;
