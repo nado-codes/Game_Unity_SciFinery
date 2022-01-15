@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd79b3c69295c4743be1962738e0bfb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  charge: -1
+  charge: 0
   type: 1
   massMultiplier: 0.005
 --- !u!114 &-2939634838974247702

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum DragState{ Init, Active, None }
 
@@ -11,6 +12,8 @@ public class Editor : MonoBehaviour
     private static Editor instance;
     public RectTransform selectionBoxRect;
     public GameObject protonPrefab, neutronPrefab, electronPrefab;
+
+    public Text textClassification, textStability, textCharge;
 
     private Vector3 cameraStartPos;
     private Quaternion cameraStartAngle;
@@ -25,15 +28,8 @@ public class Editor : MonoBehaviour
     private Ray dragSelectStartWorld, dragSelectEndWorld;
 
     // PARTICLES
-    private static List<Particle> particles = new List<Particle>();
-    public static IEnumerable<Particle> Particles {
-        get {
-            if(particles.Count == 0)
-                particles = FindObjectsOfType<Particle>().ToList();
-
-            return particles;
-        }
-    }
+    private GameObject atomParent;
+    public static List<Particle> Particles = new List<Particle>();
 
     public static IEnumerable<Particle> OtherParticles(Particle particle) =>
         Particles.Where(x => x != particle);
@@ -52,6 +48,12 @@ public class Editor : MonoBehaviour
         if(electronPrefab == null)
             throw new ArgumentNullException("electronPrefab must be set in Editor");
 
+        Particles.AddRange(FindObjectsOfType<Particle>());
+
+        textClassification = GameObject.Find("Classification")?.transform.Find("Value").GetComponent<Text>();
+        textStability = GameObject.Find("TextStability")?.GetComponent<Text>();
+        textCharge = GameObject.Find("TextCharge")?.GetComponent<Text>();
+
         cameraStartPos = Camera.main.transform.position;
         cameraStartAngle = Camera.main.transform.rotation;
 
@@ -62,8 +64,11 @@ public class Editor : MonoBehaviour
         rigidbody.useGravity = false;
         rigidbody.isKinematic = true;
 
-        var newAtom = FileSystem.NewActiveAtom();
-        LoadAtomData(newAtom);
+        atomParent = GameObject.Find("Atom") ?? new GameObject();
+        atomParent.name = "AtomNewAtom";
+
+        FileSystem.NewActiveAtom();
+        LoadAtomData(FileSystem.ActiveAtom);
 
         FileSystem.LoadAtoms();
         
@@ -75,6 +80,9 @@ public class Editor : MonoBehaviour
             UpdateInputs();
         
         UpdateActiveAtom();
+
+        var chargeRound = Mathf.RoundToInt(FileSystem.ActiveAtom.Charge);
+        textCharge.text = $"Charge: {chargeRound} ({FileSystem.ActiveAtom.Charge})";
 
         if(_selectedObjects.Any())
         {
@@ -98,8 +106,8 @@ public class Editor : MonoBehaviour
         FileSystem.ActiveAtom.ElectronCount = electrons.Count();
         FileSystem.ActiveAtom.Weight = protons.Count()+neutrons.Count();
 
-        var charges = Particles.Select(p => (int)p.charge);
-        FileSystem.ActiveAtom.Charge = charges.Aggregate((totalCharge,charge) => totalCharge += charge);
+        //var charges = Particles.Select(p => (int)p.charge);
+        //FileSystem.ActiveAtom.Charge = charges.Aggregate((totalCharge,charge) => totalCharge += charge);
     }
 
     void UpdateInputs()
@@ -315,9 +323,12 @@ public class Editor : MonoBehaviour
         particlesToCreate.AddRange(Enumerable.Range(0,atomData.NeutronCount).Select(n => ParticleType.Neutron));
         particlesToCreate.AddRange(Enumerable.Range(0,atomData.ElectronCount).Select(n => ParticleType.Electron));
 
+        Debug.Log("particlesToCreate=");
+        particlesToCreate.ForEach(p => Debug.Log(" - "+p));
+
         // .. create each particle in a random position, with electrons further away than protons and neutrons
         particlesToCreate.ForEach(particleToCreate => {
-            var radius = particleToCreate != ParticleType.Electron ? 1 : 5;
+            var radius = particleToCreate != ParticleType.Electron ? 1 : 20;
             var randPos = UnityEngine.Random.insideUnitSphere*radius;
 
             CreateParticle(particleToCreate,randPos);
@@ -335,18 +346,16 @@ public class Editor : MonoBehaviour
         else
             particleGameObject = Instantiate(instance.electronPrefab);
 
-        
-
         var newParticle = particleGameObject.GetComponent<Particle>();
-
-        var atomParent = GameObject.Find("Atom") ?? new GameObject();
-        atomParent.name = "Atom";
-        newParticle.transform.parent = atomParent.transform;
+        newParticle.transform.parent = instance.atomParent.transform;
 
         if(newParticle.type != type)
             Debug.LogWarning($"Failed to create a particle of type {type}. Created an electron by default");
 
-        particles.Add(newParticle);
+        Particles.Add(newParticle);
+
+        Debug.Log("particles is now ");
+        Particles.ForEach(p => Debug.Log("- "+p.name));
 
         return newParticle;
     }
@@ -363,9 +372,15 @@ public class Editor : MonoBehaviour
 
     public static bool RemoveParticle(Particle particle)
     {
-        particles.Remove(particle);
+        Debug.Log("particles was ");
+        Particles.ForEach(p => Debug.Log("- "+p.name));
+
+        Particles.Remove(particle);
         GameObject.Destroy(particle.gameObject);
         Debug.Log($"removing {particle.name}");
+
+        Debug.Log("particles is now ");
+        Particles.ForEach(p => Debug.Log("- "+p.name));
 
         return true;
     }
@@ -378,7 +393,8 @@ public class Editor : MonoBehaviour
 
     public static void ClearParticles()
     {
-        var particlesToDelete = new List<Particle>(particles);
+        var particlesToDelete = new List<Particle>(Particles);
         particlesToDelete.ForEach(p => RemoveParticle(p));
+        Particles.Clear();
     }
 }

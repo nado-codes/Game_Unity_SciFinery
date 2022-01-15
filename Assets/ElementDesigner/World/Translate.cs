@@ -43,7 +43,7 @@ public class Translate : MonoBehaviour
     {
         Debug.Log("Accelerating "+Editor.SelectedObjects.Count()+" particles...");
 
-        Editor.SelectedObjects.ToList().ForEach(s => s.GetComponent<Particle>().AddVelocity(dir,3));
+        // Editor.SelectedObjects.ToList().ForEach(s => s.GetComponent<Particle>().AddVelocity(dir,3));
     }
 
     ///<Summary>  
@@ -52,7 +52,7 @@ public class Translate : MonoBehaviour
     public void Brake()
     {
         Debug.Log("Slowing down "+Editor.SelectedObjects.Count()+" particles...");
-        Editor.SelectedObjects.ToList().ForEach(s => s.GetComponent<Particle>().Brake(.1f));
+        // Editor.SelectedObjects.ToList().ForEach(s => s.GetComponent<Particle>().Brake(.1f));
     }
 
     ///<Summary>  
@@ -61,7 +61,7 @@ public class Translate : MonoBehaviour
     public void AllStop()
     {
         Debug.Log("ALL STOP");
-        Editor.SelectedObjects.ToList().ForEach(s => s.GetComponent<Particle>().AllStop());
+        // Editor.SelectedObjects.ToList().ForEach(s => s.GetComponent<Particle>().AllStop());
     }
 
     void Update()

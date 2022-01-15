@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using System.Linq;
 
 public enum BondType {Covalent, Ionic, Metallic}
 
@@ -11,8 +12,7 @@ public class Atom
     public int ProtonCount;
     public int NeutronCount;
     public int ElectronCount;
-
-    public int Charge;
+    public float Charge;
 
     // TODO: Valence shells and electrons divided into shells
     // TODO: Valence shell composition to affect reactivity
