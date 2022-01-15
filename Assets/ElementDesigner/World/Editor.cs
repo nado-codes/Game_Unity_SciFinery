@@ -28,7 +28,7 @@ public class Editor : MonoBehaviour
     private Ray dragSelectStartWorld, dragSelectEndWorld;
 
     // PARTICLES
-    private GameObject atomParent;
+    public static GameObject atomGameObject;
     public static List<Particle> Particles = new List<Particle>();
 
     public static IEnumerable<Particle> OtherParticles(Particle particle) =>
@@ -64,8 +64,8 @@ public class Editor : MonoBehaviour
         rigidbody.useGravity = false;
         rigidbody.isKinematic = true;
 
-        atomParent = GameObject.Find("Atom") ?? new GameObject();
-        atomParent.name = "AtomNewAtom";
+        atomGameObject = GameObject.Find("Atom") ?? new GameObject();
+        atomGameObject.name = "AtomNewAtom";
 
         FileSystem.NewActiveAtom();
         LoadAtomData(FileSystem.ActiveAtom);
@@ -80,6 +80,8 @@ public class Editor : MonoBehaviour
             UpdateInputs();
         
         UpdateActiveAtom();
+
+        Debug.Log(FileSystem.ActiveAtom.Charge);
 
         var chargeRound = Mathf.RoundToInt(FileSystem.ActiveAtom.Charge);
         textCharge.text = $"Charge: {chargeRound} ({FileSystem.ActiveAtom.Charge})";
@@ -323,9 +325,6 @@ public class Editor : MonoBehaviour
         particlesToCreate.AddRange(Enumerable.Range(0,atomData.NeutronCount).Select(n => ParticleType.Neutron));
         particlesToCreate.AddRange(Enumerable.Range(0,atomData.ElectronCount).Select(n => ParticleType.Electron));
 
-        Debug.Log("particlesToCreate=");
-        particlesToCreate.ForEach(p => Debug.Log(" - "+p));
-
         // .. create each particle in a random position, with electrons further away than protons and neutrons
         particlesToCreate.ForEach(particleToCreate => {
             var radius = particleToCreate != ParticleType.Electron ? 1 : 20;
@@ -347,7 +346,8 @@ public class Editor : MonoBehaviour
             particleGameObject = Instantiate(instance.electronPrefab);
 
         var newParticle = particleGameObject.GetComponent<Particle>();
-        newParticle.transform.parent = instance.atomParent.transform;
+        newParticle.transform.parent = atomGameObject.transform;
+        FileSystem.ActiveAtom.Charge += (int)newParticle.charge;
 
         if(newParticle.type != type)
             Debug.LogWarning($"Failed to create a particle of type {type}. Created an electron by default");
@@ -365,22 +365,16 @@ public class Editor : MonoBehaviour
         var particle = CreateParticle(type);
         particle.transform.position = position;
 
-        
-
         return particle;
     }
 
     public static bool RemoveParticle(Particle particle)
     {
-        Debug.Log("particles was ");
-        Particles.ForEach(p => Debug.Log("- "+p.name));
-
         Particles.Remove(particle);
         GameObject.Destroy(particle.gameObject);
         Debug.Log($"removing {particle.name}");
 
-        Debug.Log("particles is now ");
-        Particles.ForEach(p => Debug.Log("- "+p.name));
+        FileSystem.ActiveAtom.Charge -= (int)particle.charge;
 
         return true;
     }
@@ -395,6 +389,5 @@ public class Editor : MonoBehaviour
     {
         var particlesToDelete = new List<Particle>(Particles);
         particlesToDelete.ForEach(p => RemoveParticle(p));
-        Particles.Clear();
     }
 }

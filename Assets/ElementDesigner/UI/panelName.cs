@@ -33,7 +33,14 @@ public class panelName : MonoBehaviour
         numberText.text = protonCount.ToString();
         weightText.text = FileSystem.ActiveAtom.Weight.ToString()+".00";
 
-        shortNameText.text = FileSystem.ActiveAtom.ShortName;
-        nameText.text = FileSystem.ActiveAtom.Name;
+        NameText.text = FileSystem.ActiveAtom.Name;
+        Editor.atomGameObject.name = "Atom"+FileSystem.ActiveAtom.Name;
+        
+        if(FileSystem.ActiveAtom.Charge == 0)
+            shortNameText.text = FileSystem.ActiveAtom.ShortName;
+        else if(FileSystem.ActiveAtom.Charge < 0)
+            shortNameText.text = FileSystem.ActiveAtom.ShortName+"-";
+        else if(FileSystem.ActiveAtom.Charge > 0)
+            shortNameText.text = FileSystem.ActiveAtom.ShortName+"+";
     }
 }
