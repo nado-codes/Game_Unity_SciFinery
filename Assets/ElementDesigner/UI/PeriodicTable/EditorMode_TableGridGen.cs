@@ -47,7 +47,7 @@ public class EditorMode_TableGridGen : MonoBehaviour
 
         if(gridItemPrefab == null) return;
 
-        var otherGridItems = GetComponentsInChildren<PeriodicTableGridItem>().ToList();
+        var otherGridItems = GetComponentsInChildren<AtomGridItem>().ToList();
         otherGridItems.ForEach(i => GameObject.DestroyImmediate(i.gameObject));
     }
     void GenerateGrid()
@@ -69,7 +69,7 @@ public class EditorMode_TableGridGen : MonoBehaviour
                 newGridItem.transform.localScale = Vector3.one;
 
                 // TODO: We don't need this. To be removed. Only used to visualise the numbers on the grid
-                var script = newGridItem.GetComponent<PeriodicTableGridItem>();
+                var script = newGridItem.GetComponent<AtomGridItem>();
                 script.Awake();
                 script.SetNumber(x+(y*columns)+1);
 

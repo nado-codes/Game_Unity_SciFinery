@@ -11,6 +11,7 @@ public class panelName : MonoBehaviour
     Text numberText, shortNameText, nameText, weightText;
 
     public static Text NameText => instance.nameText;
+    public Atom atom;
 
     void Start()
     {
@@ -42,5 +43,27 @@ public class panelName : MonoBehaviour
             shortNameText.text = FileSystem.ActiveAtom.ShortName+"-";
         else if(FileSystem.ActiveAtom.Charge > 0)
             shortNameText.text = FileSystem.ActiveAtom.ShortName+"+";
+    }
+
+    public void SetActive(bool active)
+    {
+        numberText.gameObject.SetActive(active);
+        shortNameText.gameObject.SetActive(active);
+        nameText.gameObject.SetActive(active);
+        weightText.gameObject.SetActive(active);
+    }
+    
+    public void SetAtomData(Atom atomData)
+    {
+        if(atomData == null)
+            throw new ApplicationException("Expected atomData in call to SetAtomData in panelName, got null");
+        
+        numberText.text = atomData.Number.ToString();
+        shortNameText.text = atomData.ShortName;
+        nameText.text = atomData.Name;
+        weightText.text = atomData.Weight.ToString()+".00";
+
+        atom = atomData;
+        SetActive(true);
     }
 }

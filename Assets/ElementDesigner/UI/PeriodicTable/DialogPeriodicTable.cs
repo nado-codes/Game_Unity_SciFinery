@@ -11,19 +11,32 @@ public class DialogPeriodicTable : MonoBehaviour
 
     private PeriodicTableGridItem selectedItem;
 
-    public PeriodicTableGridItem gridItemPrefab;
-    private List<PeriodicTableGridItem> gridItems = new List<PeriodicTableGridItem>();
-    private Button btnLoad, btnDelete;
+    public AtomGridItem gridItemPrefab;
+    private List<AtomGridItem> page1GridItems = new List<AtomGridItem>();
+    private List<IsotopeGridItem> page2GridItems = new List<IsotopeGridItem>();
+
+    private Button btnLoad, btnDelete, btnIsotopes;
+
+    private Transform page1Transform, page2Transform;
     
     void Start()
     {
-        var grid = transform.Find("grid");
-        var transforms = grid.GetComponentsInChildren<RectTransform>();
-        gridItems = grid.GetComponentsInChildren<PeriodicTableGridItem>().ToList();
-        gridItems.ForEach(item => item.GetComponent<Button>().onClick.AddListener(() => HandleItemSelected(item)));
+        page1Transform = transform.Find("page1");
+        page2Transform = transform.Find("page2");
+
+        var page1GridTransform = page1Transform.Find("grid");
+        var page1GridTransforms = page1GridTransform.GetComponentsInChildren<RectTransform>();
+        page1GridItems = page1GridTransform.GetComponentsInChildren<AtomGridItem>().ToList();
+        page1GridItems.ForEach(item => item.GetComponent<Button>().onClick.AddListener(() => HandleItemSelected(item)));
+
+        var page2GridTransform = page2Transform.Find("grid");
+        var page2GridTransforms = page2GridTransform.GetComponentsInChildren<RectTransform>();
+        page2GridItems = page2GridTransform.GetComponentsInChildren<IsotopeGridItem>().ToList();
+        page2GridItems.ForEach(item => item.GetComponent<Button>().onClick.AddListener(() => HandleItemSelected(item)));
 
         btnLoad = transform.Find("btnLoad").GetComponent<Button>();
         btnDelete = transform.Find("btnDelete").GetComponent<Button>();
+        btnIsotopes = page1Transform.Find("btnIsotopes").GetComponent<Button>();
 
         Close();
     }
@@ -44,7 +57,7 @@ public class DialogPeriodicTable : MonoBehaviour
         foreach(Atom atom in FileSystem.LoadedAtoms)
         {
             // TODO: Create a grid item if the atom won't fit in the table
-            var gridItem = gridItems[atom.Number-1]; // ??
+            var gridItem = page1GridItems[atom.Number-1]; // ??
                 // CreateGridItem(atom.Number);
 
             if(gridItem == null)
@@ -59,7 +72,19 @@ public class DialogPeriodicTable : MonoBehaviour
         HUD.LockedFocus = true;
     }
 
-    public PeriodicTableGridItem CreateGridItem(int index)
+    public void OpenPage1()
+    {
+        page2Transform.gameObject.SetActive(false);
+        page1Transform.gameObject.SetActive(true);
+    }
+
+    public void OpenPage2()
+    {
+        page2Transform.gameObject.SetActive(true);
+        page1Transform.gameObject.SetActive(false);
+    }
+
+    public AtomGridItem CreateGridItem(int index)
     {
         if(gridItemPrefab == null)
             return null;
@@ -68,7 +93,7 @@ public class DialogPeriodicTable : MonoBehaviour
         newGridItem.transform.parent = transform;
         newGridItem.transform.localScale = Vector3.one;
         
-        gridItems.Add(newGridItem);
+        page1GridItems.Add(newGridItem);
 
         return newGridItem;
     }
@@ -83,6 +108,7 @@ public class DialogPeriodicTable : MonoBehaviour
     {
         btnLoad.interactable = (item != null);
         btnDelete.interactable = (item != null);
+        btnIsotopes.interactable = (item != null);
 
         selectedItem = item;
     }
