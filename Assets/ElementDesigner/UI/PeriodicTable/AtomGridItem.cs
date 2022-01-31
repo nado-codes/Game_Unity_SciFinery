@@ -10,16 +10,26 @@ public class AtomGridItem : PeriodicTableGridItem
     Text numberText, shortNameText, nameText, weightText;
     Button button;
 
+    private ColorBlock buttonColorsActive, buttonColorsInactive;
+
+    public void Start()
+    {
+        SetActive(false);
+    }
     public void Awake()
     {
         numberText = transform.Find("Number")?.GetComponent<Text>();
-        shortNameText = transform.Find("ShortName")?.GetComponent<Text>();
-        nameText = transform.Find("Name")?.GetComponent<Text>();
-        weightText = transform.Find("Weight")?.GetComponent<Text>();
+            shortNameText = transform.Find("ShortName")?.GetComponent<Text>();
+            nameText = transform.Find("Name")?.GetComponent<Text>();
+            weightText = transform.Find("Weight")?.GetComponent<Text>();
 
-        button = GetComponent<Button>();
+            button = GetComponent<Button>();
+            buttonColorsActive = button.colors;
 
-        SetActive(false);
+            buttonColorsInactive.normalColor = button.colors.disabledColor;
+            buttonColorsInactive.highlightedColor = button.colors.disabledColor;
+            buttonColorsInactive.pressedColor = button.colors.disabledColor;
+            buttonColorsInactive.selectedColor = button.colors.disabledColor;
     }
 
     // Update is called once per frame
@@ -45,7 +55,8 @@ public class AtomGridItem : PeriodicTableGridItem
         shortNameText.gameObject.SetActive(active);
         nameText.gameObject.SetActive(active);
         weightText.gameObject.SetActive(active);
-        button.interactable = active;
+
+        button.colors = active ? buttonColorsActive : buttonColorsInactive;
     }
 
     // TODO: TEMPORARY number setter for visualisation purposes. TO BE REMOVED

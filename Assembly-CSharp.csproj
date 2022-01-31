@@ -37,6 +37,7 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\ElementDesigner\UI\PeriodicTable\DialogPeriodicTable.cs" />
+     <Compile Include="Assets\ElementDesigner\UI\PeriodicTable\PeriodicTableGridItem.cs" />
      <Compile Include="Assets\FaceCam.cs" />
      <Compile Include="Assets\ElementDesigner\FileSystem\FileSystem.cs" />
      <Compile Include="Assets\ElementDesigner\World\Translate.cs" />
@@ -52,6 +53,7 @@
      <Compile Include="Assets\ElementDesigner\UI\HUD.cs" />
      <Compile Include="Assets\ElementDesigner\UI\panelCreateParticle.cs" />
      <Compile Include="Assets\ElementDesigner\World\Editor.cs" />
+     <Compile Include="Assets\ElementDesigner\UI\PeriodicTable\IsotopeGridItem.cs" />
      <Compile Include="Assets\ElementDesigner\World\Interact.cs" />
      <Compile Include="Assets\Main\WorldGen.cs" />
      <Compile Include="Assets\ElementDesigner\UI\panelName.cs" />
@@ -65,8 +67,6 @@
      <Compile Include="Assets\ElementDesigner\UI\DialogEditName.cs" />
      <Compile Include="Assets\ElementDesigner\World\ElementDesignerCamera.cs" />
      <Compile Include="Assets\ElementDesigner\World\Atom\Electron.cs" />
-     <Compile Include="Assets\ElementDesigner\UI\PeriodicTable\IsotopeGridItem.cs" />
-     <Compile Include="Assets\ElementDesigner\UI\PeriodicTable\PeriodicTableGridItem.cs" />
     <Reference Include="UnityEngine">
         <HintPath>D:\Program Files (x86)\Unity\2021.1.22f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>

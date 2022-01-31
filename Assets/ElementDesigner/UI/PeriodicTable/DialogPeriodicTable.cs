@@ -7,13 +7,12 @@ using UnityEngine.UI;
 
 public class DialogPeriodicTable : MonoBehaviour
 {
-    private InputField inputName;
-
     private PeriodicTableGridItem selectedItem;
 
-    public AtomGridItem gridItemPrefab;
     private List<AtomGridItem> page1GridItems = new List<AtomGridItem>();
     private List<IsotopeGridItem> page2GridItems = new List<IsotopeGridItem>();
+
+    private List<PeriodicTableGridItem> pageGridItems = new List<PeriodicTableGridItem>();
 
     private Button btnLoad, btnDelete, btnIsotopes;
 
@@ -27,6 +26,7 @@ public class DialogPeriodicTable : MonoBehaviour
         var page1GridTransform = page1Transform.Find("grid");
         var page1GridTransforms = page1GridTransform.GetComponentsInChildren<RectTransform>();
         page1GridItems = page1GridTransform.GetComponentsInChildren<AtomGridItem>().ToList();
+        page1GridItems.ForEach(item => item.GetComponent<Button>().onClick.AddListener(() => HandleItemSelected(item)));
         page1GridItems.ForEach(item => item.GetComponent<Button>().onClick.AddListener(() => HandleItemSelected(item)));
 
         var page2GridTransform = page2Transform.Find("grid");
@@ -80,22 +80,13 @@ public class DialogPeriodicTable : MonoBehaviour
 
     public void OpenPage2()
     {
+        var atomGridItem = page2Transform.Find("gridItem").GetComponent<AtomGridItem>();
+        atomGridItem.SetAtomData(selectedItem.atom);
+
+        page2GridItems.ForEach(item => item.SetName(selectedItem.atom.Name));
+
         page2Transform.gameObject.SetActive(true);
-        page1Transform.gameObject.SetActive(false);
-    }
-
-    public AtomGridItem CreateGridItem(int index)
-    {
-        if(gridItemPrefab == null)
-            return null;
-
-        var newGridItem = Instantiate(gridItemPrefab);
-        newGridItem.transform.parent = transform;
-        newGridItem.transform.localScale = Vector3.one;
-        
-        page1GridItems.Add(newGridItem);
-
-        return newGridItem;
+        page1Transform.gameObject.SetActive(false);   
     }
 
     public void Close()
@@ -106,9 +97,9 @@ public class DialogPeriodicTable : MonoBehaviour
 
     private void HandleItemSelected(PeriodicTableGridItem item)
     {
-        btnLoad.interactable = (item != null);
-        btnDelete.interactable = (item != null);
-        btnIsotopes.interactable = (item != null);
+        btnLoad.interactable = (item.atom != null);
+        btnDelete.interactable = (item.atom != null);
+        btnIsotopes.interactable = (item.atom != null);
 
         selectedItem = item;
     }
