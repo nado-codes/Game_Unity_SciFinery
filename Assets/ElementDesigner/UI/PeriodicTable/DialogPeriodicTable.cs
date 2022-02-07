@@ -70,6 +70,7 @@ public class DialogPeriodicTable : MonoBehaviour
         }
 
         HUD.LockedFocus = true;
+        OpenPage1();
     }
 
     public void OpenPage1()

@@ -12,11 +12,7 @@ public class AtomGridItem : PeriodicTableGridItem
 
     private ColorBlock buttonColorsActive, buttonColorsInactive;
 
-    public void Start()
-    {
-        SetActive(false);
-    }
-    public void Awake()
+    private void Init()
     {
         numberText = transform.Find("Number")?.GetComponent<Text>();
             shortNameText = transform.Find("ShortName")?.GetComponent<Text>();
@@ -30,6 +26,15 @@ public class AtomGridItem : PeriodicTableGridItem
             buttonColorsInactive.highlightedColor = button.colors.disabledColor;
             buttonColorsInactive.pressedColor = button.colors.disabledColor;
             buttonColorsInactive.selectedColor = button.colors.disabledColor;
+    }
+    public void Start()
+    {
+        Init();
+        SetActive(false);
+    }
+    public void Awake()
+    {
+        Init();
     }
 
     // Update is called once per frame
