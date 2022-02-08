@@ -67,7 +67,7 @@ public class AtomGridItem : PeriodicTableGridItem
     // TODO: TEMPORARY number setter for visualisation purposes. TO BE REMOVED
     public void SetNumber(int number) => numberText.text = number.ToString();
 
-    public void SetAtomData(Atom atomData)
+    public void SetAtomData(AtomWithIsotopes atomData)
     {
         if(atomData == null)
             throw new ApplicationException("Expected atomData in call to SetAtomData in PeriodicTableGridItem, got null");
