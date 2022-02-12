@@ -67,7 +67,7 @@ public class Editor : MonoBehaviour
         atomGameObject = GameObject.Find("Atom") ?? new GameObject();
         atomGameObject.name = "AtomNewAtom";
 
-        FileSystem.NewActiveAtom();
+        FileSystem.NewAtom();
         LoadAtomData(FileSystem.ActiveAtom);
 
         FileSystem.LoadAtoms();
@@ -80,8 +80,6 @@ public class Editor : MonoBehaviour
             UpdateInputs();
         
         UpdateActiveAtom();
-
-        Debug.Log(FileSystem.ActiveAtom.Charge);
 
         var chargeRound = Mathf.RoundToInt(FileSystem.ActiveAtom.Charge);
         textCharge.text = $"Charge: {chargeRound} ({FileSystem.ActiveAtom.Charge})";

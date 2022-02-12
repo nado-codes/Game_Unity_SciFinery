@@ -9,14 +9,16 @@ public class FileSystem : MonoBehaviour
 {
     const string fileExtension = "ed";
     const string elementsRoot = "./Elements";
+    private static string activeAtomFileName => ActiveAtom.ShortName.ToLower()+ActiveAtom.Number;
 
     public static AtomWithIsotopes ActiveAtom { get; set; }
 
     private static bool hasLoadedAtoms = false;
 
     public static List<AtomWithIsotopes> LoadedAtoms { get; private set; } = new List<AtomWithIsotopes>();
+    public static List<Atom[]> LoadedIsotopes {get; private set; } = new List<Atom[]>();
 
-    public static Atom NewActiveAtom()
+    public static Atom NewAtom()
     {
         ActiveAtom = new AtomWithIsotopes();
         ActiveAtom.Number = 1;
@@ -29,58 +31,75 @@ public class FileSystem : MonoBehaviour
     }
 
 
-    public static void SaveActiveAtom()
+    public static void SaveAtom()
     {
+        // .. make sure the directory exists
         if(!Directory.Exists(elementsRoot))
             Directory.CreateDirectory(elementsRoot);
-        
-        var activeAtomJSON = JsonUtility.ToJson(ActiveAtom);
 
-        var mainAtomPath = $"{elementsRoot}/{ActiveAtom.ShortName.ToLower()}";
-        var existingAtomJSON = File.ReadAllText($"{mainAtomPath}.{fileExtension}");
-        var existingAtom = JsonUtility.FromJson<AtomWithIsotopes>(existingAtomJSON);
-        var isOverwriteOrSave = existingAtom == null || existingAtom.Charge == ActiveAtom.Charge;
+        // .. if the main atom doesn't exist, create it
+        var mainAtomPath = $"{elementsRoot}/{activeAtomFileName}";
+        var atomExists = File.Exists(mainAtomPath);
 
-        if(!isOverwriteOrSave)
+        if(atomExists)
         {
-            // .. atoms which exist, but have a different charge (isotopes)
-            
-            // TODO: confirm the creation of the isotope with a popup dialog, and then run "ConfirmSaveIsotope()"
-        }
-        else // .. atoms which don't exist or have the same charge
-            File.WriteAllText(mainAtomPath,activeAtomJSON);
-        
-        if(!isOverwriteOrSave)
-        {
-            // .. atoms which exist, but have a different charge (isotopes)
-            if(!Directory.Exists(mainAtomPath))
-                Directory.CreateDirectory(mainAtomPath);
+            var existingAtomJSON = File.ReadAllText($"{mainAtomPath}.{fileExtension}");
+            var existingAtom = JsonUtility.FromJson<AtomWithIsotopes>(existingAtomJSON);
+            var activeAtomIsIsotope = existingAtom.Name == ActiveAtom.Name && existingAtom.Charge != ActiveAtom.Charge;
 
-            var isotopeNumber = ActiveAtom.Charge > 0 ? "m"+ActiveAtom.Charge : ActiveAtom.Charge.ToString();
-            var isotopePath = $"{mainAtomPath}/{ActiveAtom.ShortName.ToLower()}_{isotopeNumber}.{fileExtension}";
+            if(activeAtomIsIsotope)
+            {
+                // .. make sure the atom's isotope directory exists
+                if(!Directory.Exists(mainAtomPath))
+                    Directory.CreateDirectory(mainAtomPath);
 
-            File.WriteAllText(isotopePath,activeAtomJSON);
+                var isotopeNumber = ActiveAtom.Charge > 0 ? "m"+ActiveAtom.Charge : ActiveAtom.Charge.ToString();
+                var isotopePath = $"{mainAtomPath}/{activeAtomFileName}_{isotopeNumber}.{fileExtension}";
+                var isotopeExists = File.Exists(isotopePath);
+
+                if(!isotopeExists) // .. confirm create isotope
+                    DialogConfirmSaveIsotope.Open();
+                else
+                    ConfirmSaveIsotope(); // .. overwrite isotope
+
+                Debug.Log($"Saved isotope {ActiveAtom.Name} with charge {ActiveAtom.Charge} at {DateTime.Now}");
+            }
+            else // .. overwrite the main atom
+            {
+                var activeAtomJSON = JsonUtility.ToJson(ActiveAtom);
+                LoadedAtoms[ActiveAtom.Number-1] = ActiveAtom;
+                File.WriteAllText(mainAtomPath,activeAtomJSON);
+                Debug.Log($"Saved active atom {ActiveAtom.Name} at {DateTime.Now}");
+            }
         }
         else
         {
+            var activeAtomJSON = JsonUtility.ToJson(ActiveAtom);
+            LoadedAtoms.Insert(ActiveAtom.Number-1,ActiveAtom);
+            File.WriteAllText(mainAtomPath,activeAtomJSON);
             Debug.Log($"Saved active atom {ActiveAtom.Name} at {DateTime.Now}");
         }
-
-        LoadedAtoms.Insert(ActiveAtom.Number-1,ActiveAtom);
     }
 
     // .. Create an isotope for a particlar atom, by creating a directory to store isotopes and then saving the file inside it
     public static void ConfirmSaveIsotope()
     {
         var activeAtomJSON = JsonUtility.ToJson(ActiveAtom);
-        var mainAtomPath = $"{elementsRoot}/{ActiveAtom.ShortName.ToLower()}";
 
-        if(!Directory.Exists(mainAtomPath))
-            Directory.CreateDirectory(mainAtomPath);
-
+        var mainAtomPath = $"{elementsRoot}/{activeAtomFileName}";
         var isotopeNumber = ActiveAtom.Charge > 0 ? "m"+ActiveAtom.Charge : ActiveAtom.Charge.ToString();
-        var isotopePath = $"{mainAtomPath}/{ActiveAtom.ShortName.ToLower()}_{isotopeNumber}.{fileExtension}";
+        var isotopePath = $"{mainAtomPath}/{activeAtomFileName}_{isotopeNumber}.{fileExtension}";
+        var isotopeExists = File.Exists(isotopePath);
+        
+        if(!isotopeExists)
+            LoadedAtoms[ActiveAtom.Number-1].isotopes.Add(ActiveAtom);
+        else
+        {
+            var isotopeCount = LoadedAtoms[ActiveAtom.Number-1].isotopes.Count;
+            var indexInIsotopes = LoadedAtoms[ActiveAtom.Number-1].isotopes.FindIndex(0,isotopeCount,a => a.Charge == ActiveAtom.Charge);
 
+            LoadedAtoms[ActiveAtom.Number-1].isotopes[indexInIsotopes] = ActiveAtom;
+        }
         File.WriteAllText(isotopePath,activeAtomJSON);
     }
 

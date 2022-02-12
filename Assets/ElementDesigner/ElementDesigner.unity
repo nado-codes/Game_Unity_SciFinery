@@ -257,24 +257,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    Charge: 0
-    BondType: 0
-    Number: 0
-    ShortName: 
-    Name: 
-    Weight: 0
-    Conductivity: 0
-    Reactivity: 0
-    Toxicity: 0
-    MeltingPoint: 0
-    BoilingPoint: 0
-    Brittleness: 0
-    Malleability: 0
-    Ductility: 0
 --- !u!114 &3900857
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -807,24 +789,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    Charge: 0
-    BondType: 0
-    Number: 0
-    ShortName: 
-    Name: 
-    Weight: 0
-    Conductivity: 0
-    Reactivity: 0
-    Toxicity: 0
-    MeltingPoint: 0
-    BoilingPoint: 0
-    Brittleness: 0
-    Malleability: 0
-    Ductility: 0
 --- !u!114 &18507538
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1148,6 +1112,151 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 29680714}
   m_CullTransparentMesh: 1
+--- !u!1 &35183372
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 35183373}
+  - component: {fileID: 35183376}
+  - component: {fileID: 35183375}
+  - component: {fileID: 35183374}
+  m_Layer: 5
+  m_Name: btnYes
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &35183373
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 35183372}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.00383, y: 1.00383, z: 1.00383}
+  m_Children:
+  - {fileID: 142268878}
+  m_Father: {fileID: 296629756}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -80.2, y: -58}
+  m_SizeDelta: {x: 160, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &35183374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 35183372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 35183375}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 296629757}
+        m_TargetAssemblyTypeName: DialogYesNo, Assembly-CSharp
+        m_MethodName: Close
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 612247313}
+        m_TargetAssemblyTypeName: FileSystem, Assembly-CSharp
+        m_MethodName: ConfirmSaveIsotope
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &35183375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 35183372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &35183376
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 35183372}
+  m_CullTransparentMesh: 1
 --- !u!1 &40339266
 GameObject:
   m_ObjectHideFlags: 0
@@ -1178,7 +1287,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2068782373}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1543,24 +1652,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    Charge: 0
-    BondType: 0
-    Number: 0
-    ShortName: 
-    Name: 
-    Weight: 0
-    Conductivity: 0
-    Reactivity: 0
-    Toxicity: 0
-    MeltingPoint: 0
-    BoilingPoint: 0
-    Brittleness: 0
-    Malleability: 0
-    Ductility: 0
 --- !u!114 &90505054
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2368,24 +2459,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    Charge: 0
-    BondType: 0
-    Number: 0
-    ShortName: 
-    Name: 
-    Weight: 0
-    Conductivity: 0
-    Reactivity: 0
-    Toxicity: 0
-    MeltingPoint: 0
-    BoilingPoint: 0
-    Brittleness: 0
-    Malleability: 0
-    Ductility: 0
 --- !u!114 &114349042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2845,24 +2918,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    Charge: 0
-    BondType: 0
-    Number: 0
-    ShortName: 
-    Name: 
-    Weight: 0
-    Conductivity: 0
-    Reactivity: 0
-    Toxicity: 0
-    MeltingPoint: 0
-    BoilingPoint: 0
-    Brittleness: 0
-    Malleability: 0
-    Ductility: 0
 --- !u!114 &123878885
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3268,6 +3323,85 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 139181844}
+  m_CullTransparentMesh: 1
+--- !u!1 &142268877
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 142268878}
+  - component: {fileID: 142268880}
+  - component: {fileID: 142268879}
+  m_Layer: 5
+  m_Name: Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &142268878
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 142268877}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 35183373}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &142268879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 142268877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 14
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: Yes
+--- !u!222 &142268880
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 142268877}
   m_CullTransparentMesh: 1
 --- !u!1 &147506853
 GameObject:
@@ -3933,24 +4067,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    Charge: 0
-    BondType: 0
-    Number: 0
-    ShortName: 
-    Name: 
-    Weight: 0
-    Conductivity: 0
-    Reactivity: 0
-    Toxicity: 0
-    MeltingPoint: 0
-    BoilingPoint: 0
-    Brittleness: 0
-    Malleability: 0
-    Ductility: 0
 --- !u!114 &199863831
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5276,6 +5392,59 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 293616591}
   m_CullTransparentMesh: 1
+--- !u!1 &296629755
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 296629756}
+  - component: {fileID: 296629757}
+  m_Layer: 5
+  m_Name: dialogConfirmSaveIsotope
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &296629756
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 296629755}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1567501366}
+  - {fileID: 975210481}
+  - {fileID: 2087114649}
+  - {fileID: 35183373}
+  - {fileID: 1039740229}
+  m_Father: {fileID: 2068782373}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 92}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &296629757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 296629755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bee639249f7f954b908e27fec546995, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &298771975
 GameObject:
   m_ObjectHideFlags: 0
@@ -5653,24 +5822,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    Charge: 0
-    BondType: 0
-    Number: 0
-    ShortName: 
-    Name: 
-    Weight: 0
-    Conductivity: 0
-    Reactivity: 0
-    Toxicity: 0
-    MeltingPoint: 0
-    BoilingPoint: 0
-    Brittleness: 0
-    Malleability: 0
-    Ductility: 0
 --- !u!114 &307037453
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6047,24 +6198,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    Charge: 0
-    BondType: 0
-    Number: 0
-    ShortName: 
-    Name: 
-    Weight: 0
-    Conductivity: 0
-    Reactivity: 0
-    Toxicity: 0
-    MeltingPoint: 0
-    BoilingPoint: 0
-    Brittleness: 0
-    Malleability: 0
-    Ductility: 0
 --- !u!114 &321047921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7010,24 +7143,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    Charge: 0
-    BondType: 0
-    Number: 0
-    ShortName: 
-    Name: 
-    Weight: 0
-    Conductivity: 0
-    Reactivity: 0
-    Toxicity: 0
-    MeltingPoint: 0
-    BoilingPoint: 0
-    Brittleness: 0
-    Malleability: 0
-    Ductility: 0
 --- !u!114 &379369120
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8130,24 +8245,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    Charge: 0
-    BondType: 0
-    Number: 0
-    ShortName: 
-    Name: 
-    Weight: 0
-    Conductivity: 0
-    Reactivity: 0
-    Toxicity: 0
-    MeltingPoint: 0
-    BoilingPoint: 0
-    Brittleness: 0
-    Malleability: 0
-    Ductility: 0
 --- !u!114 &460104118
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9201,24 +9298,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    Charge: 0
-    BondType: 0
-    Number: 0
-    ShortName: 
-    Name: 
-    Weight: 0
-    Conductivity: 0
-    Reactivity: 0
-    Toxicity: 0
-    MeltingPoint: 0
-    BoilingPoint: 0
-    Brittleness: 0
-    Malleability: 0
-    Ductility: 0
 --- !u!114 &518040275
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9354,24 +9433,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ad9125eabf35d34298ea7593cdd23a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    Charge: 0
-    BondType: 0
-    Number: 0
-    ShortName: 
-    Name: 
-    Weight: 0
-    Conductivity: 0
-    Reactivity: 0
-    Toxicity: 0
-    MeltingPoint: 0
-    BoilingPoint: 0
-    Brittleness: 0
-    Malleability: 0
-    Ductility: 0
 --- !u!114 &519696979
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9509,24 +9570,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    Charge: 0
-    BondType: 0
-    Number: 0
-    ShortName: 
-    Name: 
-    Weight: 0
-    Conductivity: 0
-    Reactivity: 0
-    Toxicity: 0
-    MeltingPoint: 0
-    BoilingPoint: 0
-    Brittleness: 0
-    Malleability: 0
-    Ductility: 0
 --- !u!114 &542476401
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9662,24 +9705,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ad9125eabf35d34298ea7593cdd23a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    Charge: 0
-    BondType: 0
-    Number: 0
-    ShortName: 
-    Name: 
-    Weight: 0
-    Conductivity: 0
-    Reactivity: 0
-    Toxicity: 0
-    MeltingPoint: 0
-    BoilingPoint: 0
-    Brittleness: 0
-    Malleability: 0
-    Ductility: 0
 --- !u!114 &550153669
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9940,10 +9965,10 @@ MonoBehaviour:
     NeutronCount: 0
     ElectronCount: 0
     Charge: 0
-    BondType: 0
     Number: 0
     ShortName: 
     Name: 
+    BondType: 0
     Weight: 0
     Conductivity: 0
     Reactivity: 0
@@ -10064,7 +10089,7 @@ RectTransform:
   - {fileID: 637697112}
   - {fileID: 1269468622}
   m_Father: {fileID: 2068782373}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -10218,24 +10243,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    Charge: 0
-    BondType: 0
-    Number: 0
-    ShortName: 
-    Name: 
-    Weight: 0
-    Conductivity: 0
-    Reactivity: 0
-    Toxicity: 0
-    MeltingPoint: 0
-    BoilingPoint: 0
-    Brittleness: 0
-    Malleability: 0
-    Ductility: 0
 --- !u!114 &574388814
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10610,24 +10617,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ad9125eabf35d34298ea7593cdd23a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    Charge: 0
-    BondType: 0
-    Number: 0
-    ShortName: 
-    Name: 
-    Weight: 0
-    Conductivity: 0
-    Reactivity: 0
-    Toxicity: 0
-    MeltingPoint: 0
-    BoilingPoint: 0
-    Brittleness: 0
-    Malleability: 0
-    Ductility: 0
 --- !u!114 &585791179
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10925,24 +10914,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    Charge: 0
-    BondType: 0
-    Number: 0
-    ShortName: 
-    Name: 
-    Weight: 0
-    Conductivity: 0
-    Reactivity: 0
-    Toxicity: 0
-    MeltingPoint: 0
-    BoilingPoint: 0
-    Brittleness: 0
-    Malleability: 0
-    Ductility: 0
 --- !u!114 &593231585
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11376,24 +11347,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    Charge: 0
-    BondType: 0
-    Number: 0
-    ShortName: 
-    Name: 
-    Weight: 0
-    Conductivity: 0
-    Reactivity: 0
-    Toxicity: 0
-    MeltingPoint: 0
-    BoilingPoint: 0
-    Brittleness: 0
-    Malleability: 0
-    Ductility: 0
 --- !u!114 &617529847
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12213,7 +12166,7 @@ RectTransform:
   m_Children:
   - {fileID: 1451571204}
   m_Father: {fileID: 2068782373}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -12610,24 +12563,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ad9125eabf35d34298ea7593cdd23a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    Charge: 0
-    BondType: 0
-    Number: 0
-    ShortName: 
-    Name: 
-    Weight: 0
-    Conductivity: 0
-    Reactivity: 0
-    Toxicity: 0
-    MeltingPoint: 0
-    BoilingPoint: 0
-    Brittleness: 0
-    Malleability: 0
-    Ductility: 0
 --- !u!114 &699807846
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12853,24 +12788,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    Charge: 0
-    BondType: 0
-    Number: 0
-    ShortName: 
-    Name: 
-    Weight: 0
-    Conductivity: 0
-    Reactivity: 0
-    Toxicity: 0
-    MeltingPoint: 0
-    BoilingPoint: 0
-    Brittleness: 0
-    Malleability: 0
-    Ductility: 0
 --- !u!114 &706448293
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13814,24 +13731,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    Charge: 0
-    BondType: 0
-    Number: 0
-    ShortName: 
-    Name: 
-    Weight: 0
-    Conductivity: 0
-    Reactivity: 0
-    Toxicity: 0
-    MeltingPoint: 0
-    BoilingPoint: 0
-    Brittleness: 0
-    Malleability: 0
-    Ductility: 0
 --- !u!114 &779138809
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14368,24 +14267,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    Charge: 0
-    BondType: 0
-    Number: 0
-    ShortName: 
-    Name: 
-    Weight: 0
-    Conductivity: 0
-    Reactivity: 0
-    Toxicity: 0
-    MeltingPoint: 0
-    BoilingPoint: 0
-    Brittleness: 0
-    Malleability: 0
-    Ductility: 0
 --- !u!114 &817288372
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14602,24 +14483,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ad9125eabf35d34298ea7593cdd23a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    Charge: 0
-    BondType: 0
-    Number: 0
-    ShortName: 
-    Name: 
-    Weight: 0
-    Conductivity: 0
-    Reactivity: 0
-    Toxicity: 0
-    MeltingPoint: 0
-    BoilingPoint: 0
-    Brittleness: 0
-    Malleability: 0
-    Ductility: 0
 --- !u!114 &831874568
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15516,6 +15379,85 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 882987576}
   m_CullTransparentMesh: 1
+--- !u!1 &885851451
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 885851452}
+  - component: {fileID: 885851454}
+  - component: {fileID: 885851453}
+  m_Layer: 5
+  m_Name: Title
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &885851452
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 885851451}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 975210481}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -0.0000076293945, y: -0.9}
+  m_SizeDelta: {x: 602.8, y: 44.8}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &885851453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 885851451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 28
+    m_FontStyle: 1
+    m_BestFit: 0
+    m_MinSize: 2
+    m_MaxSize: 40
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: Confirm Create Isotope
+--- !u!222 &885851454
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 885851451}
+  m_CullTransparentMesh: 1
 --- !u!1 &891332622
 GameObject:
   m_ObjectHideFlags: 0
@@ -15571,24 +15513,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    Charge: 0
-    BondType: 0
-    Number: 0
-    ShortName: 
-    Name: 
-    Weight: 0
-    Conductivity: 0
-    Reactivity: 0
-    Toxicity: 0
-    MeltingPoint: 0
-    BoilingPoint: 0
-    Brittleness: 0
-    Malleability: 0
-    Ductility: 0
 --- !u!114 &891332625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16411,6 +16335,82 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 958859892}
   m_CullTransparentMesh: 1
+--- !u!1 &975210480
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 975210481}
+  - component: {fileID: 975210483}
+  - component: {fileID: 975210482}
+  m_Layer: 5
+  m_Name: panelHeader
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &975210481
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 975210480}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 885851452}
+  m_Father: {fileID: 296629756}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 1.4000015, y: 75}
+  m_SizeDelta: {x: 502.8, y: -53.4}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &975210482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 975210480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.5294118, g: 0.5294118, b: 0.5294118, a: 0.392}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &975210483
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 975210480}
+  m_CullTransparentMesh: 1
 --- !u!1 &975228218
 GameObject:
   m_ObjectHideFlags: 0
@@ -16626,24 +16626,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    Charge: 0
-    BondType: 0
-    Number: 0
-    ShortName: 
-    Name: 
-    Weight: 0
-    Conductivity: 0
-    Reactivity: 0
-    Toxicity: 0
-    MeltingPoint: 0
-    BoilingPoint: 0
-    Brittleness: 0
-    Malleability: 0
-    Ductility: 0
 --- !u!114 &978902576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16781,24 +16763,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    Charge: 0
-    BondType: 0
-    Number: 0
-    ShortName: 
-    Name: 
-    Weight: 0
-    Conductivity: 0
-    Reactivity: 0
-    Toxicity: 0
-    MeltingPoint: 0
-    BoilingPoint: 0
-    Brittleness: 0
-    Malleability: 0
-    Ductility: 0
 --- !u!114 &990186645
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17096,24 +17060,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    Charge: 0
-    BondType: 0
-    Number: 0
-    ShortName: 
-    Name: 
-    Weight: 0
-    Conductivity: 0
-    Reactivity: 0
-    Toxicity: 0
-    MeltingPoint: 0
-    BoilingPoint: 0
-    Brittleness: 0
-    Malleability: 0
-    Ductility: 0
 --- !u!114 &1034143728
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17195,6 +17141,139 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1034143725}
+  m_CullTransparentMesh: 1
+--- !u!1 &1039740228
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1039740229}
+  - component: {fileID: 1039740232}
+  - component: {fileID: 1039740231}
+  - component: {fileID: 1039740230}
+  m_Layer: 5
+  m_Name: btnNo
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1039740229
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1039740228}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.00383, y: 1.00383, z: 1.00383}
+  m_Children:
+  - {fileID: 1657269187}
+  m_Father: {fileID: 296629756}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 95, y: -58}
+  m_SizeDelta: {x: 160, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1039740230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1039740228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1039740231}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 296629757}
+        m_TargetAssemblyTypeName: DialogYesNo, Assembly-CSharp
+        m_MethodName: Close
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1039740231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1039740228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1039740232
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1039740228}
   m_CullTransparentMesh: 1
 --- !u!1 &1045601928
 GameObject:
@@ -18283,24 +18362,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    Charge: 0
-    BondType: 0
-    Number: 0
-    ShortName: 
-    Name: 
-    Weight: 0
-    Conductivity: 0
-    Reactivity: 0
-    Toxicity: 0
-    MeltingPoint: 0
-    BoilingPoint: 0
-    Brittleness: 0
-    Malleability: 0
-    Ductility: 0
 --- !u!114 &1143591636
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18436,24 +18497,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ad9125eabf35d34298ea7593cdd23a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    Charge: 0
-    BondType: 0
-    Number: 0
-    ShortName: 
-    Name: 
-    Weight: 0
-    Conductivity: 0
-    Reactivity: 0
-    Toxicity: 0
-    MeltingPoint: 0
-    BoilingPoint: 0
-    Brittleness: 0
-    Malleability: 0
-    Ductility: 0
 --- !u!114 &1145072522
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19259,7 +19302,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2068782373}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -19363,24 +19406,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    Charge: 0
-    BondType: 0
-    Number: 0
-    ShortName: 
-    Name: 
-    Weight: 0
-    Conductivity: 0
-    Reactivity: 0
-    Toxicity: 0
-    MeltingPoint: 0
-    BoilingPoint: 0
-    Brittleness: 0
-    Malleability: 0
-    Ductility: 0
 --- !u!114 &1184431022
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19518,24 +19543,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    Charge: 0
-    BondType: 0
-    Number: 0
-    ShortName: 
-    Name: 
-    Weight: 0
-    Conductivity: 0
-    Reactivity: 0
-    Toxicity: 0
-    MeltingPoint: 0
-    BoilingPoint: 0
-    Brittleness: 0
-    Malleability: 0
-    Ductility: 0
 --- !u!114 &1199125879
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20149,24 +20156,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ad9125eabf35d34298ea7593cdd23a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    Charge: 0
-    BondType: 0
-    Number: 0
-    ShortName: 
-    Name: 
-    Weight: 0
-    Conductivity: 0
-    Reactivity: 0
-    Toxicity: 0
-    MeltingPoint: 0
-    BoilingPoint: 0
-    Brittleness: 0
-    Malleability: 0
-    Ductility: 0
 --- !u!114 &1244217428
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20304,24 +20293,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    Charge: 0
-    BondType: 0
-    Number: 0
-    ShortName: 
-    Name: 
-    Weight: 0
-    Conductivity: 0
-    Reactivity: 0
-    Toxicity: 0
-    MeltingPoint: 0
-    BoilingPoint: 0
-    Brittleness: 0
-    Malleability: 0
-    Ductility: 0
 --- !u!114 &1250086041
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20621,24 +20592,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    Charge: 0
-    BondType: 0
-    Number: 0
-    ShortName: 
-    Name: 
-    Weight: 0
-    Conductivity: 0
-    Reactivity: 0
-    Toxicity: 0
-    MeltingPoint: 0
-    BoilingPoint: 0
-    Brittleness: 0
-    Malleability: 0
-    Ductility: 0
 --- !u!114 &1259775748
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20936,24 +20889,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    Charge: 0
-    BondType: 0
-    Number: 0
-    ShortName: 
-    Name: 
-    Weight: 0
-    Conductivity: 0
-    Reactivity: 0
-    Toxicity: 0
-    MeltingPoint: 0
-    BoilingPoint: 0
-    Brittleness: 0
-    Malleability: 0
-    Ductility: 0
 --- !u!114 &1281490825
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21947,24 +21882,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    Charge: 0
-    BondType: 0
-    Number: 0
-    ShortName: 
-    Name: 
-    Weight: 0
-    Conductivity: 0
-    Reactivity: 0
-    Toxicity: 0
-    MeltingPoint: 0
-    BoilingPoint: 0
-    Brittleness: 0
-    Malleability: 0
-    Ductility: 0
 --- !u!114 &1329766258
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22296,24 +22213,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    Charge: 0
-    BondType: 0
-    Number: 0
-    ShortName: 
-    Name: 
-    Weight: 0
-    Conductivity: 0
-    Reactivity: 0
-    Toxicity: 0
-    MeltingPoint: 0
-    BoilingPoint: 0
-    Brittleness: 0
-    Malleability: 0
-    Ductility: 0
 --- !u!114 &1380859823
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22451,24 +22350,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    Charge: 0
-    BondType: 0
-    Number: 0
-    ShortName: 
-    Name: 
-    Weight: 0
-    Conductivity: 0
-    Reactivity: 0
-    Toxicity: 0
-    MeltingPoint: 0
-    BoilingPoint: 0
-    Brittleness: 0
-    Malleability: 0
-    Ductility: 0
 --- !u!114 &1385947281
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23078,24 +22959,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    Charge: 0
-    BondType: 0
-    Number: 0
-    ShortName: 
-    Name: 
-    Weight: 0
-    Conductivity: 0
-    Reactivity: 0
-    Toxicity: 0
-    MeltingPoint: 0
-    BoilingPoint: 0
-    Brittleness: 0
-    Malleability: 0
-    Ductility: 0
 --- !u!114 &1423522228
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23233,24 +23096,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    Charge: 0
-    BondType: 0
-    Number: 0
-    ShortName: 
-    Name: 
-    Weight: 0
-    Conductivity: 0
-    Reactivity: 0
-    Toxicity: 0
-    MeltingPoint: 0
-    BoilingPoint: 0
-    Brittleness: 0
-    Malleability: 0
-    Ductility: 0
 --- !u!114 &1424068457
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23708,24 +23553,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    Charge: 0
-    BondType: 0
-    Number: 0
-    ShortName: 
-    Name: 
-    Weight: 0
-    Conductivity: 0
-    Reactivity: 0
-    Toxicity: 0
-    MeltingPoint: 0
-    BoilingPoint: 0
-    Brittleness: 0
-    Malleability: 0
-    Ductility: 0
 --- !u!114 &1445122597
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23900,24 +23727,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    Charge: 0
-    BondType: 0
-    Number: 0
-    ShortName: 
-    Name: 
-    Weight: 0
-    Conductivity: 0
-    Reactivity: 0
-    Toxicity: 0
-    MeltingPoint: 0
-    BoilingPoint: 0
-    Brittleness: 0
-    Malleability: 0
-    Ductility: 0
 --- !u!114 &1448127642
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25618,24 +25427,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ad9125eabf35d34298ea7593cdd23a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    Charge: 0
-    BondType: 0
-    Number: 0
-    ShortName: 
-    Name: 
-    Weight: 0
-    Conductivity: 0
-    Reactivity: 0
-    Toxicity: 0
-    MeltingPoint: 0
-    BoilingPoint: 0
-    Brittleness: 0
-    Malleability: 0
-    Ductility: 0
 --- !u!114 &1563497345
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25755,6 +25546,94 @@ RectTransform:
   m_AnchoredPosition: {x: 35.89998, y: 105.3}
   m_SizeDelta: {x: 253.05, y: 35}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1567501365
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1567501366}
+  - component: {fileID: 1567501369}
+  - component: {fileID: 1567501368}
+  - component: {fileID: 1567501367}
+  m_Layer: 5
+  m_Name: background
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1567501366
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1567501365}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 296629756}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 1.4000015, y: 0}
+  m_SizeDelta: {x: 502.8, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1567501367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1567501365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cb1300d014821347bbf6f1a2ebfd366, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1567501368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1567501365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.2735849, g: 0.2735849, b: 0.2735849, a: 0.8235294}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1567501369
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1567501365}
+  m_CullTransparentMesh: 1
 --- !u!1 &1579173890
 GameObject:
   m_ObjectHideFlags: 0
@@ -25891,24 +25770,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    Charge: 0
-    BondType: 0
-    Number: 0
-    ShortName: 
-    Name: 
-    Weight: 0
-    Conductivity: 0
-    Reactivity: 0
-    Toxicity: 0
-    MeltingPoint: 0
-    BoilingPoint: 0
-    Brittleness: 0
-    Malleability: 0
-    Ductility: 0
 --- !u!114 &1588244889
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26441,24 +26302,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    Charge: 0
-    BondType: 0
-    Number: 0
-    ShortName: 
-    Name: 
-    Weight: 0
-    Conductivity: 0
-    Reactivity: 0
-    Toxicity: 0
-    MeltingPoint: 0
-    BoilingPoint: 0
-    Brittleness: 0
-    Malleability: 0
-    Ductility: 0
 --- !u!114 &1620663047
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26911,24 +26754,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    Charge: 0
-    BondType: 0
-    Number: 0
-    ShortName: 
-    Name: 
-    Weight: 0
-    Conductivity: 0
-    Reactivity: 0
-    Toxicity: 0
-    MeltingPoint: 0
-    BoilingPoint: 0
-    Brittleness: 0
-    Malleability: 0
-    Ductility: 0
 --- !u!114 &1632975540
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27307,24 +27132,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    Charge: 0
-    BondType: 0
-    Number: 0
-    ShortName: 
-    Name: 
-    Weight: 0
-    Conductivity: 0
-    Reactivity: 0
-    Toxicity: 0
-    MeltingPoint: 0
-    BoilingPoint: 0
-    Brittleness: 0
-    Malleability: 0
-    Ductility: 0
 --- !u!114 &1647653794
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27703,24 +27510,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    Charge: 0
-    BondType: 0
-    Number: 0
-    ShortName: 
-    Name: 
-    Weight: 0
-    Conductivity: 0
-    Reactivity: 0
-    Toxicity: 0
-    MeltingPoint: 0
-    BoilingPoint: 0
-    Brittleness: 0
-    Malleability: 0
-    Ductility: 0
 --- !u!114 &1655608864
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27802,6 +27591,85 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1655608861}
+  m_CullTransparentMesh: 1
+--- !u!1 &1657269186
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1657269187}
+  - component: {fileID: 1657269189}
+  - component: {fileID: 1657269188}
+  m_Layer: 5
+  m_Name: Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1657269187
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1657269186}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1039740229}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1657269188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1657269186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 14
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: No
+--- !u!222 &1657269189
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1657269186}
   m_CullTransparentMesh: 1
 --- !u!1 &1659486196
 GameObject:
@@ -27958,24 +27826,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    Charge: 0
-    BondType: 0
-    Number: 0
-    ShortName: 
-    Name: 
-    Weight: 0
-    Conductivity: 0
-    Reactivity: 0
-    Toxicity: 0
-    MeltingPoint: 0
-    BoilingPoint: 0
-    Brittleness: 0
-    Malleability: 0
-    Ductility: 0
 --- !u!114 &1659921880
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28676,24 +28526,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ad9125eabf35d34298ea7593cdd23a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    Charge: 0
-    BondType: 0
-    Number: 0
-    ShortName: 
-    Name: 
-    Weight: 0
-    Conductivity: 0
-    Reactivity: 0
-    Toxicity: 0
-    MeltingPoint: 0
-    BoilingPoint: 0
-    Brittleness: 0
-    Malleability: 0
-    Ductility: 0
 --- !u!114 &1702164051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29074,24 +28906,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    Charge: 0
-    BondType: 0
-    Number: 0
-    ShortName: 
-    Name: 
-    Weight: 0
-    Conductivity: 0
-    Reactivity: 0
-    Toxicity: 0
-    MeltingPoint: 0
-    BoilingPoint: 0
-    Brittleness: 0
-    Malleability: 0
-    Ductility: 0
 --- !u!114 &1712082666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30330,24 +30144,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    Charge: 0
-    BondType: 0
-    Number: 0
-    ShortName: 
-    Name: 
-    Weight: 0
-    Conductivity: 0
-    Reactivity: 0
-    Toxicity: 0
-    MeltingPoint: 0
-    BoilingPoint: 0
-    Brittleness: 0
-    Malleability: 0
-    Ductility: 0
 --- !u!114 &1789850743
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30485,24 +30281,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    Charge: 0
-    BondType: 0
-    Number: 0
-    ShortName: 
-    Name: 
-    Weight: 0
-    Conductivity: 0
-    Reactivity: 0
-    Toxicity: 0
-    MeltingPoint: 0
-    BoilingPoint: 0
-    Brittleness: 0
-    Malleability: 0
-    Ductility: 0
 --- !u!114 &1794692796
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31356,24 +31134,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ad9125eabf35d34298ea7593cdd23a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    Charge: 0
-    BondType: 0
-    Number: 0
-    ShortName: 
-    Name: 
-    Weight: 0
-    Conductivity: 0
-    Reactivity: 0
-    Toxicity: 0
-    MeltingPoint: 0
-    BoilingPoint: 0
-    Brittleness: 0
-    Malleability: 0
-    Ductility: 0
 --- !u!114 &1853769110
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32105,24 +31865,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    Charge: 0
-    BondType: 0
-    Number: 0
-    ShortName: 
-    Name: 
-    Weight: 0
-    Conductivity: 0
-    Reactivity: 0
-    Toxicity: 0
-    MeltingPoint: 0
-    BoilingPoint: 0
-    Brittleness: 0
-    Malleability: 0
-    Ductility: 0
 --- !u!114 &1906058965
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32838,24 +32580,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    Charge: 0
-    BondType: 0
-    Number: 0
-    ShortName: 
-    Name: 
-    Weight: 0
-    Conductivity: 0
-    Reactivity: 0
-    Toxicity: 0
-    MeltingPoint: 0
-    BoilingPoint: 0
-    Brittleness: 0
-    Malleability: 0
-    Ductility: 0
 --- !u!114 &1971500418
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33260,7 +32984,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 612247313}
         m_TargetAssemblyTypeName: FileSystem, Assembly-CSharp
-        m_MethodName: SaveActiveAtom
+        m_MethodName: SaveAtom
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -33574,24 +33298,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    Charge: 0
-    BondType: 0
-    Number: 0
-    ShortName: 
-    Name: 
-    Weight: 0
-    Conductivity: 0
-    Reactivity: 0
-    Toxicity: 0
-    MeltingPoint: 0
-    BoilingPoint: 0
-    Brittleness: 0
-    Malleability: 0
-    Ductility: 0
 --- !u!114 &1992691925
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33808,24 +33514,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    Charge: 0
-    BondType: 0
-    Number: 0
-    ShortName: 
-    Name: 
-    Weight: 0
-    Conductivity: 0
-    Reactivity: 0
-    Toxicity: 0
-    MeltingPoint: 0
-    BoilingPoint: 0
-    Brittleness: 0
-    Malleability: 0
-    Ductility: 0
 --- !u!114 &2004655309
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34042,24 +33730,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    Charge: 0
-    BondType: 0
-    Number: 0
-    ShortName: 
-    Name: 
-    Weight: 0
-    Conductivity: 0
-    Reactivity: 0
-    Toxicity: 0
-    MeltingPoint: 0
-    BoilingPoint: 0
-    Brittleness: 0
-    Malleability: 0
-    Ductility: 0
 --- !u!114 &2012167091
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34438,24 +34108,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    Charge: 0
-    BondType: 0
-    Number: 0
-    ShortName: 
-    Name: 
-    Weight: 0
-    Conductivity: 0
-    Reactivity: 0
-    Toxicity: 0
-    MeltingPoint: 0
-    BoilingPoint: 0
-    Brittleness: 0
-    Malleability: 0
-    Ductility: 0
 --- !u!114 &2023231989
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35071,24 +34723,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    Charge: 0
-    BondType: 0
-    Number: 0
-    ShortName: 
-    Name: 
-    Weight: 0
-    Conductivity: 0
-    Reactivity: 0
-    Toxicity: 0
-    MeltingPoint: 0
-    BoilingPoint: 0
-    Brittleness: 0
-    Malleability: 0
-    Ductility: 0
 --- !u!114 &2061490159
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35350,6 +34984,7 @@ RectTransform:
   - {fileID: 1981198071}
   - {fileID: 1718447627}
   - {fileID: 1422129295}
+  - {fileID: 296629756}
   - {fileID: 40339267}
   - {fileID: 566333229}
   - {fileID: 1177106164}
@@ -35553,24 +35188,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    Charge: 0
-    BondType: 0
-    Number: 0
-    ShortName: 
-    Name: 
-    Weight: 0
-    Conductivity: 0
-    Reactivity: 0
-    Toxicity: 0
-    MeltingPoint: 0
-    BoilingPoint: 0
-    Brittleness: 0
-    Malleability: 0
-    Ductility: 0
 --- !u!114 &2070542500
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36030,24 +35647,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    Charge: 0
-    BondType: 0
-    Number: 0
-    ShortName: 
-    Name: 
-    Weight: 0
-    Conductivity: 0
-    Reactivity: 0
-    Toxicity: 0
-    MeltingPoint: 0
-    BoilingPoint: 0
-    Brittleness: 0
-    Malleability: 0
-    Ductility: 0
 --- !u!114 &2080285150
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36208,6 +35807,86 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2085667012}
+  m_CullTransparentMesh: 1
+--- !u!1 &2087114648
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2087114649}
+  - component: {fileID: 2087114651}
+  - component: {fileID: 2087114650}
+  m_Layer: 5
+  m_Name: Body
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2087114649
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2087114648}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 296629756}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 1.4, y: 0.00000047684}
+  m_SizeDelta: {x: 503.85, y: 47.1}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2087114650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2087114648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 14
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 1
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: You're about to create the isotope {isotopeShortName} for {mainAtomName},
+    with a charge of {isotopeCharge}. Do you wish to continue?
+--- !u!222 &2087114651
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2087114648}
   m_CullTransparentMesh: 1
 --- !u!1 &2087218415
 GameObject:
@@ -36557,24 +36236,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    Charge: 0
-    BondType: 0
-    Number: 0
-    ShortName: 
-    Name: 
-    Weight: 0
-    Conductivity: 0
-    Reactivity: 0
-    Toxicity: 0
-    MeltingPoint: 0
-    BoilingPoint: 0
-    Brittleness: 0
-    Malleability: 0
-    Ductility: 0
 --- !u!114 &2102994076
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36793,24 +36454,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    Charge: 0
-    BondType: 0
-    Number: 0
-    ShortName: 
-    Name: 
-    Weight: 0
-    Conductivity: 0
-    Reactivity: 0
-    Toxicity: 0
-    MeltingPoint: 0
-    BoilingPoint: 0
-    Brittleness: 0
-    Malleability: 0
-    Ductility: 0
 --- !u!114 &2106487555
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37353,24 +36996,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    Charge: 0
-    BondType: 0
-    Number: 0
-    ShortName: 
-    Name: 
-    Weight: 0
-    Conductivity: 0
-    Reactivity: 0
-    Toxicity: 0
-    MeltingPoint: 0
-    BoilingPoint: 0
-    Brittleness: 0
-    Malleability: 0
-    Ductility: 0
 --- !u!114 &2128963729
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -43,9 +43,12 @@
      <Compile Include="Assets\ElementDesigner\World\Translate.cs" />
      <Compile Include="Assets\ElementDesigner\World\TranslateHandle.cs" />
      <Compile Include="Assets\ElementDesigner\World\Atom\Nucleus.cs" />
+     <Compile Include="Assets\ElementDesigner\FileSystem\AtomWithIsotopes.cs" />
      <Compile Include="Assets\ElementDesigner\World\DragboxTest.cs" />
+     <Compile Include="Assets\ElementDesigner\UI\DialogConfirmSaveIsotope.cs" />
      <Compile Include="Assets\ElementDesigner\UI\btnParticle.cs" />
      <Compile Include="Assets\ElementDesigner\World\TranslateBrake.cs" />
+     <Compile Include="Assets\ElementDesigner\UI\DialogYesNo.cs" />
      <Compile Include="Assets\ElementDesigner\UI\PeriodicTable\EditorMode_TableGridGen.cs" />
      <Compile Include="Assets\PanCam.cs" />
      <Compile Include="Assets\FlyCam.cs" />
@@ -67,7 +70,6 @@
      <Compile Include="Assets\ElementDesigner\UI\DialogEditName.cs" />
      <Compile Include="Assets\ElementDesigner\World\ElementDesignerCamera.cs" />
      <Compile Include="Assets\ElementDesigner\World\Atom\Electron.cs" />
-     <Compile Include="Assets\ElementDesigner\FileSystem\AtomWithIsotopes.cs" />
     <Reference Include="UnityEngine">
         <HintPath>D:\Program Files (x86)\Unity\2021.1.22f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>
