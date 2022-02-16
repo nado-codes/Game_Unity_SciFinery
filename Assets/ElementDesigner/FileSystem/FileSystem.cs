@@ -68,7 +68,7 @@ public class FileSystem : MonoBehaviour
             {
                 var activeAtomJSON = JsonUtility.ToJson(ActiveAtom);
                 LoadedAtoms[ActiveAtom.Number-1] = ActiveAtom;
-                File.WriteAllText(mainAtomPath,activeAtomJSON);
+                File.WriteAllText($"{mainAtomPath}.{fileExtension}",activeAtomJSON);
                 Debug.Log($"Saved active atom {ActiveAtom.Name} at {DateTime.Now}");
             }
         }
@@ -76,7 +76,7 @@ public class FileSystem : MonoBehaviour
         {
             var activeAtomJSON = JsonUtility.ToJson(ActiveAtom);
             LoadedAtoms.Insert(ActiveAtom.Number-1,ActiveAtom);
-            File.WriteAllText(mainAtomPath,activeAtomJSON);
+            File.WriteAllText($"{mainAtomPath}.{fileExtension}",activeAtomJSON);
             Debug.Log($"Saved active atom {ActiveAtom.Name} at {DateTime.Now}");
         }
     }
@@ -87,7 +87,7 @@ public class FileSystem : MonoBehaviour
         var activeAtomJSON = JsonUtility.ToJson(ActiveAtom);
 
         var mainAtomPath = $"{elementsRoot}/{activeAtomFileName}";
-        var isotopeNumber = ActiveAtom.Charge > 0 ? "m"+ActiveAtom.Charge : ActiveAtom.Charge.ToString();
+        var isotopeNumber = ActiveAtom.Charge < 0 ? "m"+ActiveAtom.Charge : ActiveAtom.Charge.ToString();
         var isotopePath = $"{mainAtomPath}/{activeAtomFileName}_{isotopeNumber}.{fileExtension}";
         var isotopeExists = File.Exists(isotopePath);
         

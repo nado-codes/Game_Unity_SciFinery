@@ -71,7 +71,7 @@ public class AtomGridItem : PeriodicTableGridItem
     {
         if(atomData == null)
             throw new ApplicationException("Expected atomData in call to SetAtomData in PeriodicTableGridItem, got null");
-        
+
         numberText.text = atomData.Number.ToString();
         shortNameText.text = atomData.ShortName;
         nameText.text = atomData.Name;

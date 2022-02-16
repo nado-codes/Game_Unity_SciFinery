@@ -29,6 +29,8 @@ public class DialogPeriodicTable : MonoBehaviour
         page1GridItems.ForEach(item => item.GetComponent<Button>().onClick.AddListener(() => HandleItemSelected(item)));
         page1GridItems.ForEach(item => item.GetComponent<Button>().onClick.AddListener(() => HandleItemSelected(item)));
 
+        var page2AtomGridItem = page2Transform.GetComponentInChildren<AtomGridItem>();
+        page2AtomGridItem.Awake(); // .. initialise the atom grid item
         var page2GridTransform = page2Transform.Find("grid");
         var page2GridTransforms = page2GridTransform.GetComponentsInChildren<RectTransform>();
         page2GridItems = page2GridTransform.GetComponentsInChildren<IsotopeGridItem>().ToList();
