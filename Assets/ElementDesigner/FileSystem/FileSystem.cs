@@ -39,7 +39,7 @@ public class FileSystem : MonoBehaviour
 
         // .. if the main atom doesn't exist, create it
         var mainAtomPath = $"{elementsRoot}/{activeAtomFileName}";
-        var atomExists = File.Exists(mainAtomPath);
+        var atomExists = File.Exists($"{mainAtomPath}.{fileExtension}");
 
         if(atomExists)
         {
@@ -53,8 +53,7 @@ public class FileSystem : MonoBehaviour
                 if(!Directory.Exists(mainAtomPath))
                     Directory.CreateDirectory(mainAtomPath);
 
-                var isotopeNumber = ActiveAtom.Charge > 0 ? "m"+ActiveAtom.Charge : ActiveAtom.Charge.ToString();
-                var isotopePath = $"{mainAtomPath}/{activeAtomFileName}_{isotopeNumber}.{fileExtension}";
+                var isotopePath = GetActiveAtomIsotopePath();
                 var isotopeExists = File.Exists(isotopePath);
 
                 if(!isotopeExists) // .. confirm create isotope
@@ -86,9 +85,7 @@ public class FileSystem : MonoBehaviour
     {
         var activeAtomJSON = JsonUtility.ToJson(ActiveAtom);
 
-        var mainAtomPath = $"{elementsRoot}/{activeAtomFileName}";
-        var isotopeNumber = ActiveAtom.Charge < 0 ? "m"+ActiveAtom.Charge : ActiveAtom.Charge.ToString();
-        var isotopePath = $"{mainAtomPath}/{activeAtomFileName}_{isotopeNumber}.{fileExtension}";
+        var isotopePath = GetActiveAtomIsotopePath();
         var isotopeExists = File.Exists(isotopePath);
         
         if(!isotopeExists)
@@ -101,6 +98,13 @@ public class FileSystem : MonoBehaviour
             LoadedAtoms[ActiveAtom.Number-1].isotopes[indexInIsotopes] = ActiveAtom;
         }
         File.WriteAllText(isotopePath,activeAtomJSON);
+    }
+
+    private static string GetActiveAtomIsotopePath()
+    {
+        var mainAtomPath = $"{elementsRoot}/{activeAtomFileName}";
+        var isotopeNumber = ActiveAtom.Charge < 0 ? "m"+(ActiveAtom.Charge*-1) : ActiveAtom.Charge.ToString();
+        return $"{mainAtomPath}/{activeAtomFileName}_{isotopeNumber}.{fileExtension}";
     }
 
     public static void LoadAtoms()
