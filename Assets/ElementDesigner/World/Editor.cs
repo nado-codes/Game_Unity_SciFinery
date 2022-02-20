@@ -195,7 +195,6 @@ public class Editor : MonoBehaviour
         {
             interact.Hover();
 
-            Debug.Log("adding "+interact.gameObject.name+" to selection");
             hoveredObjects.Add(interact);
         }
     }
@@ -216,7 +215,6 @@ public class Editor : MonoBehaviour
         dragState = DragState.Init;
         dragSelectStartWorld = Camera.main.ScreenPointToRay(Input.mousePosition);
         dragSelectStartPosition = Input.mousePosition;
-        Debug.Log("init drag select");
     }
 
     void StartDragSelect()
@@ -227,7 +225,6 @@ public class Editor : MonoBehaviour
         dragSelectCollider.isTrigger = true;
 
         dragState = DragState.Active;
-        Debug.Log("start drag select");
     }
 
     void FinishDragSelect()
@@ -254,15 +251,11 @@ public class Editor : MonoBehaviour
     public static void Select(IEnumerable<Interact> objectsToSelect)
     {
         var isMultiSelect = Input.GetKey(KeyCode.LeftShift);
-        var isMultiDeselect = Input.GetKey(KeyCode.LeftControl);
-
-        // Debug.Log("there are "+selectedObjects.Count+" objects currently selected");
-        Debug.Log("..."+objectsToSelect.Count()+" more objects will be selected/deselected");        
+        var isMultiDeselect = Input.GetKey(KeyCode.LeftControl);      
 
         if(!isMultiSelect && !isMultiDeselect)
         {
             var objectsToDeselect = _selectedObjects.Where(s => !objectsToSelect.Contains(s)).ToList();
-            // if(objectsToDeselect.Count > 0) Debug.Log("cleared "+objectsToDeselect.Count+" other objects from selection");
             objectsToDeselect.ForEach(s => s.Deselect());
             _selectedObjects.RemoveAll(s => objectsToDeselect.Contains(s));
         }
@@ -277,11 +270,8 @@ public class Editor : MonoBehaviour
 
             _selectedObjects.AddRange(objectsToSelect.Where(objectToSelect => {
                 if(!_selectedObjects.Contains(objectToSelect))
-                {
-                    Debug.Log("trying to add"+objectToSelect);
-                    Debug.Log("added "+objectToSelect.gameObject.name+" to selection");
                     return true;
-                }
+
                 return false;
             }));
         }
@@ -290,8 +280,6 @@ public class Editor : MonoBehaviour
             objectsToSelect.ToList().ForEach(objectToSelect => objectToSelect.Deselect());
 
             objectsToSelect.ToList().ForEach(objectToDeselect => {
-                if(_selectedObjects.Contains(objectToDeselect))
-                    Debug.Log("removed "+objectToDeselect.gameObject.name+" from selection");
 
                 objectToDeselect.Deselect();
                 _selectedObjects.Remove(objectToDeselect);
@@ -305,7 +293,6 @@ public class Editor : MonoBehaviour
 
         if(!isMultiSelect)
         {
-            Debug.Log("removed "+objectToDeselect.gameObject.name+" from selection");
             objectToDeselect.Deselect();
             _selectedObjects.Remove(objectToDeselect);
         }
@@ -352,9 +339,6 @@ public class Editor : MonoBehaviour
 
         Particles.Add(newParticle);
 
-        Debug.Log("particles is now ");
-        Particles.ForEach(p => Debug.Log("- "+p.name));
-
         return newParticle;
     }
 
@@ -370,7 +354,6 @@ public class Editor : MonoBehaviour
     {
         Particles.Remove(particle);
         GameObject.Destroy(particle.gameObject);
-        Debug.Log($"removing {particle.name}");
 
         FileSystem.ActiveAtom.Charge -= (int)particle.charge;
 

@@ -38,16 +38,8 @@ public class AtomGridItem : PeriodicTableGridItem
     }
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
-        //var protons = World.Particles.Where(p => p.charge == Particle.Charge.Positive);
-        //var neutrons = World.Particles.Where(p => p.charge == Particle.Charge.None);
-
-        // .. TODO: Get atomic number
-        //numberText.text = protons.Count().ToString();
-
-        // .. TODO: Get atomic weight
-        //weightText.text = (protons.Count()+neutrons.Count()).ToString()+".00";
 
         var nameWithoutVowels = new string(nameText.text.Where(c => !("aeiou").Contains(c)).ToArray());
         var newShortName = (nameWithoutVowels[0].ToString() + nameWithoutVowels[1].ToString()).ToUpper();
@@ -76,6 +68,8 @@ public class AtomGridItem : PeriodicTableGridItem
         shortNameText.text = atomData.ShortName;
         nameText.text = atomData.Name;
         weightText.text = atomData.Weight.ToString()+".00";
+
+        Debug.Log("activating AtomGridItem "+atomData.Name);
 
         atom = atomData;
         SetActive(true);

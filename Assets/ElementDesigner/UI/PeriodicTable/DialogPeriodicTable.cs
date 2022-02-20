@@ -56,11 +56,13 @@ public class DialogPeriodicTable : MonoBehaviour
     {
         gameObject.SetActive(true);
 
-        foreach(AtomWithIsotopes atom in FileSystem.LoadedAtoms)
+        // .. atoms which are not isotopes
+        var mainAtoms = FileSystem.LoadedAtoms.Where(atom => !atom.IsIsotope);
+
+        foreach(AtomWithIsotopes atom in mainAtoms)
         {
             // TODO: Create a grid item if the atom won't fit in the table
-            var gridItem = page1GridItems[atom.Number-1]; // ??
-                // CreateGridItem(atom.Number);
+            var gridItem = page1GridItems[atom.Number-1];
 
             if(gridItem == null)
             {
@@ -83,13 +85,15 @@ public class DialogPeriodicTable : MonoBehaviour
 
     public void OpenPage2()
     {
-        var atomGridItem = page2Transform.Find("gridItem").GetComponent<AtomGridItem>();
-        atomGridItem.SetAtomData(selectedItem.atom);
+        
 
         // page2GridItems.ForEach(item => item.SetName(selectedItem.atom.Name));
 
         page2Transform.gameObject.SetActive(true);
         page1Transform.gameObject.SetActive(false);   
+
+        var atomGridItem = page2Transform.Find("gridItem").GetComponent<AtomGridItem>();
+        atomGridItem.SetAtomData(selectedItem.atom);
     }
 
     public void Close()
