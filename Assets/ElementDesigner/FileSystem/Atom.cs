@@ -32,4 +32,6 @@ public class Atom
     public int Brittleness;
     public int Malleability;
     public int Ductility; 
+
+    public bool IsIsotope { get; set; } = false;
 }

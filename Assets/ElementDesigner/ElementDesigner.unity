@@ -151,6 +151,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1385947279}
   m_RootOrder: 2
@@ -232,6 +233,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1823707359}
   - {fileID: 1406665858}
@@ -257,6 +259,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    BondType: 0
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &3900857
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -367,6 +387,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.99618465, y: 0.99618465, z: 0.99618465}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1563497343}
   m_RootOrder: 0
@@ -446,6 +467,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 475095318}
   m_RootOrder: 1
@@ -525,6 +547,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1445122595}
   m_RootOrder: 0
@@ -604,6 +627,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2004655307}
   m_RootOrder: 2
@@ -683,6 +707,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.99618465, y: 0.99618465, z: 0.99618465}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 585791177}
   m_RootOrder: 0
@@ -764,6 +789,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1879672083}
   - {fileID: 116685372}
@@ -789,6 +815,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    BondType: 0
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &18507538
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -899,6 +943,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 379369118}
   m_RootOrder: 3
@@ -980,6 +1025,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 123878883}
   m_RootOrder: 3
@@ -1061,6 +1107,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1259775746}
   m_RootOrder: 2
@@ -1141,6 +1188,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.00383, y: 1.00383, z: 1.00383}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 142268878}
   m_Father: {fileID: 296629756}
@@ -1285,6 +1333,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2068782373}
   m_RootOrder: 8
@@ -1370,6 +1419,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 114349040}
   m_RootOrder: 3
@@ -1451,6 +1501,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 817288370}
   m_RootOrder: 3
@@ -1593,6 +1644,7 @@ Transform:
   m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
@@ -1627,6 +1679,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1490851639}
   - {fileID: 577290693}
@@ -1652,6 +1705,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    BondType: 0
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &90505054
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1762,6 +1833,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1981198071}
   m_RootOrder: 0
@@ -1843,6 +1915,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 891332623}
   m_RootOrder: 0
@@ -1922,6 +1995,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2106487553}
   m_RootOrder: 3
@@ -2003,6 +2077,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2128963727}
   m_RootOrder: 2
@@ -2082,6 +2157,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1250086039}
   m_RootOrder: 3
@@ -2163,6 +2239,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 542476399}
   m_RootOrder: 0
@@ -2242,6 +2319,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1620663045}
   m_RootOrder: 2
@@ -2320,6 +2398,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 841661079}
   - {fileID: 1985199103}
@@ -2434,6 +2513,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1066141293}
   - {fileID: 853784692}
@@ -2459,6 +2539,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    BondType: 0
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &114349042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2569,6 +2667,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 18507536}
   m_RootOrder: 1
@@ -2650,6 +2749,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 593231583}
   m_RootOrder: 3
@@ -2731,6 +2831,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 518040273}
   m_RootOrder: 1
@@ -2812,6 +2913,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1564552317}
   m_RootOrder: 1
@@ -2893,6 +2995,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 320502921}
   - {fileID: 892209763}
@@ -2918,6 +3021,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    BondType: 0
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &123878885
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3028,6 +3149,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 617529845}
   m_RootOrder: 1
@@ -3109,6 +3231,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1620663045}
   m_RootOrder: 3
@@ -3190,6 +3313,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1329766256}
   m_RootOrder: 3
@@ -3271,6 +3395,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2004655307}
   m_RootOrder: 3
@@ -3352,6 +3477,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 35183373}
   m_RootOrder: 0
@@ -3432,6 +3558,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1615501847}
   m_Father: {fileID: 1874628785}
@@ -3564,6 +3691,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1380859821}
   m_RootOrder: 0
@@ -3643,6 +3771,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1446039320}
   m_RootOrder: 0
@@ -3722,6 +3851,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 460104116}
   m_RootOrder: 3
@@ -3803,6 +3933,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2106487553}
   m_RootOrder: 2
@@ -3882,6 +4013,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 661847154}
   m_RootOrder: 1
@@ -3961,6 +4093,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 978902574}
   m_RootOrder: 0
@@ -4042,6 +4175,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2073700945}
   - {fileID: 1683481912}
@@ -4067,6 +4201,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    BondType: 0
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &199863831
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4177,6 +4329,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 307037451}
   m_RootOrder: 2
@@ -4258,6 +4411,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 952821659}
   m_RootOrder: 2
@@ -4390,6 +4544,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1250086039}
   m_RootOrder: 1
@@ -4472,6 +4627,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.00383, y: 1.00383, z: 1.00383}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 443973270}
   m_Father: {fileID: 1422129295}
@@ -4605,6 +4761,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.00383, y: 1.00383, z: 1.00383}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1125507147}
   m_Father: {fileID: 1422129295}
@@ -4737,6 +4894,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1632975538}
   m_RootOrder: 3
@@ -4818,6 +4976,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1184431020}
   m_RootOrder: 0
@@ -4895,6 +5054,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1244217426}
   - {fileID: 1563497343}
@@ -4942,6 +5102,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1632975538}
   m_RootOrder: 0
@@ -5021,6 +5182,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 460104116}
   m_RootOrder: 1
@@ -5102,6 +5264,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2102994074}
   m_RootOrder: 0
@@ -5181,6 +5344,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 661847154}
   m_RootOrder: 0
@@ -5260,6 +5424,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2061490157}
   m_RootOrder: 3
@@ -5341,6 +5506,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1712082664}
   m_RootOrder: 2
@@ -5419,6 +5585,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1567501366}
   - {fileID: 975210481}
@@ -5473,6 +5640,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2070542498}
   m_RootOrder: 1
@@ -5554,6 +5722,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 199863829}
   m_RootOrder: 3
@@ -5635,6 +5804,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1448127640}
   m_RootOrder: 0
@@ -5714,6 +5884,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1853769108}
   m_RootOrder: 1
@@ -5797,6 +5968,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1233533428}
   - {fileID: 1102301779}
@@ -5822,6 +5994,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    BondType: 0
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &307037453
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5932,6 +6122,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2080285148}
   m_RootOrder: 0
@@ -6011,6 +6202,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 379369118}
   m_RootOrder: 1
@@ -6092,6 +6284,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 123878883}
   m_RootOrder: 0
@@ -6173,6 +6366,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1286339847}
   - {fileID: 1624884141}
@@ -6198,6 +6392,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    BondType: 0
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &321047921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6308,6 +6520,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1588244887}
   m_RootOrder: 3
@@ -6389,6 +6602,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 593231583}
   m_RootOrder: 1
@@ -6470,6 +6684,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2061490157}
   m_RootOrder: 0
@@ -6549,6 +6764,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1448127640}
   m_RootOrder: 3
@@ -6630,6 +6846,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 978902574}
   m_RootOrder: 3
@@ -6711,6 +6928,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1659921878}
   m_RootOrder: 0
@@ -6790,6 +7008,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 777354087}
   m_RootOrder: 0
@@ -6877,6 +7096,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1299559977}
   m_RootOrder: 0
@@ -6956,6 +7176,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 817288370}
   m_RootOrder: 0
@@ -7035,6 +7256,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1034143726}
   m_RootOrder: 1
@@ -7118,6 +7340,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1595535397}
   - {fileID: 308700602}
@@ -7143,6 +7366,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    BondType: 0
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &379369120
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7253,6 +7494,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 199863829}
   m_RootOrder: 2
@@ -7332,6 +7574,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1184431020}
   m_RootOrder: 3
@@ -7411,6 +7654,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2013916133}
   - {fileID: 1926620151}
@@ -7450,6 +7694,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2004655307}
   m_RootOrder: 0
@@ -7529,6 +7774,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1850126607}
   m_RootOrder: 1
@@ -7610,6 +7856,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 574388812}
   m_RootOrder: 0
@@ -7689,6 +7936,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1119606280}
   m_RootOrder: 0
@@ -7768,6 +8016,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1655608862}
   m_RootOrder: 2
@@ -7847,6 +8096,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 706448291}
   m_RootOrder: 2
@@ -7926,6 +8176,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1281490823}
   m_RootOrder: 2
@@ -8005,6 +8256,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 213653178}
   m_RootOrder: 0
@@ -8086,6 +8338,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 952821659}
   m_RootOrder: 0
@@ -8220,6 +8473,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1209886072}
   - {fileID: 259444818}
@@ -8245,6 +8499,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    BondType: 0
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &460104118
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8355,6 +8627,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1423522226}
   m_RootOrder: 0
@@ -8432,6 +8705,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1129826539}
   - {fileID: 6705376}
@@ -8471,6 +8745,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 574388812}
   m_RootOrder: 2
@@ -8550,6 +8825,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1143591634}
   m_RootOrder: 2
@@ -8629,6 +8905,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1659921878}
   m_RootOrder: 2
@@ -8708,6 +8985,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1588244887}
   m_RootOrder: 1
@@ -8789,6 +9067,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1119606280}
   - {fileID: 1564552317}
@@ -8872,6 +9151,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 779138807}
   m_RootOrder: 2
@@ -8951,6 +9231,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.99618465, y: 0.99618465, z: 0.99618465}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 699807844}
   m_RootOrder: 0
@@ -9030,6 +9311,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1259775746}
   m_RootOrder: 1
@@ -9111,6 +9393,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 563044203}
   m_RootOrder: 0
@@ -9192,6 +9475,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1171931113}
   m_RootOrder: 0
@@ -9273,6 +9557,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1844850967}
   - {fileID: 117759461}
@@ -9298,6 +9583,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    BondType: 0
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &518040275
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9410,6 +9713,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.00383, y: 1.00383, z: 1.00383}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 587180549}
   - {fileID: 935810161}
@@ -9433,6 +9737,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ad9125eabf35d34298ea7593cdd23a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    BondType: 0
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &519696979
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9545,6 +9867,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 105305577}
   - {fileID: 1910151021}
@@ -9570,6 +9893,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    BondType: 0
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &542476401
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9682,6 +10023,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.00383, y: 1.00383, z: 1.00383}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1436218655}
   - {fileID: 1490892545}
@@ -9705,6 +10047,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ad9125eabf35d34298ea7593cdd23a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    BondType: 0
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &550153669
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9815,6 +10175,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1446039320}
   m_RootOrder: 1
@@ -9897,6 +10258,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 513684073}
   - {fileID: 2117642517}
@@ -10006,6 +10368,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2102994074}
   m_RootOrder: 1
@@ -10085,6 +10448,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 637697112}
   - {fileID: 1269468622}
@@ -10125,6 +10489,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1621651305}
   - {fileID: 661847154}
@@ -10218,6 +10583,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 408643110}
   - {fileID: 1473066005}
@@ -10243,6 +10609,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    BondType: 0
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &574388814
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10353,6 +10737,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 90505052}
   m_RootOrder: 1
@@ -10434,6 +10819,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 726491594}
   m_RootOrder: 0
@@ -10513,6 +10899,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.99618465, y: 0.99618465, z: 0.99618465}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1244217426}
   m_RootOrder: 1
@@ -10594,6 +10981,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.00383, y: 1.00383, z: 1.00383}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 16134483}
   - {fileID: 1893196213}
@@ -10617,6 +11005,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ad9125eabf35d34298ea7593cdd23a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    BondType: 0
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &585791179
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10727,6 +11133,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.99618465, y: 0.99618465, z: 0.99618465}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 519696977}
   m_RootOrder: 0
@@ -10806,6 +11213,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1906058963}
   m_RootOrder: 1
@@ -10889,6 +11297,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 832700261}
   - {fileID: 328038545}
@@ -10914,6 +11323,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    BondType: 0
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &593231585
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11024,6 +11451,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 990186643}
   m_RootOrder: 2
@@ -11103,6 +11531,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1647653792}
   m_RootOrder: 3
@@ -11238,6 +11667,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -15.35}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1547308052}
   - {fileID: 1392518175}
@@ -11322,6 +11752,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1560068355}
   - {fileID: 132239444}
@@ -11347,6 +11778,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    BondType: 0
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &617529847
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11457,6 +11906,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1794692794}
   m_RootOrder: 1
@@ -11538,6 +11988,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 779138807}
   m_RootOrder: 0
@@ -11617,6 +12068,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 566333229}
   m_RootOrder: 0
@@ -11698,6 +12150,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1620663045}
   m_RootOrder: 0
@@ -11777,6 +12230,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1906058963}
   m_RootOrder: 0
@@ -11856,6 +12310,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1199125877}
   m_RootOrder: 2
@@ -11936,6 +12391,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 279606616}
   - {fileID: 179637274}
@@ -11998,10 +12454,10 @@ MonoBehaviour:
   m_HideMobileInput: 0
   m_CharacterValidation: 0
   m_CharacterLimit: 0
-  m_OnEndEdit:
+  m_OnSubmit:
     m_PersistentCalls:
       m_Calls: []
-  m_OnSubmit:
+  m_OnDidEndEdit:
     m_PersistentCalls:
       m_Calls: []
   m_OnValueChanged:
@@ -12081,6 +12537,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1971500416}
   m_RootOrder: 3
@@ -12163,6 +12620,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1451571204}
   m_Father: {fileID: 2068782373}
@@ -12295,6 +12753,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2080285148}
   m_RootOrder: 1
@@ -12376,6 +12835,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1143591634}
   m_RootOrder: 3
@@ -12457,6 +12917,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 779138807}
   m_RootOrder: 3
@@ -12540,6 +13001,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.00383, y: 1.00383, z: 1.00383}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 507526962}
   - {fileID: 1101949393}
@@ -12563,6 +13025,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ad9125eabf35d34298ea7593cdd23a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    BondType: 0
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &699807846
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12674,6 +13154,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1422129295}
   m_RootOrder: 0
@@ -12763,6 +13244,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1846899093}
   - {fileID: 1835754560}
@@ -12788,6 +13270,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    BondType: 0
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &706448293
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12898,6 +13398,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 817288370}
   m_RootOrder: 2
@@ -12977,6 +13478,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1647653792}
   m_RootOrder: 0
@@ -13057,6 +13559,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.00383, y: 1.00383, z: 1.00383}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 579439933}
   m_Father: {fileID: 1337283821}
@@ -13189,6 +13692,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 990186643}
   m_RootOrder: 1
@@ -13270,6 +13774,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2080285148}
   m_RootOrder: 2
@@ -13349,6 +13854,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1621651305}
   m_RootOrder: 0
@@ -13428,6 +13934,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1281490823}
   m_RootOrder: 3
@@ -13509,6 +14016,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1934311841}
   m_RootOrder: 0
@@ -13588,6 +14096,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.99618465, y: 0.99618465, z: 0.99618465}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1145072520}
   m_RootOrder: 0
@@ -13665,6 +14174,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 369973005}
   - {fileID: 2128940201}
@@ -13706,6 +14216,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 635265775}
   - {fileID: 2141149370}
@@ -13731,6 +14242,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    BondType: 0
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &779138809
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13841,6 +14370,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1971500416}
   m_RootOrder: 0
@@ -13920,6 +14450,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1906058963}
   m_RootOrder: 2
@@ -13999,6 +14530,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1702164049}
   m_RootOrder: 1
@@ -14080,6 +14612,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 706448291}
   m_RootOrder: 3
@@ -14161,6 +14694,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1337283821}
   m_RootOrder: 2
@@ -14242,6 +14776,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 376684576}
   - {fileID: 1320835070}
@@ -14267,6 +14802,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    BondType: 0
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &817288372
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14377,6 +14930,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1424068455}
   m_RootOrder: 1
@@ -14460,6 +15014,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.00383, y: 1.00383, z: 1.00383}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1740768801}
   - {fileID: 1406166682}
@@ -14483,6 +15038,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ad9125eabf35d34298ea7593cdd23a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    BondType: 0
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &831874568
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14593,6 +15166,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 593231583}
   m_RootOrder: 0
@@ -14673,6 +15247,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 112733112}
   m_RootOrder: 0
@@ -14792,6 +15367,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 321047919}
   m_RootOrder: 2
@@ -14871,6 +15447,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 114349040}
   m_RootOrder: 1
@@ -14952,6 +15529,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2061490157}
   m_RootOrder: 1
@@ -15033,6 +15611,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1992691923}
   m_RootOrder: 1
@@ -15114,6 +15693,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1423522226}
   m_RootOrder: 3
@@ -15196,6 +15776,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1357255919}
   m_Father: {fileID: 563044203}
@@ -15328,6 +15909,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2102994074}
   m_RootOrder: 2
@@ -15407,6 +15989,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 975210481}
   m_RootOrder: 0
@@ -15488,6 +16071,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 99760582}
   - {fileID: 1559923382}
@@ -15513,6 +16097,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    BondType: 0
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &891332625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15623,6 +16225,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 123878883}
   m_RootOrder: 1
@@ -15704,6 +16307,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2106487553}
   m_RootOrder: 1
@@ -15785,6 +16389,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2012167089}
   m_RootOrder: 3
@@ -15866,6 +16471,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1992691923}
   m_RootOrder: 3
@@ -15947,6 +16553,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1385947279}
   m_RootOrder: 0
@@ -16026,6 +16633,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 519696977}
   m_RootOrder: 1
@@ -16107,6 +16715,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 990186643}
   m_RootOrder: 0
@@ -16187,6 +16796,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 451936331}
   - {fileID: 1493542790}
@@ -16284,6 +16894,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1380859821}
   m_RootOrder: 2
@@ -16363,6 +16974,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 885851452}
   m_Father: {fileID: 296629756}
@@ -16439,6 +17051,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2023231987}
   m_RootOrder: 1
@@ -16520,6 +17133,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 542476399}
   m_RootOrder: 2
@@ -16601,6 +17215,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 186159215}
   - {fileID: 2059035473}
@@ -16626,6 +17241,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    BondType: 0
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &978902576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16738,6 +17371,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.0347862, y: 1.0347862, z: 1.0347862}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 946594722}
   - {fileID: 731497247}
@@ -16763,6 +17397,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    BondType: 0
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &990186645
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16873,6 +17525,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1259775746}
   m_RootOrder: 0
@@ -16952,6 +17605,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1789850741}
   m_RootOrder: 3
@@ -17035,6 +17689,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2053267778}
   - {fileID: 378663845}
@@ -17060,6 +17715,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    BondType: 0
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &1034143728
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17171,6 +17844,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.00383, y: 1.00383, z: 1.00383}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1657269187}
   m_Father: {fileID: 296629756}
@@ -17303,6 +17977,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2128963727}
   m_RootOrder: 0
@@ -17382,6 +18057,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1329766256}
   m_RootOrder: 1
@@ -17463,6 +18139,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 114349040}
   m_RootOrder: 0
@@ -17542,6 +18219,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 990186643}
   m_RootOrder: 3
@@ -17623,6 +18301,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 699807844}
   m_RootOrder: 1
@@ -17704,6 +18383,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 307037451}
   m_RootOrder: 1
@@ -17785,6 +18465,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1647653792}
   m_RootOrder: 2
@@ -17862,6 +18543,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 371650928}
   - {fileID: 1767538159}
@@ -17897,6 +18579,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.99618465, y: 0.99618465, z: 0.99618465}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1853769108}
   m_RootOrder: 0
@@ -17976,6 +18659,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 414274909}
   - {fileID: 1699403545}
@@ -18015,6 +18699,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 216643664}
   m_RootOrder: 0
@@ -18094,6 +18779,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 475095318}
   m_RootOrder: 0
@@ -18173,6 +18859,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1199125877}
   m_RootOrder: 3
@@ -18254,6 +18941,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1712082664}
   m_RootOrder: 1
@@ -18337,6 +19025,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2085667013}
   - {fileID: 1231016481}
@@ -18362,6 +19051,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    BondType: 0
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &1143591636
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18474,6 +19181,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.00383, y: 1.00383, z: 1.00383}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 773945657}
   - {fileID: 1977328624}
@@ -18497,6 +19205,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ad9125eabf35d34298ea7593cdd23a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    BondType: 0
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &1145072522
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18607,6 +19333,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1588244887}
   m_RootOrder: 2
@@ -18686,6 +19413,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 574388812}
   m_RootOrder: 3
@@ -18767,6 +19495,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1655608862}
   m_RootOrder: 1
@@ -18848,6 +19577,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2070542498}
   m_RootOrder: 0
@@ -18927,6 +19657,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 18507536}
   m_RootOrder: 2
@@ -19006,6 +19737,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1448127640}
   m_RootOrder: 2
@@ -19086,6 +19818,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 514420255}
   m_Father: {fileID: 568360980}
@@ -19218,6 +19951,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1953424383}
   m_RootOrder: 1
@@ -19300,6 +20034,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2068782373}
   m_RootOrder: 10
@@ -19381,6 +20116,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 231940582}
   - {fileID: 1294731024}
@@ -19406,6 +20142,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    BondType: 0
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &1184431022
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19518,6 +20272,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1208798591}
   - {fileID: 1439805648}
@@ -19543,6 +20298,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    BondType: 0
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &1199125879
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19653,6 +20426,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1632975538}
   m_RootOrder: 1
@@ -19734,6 +20508,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1199125877}
   m_RootOrder: 0
@@ -19813,6 +20588,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 460104116}
   m_RootOrder: 0
@@ -19892,6 +20668,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1281490823}
   m_RootOrder: 0
@@ -19971,6 +20748,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1143591634}
   m_RootOrder: 1
@@ -20052,6 +20830,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 307037451}
   m_RootOrder: 0
@@ -20133,6 +20912,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.00383, y: 1.00383, z: 1.00383}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2018565109}
   - {fileID: 582382766}
@@ -20156,6 +20936,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ad9125eabf35d34298ea7593cdd23a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    BondType: 0
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &1244217428
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20268,6 +21066,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1891473269}
   - {fileID: 210410044}
@@ -20293,6 +21092,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    BondType: 0
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &1250086041
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20403,6 +21220,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1385947279}
   m_RootOrder: 3
@@ -20484,6 +21302,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1445122595}
   m_RootOrder: 1
@@ -20567,6 +21386,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 997541823}
   - {fileID: 507644394}
@@ -20592,6 +21412,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    BondType: 0
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &1259775748
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20702,6 +21540,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 542476399}
   m_RootOrder: 3
@@ -20783,6 +21622,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 566333229}
   m_RootOrder: 1
@@ -20864,6 +21704,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1215734491}
   - {fileID: 1666130306}
@@ -20889,6 +21730,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    BondType: 0
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &1281490825
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20999,6 +21858,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1992691923}
   m_RootOrder: 0
@@ -21078,6 +21938,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 307037451}
   m_RootOrder: 3
@@ -21159,6 +22020,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 321047919}
   m_RootOrder: 0
@@ -21238,6 +22100,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1184431020}
   m_RootOrder: 1
@@ -21320,6 +22183,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.00383, y: 1.00383, z: 1.00383}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 372663153}
   m_Father: {fileID: 1422129295}
@@ -21452,6 +22316,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1971500416}
   m_RootOrder: 1
@@ -21533,6 +22398,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 518040273}
   m_RootOrder: 3
@@ -21614,6 +22480,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2023231987}
   m_RootOrder: 3
@@ -21695,6 +22562,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 817288370}
   m_RootOrder: 1
@@ -21776,6 +22644,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1329766256}
   m_RootOrder: 0
@@ -21857,6 +22726,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1327056657}
   - {fileID: 1064498803}
@@ -21882,6 +22752,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    BondType: 0
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &1329766258
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21979,7 +22867,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1337283821
 RectTransform:
   m_ObjectHideFlags: 0
@@ -21990,6 +22878,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 990186643}
   - {fileID: 1628774625}
@@ -22032,6 +22921,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 880831513}
   m_RootOrder: 0
@@ -22111,6 +23001,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1659486200}
   m_RootOrder: 0
@@ -22188,6 +23079,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 158943546}
   - {fileID: 1496108818}
@@ -22213,6 +23105,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    BondType: 0
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &1380859823
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22325,6 +23235,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 917561116}
   - {fileID: 2076221340}
@@ -22350,6 +23261,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    BondType: 0
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &1385947281
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22527,6 +23456,7 @@ Transform:
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: -0.7071068}
   m_LocalPosition: {x: -0.613, y: 0.587, z: 1.092}
   m_LocalScale: {x: 0.01, y: 1, z: 0.01}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 612247309}
   m_RootOrder: 1
@@ -22559,6 +23489,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 831874566}
   m_RootOrder: 1
@@ -22638,6 +23569,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3900855}
   m_RootOrder: 1
@@ -22718,6 +23650,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 704659246}
   - {fileID: 1874628785}
@@ -22774,6 +23707,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1718447627}
   m_RootOrder: 0
@@ -22853,6 +23787,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1789850741}
   m_RootOrder: 0
@@ -22934,6 +23869,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 462103993}
   - {fileID: 1755251727}
@@ -22959,6 +23895,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    BondType: 0
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &1423522228
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23071,6 +24025,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1979697889}
   - {fileID: 829525006}
@@ -23096,6 +24051,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    BondType: 0
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &1424068457
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23206,6 +24179,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 593231583}
   m_RootOrder: 2
@@ -23285,6 +24259,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 550153667}
   m_RootOrder: 0
@@ -23366,6 +24341,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1199125877}
   m_RootOrder: 1
@@ -23447,6 +24423,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1850126607}
   m_RootOrder: 0
@@ -23528,6 +24505,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 11818936}
   - {fileID: 1258904913}
@@ -23553,6 +24531,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    BondType: 0
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &1445122597
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23661,6 +24657,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 164852694}
   - {fileID: 552302020}
@@ -23702,6 +24699,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 305802710}
   - {fileID: 1646277599}
@@ -23727,6 +24725,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    BondType: 0
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &1448127642
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23837,6 +24853,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1034143726}
   m_RootOrder: 3
@@ -23918,6 +24935,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 680189481}
   m_RootOrder: 0
@@ -23997,6 +25015,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2106487553}
   m_RootOrder: 0
@@ -24076,6 +25095,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 574388812}
   m_RootOrder: 1
@@ -24157,6 +25177,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1632975538}
   m_RootOrder: 2
@@ -24236,6 +25257,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1380859821}
   m_RootOrder: 3
@@ -24317,6 +25339,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2070542498}
   m_RootOrder: 2
@@ -24396,6 +25419,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 90505052}
   m_RootOrder: 0
@@ -24475,6 +25499,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.99618465, y: 0.99618465, z: 0.99618465}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 550153667}
   m_RootOrder: 1
@@ -24556,6 +25581,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 952821659}
   m_RootOrder: 1
@@ -24688,6 +25714,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1380859821}
   m_RootOrder: 1
@@ -24769,6 +25796,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2080285148}
   m_RootOrder: 3
@@ -24850,6 +25878,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3900855}
   m_RootOrder: 2
@@ -24929,6 +25958,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1971500416}
   m_RootOrder: 2
@@ -25008,6 +26038,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1250086039}
   m_RootOrder: 2
@@ -25086,6 +26117,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 612247309}
   m_RootOrder: 0
@@ -25161,6 +26193,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 891332623}
   m_RootOrder: 1
@@ -25242,6 +26275,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 617529845}
   m_RootOrder: 0
@@ -25321,6 +26355,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1789850741}
   m_RootOrder: 1
@@ -25404,6 +26439,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.00383, y: 1.00383, z: 1.00383}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6496364}
   - {fileID: 1579173891}
@@ -25427,6 +26463,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ad9125eabf35d34298ea7593cdd23a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    BondType: 0
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &1563497345
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25535,6 +26589,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1715647116}
   - {fileID: 120780281}
@@ -25575,6 +26630,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 296629756}
   m_RootOrder: 0
@@ -25662,6 +26718,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1563497343}
   m_RootOrder: 1
@@ -25745,6 +26802,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1655283378}
   - {fileID: 494925331}
@@ -25770,6 +26828,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    BondType: 0
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &1588244889
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25880,6 +26956,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 379369118}
   m_RootOrder: 0
@@ -25959,6 +27036,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1794692794}
   m_RootOrder: 0
@@ -26038,6 +27116,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 978902574}
   m_RootOrder: 2
@@ -26117,6 +27196,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 147506854}
   m_RootOrder: 0
@@ -26196,6 +27276,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1655608862}
   m_RootOrder: 0
@@ -26277,6 +27358,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 650867525}
   - {fileID: 2113161477}
@@ -26302,6 +27384,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    BondType: 0
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &1620663047
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26412,6 +27512,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 751519547}
   m_Father: {fileID: 568360980}
@@ -26488,6 +27589,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.99618465, y: 0.99618465, z: 0.99618465}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1702164049}
   m_RootOrder: 0
@@ -26567,6 +27669,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 321047919}
   m_RootOrder: 1
@@ -26648,6 +27751,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1337283821}
   m_RootOrder: 1
@@ -26729,6 +27833,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 240370419}
   - {fileID: 1207552879}
@@ -26754,6 +27859,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    BondType: 0
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &1632975540
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26864,6 +27987,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 518040273}
   m_RootOrder: 2
@@ -26943,6 +28067,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2070542498}
   m_RootOrder: 3
@@ -27024,6 +28149,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1448127640}
   m_RootOrder: 1
@@ -27107,6 +28233,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 708445307}
   - {fileID: 1669272140}
@@ -27132,6 +28259,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    BondType: 0
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &1647653794
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27242,6 +28387,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1659921878}
   m_RootOrder: 3
@@ -27323,6 +28469,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 18507536}
   m_RootOrder: 3
@@ -27404,6 +28551,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1588244887}
   m_RootOrder: 0
@@ -27485,6 +28633,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1617268519}
   - {fileID: 1150235744}
@@ -27510,6 +28659,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    BondType: 0
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &1655608864
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27620,6 +28787,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1039740229}
   m_RootOrder: 0
@@ -27761,6 +28929,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1374604300}
   m_Father: {fileID: 0}
@@ -27801,6 +28970,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 368678678}
   - {fileID: 1708570755}
@@ -27826,6 +28996,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    BondType: 0
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &1659921880
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27936,6 +29124,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1281490823}
   m_RootOrder: 1
@@ -28017,6 +29206,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 321047919}
   m_RootOrder: 3
@@ -28098,6 +29288,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1647653792}
   m_RootOrder: 1
@@ -28179,6 +29370,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 199863829}
   m_RootOrder: 1
@@ -28260,6 +29452,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 90505052}
   m_RootOrder: 3
@@ -28341,6 +29534,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1119606280}
   m_RootOrder: 1
@@ -28420,6 +29614,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1953424383}
   m_RootOrder: 0
@@ -28503,6 +29698,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.00383, y: 1.00383, z: 1.00383}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1621667578}
   - {fileID: 803533690}
@@ -28526,6 +29722,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ad9125eabf35d34298ea7593cdd23a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    BondType: 0
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &1702164051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28636,6 +29850,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2128963727}
   m_RootOrder: 3
@@ -28717,6 +29932,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2102994074}
   m_RootOrder: 3
@@ -28798,6 +30014,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1659921878}
   m_RootOrder: 1
@@ -28881,6 +30098,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1800260176}
   - {fileID: 1139435633}
@@ -28906,6 +30124,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    BondType: 0
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &1712082666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29016,6 +30252,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1564552317}
   m_RootOrder: 0
@@ -29098,6 +30335,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1422874094}
   m_Father: {fileID: 2068782373}
@@ -29230,6 +30468,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1712082664}
   m_RootOrder: 3
@@ -29311,6 +30550,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 123878883}
   m_RootOrder: 2
@@ -29390,6 +30630,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.99618465, y: 0.99618465, z: 0.99618465}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 831874566}
   m_RootOrder: 0
@@ -29469,6 +30710,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1423522226}
   m_RootOrder: 1
@@ -29550,6 +30792,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 114349040}
   m_RootOrder: 2
@@ -29629,6 +30872,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2012167089}
   m_RootOrder: 1
@@ -29710,6 +30954,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2023231987}
   m_RootOrder: 0
@@ -29789,6 +31034,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 891332623}
   m_RootOrder: 3
@@ -29876,6 +31122,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2094139915}
   m_RootOrder: 0
@@ -29955,6 +31202,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 617529845}
   m_RootOrder: 3
@@ -30036,6 +31284,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2128963727}
   m_RootOrder: 1
@@ -30119,6 +31368,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1422972631}
   - {fileID: 1562673219}
@@ -30144,6 +31394,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    BondType: 0
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &1789850743
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30256,6 +31524,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1609344817}
   - {fileID: 634292538}
@@ -30281,6 +31550,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    BondType: 0
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &1794692796
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30391,6 +31678,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1992691923}
   m_RootOrder: 2
@@ -30470,6 +31758,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1712082664}
   m_RootOrder: 0
@@ -30549,6 +31838,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3900855}
   m_RootOrder: 0
@@ -30628,6 +31918,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1789850741}
   m_RootOrder: 2
@@ -30773,6 +32064,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.56, y: 0, z: 6.73}
   m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
@@ -30833,6 +32125,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 706448291}
   m_RootOrder: 1
@@ -30914,6 +32207,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 518040273}
   m_RootOrder: 0
@@ -30993,6 +32287,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 706448291}
   m_RootOrder: 0
@@ -31070,6 +32365,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1441148199}
   - {fileID: 389516950}
@@ -31111,6 +32407,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.00383, y: 1.00383, z: 1.00383}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1118461269}
   - {fileID: 306185947}
@@ -31134,6 +32431,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ad9125eabf35d34298ea7593cdd23a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    BondType: 0
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &1853769110
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31244,6 +32559,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1424068455}
   m_RootOrder: 2
@@ -31323,6 +32639,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2023231987}
   m_RootOrder: 2
@@ -31400,6 +32717,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 112733112}
   - {fileID: 147506854}
@@ -31439,6 +32757,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1794692794}
   m_RootOrder: 3
@@ -31520,6 +32839,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 18507536}
   m_RootOrder: 0
@@ -31599,6 +32919,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2012167089}
   m_RootOrder: 0
@@ -31678,6 +32999,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1250086039}
   m_RootOrder: 0
@@ -31757,6 +33079,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 585791177}
   m_RootOrder: 1
@@ -31840,6 +33163,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 657999060}
   - {fileID: 590766859}
@@ -31865,6 +33189,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    BondType: 0
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &1906058965
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32009,6 +33351,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
@@ -32041,6 +33384,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 542476399}
   m_RootOrder: 1
@@ -32122,6 +33466,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1034143726}
   m_RootOrder: 2
@@ -32201,6 +33546,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 384336104}
   m_RootOrder: 1
@@ -32282,6 +33628,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 770447639}
   m_Father: {fileID: 1422129295}
@@ -32358,6 +33705,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 90505052}
   m_RootOrder: 2
@@ -32437,6 +33785,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2012167089}
   m_RootOrder: 2
@@ -32514,6 +33863,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1701408443}
   - {fileID: 1173758595}
@@ -32555,6 +33905,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 788850771}
   - {fileID: 1305719780}
@@ -32580,6 +33931,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    BondType: 0
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &1971500418
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32690,6 +34059,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1145072520}
   m_RootOrder: 1
@@ -32769,6 +34139,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1423522226}
   m_RootOrder: 2
@@ -32848,6 +34219,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1424068455}
   m_RootOrder: 0
@@ -32928,6 +34300,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 98062950}
   m_Father: {fileID: 2068782373}
@@ -33073,6 +34446,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 112733112}
   m_RootOrder: 1
@@ -33192,6 +34566,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1184431020}
   m_RootOrder: 2
@@ -33273,6 +34648,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1283233739}
   - {fileID: 873993660}
@@ -33298,6 +34674,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    BondType: 0
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &1992691925
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33408,6 +34802,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1329766256}
   m_RootOrder: 2
@@ -33489,6 +34884,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 389169255}
   - {fileID: 2112384109}
@@ -33514,6 +34910,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    BondType: 0
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &2004655309
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33624,6 +35038,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2061490157}
   m_RootOrder: 2
@@ -33705,6 +35120,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1886078750}
   - {fileID: 1766278522}
@@ -33730,6 +35146,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    BondType: 0
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &2012167091
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33840,6 +35274,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 384336104}
   m_RootOrder: 0
@@ -33919,6 +35354,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3900855}
   m_RootOrder: 3
@@ -34000,6 +35436,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1244217426}
   m_RootOrder: 0
@@ -34083,6 +35520,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1767282536}
   - {fileID: 975228219}
@@ -34108,6 +35546,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    BondType: 0
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &2023231989
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34218,6 +35674,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1424068455}
   m_RootOrder: 3
@@ -34299,6 +35756,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 460104116}
   m_RootOrder: 2
@@ -34378,6 +35836,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 379369118}
   m_RootOrder: 2
@@ -34457,6 +35916,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 617529845}
   m_RootOrder: 2
@@ -34536,6 +35996,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1034143726}
   m_RootOrder: 0
@@ -34615,6 +36076,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 978902574}
   m_RootOrder: 1
@@ -34698,6 +36160,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 351219939}
   - {fileID: 854490022}
@@ -34723,6 +36186,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    BondType: 0
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &2061490159
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34833,6 +36314,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 891332623}
   m_RootOrder: 2
@@ -34976,6 +36458,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 952821659}
   - {fileID: 498292578}
@@ -35082,6 +36565,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1794692794}
   m_RootOrder: 2
@@ -35163,6 +36647,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1155448380}
   - {fileID: 298771976}
@@ -35188,6 +36673,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    BondType: 0
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &2070542500
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35298,6 +36801,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 199863829}
   m_RootOrder: 0
@@ -35377,6 +36881,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1385947279}
   m_RootOrder: 1
@@ -35458,6 +36963,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1445122595}
   m_RootOrder: 3
@@ -35539,6 +37045,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1906058963}
   m_RootOrder: 3
@@ -35622,6 +37129,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 308579275}
   - {fileID: 680729843}
@@ -35647,6 +37155,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    BondType: 0
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &2080285150
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35757,6 +37283,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1143591634}
   m_RootOrder: 0
@@ -35836,6 +37363,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 296629756}
   m_RootOrder: 2
@@ -35916,6 +37444,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 563044203}
   m_RootOrder: 3
@@ -35998,6 +37527,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1779516055}
   m_Father: {fileID: 568360980}
@@ -36130,6 +37660,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1445122595}
   m_RootOrder: 2
@@ -36211,6 +37742,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 271479117}
   - {fileID: 564410359}
@@ -36236,6 +37768,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    BondType: 0
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &2102994076
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36346,6 +37896,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1655608862}
   m_RootOrder: 3
@@ -36429,6 +37980,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1469829524}
   - {fileID: 896153963}
@@ -36454,6 +38006,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    BondType: 0
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &2106487555
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36564,6 +38134,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2004655307}
   m_RootOrder: 1
@@ -36645,6 +38216,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1620663045}
   m_RootOrder: 1
@@ -36726,6 +38298,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 563044203}
   m_RootOrder: 1
@@ -36807,6 +38380,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1259775746}
   m_RootOrder: 3
@@ -36888,6 +38462,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 777354087}
   m_RootOrder: 1
@@ -36971,6 +38546,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1045601929}
   - {fileID: 1783974997}
@@ -36996,6 +38572,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atom:
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    ShortName: 
+    Name: 
+    BondType: 0
+    Weight: 0
+    Conductivity: 0
+    Reactivity: 0
+    Toxicity: 0
+    MeltingPoint: 0
+    BoilingPoint: 0
+    Brittleness: 0
+    Malleability: 0
+    Ductility: 0
 --- !u!114 &2128963729
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37106,6 +38700,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 779138807}
   m_RootOrder: 1

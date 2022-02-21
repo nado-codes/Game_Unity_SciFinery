@@ -15,17 +15,17 @@ public class AtomGridItem : PeriodicTableGridItem
     private void Init()
     {
         numberText = transform.Find("Number")?.GetComponent<Text>();
-            shortNameText = transform.Find("ShortName")?.GetComponent<Text>();
-            nameText = transform.Find("Name")?.GetComponent<Text>();
-            weightText = transform.Find("Weight")?.GetComponent<Text>();
+        shortNameText = transform.Find("ShortName")?.GetComponent<Text>();
+        nameText = transform.Find("Name")?.GetComponent<Text>();
+        weightText = transform.Find("Weight")?.GetComponent<Text>();
 
-            button = GetComponent<Button>();
-            buttonColorsActive = button.colors;
+        button = GetComponent<Button>();
+        buttonColorsActive = button.colors;
 
-            buttonColorsInactive.normalColor = button.colors.disabledColor;
-            buttonColorsInactive.highlightedColor = button.colors.disabledColor;
-            buttonColorsInactive.pressedColor = button.colors.disabledColor;
-            buttonColorsInactive.selectedColor = button.colors.disabledColor;
+        buttonColorsInactive.normalColor = button.colors.disabledColor;
+        buttonColorsInactive.highlightedColor = button.colors.disabledColor;
+        buttonColorsInactive.pressedColor = button.colors.disabledColor;
+        buttonColorsInactive.selectedColor = button.colors.disabledColor;
     }
     public void Start()
     {
@@ -53,13 +53,10 @@ public class AtomGridItem : PeriodicTableGridItem
         nameText.gameObject.SetActive(active);
         weightText.gameObject.SetActive(active);
 
-        button.colors = active ? buttonColorsActive : buttonColorsInactive;
+        // button.colors = active ? buttonColorsActive : buttonColorsInactive;
     }
 
-    // TODO: TEMPORARY number setter for visualisation purposes. TO BE REMOVED
-    public void SetNumber(int number) => numberText.text = number.ToString();
-
-    public void SetAtomData(AtomWithIsotopes atomData)
+    public void SetAtomData(Atom atomData)
     {
         if(atomData == null)
             throw new ApplicationException("Expected atomData in call to SetAtomData in PeriodicTableGridItem, got null");
@@ -68,8 +65,6 @@ public class AtomGridItem : PeriodicTableGridItem
         shortNameText.text = atomData.ShortName;
         nameText.text = atomData.Name;
         weightText.text = atomData.Weight.ToString()+".00";
-
-        Debug.Log("activating AtomGridItem "+atomData.Name);
 
         atom = atomData;
         SetActive(true);

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PeriodicTableGridItem : MonoBehaviour
 {
-    public AtomWithIsotopes atom = null;
+    public Atom atom = null;
 
     public virtual void SetActive(bool active) {}
 }

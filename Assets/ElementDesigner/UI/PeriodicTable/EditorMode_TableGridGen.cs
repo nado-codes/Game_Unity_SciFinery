@@ -71,7 +71,6 @@ public class EditorMode_TableGridGen : MonoBehaviour
                 // TODO: We don't need this. To be removed. Only used to visualise the numbers on the grid
                 var script = newGridItem.GetComponent<AtomGridItem>();
                 script.Awake();
-                script.SetNumber(x+(y*columns)+1);
 
                 var newGridItemRect = newGridItem.GetComponent<RectTransform>();
                 newGridItemRect.localPosition = gridStartPos + new Vector3(itemWidth*x,itemWidth*-y,0);

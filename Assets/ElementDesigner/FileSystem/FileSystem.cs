@@ -11,15 +11,15 @@ public class FileSystem : MonoBehaviour
     const string elementsRoot = "./Elements";
     private static string activeAtomFileName => ActiveAtom.ShortName.ToLower()+ActiveAtom.Number;
 
-    public static AtomWithIsotopes ActiveAtom { get; set; }
+    public static Atom ActiveAtom { get; set; }
 
     private static bool hasLoadedAtoms = false;
 
-    public static List<AtomWithIsotopes> LoadedAtoms { get; private set; } = new List<AtomWithIsotopes>();
+    public static List<Atom> LoadedAtoms { get; private set; } = new List<Atom>();
 
     public static Atom NewAtom()
     {
-        ActiveAtom = new AtomWithIsotopes();
+        ActiveAtom = new Atom();
         ActiveAtom.Number = 1;
         ActiveAtom.Name = "NewAtom";
         ActiveAtom.ShortName = "NE";
@@ -28,8 +28,6 @@ public class FileSystem : MonoBehaviour
 
         return ActiveAtom;
     }
-
-
     public static void SaveAtom()
     {
         // .. make sure the directory exists
@@ -43,7 +41,7 @@ public class FileSystem : MonoBehaviour
         if(atomExists)
         {
             var existingAtomJSON = File.ReadAllText($"{mainAtomPath}.{fileExtension}");
-            var existingAtom = JsonUtility.FromJson<AtomWithIsotopes>(existingAtomJSON);
+            var existingAtom = JsonUtility.FromJson<Atom>(existingAtomJSON);
             var activeAtomIsIsotope = existingAtom.Name == ActiveAtom.Name && existingAtom.Charge != ActiveAtom.Charge;
 
             if(activeAtomIsIsotope)
@@ -87,7 +85,8 @@ public class FileSystem : MonoBehaviour
         var isotopePath = GetActiveAtomIsotopeFileName();
         var isotopeExists = File.Exists(isotopePath);
         
-        if(!isotopeExists)
+        // TODO: implement saving isotopes
+        /* if(!isotopeExists)
             LoadedAtoms[ActiveAtom.Number-1].isotopes.Add(ActiveAtom);
         else
         {
@@ -95,7 +94,7 @@ public class FileSystem : MonoBehaviour
             var indexInIsotopes = LoadedAtoms[ActiveAtom.Number-1].isotopes.FindIndex(0,isotopeCount,a => a.Charge == ActiveAtom.Charge);
 
             LoadedAtoms[ActiveAtom.Number-1].isotopes[indexInIsotopes] = ActiveAtom;
-        }
+        } */
         File.WriteAllText(isotopePath,activeAtomJSON);
     }
 
@@ -131,22 +130,24 @@ public class FileSystem : MonoBehaviour
         foreach(string file in files)
         {
             string atomJSON = File.ReadAllText(file);
-            var atomFromJSON = JsonUtility.FromJson<AtomWithIsotopes>(atomJSON);
+            var atomFromJSON = JsonUtility.FromJson<Atom>(atomJSON);
             var mainAtomDirectoryName = GetMainAtomFilePath(atomFromJSON).Split($".{fileExtension}")[0];
             var isotopes = Directory.GetFiles($"{mainAtomDirectoryName}/",$"*.{fileExtension}");
             var isotopeAtoms = isotopes.Select(isotope => {
                 var isotopeJSON = File.ReadAllText(isotope);
-                var isotopeAtom = JsonUtility.FromJson<AtomWithIsotopes>(isotopeJSON);
+                var isotopeAtom = JsonUtility.FromJson<Atom>(isotopeJSON);
                 isotopeAtom.IsIsotope = true;
                 return isotopeAtom;
             });
+
+            
 
             LoadedAtoms.Add(atomFromJSON);
             LoadedAtoms.AddRange(isotopeAtoms);
         }
     }
 
-    public static void DeleteAtom(AtomWithIsotopes atom)
+    public static void DeleteAtom(Atom atom)
     {
         LoadedAtoms.Remove(atom);
         File.Delete($"./Elements/{atom.ShortName.ToLower()}.{fileExtension}");

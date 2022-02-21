@@ -40,6 +40,7 @@ public class DialogPeriodicTable : MonoBehaviour
         btnDelete = transform.Find("btnDelete").GetComponent<Button>();
         btnIsotopes = page1Transform.Find("btnIsotopes").GetComponent<Button>();
 
+        OpenPage1();
         Close();
     }
 
@@ -59,7 +60,7 @@ public class DialogPeriodicTable : MonoBehaviour
         // .. atoms which are not isotopes
         var mainAtoms = FileSystem.LoadedAtoms.Where(atom => !atom.IsIsotope);
 
-        foreach(AtomWithIsotopes atom in mainAtoms)
+        foreach(Atom atom in mainAtoms)
         {
             // TODO: Create a grid item if the atom won't fit in the table
             var gridItem = page1GridItems[atom.Number-1];
@@ -85,15 +86,23 @@ public class DialogPeriodicTable : MonoBehaviour
 
     public void OpenPage2()
     {
-        
-
-        // page2GridItems.ForEach(item => item.SetName(selectedItem.atom.Name));
-
         page2Transform.gameObject.SetActive(true);
         page1Transform.gameObject.SetActive(false);   
 
         var atomGridItem = page2Transform.Find("gridItem").GetComponent<AtomGridItem>();
         atomGridItem.SetAtomData(selectedItem.atom);
+
+        var selectedAtomIsotopes = FileSystem.LoadedAtoms.Where(atom => atom.Name == selectedItem.atom.Name && atom.IsIsotope);
+        var finalSelectedAtomIsotopes = selectedAtomIsotopes.Where(isotope => isotope.Charge >= -4 && isotope.Charge <= 4);
+
+        foreach(IsotopeGridItem gridItem in page2GridItems)
+        {
+            var gridItemIndex = page2GridItems.IndexOf(gridItem);
+            var isotopeAtom = finalSelectedAtomIsotopes.FirstOrDefault(atom => atom.Charge+4 == gridItemIndex);
+
+            if(isotopeAtom != null)
+                gridItem.SetAtomData(isotopeAtom);
+        }
     }
 
     public void Close()
