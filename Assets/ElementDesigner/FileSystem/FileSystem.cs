@@ -42,7 +42,7 @@ public class FileSystem : MonoBehaviour
         {
             var existingAtomJSON = File.ReadAllText($"{mainAtomPath}.{fileExtension}");
             var existingAtom = JsonUtility.FromJson<Atom>(existingAtomJSON);
-            var activeAtomIsIsotope = existingAtom.Name == ActiveAtom.Name && existingAtom.Charge != ActiveAtom.Charge;
+            var activeAtomIsIsotope = existingAtom.Name == ActiveAtom.Name && existingAtom.NeutronCount != ActiveAtom.NeutronCount;
 
             if(activeAtomIsIsotope)
             {
@@ -58,7 +58,7 @@ public class FileSystem : MonoBehaviour
                 else
                     ConfirmSaveIsotope(); // .. overwrite isotope
 
-                Debug.Log($"Saved isotope {ActiveAtom.Name} with charge {ActiveAtom.Charge} at {DateTime.Now}");
+                Debug.Log($"Saved isotope {ActiveAtom.Name} with neutrons {ActiveAtom.NeutronCount} at {DateTime.Now}");
             }
             else // .. overwrite the main atom
             {
@@ -91,7 +91,7 @@ public class FileSystem : MonoBehaviour
         else
         {
             var isotopeCount = LoadedAtoms[ActiveAtom.Number-1].isotopes.Count;
-            var indexInIsotopes = LoadedAtoms[ActiveAtom.Number-1].isotopes.FindIndex(0,isotopeCount,a => a.Charge == ActiveAtom.Charge);
+            var indexInIsotopes = LoadedAtoms[ActiveAtom.Number-1].isotopes.FindIndex(0,isotopeCount,a => a.NeutronCount == ActiveAtom.NeutronCount);
 
             LoadedAtoms[ActiveAtom.Number-1].isotopes[indexInIsotopes] = ActiveAtom;
         } */
@@ -109,14 +109,14 @@ public class FileSystem : MonoBehaviour
         var mainAtomDirectoryName = mainAtomFilePath.Split(new string[1] {$".{fileExtension}"},StringSplitOptions.None)[0];
 
         var isotopeFileName = ActiveAtom.ShortName.ToLower()+ActiveAtom.Number;
-        var isotopeNumber = ActiveAtom.Charge < 0 ? "m"+(ActiveAtom.Charge*-1) : ActiveAtom.Charge.ToString();
+        var isotopeNumber = ActiveAtom.NeutronCount < 0 ? "m"+(ActiveAtom.NeutronCount*-1) : ActiveAtom.NeutronCount.ToString();
         return $"{mainAtomDirectoryName}/{isotopeFileName}_{isotopeNumber}.{fileExtension}";
     }
 
     private static string GetActiveAtomIsotopeFileName()
     {
         var mainAtomPath = $"{elementsRoot}/{activeAtomFileName}";
-        var isotopeNumber = ActiveAtom.Charge < 0 ? "m"+(ActiveAtom.Charge*-1) : ActiveAtom.Charge.ToString();
+        var isotopeNumber = ActiveAtom.NeutronCount < 0 ? "m"+(ActiveAtom.NeutronCount*-1) : ActiveAtom.NeutronCount.ToString();
         return $"{mainAtomPath}/{activeAtomFileName}_{isotopeNumber}.{fileExtension}";
     }
 
