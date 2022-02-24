@@ -10,7 +10,7 @@ public class DialogPeriodicTable : MonoBehaviour
     private PeriodicTableGridItem selectedItem;
 
     private List<AtomGridItem> page1GridItems = new List<AtomGridItem>();
-    private List<IsotopeGridItem> page2GridItems = new List<IsotopeGridItem>();
+    private List<AtomGridItem> page2GridItems = new List<AtomGridItem>();
 
     private List<PeriodicTableGridItem> pageGridItems = new List<PeriodicTableGridItem>();
 
@@ -33,7 +33,7 @@ public class DialogPeriodicTable : MonoBehaviour
         page2AtomGridItem.Awake(); // .. initialise the atom grid item
         var page2GridTransform = page2Transform.Find("grid");
         var page2GridTransforms = page2GridTransform.GetComponentsInChildren<RectTransform>();
-        page2GridItems = page2GridTransform.GetComponentsInChildren<IsotopeGridItem>().ToList();
+        page2GridItems = page2GridTransform.GetComponentsInChildren<AtomGridItem>().ToList();
         page2GridItems.ForEach(item => item.GetComponent<Button>().onClick.AddListener(() => HandleItemSelected(item)));
 
         btnLoad = transform.Find("btnLoad").GetComponent<Button>();
@@ -93,12 +93,11 @@ public class DialogPeriodicTable : MonoBehaviour
         atomGridItem.SetAtomData(selectedItem.atom);
 
         var selectedAtomIsotopes = FileSystem.LoadedAtoms.Where(atom => atom.Name == selectedItem.atom.Name && atom.IsIsotope);
-        var finalSelectedAtomIsotopes = selectedAtomIsotopes.Where(isotope => isotope.Charge >= -4 && isotope.Charge <= 4);
-
-        foreach(IsotopeGridItem gridItem in page2GridItems)
+        
+        foreach(AtomGridItem gridItem in page2GridItems)
         {
             var gridItemIndex = page2GridItems.IndexOf(gridItem);
-            var isotopeAtom = finalSelectedAtomIsotopes.FirstOrDefault(atom => atom.Charge+4 == gridItemIndex);
+            var isotopeAtom = selectedAtomIsotopes.FirstOrDefault(atom => atom.NeutronCount == gridItemIndex);
 
             if(isotopeAtom != null)
                 gridItem.SetAtomData(isotopeAtom);
