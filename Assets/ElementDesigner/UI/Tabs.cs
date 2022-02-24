@@ -9,50 +9,51 @@ public delegate void TabClick(int tabId);
 public class Tabs : MonoBehaviour
 {
     private List<Button> tabs = new List<Button>();
-    private EventSystem eventSystem;
+
     public int selectedTabIndex = 0;
 
-    const int tabSelectedAlpha = 255;
-    const int tabNormalAlpha = 123;
+    private const int tabSelectedAlpha = 255, tabNormalAlpha = 123;
+    private ColorBlock tabSelectedColors, tabDeselectedColors;
 
     public TabClick onTabChanged;
 
     // Start is called before the first frame update
     void Start()
     {
-        eventSystem = GameObject.Find("EventSystem").GetComponent<EventSystem>();
         tabs = GetComponentsInChildren<Button>().ToList();
+        Debug.Log("tab count="+tabs.Count);
 
-        foreach(Button tab in tabs)
-        {
-            var normalColor = tab.colors.normalColor;
-            var selectedColor = tab.colors.selectedColor;
+        var firstTab = tabs.FirstOrDefault();
+        var normalColor = firstTab.colors.normalColor;
+        var selectedColor = firstTab.colors.selectedColor;
+        var newNormalColor = new Color(normalColor.r,normalColor.g,normalColor.b,tabNormalAlpha);
+        var newSelectedColor = new Color(selectedColor.r,selectedColor.g,selectedColor.b,tabSelectedAlpha);
 
-            // TODO: setup normal & selected button colors for tabs
-            // var newNormalColor
+        tabDeselectedColors = firstTab.colors;
+        tabDeselectedColors.normalColor = newNormalColor;
+        tabSelectedColors = firstTab.colors;
+        tabSelectedColors.normalColor = newSelectedColor;
 
-            // tab.colors.normalColor = Color.black; 
-            //tab.colors.normalColor = new Color(normalColor.r,normalColor.g,normalColor.b,tabNormalAlpha);
-            //tab.SetCol
+        Debug.Log("tabDeselectedColors="+tabDeselectedColors.normalColor);
+        Debug.Log("tabSelectedColors="+tabSelectedColors.normalColor);
 
-            tab.onClick.AddListener(() => handleTabClicked(tab));
-        }
+        tabs.ForEach((tab) => {
+            var currentTabIndex = tabs.IndexOf(tab);
+
+            tab.onClick.AddListener(() => handleTabClicked(currentTabIndex)); 
+            tab.colors = (currentTabIndex == selectedTabIndex) ? tabSelectedColors : tabDeselectedColors;
+        });
     }
 
-    void handleTabClicked(Button tab)
+    void handleTabClicked(int index)
     {
-        selectedTabIndex = tabs.IndexOf(tab);
+        Debug.Log("selected tab "+index);
+        var tabToSelect = tabs.FirstOrDefault(tab => tabs.IndexOf(tab) == index);
+        tabToSelect.colors = tabSelectedColors;
 
-        // TODO: when one tab is selected, deselect the other ones by changing their color
-        var otherTabs = tabs.Where((_,i) => i != selectedTabIndex).ToList();
-        // otherTabs.ForEach(tab => tab.
+        var otherTabs = tabs.Where((_,i) => i != index).ToList();
+        otherTabs.ForEach(tab => tab.colors = tabDeselectedColors);
 
         onTabChanged(selectedTabIndex);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
