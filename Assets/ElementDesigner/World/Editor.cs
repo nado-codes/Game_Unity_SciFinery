@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public enum DragState{ Init, Active, None }
+public enum DesignType {Atom, Molecule, Product}
 
 public class Editor : MonoBehaviour
 {
@@ -64,6 +65,11 @@ public class Editor : MonoBehaviour
         rigidbody.useGravity = false;
         rigidbody.isKinematic = true;
 
+        NewAtom();
+    }
+
+    public void NewAtom()
+    {
         atomGameObject = GameObject.Find("Atom") ?? new GameObject();
         atomGameObject.name = "AtomNewAtom";
 
@@ -71,7 +77,16 @@ public class Editor : MonoBehaviour
         LoadAtomData(FileSystem.ActiveAtom);
 
         FileSystem.LoadAtoms();
-        
+    }
+
+    public void NewMolecule()
+    {
+
+    }
+
+    public void NewProduct()
+    {
+
     }
 
     void Update()

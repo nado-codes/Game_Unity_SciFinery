@@ -70,7 +70,6 @@
     <Compile Include="Assets\FlyCam.cs" />
     <Compile Include="Assets\ElementDesigner\FileSystem\Atom.cs" />
     <Compile Include="Assets\ElementDesigner\UI\HUD.cs" />
-    <Compile Include="Assets\ElementDesigner\UI\panelCreateParticle.cs" />
     <Compile Include="Assets\ElementDesigner\World\Editor.cs" />
     <Compile Include="Assets\ElementDesigner\UI\PeriodicTable\IsotopeGridItem.cs" />
     <Compile Include="Assets\ElementDesigner\World\Interact.cs" />
@@ -87,6 +86,8 @@
     <Compile Include="Assets\ElementDesigner\World\ElementDesignerCamera.cs" />
     <Compile Include="Assets\ElementDesigner\UI\Tabs.cs" />
     <Compile Include="Assets\ElementDesigner\World\Atom\Electron.cs" />
+    <Compile Include="Assets\ElementDesigner\FileSystem\Element.cs" />
+    <Compile Include="Assets\ElementDesigner\UI\panelCreate.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

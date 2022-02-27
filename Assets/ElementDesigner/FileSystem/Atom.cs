@@ -7,7 +7,7 @@ using System.Linq;
 public enum BondType {Covalent, Ionic, Metallic}
 
 [Serializable]
-public class Atom
+public class Atom : Element
 {
     public int ProtonCount;
     public int NeutronCount;
