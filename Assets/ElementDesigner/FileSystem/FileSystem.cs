@@ -100,7 +100,7 @@ public class FileSystem : MonoBehaviour
 
     private static string GetMainAtomFilePath(Atom atom)
     {
-        var atomFileName = ActiveAtom.ShortName.ToLower() + ActiveAtom.Number;
+        var atomFileName = atom.ShortName.ToLower() + atom.Number;
         return $"{elementsRoot}/{atomFileName}.{fileExtension}";
     }
     private static string GetIsotopeFilePath(Atom atom)
@@ -108,8 +108,8 @@ public class FileSystem : MonoBehaviour
         var mainAtomFilePath = GetMainAtomFilePath(atom);
         var mainAtomDirectoryName = mainAtomFilePath.Split(new string[1] { $".{fileExtension}" }, StringSplitOptions.None)[0];
 
-        var isotopeFileName = ActiveAtom.ShortName.ToLower() + ActiveAtom.Number;
-        var isotopeNumber = ActiveAtom.NeutronCount < 0 ? "m" + (ActiveAtom.NeutronCount * -1) : ActiveAtom.NeutronCount.ToString();
+        var isotopeFileName = atom.ShortName.ToLower() + atom.Number;
+        var isotopeNumber = atom.NeutronCount < 0 ? "m" + (atom.NeutronCount * -1) : atom.NeutronCount.ToString();
         return $"{mainAtomDirectoryName}/{isotopeFileName}_{isotopeNumber}.{fileExtension}";
     }
 
@@ -154,6 +154,6 @@ public class FileSystem : MonoBehaviour
     public static void DeleteAtom(Atom atom)
     {
         LoadedAtoms.Remove(atom);
-        File.Delete($"./Elements/{atom.ShortName.ToLower()}.{fileExtension}");
+        File.Delete(!atom.IsIsotope ? GetMainAtomFilePath(atom) : GetIsotopeFilePath(atom));
     }
 }

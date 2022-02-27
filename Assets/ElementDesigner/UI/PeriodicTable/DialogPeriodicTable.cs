@@ -17,7 +17,7 @@ public class DialogPeriodicTable : MonoBehaviour
     private Button btnLoad, btnDelete, btnIsotopes;
 
     private Transform page1Transform, page2Transform;
-    
+
     void Start()
     {
         page1Transform = transform.Find("page1");
@@ -46,10 +46,10 @@ public class DialogPeriodicTable : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape))
             Close();
 
-        if(Input.GetKeyDown(KeyCode.Delete))
+        if (Input.GetKeyDown(KeyCode.Delete))
             HandleDeleteSelectedItem();
     }
 
@@ -60,12 +60,12 @@ public class DialogPeriodicTable : MonoBehaviour
         // .. atoms which are not isotopes
         var mainAtoms = FileSystem.LoadedAtoms.Where(atom => !atom.IsIsotope);
 
-        foreach(Atom atom in mainAtoms)
+        foreach (Atom atom in mainAtoms)
         {
             // TODO: Create a grid item if the atom won't fit in the table
-            var gridItem = page1GridItems[atom.Number-1];
+            var gridItem = page1GridItems[atom.Number - 1];
 
-            if(gridItem == null)
+            if (gridItem == null)
             {
                 Debug.LogWarning("Couldn't fit the atom in the table, skipping");
                 continue;
@@ -87,20 +87,24 @@ public class DialogPeriodicTable : MonoBehaviour
     public void OpenPage2()
     {
         page2Transform.gameObject.SetActive(true);
-        page1Transform.gameObject.SetActive(false);   
+        page1Transform.gameObject.SetActive(false);
 
         var atomGridItem = page2Transform.Find("gridItem").GetComponent<AtomGridItem>();
-        atomGridItem.SetAtomData(selectedItem.atom);
+        atomGridItem.SetAtomData(selectedItem?.atom);
 
         var selectedAtomIsotopes = FileSystem.LoadedAtoms.Where(atom => atom.Name == selectedItem.atom.Name && atom.IsIsotope);
-        
-        foreach(AtomGridItem gridItem in page2GridItems)
+
+        foreach (AtomGridItem gridItem in page2GridItems)
         {
             var gridItemIndex = page2GridItems.IndexOf(gridItem);
-            var isotopeAtom = selectedAtomIsotopes.FirstOrDefault(atom => atom.NeutronCount == gridItemIndex);
+            var isotopeAtom = selectedAtomIsotopes.FirstOrDefault(atom =>
+                atom.NeutronCount - selectedItem.atom.NeutronCount - 1
+            == gridItemIndex);
 
-            if(isotopeAtom != null)
+            if (isotopeAtom != null)
                 gridItem.SetAtomData(isotopeAtom);
+            else
+                gridItem.SetActive(false);
         }
     }
 

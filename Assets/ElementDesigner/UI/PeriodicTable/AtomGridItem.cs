@@ -30,11 +30,12 @@ public class AtomGridItem : PeriodicTableGridItem
     public void Start()
     {
         Init();
-        SetActive(false);
+
     }
     public void Awake()
     {
         Init();
+        SetActive(false);
     }
 
     // Update is called once per frame
@@ -58,13 +59,13 @@ public class AtomGridItem : PeriodicTableGridItem
 
     public void SetAtomData(Atom atomData)
     {
-        if(atomData == null)
+        if (atomData == null)
             throw new ApplicationException("Expected atomData in call to SetAtomData in PeriodicTableGridItem, got null");
 
         numberText.text = atomData.Number.ToString();
         shortNameText.text = atomData.ShortName;
         nameText.text = atomData.Name;
-        weightText.text = atomData.Weight.ToString()+".00";
+        weightText.text = atomData.Weight.ToString() + ".00";
 
         atom = atomData;
         SetActive(true);
