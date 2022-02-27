@@ -9,7 +9,7 @@ public class FileSystem : MonoBehaviour
 {
     const string fileExtension = "ed";
     const string elementsRoot = "./Elements";
-    private static string activeAtomFileName => ActiveAtom.ShortName.ToLower()+ActiveAtom.Number;
+    private static string activeAtomFileName => ActiveAtom.ShortName.ToLower() + ActiveAtom.Number;
 
     public static Atom ActiveAtom { get; set; }
 
@@ -31,29 +31,29 @@ public class FileSystem : MonoBehaviour
     public static void SaveAtom()
     {
         // .. make sure the directory exists
-        if(!Directory.Exists(elementsRoot))
+        if (!Directory.Exists(elementsRoot))
             Directory.CreateDirectory(elementsRoot);
 
         // .. if the main atom doesn't exist, create it
         var mainAtomPath = $"{elementsRoot}/{activeAtomFileName}";
         var atomExists = File.Exists(GetMainAtomFilePath(ActiveAtom));
 
-        if(atomExists)
+        if (atomExists)
         {
             var existingAtomJSON = File.ReadAllText($"{mainAtomPath}.{fileExtension}");
             var existingAtom = JsonUtility.FromJson<Atom>(existingAtomJSON);
             var activeAtomIsIsotope = existingAtom.Name == ActiveAtom.Name && existingAtom.NeutronCount != ActiveAtom.NeutronCount;
 
-            if(activeAtomIsIsotope)
+            if (activeAtomIsIsotope)
             {
                 // .. make sure the atom's isotope directory exists
-                if(!Directory.Exists(mainAtomPath))
+                if (!Directory.Exists(mainAtomPath))
                     Directory.CreateDirectory(mainAtomPath);
 
                 var isotopePath = GetActiveAtomIsotopeFileName();
                 var isotopeExists = File.Exists(isotopePath);
 
-                if(!isotopeExists) // .. confirm create isotope
+                if (!isotopeExists) // .. confirm create isotope
                     DialogConfirmSaveIsotope.Open();
                 else
                     ConfirmSaveIsotope(); // .. overwrite isotope
@@ -63,16 +63,16 @@ public class FileSystem : MonoBehaviour
             else // .. overwrite the main atom
             {
                 var activeAtomJSON = JsonUtility.ToJson(ActiveAtom);
-                LoadedAtoms[ActiveAtom.Number-1] = ActiveAtom;
-                File.WriteAllText($"{mainAtomPath}.{fileExtension}",activeAtomJSON);
+                LoadedAtoms[ActiveAtom.Number - 1] = ActiveAtom;
+                File.WriteAllText($"{mainAtomPath}.{fileExtension}", activeAtomJSON);
                 Debug.Log($"Saved active atom {ActiveAtom.Name} at {DateTime.Now}");
             }
         }
         else
         {
             var activeAtomJSON = JsonUtility.ToJson(ActiveAtom);
-            LoadedAtoms.Insert(ActiveAtom.Number-1,ActiveAtom);
-            File.WriteAllText($"{mainAtomPath}.{fileExtension}",activeAtomJSON);
+            LoadedAtoms.Insert(ActiveAtom.Number - 1, ActiveAtom);
+            File.WriteAllText($"{mainAtomPath}.{fileExtension}", activeAtomJSON);
             Debug.Log($"Saved active atom {ActiveAtom.Name} at {DateTime.Now}");
         }
     }
@@ -84,7 +84,7 @@ public class FileSystem : MonoBehaviour
 
         var isotopePath = GetActiveAtomIsotopeFileName();
         var isotopeExists = File.Exists(isotopePath);
-        
+
         // TODO: implement saving isotopes
         /* if(!isotopeExists)
             LoadedAtoms[ActiveAtom.Number-1].isotopes.Add(ActiveAtom);
@@ -95,55 +95,59 @@ public class FileSystem : MonoBehaviour
 
             LoadedAtoms[ActiveAtom.Number-1].isotopes[indexInIsotopes] = ActiveAtom;
         } */
-        File.WriteAllText(isotopePath,activeAtomJSON);
+        File.WriteAllText(isotopePath, activeAtomJSON);
     }
 
     private static string GetMainAtomFilePath(Atom atom)
     {
-        var atomFileName = ActiveAtom.ShortName.ToLower()+ActiveAtom.Number;
+        var atomFileName = ActiveAtom.ShortName.ToLower() + ActiveAtom.Number;
         return $"{elementsRoot}/{atomFileName}.{fileExtension}";
     }
     private static string GetIsotopeFilePath(Atom atom)
     {
         var mainAtomFilePath = GetMainAtomFilePath(atom);
-        var mainAtomDirectoryName = mainAtomFilePath.Split(new string[1] {$".{fileExtension}"},StringSplitOptions.None)[0];
+        var mainAtomDirectoryName = mainAtomFilePath.Split(new string[1] { $".{fileExtension}" }, StringSplitOptions.None)[0];
 
-        var isotopeFileName = ActiveAtom.ShortName.ToLower()+ActiveAtom.Number;
-        var isotopeNumber = ActiveAtom.NeutronCount < 0 ? "m"+(ActiveAtom.NeutronCount*-1) : ActiveAtom.NeutronCount.ToString();
+        var isotopeFileName = ActiveAtom.ShortName.ToLower() + ActiveAtom.Number;
+        var isotopeNumber = ActiveAtom.NeutronCount < 0 ? "m" + (ActiveAtom.NeutronCount * -1) : ActiveAtom.NeutronCount.ToString();
         return $"{mainAtomDirectoryName}/{isotopeFileName}_{isotopeNumber}.{fileExtension}";
     }
 
     private static string GetActiveAtomIsotopeFileName()
     {
         var mainAtomPath = $"{elementsRoot}/{activeAtomFileName}";
-        var isotopeNumber = ActiveAtom.NeutronCount < 0 ? "m"+(ActiveAtom.NeutronCount*-1) : ActiveAtom.NeutronCount.ToString();
+        var isotopeNumber = ActiveAtom.NeutronCount < 0 ? "m" + (ActiveAtom.NeutronCount * -1) : ActiveAtom.NeutronCount.ToString();
         return $"{mainAtomPath}/{activeAtomFileName}_{isotopeNumber}.{fileExtension}";
     }
 
     public static void LoadAtoms()
     {
-        if(!Directory.Exists(elementsRoot))
+        if (!Directory.Exists(elementsRoot))
             return;
 
-        var files = Directory.GetFiles($"{elementsRoot}/",$"*.{fileExtension}");
+        var files = Directory.GetFiles($"{elementsRoot}/", $"*.{fileExtension}");
 
-        foreach(string file in files)
+        foreach (string file in files)
         {
             string atomJSON = File.ReadAllText(file);
             var atomFromJSON = JsonUtility.FromJson<Atom>(atomJSON);
-            var mainAtomDirectoryName = GetMainAtomFilePath(atomFromJSON).Split(new string[1] {$".{fileExtension}"},StringSplitOptions.None)[0];
-            var isotopes = Directory.GetFiles($"{mainAtomDirectoryName}/",$"*.{fileExtension}");
-            var isotopeAtoms = isotopes.Select(isotope => {
-                var isotopeJSON = File.ReadAllText(isotope);
-                var isotopeAtom = JsonUtility.FromJson<Atom>(isotopeJSON);
-                isotopeAtom.IsIsotope = true;
-                return isotopeAtom;
-            });
+            var mainAtomDirectoryName = GetMainAtomFilePath(atomFromJSON).Split(new string[1] { $".{fileExtension}" }, StringSplitOptions.None)[0];
 
-            
+            if (Directory.Exists($"{mainAtomDirectoryName}/"))
+            {
+                var isotopes = Directory.GetFiles($"{mainAtomDirectoryName}/", $"*.{fileExtension}");
+                var isotopeAtoms = isotopes.Select(isotope =>
+                {
+                    var isotopeJSON = File.ReadAllText(isotope);
+                    var isotopeAtom = JsonUtility.FromJson<Atom>(isotopeJSON);
+                    isotopeAtom.IsIsotope = true;
+                    return isotopeAtom;
+                });
+
+                LoadedAtoms.AddRange(isotopeAtoms);
+            }
 
             LoadedAtoms.Add(atomFromJSON);
-            LoadedAtoms.AddRange(isotopeAtoms);
         }
     }
 
