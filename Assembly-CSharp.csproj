@@ -317,6 +317,12 @@
     <Reference Include="Newtonsoft.Json">
         <HintPath>D:\Pre-Archive\Projects\Unity\RefinerySim\Library\PackageCache\com.unity.nuget.newtonsoft-json@2.0.0\Runtime\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.Android.Types">
+        <HintPath>C:\Program Files\Unity\Hub\Editor\2021.2.11f1\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Android.Gradle">
+        <HintPath>C:\Program Files\Unity\Hub\Editor\2021.2.11f1\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.Gradle.dll</HintPath>
+    </Reference>
     <Reference Include="netstandard">
         <HintPath>C:\Program Files\Unity\Hub\Editor\2021.2.11f1\Editor\Data\NetStandard\ref\2.1.0\netstandard.dll</HintPath>
     </Reference>
