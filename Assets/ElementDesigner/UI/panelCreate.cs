@@ -7,18 +7,16 @@ using UnityEngine.EventSystems;
 
     public enum CreationState{None, Start, Drag}
 
-public class panelCreateParticle : MonoBehaviour, IPointerExitHandler
+public class panelCreate : MonoBehaviour, IPointerExitHandler
 {
-    
-
     private bool isHover = false;
     public CreationState creationState = CreationState.None;
     public ParticleType particleToCreate = ParticleType.Proton;
     private GameObject currentParticleObject;
-
     public GameObject proton;
     public GameObject neutron;
     public GameObject electron;
+    private List<Element> loadedElements = new List<Element>();
 
     public float particleDefaultDistance = 5;
     private float particleDistance = 1;
@@ -31,6 +29,14 @@ public class panelCreateParticle : MonoBehaviour, IPointerExitHandler
     {
         particleDistance = particleDefaultDistance;
     }
+
+    public void LoadParticles() => loadedElements.Clear();
+    public void LoadElements(IEnumerable<Element> elements)
+    {
+        loadedElements.Clear();
+        loadedElements.AddRange(elements);
+    }
+
 
     // Update is called once per frame
     void Update()
@@ -88,7 +94,6 @@ public class panelCreateParticle : MonoBehaviour, IPointerExitHandler
 
             Editor.SetDragSelectEnabled(false);
         }
-        // if(!isEdit) isHover = false;
     }
 
 
