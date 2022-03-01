@@ -82,6 +82,10 @@ public class Editor : MonoBehaviour
 
     void handleChangeDesignType(int designTypeTabId)
     {
+        if((int)designType != designTypeTabId && fileSystem.hasUnsavedChanges)
+        {
+            
+        }
         if(designTypeTabId == (int)DesignType.Atom)
         {
             
