@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class DialogPeriodicTable : MonoBehaviour
 {
+    public Editor editor;
     private PeriodicTableGridItem selectedItem;
 
     private List<AtomGridItem> page1GridItems = new List<AtomGridItem>();
@@ -126,7 +127,7 @@ public class DialogPeriodicTable : MonoBehaviour
     public void HandleLoadSelectedItem()
     {
         FileSystem.ActiveAtom = selectedItem.atom;
-        Editor.LoadAtomData(selectedItem.atom);
+        editor.LoadAtomData(selectedItem.atom);
         Close();
     }
 

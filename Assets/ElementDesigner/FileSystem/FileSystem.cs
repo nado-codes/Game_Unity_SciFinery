@@ -9,9 +9,14 @@ public class FileSystem : MonoBehaviour
 {
     const string fileExtension = "ed";
     const string elementsRoot = "./Elements";
+
+    // ACTIVE ATOM
     private static string activeAtomFileName => ActiveAtom.ShortName.ToLower() + ActiveAtom.Number;
 
     public static Atom ActiveAtom { get; set; }
+    public bool hasUnsavedChanges = false;
+
+    // LOADED ATOMS
 
     private static bool hasLoadedAtoms = false;
 

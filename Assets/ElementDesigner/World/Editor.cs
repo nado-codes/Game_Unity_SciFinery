@@ -6,24 +6,33 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public enum DragState{ Init, Active, None }
-public enum DesignType {Atom, Molecule, Product}
+public enum DesignType {Atom = 0, Molecule = 1, Product = 2}
 
 public class Editor : MonoBehaviour
 {
     private static Editor instance;
-    public RectTransform selectionBoxRect;
+    private DesignType designType = DesignType.Atom;
+    public FileSystem fileSystem;
+    
+    // PREFABS
     public GameObject protonPrefab, neutronPrefab, electronPrefab;
 
+    // UI
     public Text textClassification, textStability, textCharge;
 
+    // CAMERA
     private Vector3 cameraStartPos;
     private Quaternion cameraStartAngle;
+
+    // SELECTED OBJECTS
     private static List<Interact> _selectedObjects = new List<Interact>();
     public static IEnumerable<Interact> SelectedObjects => _selectedObjects;
     private static List<Interact> hoveredObjects = new List<Interact>();
+
+    // DRAG SELECT
+    public RectTransform selectionBoxRect;
     private static bool dragSelectIsEnabled = true;
     private DragState dragState = DragState.None;
-    
     private BoxCollider dragSelectCollider;
     private Vector2 dragSelectStartPosition, endDragSelectPosition;
     private Ray dragSelectStartWorld, dragSelectEndWorld;
@@ -55,6 +64,9 @@ public class Editor : MonoBehaviour
         textStability = GameObject.Find("TextStability")?.GetComponent<Text>();
         textCharge = GameObject.Find("TextCharge")?.GetComponent<Text>();
 
+        var designTypeTabs = GameObject.Find("tabsDesignType").GetComponent<Tabs>();
+        designTypeTabs.OnSelectedTabChanged += handleChangeDesignType;
+
         cameraStartPos = Camera.main.transform.position;
         cameraStartAngle = Camera.main.transform.rotation;
 
@@ -66,6 +78,22 @@ public class Editor : MonoBehaviour
         rigidbody.isKinematic = true;
 
         NewAtom();
+    }
+
+    void handleChangeDesignType(int designTypeTabId)
+    {
+        if(designTypeTabId == (int)DesignType.Atom)
+        {
+            
+        }
+        else if(designTypeTabId == (int)DesignType.Molecule)
+        {
+
+        }
+        else if(designTypeTabId == (int)DesignType.Product)
+        {
+
+        }
     }
 
     public void NewAtom()
@@ -313,7 +341,7 @@ public class Editor : MonoBehaviour
         }
     }
 
-    public static void LoadAtomData(Atom atomData)
+    public void LoadAtomData(Atom atomData)
     {
         ClearParticles();
         Camera.main.transform.position = instance.cameraStartPos;
@@ -334,7 +362,7 @@ public class Editor : MonoBehaviour
         });
     }
 
-    public static Particle CreateParticle(ParticleType type)
+    public Particle CreateParticle(ParticleType type)
     {
         GameObject particleGameObject = null;
 
@@ -354,10 +382,12 @@ public class Editor : MonoBehaviour
 
         Particles.Add(newParticle);
 
+        fileSystem.hasUnsavedChanges = true;
+
         return newParticle;
     }
 
-    public static Particle CreateParticle(ParticleType type, Vector3 position)
+    public Particle CreateParticle(ParticleType type, Vector3 position)
     {
         var particle = CreateParticle(type);
         particle.transform.position = position;

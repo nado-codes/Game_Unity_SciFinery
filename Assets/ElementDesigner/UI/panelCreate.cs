@@ -9,6 +9,7 @@ using UnityEngine.EventSystems;
 
 public class panelCreate : MonoBehaviour, IPointerExitHandler
 {
+    public Editor editor;
     private bool isHover = false;
     public CreationState creationState = CreationState.None;
     public ParticleType particleToCreate = ParticleType.Proton;
@@ -89,7 +90,7 @@ public class panelCreate : MonoBehaviour, IPointerExitHandler
         {
             Debug.Log("start drag");
             
-            currentParticleObject = Editor.CreateParticle(particleToCreate).gameObject;
+            currentParticleObject = editor.CreateParticle(particleToCreate).gameObject;
             creationState = CreationState.Drag;
 
             Editor.SetDragSelectEnabled(false);
