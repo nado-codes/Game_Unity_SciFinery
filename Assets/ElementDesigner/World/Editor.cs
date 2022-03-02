@@ -84,7 +84,9 @@ public class Editor : MonoBehaviour
     {
         if((int)designType != designTypeTabId && fileSystem.hasUnsavedChanges)
         {
+            var dialogBody = "You have unsaved changes in the editor. Would you like to save before continuing?";
             
+            DialogYesNo.Open("Save Changes",dialogBody);
         }
         if(designTypeTabId == (int)DesignType.Atom)
         {
@@ -98,6 +100,11 @@ public class Editor : MonoBehaviour
         {
 
         }
+    }
+
+    void ConfirmSaveOnDesignTypeChange()
+    {
+
     }
 
     public void NewAtom()

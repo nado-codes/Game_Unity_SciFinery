@@ -58,8 +58,11 @@ public class FileSystem : MonoBehaviour
                 var isotopePath = GetActiveAtomIsotopeFileName();
                 var isotopeExists = File.Exists(isotopePath);
 
+                var dialogBody = @"You're about to create the isotope {isotopeShortName} for {mainAtomName}, 
+                with a charge of {isotopeCharge}. Do you wish to continue?";
+
                 if (!isotopeExists) // .. confirm create isotope
-                    DialogConfirmSaveIsotope.Open();
+                    DialogYesNo.Open("Confirm Create Isotope",dialogBody);
                 else
                     ConfirmSaveIsotope(); // .. overwrite isotope
 
