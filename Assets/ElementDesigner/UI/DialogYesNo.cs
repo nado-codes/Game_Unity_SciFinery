@@ -28,5 +28,17 @@ public class DialogYesNo : MonoBehaviour
         _fnNo = fnNo ?? (() => {});
         instance.gameObject.SetActive(true);
     }
+    public static void DoYes()
+    {
+        _fnYes?.Invoke();
+        Close();
+    }
+
+    public static void DoNo()
+    {
+        _fnNo?.Invoke();
+        Close();
+    }
+    
     public static void Close() => instance.gameObject.SetActive(false);
 }

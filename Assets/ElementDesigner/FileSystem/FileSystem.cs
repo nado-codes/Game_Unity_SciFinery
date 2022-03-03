@@ -35,7 +35,7 @@ public class FileSystem : MonoBehaviour
     }
     public static void SaveAtom()
     {
-        // .. make sure the directory exists
+        // .. make sure the elements directory exists
         if (!Directory.Exists(elementsRoot))
             Directory.CreateDirectory(elementsRoot);
 
@@ -58,11 +58,13 @@ public class FileSystem : MonoBehaviour
                 var isotopePath = GetActiveAtomIsotopeFileName();
                 var isotopeExists = File.Exists(isotopePath);
 
-                var dialogBody = @"You're about to create the isotope {isotopeShortName} for {mainAtomName}, 
-                with a charge of {isotopeCharge}. Do you wish to continue?";
-
                 if (!isotopeExists) // .. confirm create isotope
-                    DialogYesNo.Open("Confirm Create Isotope",dialogBody);
+                {
+                    var dialogBody = @"You're about to create the isotope {isotopeShortName} for {mainAtomName}, 
+                    with {neutronCount} neutrons. Do you wish to continue?";
+
+                    DialogYesNo.Open("Confirm Create Isotope",dialogBody,ConfirmSaveIsotope);
+                }
                 else
                     ConfirmSaveIsotope(); // .. overwrite isotope
 

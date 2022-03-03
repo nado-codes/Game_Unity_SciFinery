@@ -85,26 +85,32 @@ public class Editor : MonoBehaviour
         if((int)designType != designTypeTabId && fileSystem.hasUnsavedChanges)
         {
             var dialogBody = "You have unsaved changes in the editor. Would you like to save before continuing?";
-            
-            DialogYesNo.Open("Save Changes",dialogBody);
+            DialogYesNo.Open("Save Changes?",dialogBody,ConfirmSaveChanges);
         }
+        
         if(designTypeTabId == (int)DesignType.Atom)
         {
-            
+            // create a new atom
+            NewAtom();
+            // change the UI mode spawn particles
         }
         else if(designTypeTabId == (int)DesignType.Molecule)
         {
-
+            // create a new molecule
+            NewMolecule();
+            // change the UI mode spawn atoms
         }
         else if(designTypeTabId == (int)DesignType.Product)
         {
-
+            // create a new product
+            NewProduct();
+            // change the UI mode spawn atoms + molecules
         }
     }
 
-    void ConfirmSaveOnDesignTypeChange()
+    void ConfirmSaveChanges()
     {
-
+        // TODO: save active element (atom/molecule/product)
     }
 
     public void NewAtom()
