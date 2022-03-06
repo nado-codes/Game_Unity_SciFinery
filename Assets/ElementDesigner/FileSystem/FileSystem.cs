@@ -14,7 +14,7 @@ public class FileSystem : MonoBehaviour
     private static string activeAtomFileName => ActiveAtom.ShortName.ToLower() + ActiveAtom.Number;
 
     public static Atom ActiveAtom { get; set; }
-    public bool hasUnsavedChanges = false;
+    public static bool hasUnsavedChanges = false;
 
     // LOADED ATOMS
 
@@ -63,12 +63,12 @@ public class FileSystem : MonoBehaviour
                     var dialogBody = @"You're about to create the isotope {isotopeShortName} for {mainAtomName}, 
                     with {neutronCount} neutrons. Do you wish to continue?";
 
-                    DialogYesNo.Open("Confirm Create Isotope",dialogBody,ConfirmSaveIsotope);
+                    DialogYesNo.Open("Confirm Create Isotope", dialogBody, ConfirmSaveIsotope);
                 }
                 else
                     ConfirmSaveIsotope(); // .. overwrite isotope
 
-                Debug.Log($"Saved isotope {ActiveAtom.Name} with neutrons {ActiveAtom.NeutronCount} at {DateTime.Now}");
+
             }
             else // .. overwrite the main atom
             {
@@ -76,6 +76,7 @@ public class FileSystem : MonoBehaviour
                 LoadedAtoms[ActiveAtom.Number - 1] = ActiveAtom;
                 File.WriteAllText($"{mainAtomPath}.{fileExtension}", activeAtomJSON);
                 Debug.Log($"Saved active atom {ActiveAtom.Name} at {DateTime.Now}");
+                TextNotification.Show("Save Successful");
             }
         }
         else
@@ -84,6 +85,7 @@ public class FileSystem : MonoBehaviour
             LoadedAtoms.Insert(ActiveAtom.Number - 1, ActiveAtom);
             File.WriteAllText($"{mainAtomPath}.{fileExtension}", activeAtomJSON);
             Debug.Log($"Saved active atom {ActiveAtom.Name} at {DateTime.Now}");
+            TextNotification.Show("Save Successful");
         }
     }
 
@@ -106,6 +108,8 @@ public class FileSystem : MonoBehaviour
             LoadedAtoms[ActiveAtom.Number-1].isotopes[indexInIsotopes] = ActiveAtom;
         } */
         File.WriteAllText(isotopePath, activeAtomJSON);
+        Debug.Log($"Saved isotope {ActiveAtom.Name} with neutrons {ActiveAtom.NeutronCount} at {DateTime.Now}");
+        TextNotification.Show("Save Successful");
     }
 
     private static string GetMainAtomFilePath(Atom atom)
@@ -165,5 +169,6 @@ public class FileSystem : MonoBehaviour
     {
         LoadedAtoms.Remove(atom);
         File.Delete(!atom.IsIsotope ? GetMainAtomFilePath(atom) : GetIsotopeFilePath(atom));
+        TextNotification.Show("Delete Successful");
     }
 }

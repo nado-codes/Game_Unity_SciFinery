@@ -124,14 +124,31 @@ public class DialogPeriodicTable : MonoBehaviour
         selectedItem = item;
     }
 
-    public void HandleLoadSelectedItem()
+    public void HandleLoadSelectedItemClicked()
+    {
+        if (FileSystem.hasUnsavedChanges)
+        {
+            var dialogBody = "You have unsaved changes in the editor. Would you like to save before continuing?";
+            DialogYesNo.Open("Save Changes?", dialogBody, FileSystem.SaveAtom, null,
+            () => HandleLoadSelectedItem());
+        }
+        else
+            HandleLoadSelectedItem();
+    }
+
+    private void HandleLoadSelectedItem()
     {
         FileSystem.ActiveAtom = selectedItem.atom;
         editor.LoadAtomData(selectedItem.atom);
         Close();
     }
 
-    public void HandleDeleteSelectedItem()
+    public void HandleDeleteSelectedItemClicked()
+    {
+        var dialogBody = "Deleting an element means that it is gone forever! Are you sure?";
+        DialogYesNo.Open("Delete Element", dialogBody, HandleDeleteSelectedItem);
+    }
+    private void HandleDeleteSelectedItem()
     {
         selectedItem.SetActive(false);
         FileSystem.DeleteAtom(selectedItem.atom);

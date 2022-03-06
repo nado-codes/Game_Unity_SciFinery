@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Translate : MonoBehaviour
 {
-    public static bool IsActive {get; private set;}
+    public static bool IsActive { get; private set; }
     TranslateHandle handle;
     TranslateBrake brake;
     Transform centerTransform;
@@ -41,7 +41,7 @@ public class Translate : MonoBehaviour
     /// </Summary>
     public void Accelerate(Vector3 dir)
     {
-        Debug.Log("Accelerating "+Editor.SelectedObjects.Count()+" particles...");
+        Debug.Log("Accelerating " + Editor.SelectedObjects.Count() + " particles...");
 
         // Editor.SelectedObjects.ToList().ForEach(s => s.GetComponent<Particle>().AddVelocity(dir,3));
     }
@@ -51,7 +51,7 @@ public class Translate : MonoBehaviour
     /// </Summary>
     public void Brake()
     {
-        Debug.Log("Slowing down "+Editor.SelectedObjects.Count()+" particles...");
+        Debug.Log("Slowing down " + Editor.SelectedObjects.Count() + " particles...");
         // Editor.SelectedObjects.ToList().ForEach(s => s.GetComponent<Particle>().Brake(.1f));
     }
 
@@ -110,7 +110,7 @@ public class Translate : MonoBehaviour
 
     public void SetTranslateIsActive(bool active)
     {
-        if(active)
+        if (active)
         {
             cameraStartRay = Camera.main.ScreenPointToRay(Input.mousePosition);
         }
