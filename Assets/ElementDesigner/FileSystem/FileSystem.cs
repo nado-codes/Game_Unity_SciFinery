@@ -21,6 +21,9 @@ public class FileSystem : MonoBehaviour
     private static bool hasLoadedAtoms = false;
 
     public static List<Atom> LoadedAtoms { get; private set; } = new List<Atom>();
+    public static List<Molecule> LoadedMolecules { get; private set; } = new List<Molecule>();
+    public static List<Product> LoadedProduct { get; private set; } = new List<Product>();
+
 
     public static Atom NewAtom()
     {

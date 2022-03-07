@@ -10,14 +10,26 @@ public class TextNotification : MonoBehaviour
 
     public float DelayMS = 3000;
 
-    void Start()
+    void Awake()
     {
         instance = this;
         txNotification = GetComponentInChildren<Text>();
         startColor = txNotification.color;
 
-        // gameObject.SetActive(false);
         Show("Welcome to Element Designer");
+    }
+
+    static bool VerifyInitialize()
+    {
+        if (instance == null)
+        {
+            instance = FindObjectOfType<TextNotification>();
+            if (instance == null) return false;
+
+            instance.Awake();
+        }
+
+        return true;
     }
 
     void Update()
@@ -36,14 +48,16 @@ public class TextNotification : MonoBehaviour
                 Debug.Log("notification hidden");
                 gameObject.SetActive(false);
             }
-
         }
     }
 
     public static void Show(string message)
     {
-        txNotification.color = startColor;
-        txNotification.text = message;
-        instance.gameObject.SetActive(true);
+        if (VerifyInitialize())
+        {
+            txNotification.color = startColor;
+            txNotification.text = message;
+            instance.gameObject.SetActive(true);
+        }
     }
 }
