@@ -22,7 +22,7 @@ public class FileSystem : MonoBehaviour
 
     public static List<Atom> LoadedAtoms { get; private set; } = new List<Atom>();
     public static List<Molecule> LoadedMolecules { get; private set; } = new List<Molecule>();
-    public static List<Product> LoadedProduct { get; private set; } = new List<Product>();
+    public static List<Product> LoadedProducts { get; private set; } = new List<Product>();
 
 
     public static Atom NewAtom()
@@ -36,7 +36,8 @@ public class FileSystem : MonoBehaviour
 
         return ActiveAtom;
     }
-    public static void SaveAtom()
+
+    public static void SaveElementOfType(ElementType type)
     {
         // .. make sure the elements directory exists
         if (!Directory.Exists(elementsRoot))
@@ -137,35 +138,45 @@ public class FileSystem : MonoBehaviour
         return $"{mainAtomPath}/{activeAtomFileName}_{isotopeNumber}.{fileExtension}";
     }
 
-    public static void LoadAtoms()
+    public static IEnumerable<T> LoadElementsOfType<T>(ElementType elementType) where T : Element
     {
         if (!Directory.Exists(elementsRoot))
-            return;
+            return new List<T>();
 
-        var files = Directory.GetFiles($"{elementsRoot}/", $"*.{fileExtension}");
+        var files = Directory.GetFiles($"{elementsRoot}/{elementType.ToString()}/", $"*.{fileExtension}");
+        var loadedElements = new List<T>();
+
+
 
         foreach (string file in files)
         {
             string atomJSON = File.ReadAllText(file);
             var atomFromJSON = JsonUtility.FromJson<Atom>(atomJSON);
-            var mainAtomDirectoryName = GetMainAtomFilePath(atomFromJSON).Split(new string[1] { $".{fileExtension}" }, StringSplitOptions.None)[0];
 
-            if (Directory.Exists($"{mainAtomDirectoryName}/"))
+            // TODO: Can other elements (molecule, product) have "sub-types" like isotopes? Or does it only apply to atoms?
+            if (elementType == ElementType.Atom)
             {
-                var isotopes = Directory.GetFiles($"{mainAtomDirectoryName}/", $"*.{fileExtension}");
-                var isotopeAtoms = isotopes.Select(isotope =>
+                var mainAtomDirectoryName = GetMainAtomFilePath(atomFromJSON).Split(new string[1] { $".{fileExtension}" }, StringSplitOptions.None)[0];
+
+                if (Directory.Exists($"{mainAtomDirectoryName}/"))
                 {
-                    var isotopeJSON = File.ReadAllText(isotope);
-                    var isotopeAtom = JsonUtility.FromJson<Atom>(isotopeJSON);
-                    isotopeAtom.IsIsotope = true;
-                    return isotopeAtom;
-                });
+                    var isotopes = Directory.GetFiles($"{mainAtomDirectoryName}/", $"*.{fileExtension}");
+                    var isotopeAtoms = isotopes.Select(isotope =>
+                    {
+                        var isotopeJSON = File.ReadAllText(isotope);
+                        var isotopeAtom = JsonUtility.FromJson<Atom>(isotopeJSON);
+                        isotopeAtom.IsIsotope = true;
+                        return isotopeAtom;
+                    });
 
-                LoadedAtoms.AddRange(isotopeAtoms);
+                    LoadedAtoms.AddRange(isotopeAtoms);
+                }
+
+                LoadedAtoms.Add(atomFromJSON);
             }
-
-            LoadedAtoms.Add(atomFromJSON);
         }
+
+        return loadedElements;
     }
 
     public static void DeleteAtom(Atom atom)

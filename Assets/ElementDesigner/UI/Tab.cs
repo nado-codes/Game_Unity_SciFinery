@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public delegate void VoidFN();
 public class Tab : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     public VoidFN OnClick;
@@ -15,10 +14,10 @@ public class Tab : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IP
     void Awake()
     {
         image = GetComponent<Image>();
-        
-        hoverColor = new Color(image.color.r,image.color.g,image.color.b,.75f);
-        normalColor = new Color(image.color.r,image.color.g,image.color.b,.5f);
-        selectedColor = new Color(image.color.r,image.color.g,image.color.b,1);
+
+        hoverColor = new Color(image.color.r, image.color.g, image.color.b, .75f);
+        normalColor = new Color(image.color.r, image.color.g, image.color.b, .5f);
+        selectedColor = new Color(image.color.r, image.color.g, image.color.b, 1);
     }
 
     public void OnPointerEnter(PointerEventData ev)

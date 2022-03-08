@@ -11,7 +11,7 @@ public class panelCreate : MonoBehaviour, IPointerExitHandler
 {
 
     public CreationState creationState = CreationState.None;
-    private static DesignType designType = DesignType.Atom;
+    private static ElementType designType = ElementType.Atom;
     public ParticleType particleToCreate = ParticleType.Proton;
     public GameObject proton, neutron, electron, currentParticleObject;
     private List<Element> loadedElements = new List<Element>();
@@ -41,20 +41,21 @@ public class panelCreate : MonoBehaviour, IPointerExitHandler
         loadedElements.AddRange(elements);
     }
 
-    public static void SetDesignType(DesignType newDesignType)
+    public static void SetDesignType(ElementType newDesignType)
     {
-        if (newDesignType != DesignType.Atom)
+        if (newDesignType != ElementType.Atom)
         {
             particleButtonsTransform.gameObject.SetActive(false);
             elementButtonsTransform.gameObject.SetActive(true);
             btnPrevTransform.gameObject.SetActive(true);
             btnNextTransform.gameObject.SetActive(true);
 
-            if (newDesignType == DesignType.Molecule)
+            if (newDesignType == ElementType.Molecule)
             {
                 // get or load atoms into spawning grid
+
             }
-            else if (newDesignType == DesignType.Product)
+            else if (newDesignType == ElementType.Product)
             {
                 // get or load molecules into spawning grid
             }

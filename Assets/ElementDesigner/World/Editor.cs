@@ -6,12 +6,12 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public enum DragState { Init, Active, None }
-public enum DesignType { Atom = 0, Molecule = 1, Product = 2 }
+public enum ElementType { Atom = 0, Molecule = 1, Product = 2 }
 
 public class Editor : MonoBehaviour
 {
     private static Editor instance;
-    private DesignType designType = DesignType.Atom;
+    public static ElementType designType = ElementType.Atom;
 
     // PREFABS
     public GameObject protonPrefab, neutronPrefab, electronPrefab;
@@ -77,6 +77,8 @@ public class Editor : MonoBehaviour
         rigidbody.isKinematic = true;
 
         NewAtom();
+
+        var atoms = FileSystem.LoadElementsOfType<Atom>(ElementType.Atom);
     }
 
     void HandleChangeDesignType(int designTypeTabId)
@@ -84,23 +86,23 @@ public class Editor : MonoBehaviour
         if (FileSystem.hasUnsavedChanges)
         {
             var dialogBody = "You have unsaved changes in the editor. Would you like to save before continuing?";
-            DialogYesNo.Open("Save Changes?", dialogBody, FileSystem.SaveAtom, null,
-            () => ChangeDesignType((DesignType)designTypeTabId));
+            DialogYesNo.Open("Save Changes?", dialogBody, () => FileSystem.SaveElementOfType(designType), null,
+            () => ChangeDesignType((ElementType)designTypeTabId));
         }
         else
-            ChangeDesignType((DesignType)designTypeTabId);
+            ChangeDesignType((ElementType)designTypeTabId);
     }
 
-    void ChangeDesignType(DesignType newDesignType)
+    void ChangeDesignType(ElementType newDesignType)
     {
         ClearParticles();
         panelCreate.SetDesignType(newDesignType);
 
-        if (newDesignType == DesignType.Atom)
+        if (newDesignType == ElementType.Atom)
             NewAtom();
-        else if (newDesignType == DesignType.Molecule)
+        else if (newDesignType == ElementType.Molecule)
             NewMolecule();
-        else if (newDesignType == DesignType.Product)
+        else if (newDesignType == ElementType.Product)
             NewProduct();
 
         designType = newDesignType;
@@ -112,7 +114,7 @@ public class Editor : MonoBehaviour
         if (FileSystem.hasUnsavedChanges)
         {
             var dialogBody = "You have unsaved changes in the editor. Would you like to save before continuing?";
-            DialogYesNo.Open("Save Changes?", dialogBody, FileSystem.SaveAtom, null,
+            DialogYesNo.Open("Save Changes?", dialogBody, () => FileSystem.SaveElementOfType(designType), null,
             () => NewElement());
         }
         else
@@ -120,11 +122,11 @@ public class Editor : MonoBehaviour
     }
     public void NewElement()
     {
-        if (designType == DesignType.Atom)
+        if (designType == ElementType.Atom)
             NewAtom();
-        else if (designType == DesignType.Molecule)
+        else if (designType == ElementType.Molecule)
             NewMolecule();
-        else if (designType == DesignType.Product)
+        else if (designType == ElementType.Product)
             NewProduct();
     }
     public void NewAtom()
@@ -135,7 +137,6 @@ public class Editor : MonoBehaviour
         FileSystem.NewAtom();
         LoadAtomData(FileSystem.ActiveAtom);
 
-        FileSystem.LoadAtoms();
         FileSystem.hasUnsavedChanges = false;
     }
 
@@ -379,8 +380,8 @@ public class Editor : MonoBehaviour
     public void LoadAtomData(Atom atomData)
     {
         ClearParticles();
-        Camera.main.transform.position = instance.cameraStartPos;
-        Camera.main.transform.rotation = instance.cameraStartAngle;
+        // Camera.main.transform.position = instance.cameraStartPos;
+        // Camera.main.transform.rotation = instance.cameraStartAngle;
 
         var particlesToCreate = new List<ParticleType>();
 
@@ -397,6 +398,7 @@ public class Editor : MonoBehaviour
             CreateParticle(particleToCreate, randPos);
         });
 
+        FileSystem.ActiveAtom = atomData;
         TextNotification.Show($"Loaded \"{FileSystem.ActiveAtom.Name}\"");
     }
 
@@ -454,7 +456,7 @@ public class Editor : MonoBehaviour
         if (FileSystem.hasUnsavedChanges)
         {
             var dialogBody = "You have unsaved changes in the editor. Would you like to save before continuing?";
-            DialogYesNo.Open("Save Changes?", dialogBody, FileSystem.SaveAtom, null,
+            DialogYesNo.Open("Save Changes?", dialogBody, () => FileSystem.SaveElementOfType(designType), null,
             () => ClearParticles());
         }
         else

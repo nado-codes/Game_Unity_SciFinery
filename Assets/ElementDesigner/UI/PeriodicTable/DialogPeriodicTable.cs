@@ -129,7 +129,7 @@ public class DialogPeriodicTable : MonoBehaviour
         if (FileSystem.hasUnsavedChanges)
         {
             var dialogBody = "You have unsaved changes in the editor. Would you like to save before continuing?";
-            DialogYesNo.Open("Save Changes?", dialogBody, FileSystem.SaveAtom, null,
+            DialogYesNo.Open("Save Changes?", dialogBody, () => FileSystem.SaveElementOfType(Editor.designType), null,
             () => HandleLoadSelectedItem());
         }
         else
@@ -138,7 +138,6 @@ public class DialogPeriodicTable : MonoBehaviour
 
     private void HandleLoadSelectedItem()
     {
-        FileSystem.ActiveAtom = selectedItem.atom;
         editor.LoadAtomData(selectedItem.atom);
         Close();
     }
