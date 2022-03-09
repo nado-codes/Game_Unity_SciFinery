@@ -12,7 +12,7 @@ public class FileSystem : MonoBehaviour
     public static FileSystem instance;
 
     // ACTIVE ELEMENT
-    private string activeElementFileName => ActiveAtomAs<Atom>().ShortName.ToLower() + "_" + ActiveAtomAs<Atom>().Guid;
+    private string activeElementFileName => ActiveElementAs<Atom>().ShortName.ToLower() + "_" + ActiveElementAs<Atom>().Guid;
 
     public Element ActiveElement { get; set; }
     public bool hasUnsavedChanges = false;
@@ -33,7 +33,7 @@ public class FileSystem : MonoBehaviour
         LoadedProducts = LoadElementsOfType<Product>().ToList();
     }
 
-    public T ActiveAtomAs<T>() where T : Element => ActiveElement as T;
+    public T ActiveElementAs<T>() where T : Element => ActiveElement as T;
 
     public Atom NewAtom()
     {
@@ -63,7 +63,7 @@ public class FileSystem : MonoBehaviour
         {
             var existingAtomJSON = File.ReadAllText($"{mainAtomPath}.{fileExtension}");
             var existingAtom = JsonUtility.FromJson<Atom>(existingAtomJSON);
-            var activeAtomIsIsotope = existingAtom.Name == ActiveAtomAs<Atom>().Name && existingAtom.NeutronCount != ActiveAtomAs<Atom>().NeutronCount;
+            var activeAtomIsIsotope = existingAtom.Name == ActiveElementAs<Atom>().Name && existingAtom.NeutronCount != ActiveElementAs<Atom>().NeutronCount;
 
             if (activeAtomIsIsotope)
             {
@@ -89,18 +89,18 @@ public class FileSystem : MonoBehaviour
             else // .. overwrite the main atom
             {
                 var activeAtomJSON = JsonUtility.ToJson(ActiveElement);
-                instance.LoadedAtoms[ActiveAtomAs<Atom>().Id - 1] = ActiveElement as Atom;
+                instance.LoadedAtoms[ActiveElementAs<Atom>().Id - 1] = ActiveElement as Atom;
                 File.WriteAllText($"{mainAtomPath}.{fileExtension}", activeAtomJSON);
-                Debug.Log($"Saved active atom {ActiveAtomAs<Atom>().Name} at {DateTime.Now}");
+                Debug.Log($"Saved active atom {ActiveElementAs<Atom>().Name} at {DateTime.Now}");
                 TextNotification.Show("Save Successful");
             }
         }
         else
         {
             var activeAtomJSON = JsonUtility.ToJson(ActiveElement);
-            instance.LoadedAtoms.Insert(ActiveAtomAs<Atom>().Id - 1, ActiveElement);
+            instance.LoadedAtoms.Insert(ActiveElementAs<Atom>().Id - 1, ActiveElement);
             File.WriteAllText($"{mainAtomPath}.{fileExtension}", activeAtomJSON);
-            Debug.Log($"Saved active atom {ActiveAtomAs<Atom>().Name} at {DateTime.Now}");
+            Debug.Log($"Saved active atom {ActiveElementAs<Atom>().Name} at {DateTime.Now}");
             TextNotification.Show("Save Successful");
         }
     }
@@ -124,7 +124,7 @@ public class FileSystem : MonoBehaviour
             LoadedAtoms[ActiveAtom.Number-1].isotopes[indexInIsotopes] = ActiveAtom;
         } */
         File.WriteAllText(isotopePath, activeAtomJSON);
-        Debug.Log($"Saved isotope {ActiveAtomAs<Atom>().Name} with neutrons {ActiveAtomAs<Atom>().NeutronCount} at {DateTime.Now}");
+        Debug.Log($"Saved isotope {ActiveElementAs<Atom>().Name} with neutrons {ActiveElementAs<Atom>().NeutronCount} at {DateTime.Now}");
         TextNotification.Show("Save Successful");
     }
 
@@ -146,7 +146,7 @@ public class FileSystem : MonoBehaviour
     private string GetActiveAtomIsotopeFileName()
     {
         var mainAtomPath = $"{elementsRoot}/{activeElementFileName}";
-        var isotopeNumber = ActiveAtomAs<Atom>().NeutronCount < 0 ? "m" + (ActiveAtomAs<Atom>().NeutronCount * -1) : ActiveAtomAs<Atom>().NeutronCount.ToString();
+        var isotopeNumber = ActiveElementAs<Atom>().NeutronCount < 0 ? "m" + (ActiveElementAs<Atom>().NeutronCount * -1) : ActiveElementAs<Atom>().NeutronCount.ToString();
         return $"{mainAtomPath}/{activeElementFileName}_{isotopeNumber}.{fileExtension}";
     }
 
