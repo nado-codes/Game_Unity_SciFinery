@@ -59,7 +59,7 @@ public class DialogPeriodicTable : MonoBehaviour
         gameObject.SetActive(true);
 
         // .. atoms which are not isotopes
-        var mainAtoms = FileSystem.LoadedAtoms.Where(atom => !atom.IsIsotope);
+        var mainAtoms = FileSystem.instance.LoadedAtoms.Where(atom => !atom.IsIsotope);
 
         foreach (Atom atom in mainAtoms)
         {
@@ -93,7 +93,7 @@ public class DialogPeriodicTable : MonoBehaviour
         var atomGridItem = page2Transform.Find("gridItem").GetComponent<AtomGridItem>();
         atomGridItem.SetAtomData(selectedItem?.atom);
 
-        var selectedAtomIsotopes = FileSystem.LoadedAtoms.Where(atom => atom.Name == selectedItem.atom.Name && atom.IsIsotope);
+        var selectedAtomIsotopes = FileSystem.instance.LoadedAtoms.Where(atom => atom.Name == selectedItem.atom.Name && atom.IsIsotope);
 
         foreach (AtomGridItem gridItem in page2GridItems)
         {
@@ -126,10 +126,11 @@ public class DialogPeriodicTable : MonoBehaviour
 
     public void HandleLoadSelectedItemClicked()
     {
-        if (FileSystem.hasUnsavedChanges)
+        if (FileSystem.instance.hasUnsavedChanges)
         {
             var dialogBody = "You have unsaved changes in the editor. Would you like to save before continuing?";
-            DialogYesNo.Open("Save Changes?", dialogBody, () => FileSystem.SaveElementOfType(Editor.designType), null,
+            Editor.designType
+            DialogYesNo.Open("Save Changes?", dialogBody, () => FileSystem.instance.SaveElementOfType(), null,
             () => HandleLoadSelectedItem());
         }
         else
@@ -150,6 +151,6 @@ public class DialogPeriodicTable : MonoBehaviour
     private void HandleDeleteSelectedItem()
     {
         selectedItem.SetActive(false);
-        FileSystem.DeleteAtom(selectedItem.atom);
+        FileSystem.instance.DeleteAtom(selectedItem.atom);
     }
 }

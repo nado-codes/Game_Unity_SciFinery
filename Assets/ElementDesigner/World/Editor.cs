@@ -77,16 +77,14 @@ public class Editor : MonoBehaviour
         rigidbody.isKinematic = true;
 
         NewAtom();
-
-        var atoms = FileSystem.LoadElementsOfType<Atom>(ElementType.Atom);
     }
 
     void HandleChangeDesignType(int designTypeTabId)
     {
-        if (FileSystem.hasUnsavedChanges)
+        if (FileSystem.instance.hasUnsavedChanges)
         {
             var dialogBody = "You have unsaved changes in the editor. Would you like to save before continuing?";
-            DialogYesNo.Open("Save Changes?", dialogBody, () => FileSystem.SaveElementOfType(designType), null,
+            DialogYesNo.Open("Save Changes?", dialogBody, () => FileSystem.instance.SaveActiveElement(), null,
             () => ChangeDesignType((ElementType)designTypeTabId));
         }
         else
@@ -111,10 +109,10 @@ public class Editor : MonoBehaviour
 
     public void HandleNewElementClicked()
     {
-        if (FileSystem.hasUnsavedChanges)
+        if (FileSystem.instance.hasUnsavedChanges)
         {
             var dialogBody = "You have unsaved changes in the editor. Would you like to save before continuing?";
-            DialogYesNo.Open("Save Changes?", dialogBody, () => FileSystem.SaveElementOfType(designType), null,
+            DialogYesNo.Open("Save Changes?", dialogBody, () => FileSystem.instance.SaveActiveElement(), null,
             () => NewElement());
         }
         else
@@ -134,20 +132,20 @@ public class Editor : MonoBehaviour
         atomGameObject = GameObject.Find("Atom") ?? new GameObject();
         atomGameObject.name = "AtomNewAtom";
 
-        FileSystem.NewAtom();
-        LoadAtomData(FileSystem.ActiveAtom);
+        FileSystem.instance.NewAtom();
+        LoadAtomData(FileSystem.instance.ActiveElement);
 
-        FileSystem.hasUnsavedChanges = false;
+        FileSystem.instance.hasUnsavedChanges = false;
     }
 
     public void NewMolecule()
     {
-        FileSystem.hasUnsavedChanges = false;
+        FileSystem.instance.hasUnsavedChanges = false;
     }
 
     public void NewProduct()
     {
-        FileSystem.hasUnsavedChanges = false;
+        FileSystem.instance.hasUnsavedChanges = false;
     }
 
     void Update()
@@ -157,8 +155,8 @@ public class Editor : MonoBehaviour
 
         UpdateActiveAtom();
 
-        var chargeRound = Mathf.RoundToInt(FileSystem.ActiveAtom.Charge);
-        textCharge.text = $"Charge: {chargeRound} ({FileSystem.ActiveAtom.Charge})";
+        var chargeRound = Mathf.RoundToInt(FileSystem.instance.ActiveElementAs<Atom>().Charge);
+        textCharge.text = $"Charge: {chargeRound} ({FileSystem.instance.ActiveElementAs<Atom>().Charge})";
 
         if (_selectedObjects.Any())
         {
@@ -176,14 +174,14 @@ public class Editor : MonoBehaviour
         var neutrons = Particles.Where(p => p.charge == Particle.Charge.None);
         var electrons = Particles.Where(p => p.charge == Particle.Charge.Negative);
 
-        FileSystem.ActiveAtom.Number = protons.Count();
-        FileSystem.ActiveAtom.ProtonCount = protons.Count();
-        FileSystem.ActiveAtom.NeutronCount = neutrons.Count();
-        FileSystem.ActiveAtom.ElectronCount = electrons.Count();
-        FileSystem.ActiveAtom.Weight = protons.Count() + neutrons.Count();
+        FileSystem.instance.ActiveElementAs<Atom>().Number = protons.Count();
+        FileSystem.instance.ActiveElementAs<Atom>().ProtonCount = protons.Count();
+        FileSystem.instance.ActiveElementAs<Atom>().NeutronCount = neutrons.Count();
+        FileSystem.instance.ActiveElementAs<Atom>().ElectronCount = electrons.Count();
+        FileSystem.instance.ActiveElementAs<Atom>().Weight = protons.Count() + neutrons.Count();
 
         //var charges = Particles.Select(p => (int)p.charge);
-        //FileSystem.ActiveAtom.Charge = charges.Aggregate((totalCharge,charge) => totalCharge += charge);
+        //FileSystem.instance.ActiveAtom.Charge = charges.Aggregate((totalCharge,charge) => totalCharge += charge);
     }
 
     void UpdateInputs()
@@ -398,8 +396,8 @@ public class Editor : MonoBehaviour
             CreateParticle(particleToCreate, randPos);
         });
 
-        FileSystem.ActiveAtom = atomData;
-        TextNotification.Show($"Loaded \"{FileSystem.ActiveAtom.Name}\"");
+        FileSystem.instance.ActiveElement = atomData;
+        TextNotification.Show($"Loaded \"{FileSystem.instance.ActiveElementAs<Atom>().Name}\"");
     }
 
     public static Particle CreateParticle(ParticleType type)
@@ -415,14 +413,14 @@ public class Editor : MonoBehaviour
 
         var newParticle = particleGameObject.GetComponent<Particle>();
         newParticle.transform.parent = atomGameObject.transform;
-        FileSystem.ActiveAtom.Charge += (int)newParticle.charge;
+        FileSystem.instance.ActiveElementAs<Atom>().Charge += (int)newParticle.charge;
 
         if (newParticle.type != type)
             Debug.LogWarning($"Failed to create a particle of type {type}. Created an electron by default");
 
         Particles.Add(newParticle);
 
-        FileSystem.hasUnsavedChanges = true;
+        FileSystem.instance.hasUnsavedChanges = true;
 
         return newParticle;
     }
@@ -440,7 +438,7 @@ public class Editor : MonoBehaviour
         Particles.Remove(particle);
         GameObject.Destroy(particle.gameObject);
 
-        FileSystem.ActiveAtom.Charge -= (int)particle.charge;
+        FileSystem.instance.ActiveElementAs<Atom>().Charge -= (int)particle.charge;
 
         return true;
     }
@@ -453,10 +451,10 @@ public class Editor : MonoBehaviour
 
     public static void HandleClearParticlesClicked()
     {
-        if (FileSystem.hasUnsavedChanges)
+        if (FileSystem.instance.hasUnsavedChanges)
         {
             var dialogBody = "You have unsaved changes in the editor. Would you like to save before continuing?";
-            DialogYesNo.Open("Save Changes?", dialogBody, () => FileSystem.SaveElementOfType(designType), null,
+            DialogYesNo.Open("Save Changes?", dialogBody, () => FileSystem.instance.SaveActiveElement(), null,
             () => ClearParticles());
         }
         else

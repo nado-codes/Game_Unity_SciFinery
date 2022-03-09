@@ -9,49 +9,61 @@ public class FileSystem : MonoBehaviour
 {
     const string fileExtension = "ed";
     const string elementsRoot = "./Elements";
+    public static FileSystem instance;
 
-    // ACTIVE ATOM
-    private static string activeAtomFileName => ActiveAtom.ShortName.ToLower() + ActiveAtom.Number;
+    // ACTIVE ELEMENT
+    private string activeElementFileName => ActiveAtomAs<Atom>().ShortName.ToLower() + "_" + ActiveAtomAs<Atom>().Guid;
 
-    public static Atom ActiveAtom { get; set; }
-    public static bool hasUnsavedChanges = false;
+    public Element ActiveElement { get; set; }
+    public bool hasUnsavedChanges = false;
 
-    // LOADED ATOMS
+    // LOADED ELEMENTS
 
-    private static bool hasLoadedAtoms = false;
-
-    public static List<Atom> LoadedAtoms { get; private set; } = new List<Atom>();
-    public static List<Molecule> LoadedMolecules { get; private set; } = new List<Molecule>();
-    public static List<Product> LoadedProducts { get; private set; } = new List<Product>();
+    public List<Atom> LoadedAtoms { get; private set; } = new List<Atom>();
+    public List<Molecule> LoadedMolecules { get; private set; } = new List<Molecule>();
+    public List<Product> LoadedProducts { get; private set; } = new List<Product>();
 
 
-    public static Atom NewAtom()
+    void Start()
     {
-        ActiveAtom = new Atom();
-        ActiveAtom.Number = 1;
-        ActiveAtom.Name = "NewAtom";
-        ActiveAtom.ShortName = "NE";
-        ActiveAtom.ProtonCount = 1;
-        ActiveAtom.ElectronCount = 1;
+        instance = this;
 
-        return ActiveAtom;
+        LoadedAtoms = LoadElementsOfType<Atom>().ToList();
+        LoadedMolecules = LoadElementsOfType<Molecule>().ToList();
+        LoadedProducts = LoadElementsOfType<Product>().ToList();
     }
 
-    public static void SaveElementOfType(ElementType type)
+    public T ActiveAtomAs<T>() where T : Element => ActiveElement as T;
+
+    public Atom NewAtom()
+    {
+        var newAtom = new Atom();
+        newAtom.Number = 1;
+        newAtom.Name = "NewAtom";
+        newAtom.ShortName = "NE";
+        newAtom.ProtonCount = 1;
+        newAtom.ElectronCount = 1;
+
+        ActiveElement = newAtom;
+
+        return newAtom;
+    }
+
+    public void SaveActiveElement()
     {
         // .. make sure the elements directory exists
         if (!Directory.Exists(elementsRoot))
             Directory.CreateDirectory(elementsRoot);
 
         // .. if the main atom doesn't exist, create it
-        var mainAtomPath = $"{elementsRoot}/{activeAtomFileName}";
-        var atomExists = File.Exists(GetMainAtomFilePath(ActiveAtom));
+        var mainAtomPath = $"{elementsRoot}/{activeElementFileName}";
+        var atomExists = File.Exists(GetMainElementFilePath(ActiveElement));
 
         if (atomExists)
         {
             var existingAtomJSON = File.ReadAllText($"{mainAtomPath}.{fileExtension}");
             var existingAtom = JsonUtility.FromJson<Atom>(existingAtomJSON);
-            var activeAtomIsIsotope = existingAtom.Name == ActiveAtom.Name && existingAtom.NeutronCount != ActiveAtom.NeutronCount;
+            var activeAtomIsIsotope = existingAtom.Name == ActiveAtomAs<Atom>().Name && existingAtom.NeutronCount != ActiveAtomAs<Atom>().NeutronCount;
 
             if (activeAtomIsIsotope)
             {
@@ -76,27 +88,27 @@ public class FileSystem : MonoBehaviour
             }
             else // .. overwrite the main atom
             {
-                var activeAtomJSON = JsonUtility.ToJson(ActiveAtom);
-                LoadedAtoms[ActiveAtom.Number - 1] = ActiveAtom;
+                var activeAtomJSON = JsonUtility.ToJson(ActiveElement);
+                instance.LoadedAtoms[ActiveAtomAs<Atom>().Id - 1] = ActiveElement as Atom;
                 File.WriteAllText($"{mainAtomPath}.{fileExtension}", activeAtomJSON);
-                Debug.Log($"Saved active atom {ActiveAtom.Name} at {DateTime.Now}");
+                Debug.Log($"Saved active atom {ActiveAtomAs<Atom>().Name} at {DateTime.Now}");
                 TextNotification.Show("Save Successful");
             }
         }
         else
         {
-            var activeAtomJSON = JsonUtility.ToJson(ActiveAtom);
-            LoadedAtoms.Insert(ActiveAtom.Number - 1, ActiveAtom);
+            var activeAtomJSON = JsonUtility.ToJson(ActiveElement);
+            instance.LoadedAtoms.Insert(ActiveAtomAs<Atom>().Id - 1, ActiveElement);
             File.WriteAllText($"{mainAtomPath}.{fileExtension}", activeAtomJSON);
-            Debug.Log($"Saved active atom {ActiveAtom.Name} at {DateTime.Now}");
+            Debug.Log($"Saved active atom {ActiveAtomAs<Atom>().Name} at {DateTime.Now}");
             TextNotification.Show("Save Successful");
         }
     }
 
     // .. Create an isotope for a particlar atom, by creating a directory to store isotopes and then saving the file inside it
-    public static void ConfirmSaveIsotope()
+    public void ConfirmSaveIsotope()
     {
-        var activeAtomJSON = JsonUtility.ToJson(ActiveAtom);
+        var activeAtomJSON = JsonUtility.ToJson(ActiveElement);
 
         var isotopePath = GetActiveAtomIsotopeFileName();
         var isotopeExists = File.Exists(isotopePath);
@@ -112,18 +124,18 @@ public class FileSystem : MonoBehaviour
             LoadedAtoms[ActiveAtom.Number-1].isotopes[indexInIsotopes] = ActiveAtom;
         } */
         File.WriteAllText(isotopePath, activeAtomJSON);
-        Debug.Log($"Saved isotope {ActiveAtom.Name} with neutrons {ActiveAtom.NeutronCount} at {DateTime.Now}");
+        Debug.Log($"Saved isotope {ActiveAtomAs<Atom>().Name} with neutrons {ActiveAtomAs<Atom>().NeutronCount} at {DateTime.Now}");
         TextNotification.Show("Save Successful");
     }
 
-    private static string GetMainAtomFilePath(Atom atom)
+    private static string GetMainElementFilePath(Element element)
     {
-        var atomFileName = atom.ShortName.ToLower() + atom.Number;
+        var atomFileName = element.ShortName.ToLower() + "_" + element.Guid;
         return $"{elementsRoot}/{atomFileName}.{fileExtension}";
     }
     private static string GetIsotopeFilePath(Atom atom)
     {
-        var mainAtomFilePath = GetMainAtomFilePath(atom);
+        var mainAtomFilePath = GetMainElementFilePath(atom);
         var mainAtomDirectoryName = mainAtomFilePath.Split(new string[1] { $".{fileExtension}" }, StringSplitOptions.None)[0];
 
         var isotopeFileName = atom.ShortName.ToLower() + atom.Number;
@@ -131,32 +143,34 @@ public class FileSystem : MonoBehaviour
         return $"{mainAtomDirectoryName}/{isotopeFileName}_{isotopeNumber}.{fileExtension}";
     }
 
-    private static string GetActiveAtomIsotopeFileName()
+    private string GetActiveAtomIsotopeFileName()
     {
-        var mainAtomPath = $"{elementsRoot}/{activeAtomFileName}";
-        var isotopeNumber = ActiveAtom.NeutronCount < 0 ? "m" + (ActiveAtom.NeutronCount * -1) : ActiveAtom.NeutronCount.ToString();
-        return $"{mainAtomPath}/{activeAtomFileName}_{isotopeNumber}.{fileExtension}";
+        var mainAtomPath = $"{elementsRoot}/{activeElementFileName}";
+        var isotopeNumber = ActiveAtomAs<Atom>().NeutronCount < 0 ? "m" + (ActiveAtomAs<Atom>().NeutronCount * -1) : ActiveAtomAs<Atom>().NeutronCount.ToString();
+        return $"{mainAtomPath}/{activeElementFileName}_{isotopeNumber}.{fileExtension}";
     }
 
-    public static IEnumerable<T> LoadElementsOfType<T>(ElementType elementType) where T : Element
+    private static IEnumerable<T> LoadElementsOfType<T>() where T : Element
     {
         if (!Directory.Exists(elementsRoot))
             return new List<T>();
 
+        var typeName = typeof(T).FullName;
+        ElementType elementType;
+        Enum.TryParse(typeName, out elementType);
+
         var files = Directory.GetFiles($"{elementsRoot}/{elementType.ToString()}/", $"*.{fileExtension}");
         var loadedElements = new List<T>();
 
-
-
         foreach (string file in files)
         {
-            string atomJSON = File.ReadAllText(file);
-            var atomFromJSON = JsonUtility.FromJson<Atom>(atomJSON);
+            string elementJSON = File.ReadAllText(file);
+            var elementFromJSON = JsonUtility.FromJson<T>(elementJSON);
 
             // TODO: Can other elements (molecule, product) have "sub-types" like isotopes? Or does it only apply to atoms?
             if (elementType == ElementType.Atom)
             {
-                var mainAtomDirectoryName = GetMainAtomFilePath(atomFromJSON).Split(new string[1] { $".{fileExtension}" }, StringSplitOptions.None)[0];
+                var mainAtomDirectoryName = GetMainElementFilePath(elementFromJSON).Split(new string[1] { $".{fileExtension}" }, StringSplitOptions.None)[0];
 
                 if (Directory.Exists($"{mainAtomDirectoryName}/"))
                 {
@@ -169,20 +183,22 @@ public class FileSystem : MonoBehaviour
                         return isotopeAtom;
                     });
 
-                    LoadedAtoms.AddRange(isotopeAtoms);
+                    // .. TODO: this might break because we're casting an Atom to it's base type so it may lose the "IsIsotope" property
+                    // .. Need to QA this
+                    loadedElements.AddRange(isotopeAtoms.Cast<T>());
                 }
 
-                LoadedAtoms.Add(atomFromJSON);
+                loadedElements.Add(elementFromJSON);
             }
         }
 
         return loadedElements;
     }
 
-    public static void DeleteAtom(Atom atom)
+    public void DeleteAtom(Atom atom)
     {
         LoadedAtoms.Remove(atom);
-        File.Delete(!atom.IsIsotope ? GetMainAtomFilePath(atom) : GetIsotopeFilePath(atom));
+        File.Delete(!atom.IsIsotope ? GetMainElementFilePath(atom) : GetIsotopeFilePath(atom));
         TextNotification.Show("Delete Successful");
     }
 }

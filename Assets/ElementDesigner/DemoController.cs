@@ -43,9 +43,9 @@ public class DemoController : MonoBehaviour
 
     private void loadRandomAtom()
     {
-        var atomCount = FileSystem.LoadedAtoms.Count;
+        var atomCount = FileSystem.instance.LoadedAtoms.Count;
 
-        var allAtomsNotPreviouslyLoaded = FileSystem.LoadedAtoms.Where(atom => !prevLoaded.Any(prevAtom => prevAtom.Weight == atom.Weight));
+        var allAtomsNotPreviouslyLoaded = FileSystem.instance.LoadedAtoms.Where(atom => !prevLoaded.Any(prevAtom => prevAtom.Weight == atom.Weight));
         var randomAtomIndex = UnityEngine.Random.Range(0, allAtomsNotPreviouslyLoaded.Count());
         var randomAtom = allAtomsNotPreviouslyLoaded.ElementAt(randomAtomIndex);
         editor.LoadAtomData(randomAtom);

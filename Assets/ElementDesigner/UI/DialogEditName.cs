@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class DialogEditName : MonoBehaviour
 {
     InputField inputName;
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,14 +18,14 @@ public class DialogEditName : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Return))
+        if (Input.GetKeyDown(KeyCode.Return))
             Accept();
     }
 
     public void Open()
     {
         gameObject.SetActive(true);
-        inputName.text = FileSystem.ActiveAtom.Name;
+        inputName.text = FileSystem.instance.ActiveElementAs<Atom>().Name;
         HUD.LockedFocus = true;
     }
 
@@ -40,8 +40,8 @@ public class DialogEditName : MonoBehaviour
         var nameWithoutVowels = new string(inputName.text.Where(c => !("aeiou").Contains(c)).ToArray());
         var newShortName = (nameWithoutVowels[0].ToString() + nameWithoutVowels[1].ToString()).ToUpper();
 
-        FileSystem.ActiveAtom.Name = inputName.text;
-        FileSystem.ActiveAtom.ShortName = newShortName;
+        FileSystem.instance.ActiveElementAs<Atom>().Name = inputName.text;
+        FileSystem.instance.ActiveElementAs<Atom>().ShortName = newShortName;
 
         Close();
     }
