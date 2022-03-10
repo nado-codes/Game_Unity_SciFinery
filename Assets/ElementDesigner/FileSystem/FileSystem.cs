@@ -89,7 +89,7 @@ public class FileSystem : MonoBehaviour
             else // .. overwrite the main atom
             {
                 var activeAtomJSON = JsonUtility.ToJson(ActiveElement);
-                instance.LoadedAtoms[ActiveElementAs<Atom>().Id - 1] = ActiveElement as Atom;
+                // instance.LoadedAtoms[ActiveElementAs<Atom>().Id - 1] = ActiveElement as Atom;
                 File.WriteAllText($"{mainAtomPath}.{fileExtension}", activeAtomJSON);
                 Debug.Log($"Saved active atom {ActiveElementAs<Atom>().Name} at {DateTime.Now}");
                 TextNotification.Show("Save Successful");
@@ -98,7 +98,7 @@ public class FileSystem : MonoBehaviour
         else
         {
             var activeAtomJSON = JsonUtility.ToJson(ActiveElement);
-            instance.LoadedAtoms.Insert(ActiveElementAs<Atom>().Id - 1, ActiveElement);
+            // instance.LoadedAtoms.Insert(ActiveElementAs<Atom>().Id - 1, ActiveElement);
             File.WriteAllText($"{mainAtomPath}.{fileExtension}", activeAtomJSON);
             Debug.Log($"Saved active atom {ActiveElementAs<Atom>().Name} at {DateTime.Now}");
             TextNotification.Show("Save Successful");

@@ -393,6 +393,11 @@ public class Editor : MonoBehaviour
         TextNotification.Show($"Loaded \"{FileSystem.instance.ActiveElementAs<Atom>().Name}\"");
     }
 
+    public static void CreateWorldElement<T>() where T : WorldElement
+    {
+
+    }
+
     public static Particle CreateParticle(ParticleType type)
     {
         GameObject particleGameObject = null;
