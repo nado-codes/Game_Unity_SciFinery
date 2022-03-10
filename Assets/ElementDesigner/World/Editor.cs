@@ -93,7 +93,7 @@ public class Editor : MonoBehaviour
 
     void ChangeDesignType(ElementType newDesignType)
     {
-        ClearParticles();
+        ClearElements();
         panelCreate.SetDesignType(newDesignType);
 
         if (newDesignType == ElementType.Atom)
@@ -133,7 +133,7 @@ public class Editor : MonoBehaviour
         atomGameObject.name = "AtomNewAtom";
 
         FileSystem.instance.NewAtom();
-        LoadAtomData(FileSystem.instance.ActiveElement);
+        // LoadAtomData(FileSystem.instance.ActiveElement);
 
         FileSystem.instance.hasUnsavedChanges = false;
     }
@@ -163,8 +163,6 @@ public class Editor : MonoBehaviour
             var selectionCenter = _selectedObjects.Count() > 1 ?
                 _selectedObjects.Aggregate(Vector3.zero, (total, next) => total += next.transform.position * .5f) :
                 _selectedObjects.FirstOrDefault().transform.position;
-
-            Translate.Instance.transform.position = selectionCenter;
         }
     }
 
@@ -174,11 +172,11 @@ public class Editor : MonoBehaviour
         var neutrons = Particles.Where(p => p.charge == Particle.Charge.None);
         var electrons = Particles.Where(p => p.charge == Particle.Charge.Negative);
 
-        FileSystem.instance.ActiveElementAs<Atom>().Number = protons.Count();
-        FileSystem.instance.ActiveElementAs<Atom>().ProtonCount = protons.Count();
-        FileSystem.instance.ActiveElementAs<Atom>().NeutronCount = neutrons.Count();
-        FileSystem.instance.ActiveElementAs<Atom>().ElectronCount = electrons.Count();
-        FileSystem.instance.ActiveElementAs<Atom>().Weight = protons.Count() + neutrons.Count();
+        // FileSystem.instance.ActiveElementAs<Atom>().Number = protons.Count();
+        // FileSystem.instance.ActiveElementAs<Atom>().ProtonCount = protons.Count();
+        // FileSystem.instance.ActiveElementAs<Atom>().NeutronCount = neutrons.Count();
+        // FileSystem.instance.ActiveElementAs<Atom>().ElectronCount = electrons.Count();
+        // FileSystem.instance.ActiveElementAs<Atom>().Weight = protons.Count() + neutrons.Count();
 
         //var charges = Particles.Select(p => (int)p.charge);
         //FileSystem.instance.ActiveAtom.Charge = charges.Aggregate((totalCharge,charge) => totalCharge += charge);
@@ -217,10 +215,7 @@ public class Editor : MonoBehaviour
         var cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
         dragSelectEndWorld = cameraRay;
 
-        bool canDrag = (
-            Vector3.Distance(dragSelectStartWorld.origin, dragSelectEndWorld.origin) > .05f &&
-            !Translate.IsActive
-        );
+        bool canDrag = Vector3.Distance(dragSelectStartWorld.origin, dragSelectEndWorld.origin) > .05f;
 
         if (canDrag && dragState == DragState.Init)
             StartDragSelect();
@@ -335,8 +330,6 @@ public class Editor : MonoBehaviour
             _selectedObjects.RemoveAll(s => objectsToDeselect.Contains(s));
         }
 
-        Translate.SetActive((objectsToSelect.Count() > 0));
-
         if (objectsToSelect.Count() == 0) return;
 
         if (!isMultiDeselect)
@@ -377,7 +370,7 @@ public class Editor : MonoBehaviour
 
     public void LoadAtomData(Atom atomData)
     {
-        ClearParticles();
+        ClearElements();
         // Camera.main.transform.position = instance.cameraStartPos;
         // Camera.main.transform.rotation = instance.cameraStartAngle;
 
@@ -449,19 +442,19 @@ public class Editor : MonoBehaviour
     public static void RemoveParticles(IEnumerable<Interact> particlesToRemove)
         => particlesToRemove.Select(p => RemoveParticle(p.GetComponent<Particle>()));
 
-    public static void HandleClearParticlesClicked()
+    public static void HandleClearElementsClicked()
     {
         if (FileSystem.instance.hasUnsavedChanges)
         {
             var dialogBody = "You have unsaved changes in the editor. Would you like to save before continuing?";
             DialogYesNo.Open("Save Changes?", dialogBody, () => FileSystem.instance.SaveActiveElement(), null,
-            () => ClearParticles());
+            () => ClearElements());
         }
         else
-            ClearParticles();
+            ClearElements();
     }
 
-    public static void ClearParticles()
+    public static void ClearElements()
     {
         var particlesToDelete = new List<Particle>(Particles);
         particlesToDelete.ForEach(p => RemoveParticle(p));
