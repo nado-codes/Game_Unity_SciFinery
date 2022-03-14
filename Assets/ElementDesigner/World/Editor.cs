@@ -395,11 +395,41 @@ public class Editor : MonoBehaviour
 
     public static void CreateWorldElement<T>() where T : WorldElement
     {
+        // TODO: later, prefabs for particles, atoms and molecules will be loaded in at runtime using
+        // Unity "Addressables" (like AssetBundles)
 
+        var baseTypeNameToLower = typeof(T).BaseType.FullName.ToLower();
+        var typeNameToLower = typeof(T).FullName.ToLower();
+
+        if (baseTypeNameToLower == "particle")
+        {
+            if (typeNameToLower == "proton")
+            {
+
+            }
+            else if (typeNameToLower == "neutron")
+            {
+
+            }
+            else if (typeNameToLower == "electron")
+            {
+
+            }
+        }
+        else if (typeNameToLower == "atom")
+        {
+
+        }
+        else if (typeNameToLower == "molecule")
+        {
+
+        }
     }
 
     public static Particle CreateParticle(ParticleType type)
     {
+        // TODO: later, prefabs for particles, atoms and molecules will be loaded in at runtime using
+        // Unity "Addressables" (like AssetBundles)
         GameObject particleGameObject = null;
 
         if (type == ParticleType.Proton)
