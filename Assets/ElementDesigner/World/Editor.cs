@@ -14,10 +14,19 @@ public class Editor : MonoBehaviour
     public static ElementType designType = ElementType.Atom;
 
     // PREFABS
-    public GameObject protonPrefab, neutronPrefab, electronPrefab;
+    [Header("Particle Prefabs")]
+    public GameObject protonPrefab;
+    public GameObject neutronPrefab;
+    public GameObject electronPrefab;
+    [Header("Element Prefabs")]
+    public GameObject atomPrefab;
+    public GameObject moleculePrefab;
 
+    [Header("Other")]
     // UI
-    public Text textClassification, textStability, textCharge;
+    public Text textClassification;
+    public Text textStability;
+    public Text textCharge;
 
     // CAMERA
     private Vector3 cameraStartPos;
@@ -393,7 +402,7 @@ public class Editor : MonoBehaviour
         TextNotification.Show($"Loaded \"{FileSystem.instance.ActiveElementAs<Atom>().Name}\"");
     }
 
-    public static void CreateWorldElement<T>() where T : WorldElement
+    public static WorldElement CreateWorldElement<T>() where T : WorldElement
     {
         // TODO: later, prefabs for particles, atoms and molecules will be loaded in at runtime using
         // Unity "Addressables" (like AssetBundles)
@@ -403,18 +412,30 @@ public class Editor : MonoBehaviour
 
         if (baseTypeNameToLower == "particle")
         {
+            // TODO: later, prefabs for particles, atoms and molecules will be loaded in at runtime using
+            // Unity "Addressables" (like AssetBundles)
+            GameObject particleGameObject = null;
+
             if (typeNameToLower == "proton")
             {
-
+                particleGameObject = Instantiate(instance.protonPrefab);
             }
             else if (typeNameToLower == "neutron")
             {
-
+                particleGameObject = Instantiate(instance.neutronPrefab);
             }
             else if (typeNameToLower == "electron")
             {
-
+                particleGameObject = Instantiate(instance.electronPrefab);
             }
+
+            var newParticle = particleGameObject.GetComponent<Particle>();
+            newParticle.transform.parent = atomGameObject.transform;
+
+            // .. TODO: charge should be SET, not ADDED - this is bad
+            FileSystem.instance.ActiveElementAs<Atom>().Charge += (int)newParticle.charge;
+
+            Particles.Add(newParticle);
         }
         else if (typeNameToLower == "atom")
         {
@@ -424,6 +445,8 @@ public class Editor : MonoBehaviour
         {
 
         }
+
+        FileSystem.instance.hasUnsavedChanges = true;
     }
 
     public static Particle CreateParticle(ParticleType type)
