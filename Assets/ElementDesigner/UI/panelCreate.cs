@@ -133,7 +133,7 @@ public class panelCreate : MonoBehaviour, IPointerExitHandler
         {
             Debug.Log("start drag");
 
-            currentParticleObject = Editor.CreateParticle(particleToCreate).gameObject;
+            currentParticleObject = Editor.CreateWorldElement(particleToCreate).gameObject;
             creationState = CreationState.Drag;
 
             Editor.SetDragSelectEnabled(false);
