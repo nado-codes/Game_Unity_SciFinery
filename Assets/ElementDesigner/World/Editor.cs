@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public enum DragState { Init, Active, None }
-public enum ElementType { Atom = 0, Molecule = 1, Product = 2 }
+public enum ElementType { Particle = 0, Atom = 1, Molecule = 2, Product = 3 }
 
 public class Editor : MonoBehaviour
 {
@@ -402,7 +402,7 @@ public class Editor : MonoBehaviour
         TextNotification.Show($"Loaded \"{FileSystem.instance.ActiveElementAs<Atom>().Name}\"");
     }
 
-    public static WorldElement CreateWorldElement<T>() where T : WorldElement
+    public static WorldElement CreateWorldElement(WorldElementType )
     {
         // TODO: later, prefabs for particles, atoms and molecules will be loaded in at runtime using
         // Unity "Addressables" (like AssetBundles)
