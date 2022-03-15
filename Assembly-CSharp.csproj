@@ -42,14 +42,11 @@
      <Compile Include="Assets\ElementDesigner\UI\PeriodicTable\PeriodicTableGridItem.cs" />
      <Compile Include="Assets\FaceCam.cs" />
      <Compile Include="Assets\ElementDesigner\FileSystem\FileSystem.cs" />
-     <Compile Include="Assets\ElementDesigner\World\Translate.cs" />
      <Compile Include="Assets\ElementDesigner\UI\Tab.cs" />
      <Compile Include="Assets\ElementDesigner\FileSystem\Molecule.cs" />
-     <Compile Include="Assets\ElementDesigner\World\TranslateHandle.cs" />
      <Compile Include="Assets\ElementDesigner\World\Atom\Nucleus.cs" />
      <Compile Include="Assets\ElementDesigner\World\DragboxTest.cs" />
      <Compile Include="Assets\ElementDesigner\UI\btnParticle.cs" />
-     <Compile Include="Assets\ElementDesigner\World\TranslateBrake.cs" />
      <Compile Include="Assets\ElementDesigner\UI\DialogYesNo.cs" />
      <Compile Include="Assets\ElementDesigner\FileSystem\Element.cs" />
      <Compile Include="Assets\PanCam.cs" />
@@ -75,6 +72,9 @@
      <Compile Include="Assets\ElementDesigner\UI\TextNotification.cs" />
      <Compile Include="Assets\ElementDesigner\UI\Tabs.cs" />
      <Compile Include="Assets\ElementDesigner\World\Atom\Electron.cs" />
+     <Compile Include="Assets\ElementDesigner\World\TranslateBrake.cs" />
+     <Compile Include="Assets\ElementDesigner\World\Translate.cs" />
+     <Compile Include="Assets\ElementDesigner\World\TranslateHandle.cs" />
     <Reference Include="UnityEngine">
         <HintPath>C:\Program Files\Unity\Hub\Editor\2021.2.11f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>
