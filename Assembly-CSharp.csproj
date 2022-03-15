@@ -41,6 +41,7 @@
      <Compile Include="Assets\FaceCam.cs" />
      <Compile Include="Assets\ElementDesigner\FileSystem\FileSystem.cs" />
      <Compile Include="Assets\ElementDesigner\UI\Tab.cs" />
+     <Compile Include="Assets\ElementDesigner\FileSystem\Molecule.cs" />
      <Compile Include="Assets\ElementDesigner\World\Atom\Nucleus.cs" />
      <Compile Include="Assets\ElementDesigner\World\DragboxTest.cs" />
      <Compile Include="Assets\ElementDesigner\UI\btnParticle.cs" />

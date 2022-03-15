@@ -13,12 +13,13 @@ public class DemoController : MonoBehaviour
     private bool isDemo = false;
     private List<Atom> prevLoaded = new List<Atom>();
     private Text timerText;
+    private Toggle toggle;
 
     // Start is called before the first frame update
     void Start()
     {
-        var toggleDemo = GameObject.Find("toggleDemo").GetComponent<Toggle>();
-        isDemo = toggleDemo.isOn;
+        toggle = GameObject.Find("toggleDemo").GetComponent<Toggle>();
+        isDemo = toggle.isOn;
 
         timerText = GameObject.Find("textDemoTimer").GetComponent<Text>();
     }
@@ -28,19 +29,23 @@ public class DemoController : MonoBehaviour
     {
         if (isDemo)
         {
-            if (timer % timerLimit == 0)
-            {
+            if (timer > 0 && timer % timerLimit == 0)
                 loadRandomAtom();
-            }
 
-            var timerString = Math.Round((decimal)(timer % timerLimit) / timerLimit * 100, 0).ToString();
-            timerText.text = timerString + "%";
             timer++;
         }
+
+        var timerString = Math.Round((decimal)(timer % timerLimit) / timerLimit * 100, 0).ToString();
+        timerText.text = timerString + "%";
     }
 
-    public void HandleDemoModeChanged(bool value) => isDemo = value;
+    public void HandleToggleDemo()
+    {
+        if (!toggle.isOn)
+            timer = 0;
 
+        isDemo = toggle.isOn;
+    }
     private void loadRandomAtom()
     {
         var atomCount = FileSystem.instance.LoadedAtoms.Count;
