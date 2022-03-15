@@ -402,6 +402,17 @@ public class Editor : MonoBehaviour
         TextNotification.Show($"Loaded \"{FileSystem.instance.ActiveElementAs<Atom>().Name}\"");
     }
 
+    // NOTE: probably can't create a master method because of how different each element is
+    // Even though they all react to charge, have a weight and name for example,
+    // molecules have "child" atoms whereas a normal atom only contains particles
+    // while the way that they physically behave may be similar, they have unique properties
+    // that can't be effectively passed or represented with a master method
+    // maybe will need to create individual methods "CreateParticle" "CreateAtom" "CreateMolecule"
+    // or need to convert this to generic to prevent any data loss when spawning in the element
+    //
+    // actual spawning in of elements is about the only thing that we can be 100% sure of how it will work
+    // pass in some data to specify what type of object it is or how it will behave, and then spawn
+    // its prefab into the world and activate it
     public static WorldElement CreateWorldElement(ElementType elementType, Element element)
     {
         // TODO: later, prefabs for particles, atoms and molecules will be loaded in at runtime using
