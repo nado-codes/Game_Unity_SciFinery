@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-
+using System;
 
 public enum CreationState { None, Start, Drag }
 
@@ -133,7 +133,7 @@ public class panelCreate : MonoBehaviour, IPointerExitHandler
         {
             Debug.Log("start drag");
 
-            currentParticleObject = Editor.CreateWorldElement(particleToCreate).gameObject;
+            currentParticleObject = Editor.CreateWorldElement(particleToCreate, null).gameObject;
             creationState = CreationState.Drag;
 
             Editor.SetDragSelectEnabled(false);

@@ -402,29 +402,26 @@ public class Editor : MonoBehaviour
         TextNotification.Show($"Loaded \"{FileSystem.instance.ActiveElementAs<Atom>().Name}\"");
     }
 
-    public static WorldElement CreateWorldElement(WorldElementType )
+    public static WorldElement CreateWorldElement(ElementType elementType, Element element)
     {
         // TODO: later, prefabs for particles, atoms and molecules will be loaded in at runtime using
         // Unity "Addressables" (like AssetBundles)
 
-        var baseTypeNameToLower = typeof(T).BaseType.FullName.ToLower();
-        var typeNameToLower = typeof(T).FullName.ToLower();
+        GameObject particleGameObject = null;
 
-        if (baseTypeNameToLower == "particle")
+        if (elementType == ElementType.Particle)
         {
             // TODO: later, prefabs for particles, atoms and molecules will be loaded in at runtime using
             // Unity "Addressables" (like AssetBundles)
-            GameObject particleGameObject = null;
-
-            if (typeNameToLower == "proton")
+            if (element.Name == "proton")
             {
                 particleGameObject = Instantiate(instance.protonPrefab);
             }
-            else if (typeNameToLower == "neutron")
+            else if (element.Name == "neutron")
             {
                 particleGameObject = Instantiate(instance.neutronPrefab);
             }
-            else if (typeNameToLower == "electron")
+            else if (element.Name == "electron")
             {
                 particleGameObject = Instantiate(instance.electronPrefab);
             }
