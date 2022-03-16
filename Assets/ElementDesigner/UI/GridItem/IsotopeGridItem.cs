@@ -3,7 +3,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class IsotopeGridItem : ElementGridItem
+public class IsotopeGridItem : GridItem<Atom>
 {
     Text nameText;
 
@@ -36,7 +36,7 @@ public class IsotopeGridItem : ElementGridItem
         var newShortName = (nameWithoutVowels[0].ToString() + nameWithoutVowels[1].ToString()).ToUpper();
         nameText.text = newShortName + (atomData.Charge > 0 ? "+" : atomData.Charge < 0 ? "-" : string.Empty);
 
-        atom = atomData;
+        // atom = atomData;
 
         SetActive(true);
     }

@@ -62,7 +62,6 @@
      <Compile Include="Assets\ElementDesigner\World\Atom\Proton.cs" />
      <Compile Include="Assets\ElementDesigner\World\Atom\Neutron.cs" />
      <Compile Include="Assets\ElementDesigner\UI\GridItem\AtomGridItem.cs" />
-     <Compile Include="Assets\ElementDesigner\World\Atom\Particle.cs" />
      <Compile Include="Assets\Main\CoilAnim.cs" />
      <Compile Include="Assets\ElementDesigner\Globals.cs" />
      <Compile Include="Assets\ElementDesigner\UI\panelCreate.cs" />
@@ -74,6 +73,9 @@
      <Compile Include="Assets\ElementDesigner\UI\GridItem\ParticleGridItem.cs" />
      <Compile Include="Assets\ElementDesigner\UI\DialogPeriodicTable.cs" />
      <Compile Include="Assets\ElementDesigner\UI\GridItem\ElementGridItem.cs" />
+     <Compile Include="Assets\ElementDesigner\FileSystem\Particle.cs" />
+     <Compile Include="Assets\ElementDesigner\World\Atom\WorldParticle.cs" />
+     <Compile Include="Assets\ElementDesigner\UI\GridItem\GridItem.cs" />
     <Reference Include="UnityEngine">
         <HintPath>C:\Program Files\Unity\Hub\Editor\2021.2.11f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>

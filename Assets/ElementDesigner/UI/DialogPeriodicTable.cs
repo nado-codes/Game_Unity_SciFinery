@@ -8,12 +8,12 @@ using UnityEngine.UI;
 public class DialogPeriodicTable : MonoBehaviour
 {
     public Editor editor;
-    private ElementGridItem selectedItem;
+    private GridItem<Element> selectedItem;
 
-    private List<AtomGridItem> page1GridItems = new List<AtomGridItem>();
-    private List<AtomGridItem> page2GridItems = new List<AtomGridItem>();
+    private List<ElementGridItem> page1GridItems = new List<ElementGridItem>();
+    private List<ElementGridItem> page2GridItems = new List<ElementGridItem>();
 
-    private List<ElementGridItem> pageGridItems = new List<ElementGridItem>();
+    private List<GridItem<Element>> pageGridItems = new List<GridItem<Element>>();
 
     private Button btnLoad, btnDelete, btnIsotopes;
 
@@ -26,7 +26,7 @@ public class DialogPeriodicTable : MonoBehaviour
 
         var page1GridTransform = page1Transform.Find("grid");
         var page1GridTransforms = page1GridTransform.GetComponentsInChildren<RectTransform>();
-        page1GridItems = page1GridTransform.GetComponentsInChildren<AtomGridItem>().ToList();
+        page1GridItems = page1GridTransform.GetComponentsInChildren<ElementGridItem>().ToList();
         page1GridItems.ForEach(item => item.GetComponent<Button>().onClick.AddListener(() => HandleItemSelected(item)));
         page1GridItems.ForEach(item => item.GetComponent<Button>().onClick.AddListener(() => HandleItemSelected(item)));
 
@@ -35,7 +35,7 @@ public class DialogPeriodicTable : MonoBehaviour
 
         var page2GridTransform = page2Transform.Find("grid");
         var page2GridTransforms = page2GridTransform.GetComponentsInChildren<RectTransform>();
-        page2GridItems = page2GridTransform.GetComponentsInChildren<AtomGridItem>().ToList();
+        page2GridItems = page2GridTransform.GetComponentsInChildren<ElementGridItem>().ToList();
         page2GridItems.ForEach(item => item.GetComponent<Button>().onClick.AddListener(() => HandleItemSelected(item)));
 
         btnLoad = transform.Find("btnLoad").GetComponent<Button>();
@@ -73,7 +73,7 @@ public class DialogPeriodicTable : MonoBehaviour
                 continue;
             }
 
-            gridItem.SetAtomData(atom);
+            // gridItem.SetAtomData(atom);
         }
 
         HUD.LockedFocus = true;
@@ -92,21 +92,21 @@ public class DialogPeriodicTable : MonoBehaviour
         page1Transform.gameObject.SetActive(false);
 
         var atomGridItem = page2Transform.Find("gridItem").GetComponent<AtomGridItem>();
-        atomGridItem.SetAtomData(selectedItem?.atom);
+        // atomGridItem.SetAtomData(selectedItem?.elementData);
 
-        var selectedAtomIsotopes = FileSystem.instance.LoadedAtoms.Where(atom => atom.Name == selectedItem.atom.Name && atom.IsIsotope);
+        var selectedAtomIsotopes = FileSystem.instance.LoadedAtoms.Where(atom => atom.Name == selectedItem.elementData.Name && atom.IsIsotope);
 
-        foreach (AtomGridItem gridItem in page2GridItems)
+        foreach (ElementGridItem gridItem in page2GridItems)
         {
             var gridItemIndex = page2GridItems.IndexOf(gridItem);
-            var isotopeAtom = selectedAtomIsotopes.FirstOrDefault(atom =>
+            /* var isotopeAtom = selectedAtomIsotopes.FirstOrDefault(atom =>
                 atom.NeutronCount - selectedItem.atom.NeutronCount - 1
-            == gridItemIndex);
+            == gridItemIndex); */
 
-            if (isotopeAtom != null)
+            /* if (isotopeAtom != null)
                 gridItem.SetAtomData(isotopeAtom);
             else
-                gridItem.SetActive(false);
+                gridItem.SetActive(false); */
         }
     }
 
@@ -118,9 +118,10 @@ public class DialogPeriodicTable : MonoBehaviour
 
     private void HandleItemSelected(ElementGridItem item)
     {
-        btnLoad.interactable = (item.atom != null);
-        btnDelete.interactable = (item.atom != null);
-        btnIsotopes.interactable = (item.atom != null);
+        var isInteractable = (item.elementData != null);
+        btnLoad.interactable = isInteractable;
+        btnDelete.interactable = isInteractable;
+        btnIsotopes.interactable = isInteractable;
 
         selectedItem = item;
     }
@@ -139,7 +140,7 @@ public class DialogPeriodicTable : MonoBehaviour
 
     private void HandleLoadSelectedItem()
     {
-        editor.LoadAtomData(selectedItem.atom);
+        // editor.LoadAtomData(selectedItem.elementData);
         Close();
     }
 
@@ -151,6 +152,6 @@ public class DialogPeriodicTable : MonoBehaviour
     private void HandleDeleteSelectedItem()
     {
         selectedItem.SetActive(false);
-        FileSystem.instance.DeleteAtom(selectedItem.atom);
+        // FileSystem.instance.DeleteAtom(selectedItem.atom);
     }
 }

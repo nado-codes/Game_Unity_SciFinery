@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using System.Linq;
 using System;
 
-public class AtomGridItem : ElementGridItem
+public class AtomGridItem : GridItem<Atom>
 {
     private Text numberText, shortNameText, nameText, weightText;
 
@@ -65,7 +65,7 @@ public class AtomGridItem : ElementGridItem
         nameText.text = atomData.Name;
         weightText.text = atomData.Weight.ToString() + ".00";
 
-        atom = atomData;
+        // atom = atomData;
         SetActive(true);
     }
 }

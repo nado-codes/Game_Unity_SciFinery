@@ -259,12 +259,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -496,12 +497,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -712,8 +714,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -23.225}
-  m_SizeDelta: {x: 110.5, y: 37.38}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 115, y: 37.38}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &13513625
 MonoBehaviour:
@@ -738,7 +740,7 @@ MonoBehaviour:
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 28
-    m_FontStyle: 0
+    m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 2
     m_MaxSize: 40
@@ -813,12 +815,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -1252,12 +1255,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -2693,12 +2697,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -3842,12 +3847,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -4325,12 +4331,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -4541,8 +4548,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 30.4}
-  m_SizeDelta: {x: 60.8, y: 60.8}
+  m_AnchoredPosition: {x: -40, y: 40}
+  m_SizeDelta: {x: 35, y: 35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &131436489
 MonoBehaviour:
@@ -6560,12 +6567,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -6821,141 +6829,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 208391429}
   m_CullTransparentMesh: 1
---- !u!1 &209457488
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 209457489}
-  - component: {fileID: 209457492}
-  - component: {fileID: 209457491}
-  - component: {fileID: 209457490}
-  - component: {fileID: 209457493}
-  m_Layer: 5
-  m_Name: btnElectron
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!224 &209457489
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 209457488}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.99959844}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1813401908}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 140, y: 0}
-  m_SizeDelta: {x: 75, y: 75}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &209457490
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 209457488}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 0.7924528, g: 0.7924528, b: 0.7924528, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 209457491}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls: []
---- !u!114 &209457491
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 209457488}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &209457492
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 209457488}
-  m_CullTransparentMesh: 1
---- !u!114 &209457493
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 209457488}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02bf06dc57ca8c94b938b8c73c753ab3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  particleType: 2
 --- !u!1 &210410043
 GameObject:
   m_ObjectHideFlags: 0
@@ -7880,12 +7753,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -9379,12 +9253,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -9698,12 +9573,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -10259,12 +10135,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -10754,12 +10631,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -10971,7 +10849,7 @@ RectTransform:
   - {fileID: 13513624}
   - {fileID: 20050857}
   m_Father: {fileID: 1813401908}
-  m_RootOrder: 4
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -10990,31 +10868,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c43d83b7153181e4cb1b23ac9a98d805, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
-    Name: 
+    Name: Neutron
     Weight: 0
     Charge: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    BondType: 0
-    Conductivity: 0
-    Reactivity: 0
-    Toxicity: 0
-    MeltingPoint: 0
-    BoilingPoint: 0
-    Brittleness: 0
-    Malleability: 0
-    Ductility: 0
-  particle:
-    Guid: 
-    ShortName: 
-    Name: Proton
-    Weight: 0
-    Charge: 1
+    Type: 0
 --- !u!114 &356087620
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11889,12 +11749,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -12288,12 +12149,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -13664,12 +13526,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -13901,12 +13764,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -14380,12 +14244,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -15107,12 +14972,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -15264,12 +15130,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -15577,12 +15444,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -15734,12 +15602,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -16310,6 +16179,7 @@ MonoBehaviour:
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -16756,12 +16626,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -17157,12 +17028,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -17638,12 +17510,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -17935,12 +17808,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -18336,12 +18210,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -18655,12 +18530,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -19617,12 +19493,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -20187,12 +20064,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -20344,12 +20222,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -22091,12 +21970,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -22654,12 +22534,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -22891,12 +22772,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -24441,12 +24323,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -26147,8 +26030,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -23.225}
-  m_SizeDelta: {x: 110.5, y: 37.38}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 115, y: 37.38}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &977460897
 MonoBehaviour:
@@ -26173,7 +26056,7 @@ MonoBehaviour:
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 28
-    m_FontStyle: 0
+    m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 2
     m_MaxSize: 40
@@ -26328,12 +26211,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -26645,12 +26529,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -26802,12 +26687,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -27060,8 +26946,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 30.4}
-  m_SizeDelta: {x: 60.8, y: 60.8}
+  m_AnchoredPosition: {x: -40, y: 40}
+  m_SizeDelta: {x: 35, y: 35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1001263648
 MonoBehaviour:
@@ -27924,12 +27810,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -28081,12 +27968,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -30388,12 +30276,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -31193,12 +31082,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -31806,12 +31696,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -31963,12 +31854,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -32196,12 +32088,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -32997,12 +32890,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -33611,7 +33505,7 @@ RectTransform:
   - {fileID: 977460896}
   - {fileID: 1409935664}
   m_Father: {fileID: 1813401908}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -33712,31 +33606,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c43d83b7153181e4cb1b23ac9a98d805, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
-    Guid: 
-    ShortName: 
-    Name: 
-    Weight: 0
-    Charge: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    BondType: 0
-    Conductivity: 0
-    Reactivity: 0
-    Toxicity: 0
-    MeltingPoint: 0
-    BoilingPoint: 0
-    Brittleness: 0
-    Malleability: 0
-    Ductility: 0
-  particle:
+  elementData:
     Guid: 
     ShortName: 
     Name: Proton
     Weight: 0
     Charge: 1
+    Type: 0
 --- !u!1 &1250086038
 GameObject:
   m_ObjectHideFlags: 0
@@ -33793,12 +33669,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -34292,12 +34169,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -34691,12 +34569,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -35834,12 +35713,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -36643,12 +36523,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -36962,12 +36843,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -37238,12 +37120,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -37477,12 +37360,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -37634,12 +37518,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -37947,12 +37832,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -38104,12 +37990,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -38379,12 +38266,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -39124,7 +39012,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1422129295
 RectTransform:
   m_ObjectHideFlags: 0
@@ -39164,16 +39052,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afde3a736220a9d4aa2110434a1b5fb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  editor: {fileID: 612247311}
-  selectedItem: {fileID: 0}
-  page1GridItems: []
-  page2GridItems: []
-  pageGridItems: []
-  btnLoad: {fileID: 0}
-  btnDelete: {fileID: 0}
-  btnIsotopes: {fileID: 0}
-  page1Transform: {fileID: 0}
-  page2Transform: {fileID: 0}
 --- !u!1 &1422874093
 GameObject:
   m_ObjectHideFlags: 0
@@ -39390,12 +39268,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -39547,12 +39426,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -40350,12 +40230,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -40507,12 +40388,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -41242,12 +41124,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -41909,141 +41792,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1490851638}
   m_CullTransparentMesh: 1
---- !u!1 &1493542789
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1493542790}
-  - component: {fileID: 1493542793}
-  - component: {fileID: 1493542792}
-  - component: {fileID: 1493542791}
-  - component: {fileID: 1493542794}
-  m_Layer: 5
-  m_Name: btnNeutron
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!224 &1493542790
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1493542789}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.99959844}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1813401908}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 75, y: 75}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1493542791
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1493542789}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 0.7924528, g: 0.7924528, b: 0.7924528, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 1493542792}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls: []
---- !u!114 &1493542792
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1493542789}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0.03137255, g: 0.39607844, b: 0, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &1493542793
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1493542789}
-  m_CullTransparentMesh: 1
---- !u!114 &1493542794
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1493542789}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02bf06dc57ca8c94b938b8c73c753ab3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  particleType: 1
 --- !u!1 &1496108817
 GameObject:
   m_ObjectHideFlags: 0
@@ -42182,12 +41930,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -42643,7 +42392,7 @@ RectTransform:
   - {fileID: 1590843042}
   - {fileID: 1383182666}
   m_Father: {fileID: 1813401908}
-  m_RootOrder: 5
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -42662,31 +42411,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c43d83b7153181e4cb1b23ac9a98d805, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
-    Name: 
+    Name: Electron
     Weight: 0
     Charge: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    BondType: 0
-    Conductivity: 0
-    Reactivity: 0
-    Toxicity: 0
-    MeltingPoint: 0
-    BoilingPoint: 0
-    Brittleness: 0
-    Malleability: 0
-    Ductility: 0
-  particle:
-    Guid: 
-    ShortName: 
-    Name: Proton
-    Weight: 0
-    Charge: 1
+    Type: 0
 --- !u!114 &1506481850
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42905,12 +42636,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -43062,12 +42794,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -44388,12 +44121,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -44524,8 +44258,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -23.225}
-  m_SizeDelta: {x: 110.5, y: 37.38}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 115, y: 37.38}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1590843043
 MonoBehaviour:
@@ -44550,7 +44284,7 @@ MonoBehaviour:
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 28
-    m_FontStyle: 0
+    m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 2
     m_MaxSize: 40
@@ -44625,12 +44359,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -44915,12 +44650,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -45554,12 +45290,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -45950,12 +45687,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -46755,12 +46493,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -47074,12 +46813,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -47393,12 +47133,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -47731,12 +47472,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -48228,12 +47970,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -48725,12 +48468,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -48964,12 +48708,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -49611,12 +49356,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -49982,12 +49728,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -50581,12 +50328,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -50738,12 +50486,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -51891,12 +51640,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -52048,12 +51798,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -52420,8 +52171,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 451936331}
-  - {fileID: 1493542790}
-  - {fileID: 209457489}
   - {fileID: 1249552794}
   - {fileID: 356087618}
   - {fileID: 1506481848}
@@ -52489,12 +52238,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -53738,12 +53488,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -53895,12 +53646,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -54052,12 +53804,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -55057,12 +54810,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -55477,12 +55231,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -55956,12 +55711,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -56636,12 +56392,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -57033,12 +56790,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -57514,12 +57272,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -58178,12 +57937,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -58415,12 +58175,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -58652,12 +58413,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -58943,12 +58705,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -59344,12 +59107,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -59745,12 +59509,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -60644,12 +60409,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -61472,12 +61238,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -62035,12 +61802,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -62514,12 +62282,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -63329,12 +63098,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -63568,12 +63338,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -63868,8 +63639,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 30.4}
-  m_SizeDelta: {x: 60.8, y: 60.8}
+  m_AnchoredPosition: {x: -40, y: 40}
+  m_SizeDelta: {x: 35, y: 35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2116442705
 MonoBehaviour:
@@ -64291,12 +64062,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
@@ -64448,12 +64220,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Guid: 
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
+    Type: 0
     Number: 0
     ProtonCount: 0
     NeutronCount: 0
