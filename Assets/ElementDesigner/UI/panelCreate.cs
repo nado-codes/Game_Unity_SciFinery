@@ -13,6 +13,7 @@ public class panelCreate : MonoBehaviour, IPointerExitHandler
     public CreationState creationState = CreationState.None;
     private static ElementType designType = ElementType.Atom;
     public ParticleType particleToCreate = ParticleType.Proton;
+    private Element elementToCreateData;
     public GameObject proton, neutron, electron, currentParticleObject;
     private List<Element> loadedElements = new List<Element>();
     private static Transform particleButtonsTransform, elementButtonsTransform, btnPrevTransform, btnNextTransform;
@@ -50,6 +51,7 @@ public class panelCreate : MonoBehaviour, IPointerExitHandler
             btnPrevTransform.gameObject.SetActive(true);
             btnNextTransform.gameObject.SetActive(true);
 
+            // TODO: when elements are loaded in, set their onClick listener to pass their Element data to the particleToCreateData
             if (newDesignType == ElementType.Molecule)
             {
                 // get or load atoms into spawning grid
@@ -124,9 +126,13 @@ public class panelCreate : MonoBehaviour, IPointerExitHandler
         isHover = true;
     }
 
+
     // TODO: spawn particle when mouse exits panel
     // TODO: drop particle when mouse is up and set state to NONE
 
+    // TODO: when the pointer exits, spawn the particleToCreate and create it with particleToCreateData
+    // particleToCreateData will specify all of the element's properties e.g. for molecules, which atoms it contains
+    // the "elementType" passed into Editor.CreateWorldElement will determine how the incoming data is read
     public void OnPointerExit(PointerEventData ev)
     {
         if (creationState == CreationState.Start)
