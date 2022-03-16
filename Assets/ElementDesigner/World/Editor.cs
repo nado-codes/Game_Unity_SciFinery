@@ -413,31 +413,34 @@ public class Editor : MonoBehaviour
     // actual spawning in of elements is about the only thing that we can be 100% sure of how it will work
     // pass in some data to specify what type of object it is or how it will behave, and then spawn
     // its prefab into the world and activate it
-    public static WorldElement CreateWorldElement(ElementType elementType, Element element)
+    public static WorldElement CreateWorldElement<T>(ElementType elementType, T element) where T : WorldElement
     {
         // TODO: later, prefabs for particles, atoms and molecules will be loaded in at runtime using
         // Unity "Addressables" (like AssetBundles)
 
-        GameObject particleGameObject = null;
+        GameObject elementGameObject = null;
 
         if (elementType == ElementType.Particle)
         {
+            elementGameObject = new GameObject();
+            // GameObject.CreatePrimitive(PrimitiveType.Sphere);
+            elementGameObject.AddComponent<T>();
             // TODO: later, prefabs for particles, atoms and molecules will be loaded in at runtime using
             // Unity "Addressables" (like AssetBundles)
             if (element.Name == "proton")
             {
-                particleGameObject = Instantiate(instance.protonPrefab);
+                elementGameObject = Instantiate(instance.protonPrefab);
             }
             else if (element.Name == "neutron")
             {
-                particleGameObject = Instantiate(instance.neutronPrefab);
+                elementGameObject = Instantiate(instance.neutronPrefab);
             }
             else if (element.Name == "electron")
             {
-                particleGameObject = Instantiate(instance.electronPrefab);
+                elementGameObject = Instantiate(instance.electronPrefab);
             }
 
-            var newParticle = particleGameObject.GetComponent<Particle>();
+            var newParticle = elementGameObject.GetComponent<Particle>();
             newParticle.transform.parent = atomGameObject.transform;
 
             // .. TODO: charge should be SET, not ADDED - this is bad
