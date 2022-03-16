@@ -24,15 +24,15 @@ public class EditorMode_TableGridGen : MonoBehaviour
         var gridStartObject = transform.Find("GridStartPos");
         var gridEnd = transform.Find("GridEndPos")?.GetComponent<RectTransform>();
 
-        if(gridStartObject != null && gridEnd != null)
+        if (gridStartObject != null && gridEnd != null)
         {
             gridStartObject.gameObject.SetActive(!EditorApplication.isPlaying);
             gridEnd.gameObject.SetActive(!EditorApplication.isPlaying);
 
-            if((refreshGrid || gridStartPos != gridLastStartPos) && !EditorApplication.isPlaying)
+            if ((refreshGrid || gridStartPos != gridLastStartPos) && !EditorApplication.isPlaying)
             {
                 gridStartPos = gridStartObject.GetComponent<RectTransform>().localPosition;
-                gridEnd.transform.localPosition = gridStartPos + new Vector3(itemWidth*(columns-1),itemWidth*-(rows-1),0);
+                gridEnd.transform.localPosition = gridStartPos + new Vector3(itemWidth * (columns - 1), itemWidth * -(rows - 1), 0);
 
                 GenerateGrid();
                 refreshGrid = false;
@@ -45,7 +45,7 @@ public class EditorMode_TableGridGen : MonoBehaviour
         gridItems.ForEach(i => GameObject.DestroyImmediate(i.gameObject));
         gridItems.Clear();
 
-        if(gridItemPrefab == null) return;
+        if (gridItemPrefab == null) return;
 
         var otherGridItems = GetComponentsInChildren<AtomGridItem>().ToList();
         otherGridItems.ForEach(i => GameObject.DestroyImmediate(i.gameObject));
@@ -53,28 +53,28 @@ public class EditorMode_TableGridGen : MonoBehaviour
     void GenerateGrid()
     {
         ClearGrid();
-        Debug.Log("Generated grid at "+DateTime.Now);
+        Debug.Log("Generated grid at " + DateTime.Now);
 
         gridLastStartPos = gridStartPos;
 
-        if(gridItemPrefab == null) return;
+        if (gridItemPrefab == null) return;
 
-        for(var y = 0; y < rows; ++y)
+        for (var y = 0; y < rows; ++y)
         {
-            for(var x = 0; x < columns; ++x)
+            for (var x = 0; x < columns; ++x)
             {
                 var newGridItem = Instantiate(gridItemPrefab);
-                newGridItem.name = y.ToString()+"_"+x.ToString();
+                newGridItem.name = y.ToString() + "_" + x.ToString();
                 newGridItem.transform.parent = transform;
                 newGridItem.transform.localScale = Vector3.one;
 
                 // TODO: We don't need this. To be removed. Only used to visualise the numbers on the grid
                 var script = newGridItem.GetComponent<AtomGridItem>();
-                script.Awake();
+                script.Init();
 
                 var newGridItemRect = newGridItem.GetComponent<RectTransform>();
-                newGridItemRect.localPosition = gridStartPos + new Vector3(itemWidth*x,itemWidth*-y,0);
-                
+                newGridItemRect.localPosition = gridStartPos + new Vector3(itemWidth * x, itemWidth * -y, 0);
+
                 gridItems.Add(newGridItem);
             }
         }

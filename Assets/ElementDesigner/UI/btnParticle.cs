@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 public class btnParticle : MonoBehaviour, IPointerDownHandler
 {
     private panelCreate panel;
-    
+
 
     public ParticleType particleType;
 
@@ -18,9 +18,9 @@ public class btnParticle : MonoBehaviour, IPointerDownHandler
 
     public void OnPointerDown(PointerEventData ev)
     {
-        if(panel.creationState == CreationState.None)
+        if (panel.creationState == CreationState.None)
         {
-            panel.particleToCreate = particleType;
+            // panel.elementToCreate = particleType;
             panel.creationState = CreationState.Start;
             Debug.Log("start create");
         }

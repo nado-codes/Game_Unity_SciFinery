@@ -47,9 +47,9 @@ public class Editor : MonoBehaviour
 
     // PARTICLES
     public static GameObject atomGameObject;
-    public static List<Particle> Particles = new List<Particle>();
+    public static List<WorldParticle> Particles = new List<WorldParticle>();
 
-    public static IEnumerable<Particle> OtherParticles(Particle particle) =>
+    public static IEnumerable<WorldParticle> OtherParticles(WorldParticle particle) =>
         Particles.Where(x => x != particle);
 
     void Start()
@@ -66,7 +66,7 @@ public class Editor : MonoBehaviour
         if (electronPrefab == null)
             throw new ArgumentNullException("electronPrefab must be set in Editor");
 
-        Particles.AddRange(FindObjectsOfType<Particle>());
+        Particles.AddRange(FindObjectsOfType<WorldParticle>());
 
         textClassification = GameObject.Find("Classification")?.transform.Find("Value").GetComponent<Text>();
         textStability = GameObject.Find("TextStability")?.GetComponent<Text>();
@@ -177,9 +177,9 @@ public class Editor : MonoBehaviour
 
     void UpdateActiveAtom()
     {
-        var protons = Particles.Where(p => p.charge == Particle.Charge.Positive);
-        var neutrons = Particles.Where(p => p.charge == Particle.Charge.None);
-        var electrons = Particles.Where(p => p.charge == Particle.Charge.Negative);
+        var protons = Particles.Where(p => p.charge == WorldParticle.Charge.Positive);
+        var neutrons = Particles.Where(p => p.charge == WorldParticle.Charge.None);
+        var electrons = Particles.Where(p => p.charge == WorldParticle.Charge.Negative);
 
         // FileSystem.instance.ActiveElementAs<Atom>().Number = protons.Count();
         // FileSystem.instance.ActiveElementAs<Atom>().ProtonCount = protons.Count();
@@ -207,7 +207,7 @@ public class Editor : MonoBehaviour
             _selectedObjects.ForEach(s =>
             {
                 //GameObject.Destroy(s.gameObject);
-                RemoveParticle(s.GetComponent<Particle>());
+                RemoveParticle(s.GetComponent<WorldParticle>());
             });
             _selectedObjects.Clear();
             //RemoveParticles(_selectedObjects);
@@ -413,7 +413,7 @@ public class Editor : MonoBehaviour
     // actual spawning in of elements is about the only thing that we can be 100% sure of how it will work
     // pass in some data to specify what type of object it is or how it will behave, and then spawn
     // its prefab into the world and activate it
-    public static WorldElement CreateWorldElement<T>(ElementType elementType, T element) where T : WorldElement
+    public static WorldElement CreateWorldElement<T>(ElementType elementType, T element) where T : Element
     {
         // TODO: later, prefabs for particles, atoms and molecules will be loaded in at runtime using
         // Unity "Addressables" (like AssetBundles)
@@ -424,7 +424,6 @@ public class Editor : MonoBehaviour
         {
             elementGameObject = new GameObject();
             // GameObject.CreatePrimitive(PrimitiveType.Sphere);
-            elementGameObject.AddComponent<T>();
             // TODO: later, prefabs for particles, atoms and molecules will be loaded in at runtime using
             // Unity "Addressables" (like AssetBundles)
             if (element.Name == "proton")
@@ -440,7 +439,7 @@ public class Editor : MonoBehaviour
                 elementGameObject = Instantiate(instance.electronPrefab);
             }
 
-            var newParticle = elementGameObject.GetComponent<Particle>();
+            var newParticle = elementGameObject.GetComponent<WorldParticle>();
             newParticle.transform.parent = atomGameObject.transform;
 
             // .. TODO: charge should be SET, not ADDED - this is bad
@@ -448,19 +447,21 @@ public class Editor : MonoBehaviour
 
             Particles.Add(newParticle);
         }
-        else if (typeNameToLower == "atom")
+        else if (elementType == ElementType.Atom)
         {
 
         }
-        else if (typeNameToLower == "molecule")
+        else if (elementType == ElementType.Molecule)
         {
 
         }
 
         FileSystem.instance.hasUnsavedChanges = true;
+
+        return null;
     }
 
-    public static Particle CreateParticle(ParticleType type)
+    public static WorldParticle CreateParticle(ParticleType type)
     {
         // TODO: later, prefabs for particles, atoms and molecules will be loaded in at runtime using
         // Unity "Addressables" (like AssetBundles)
@@ -473,7 +474,7 @@ public class Editor : MonoBehaviour
         else
             particleGameObject = Instantiate(instance.electronPrefab);
 
-        var newParticle = particleGameObject.GetComponent<Particle>();
+        var newParticle = particleGameObject.GetComponent<WorldParticle>();
         newParticle.transform.parent = atomGameObject.transform;
         FileSystem.instance.ActiveElementAs<Atom>().Charge += (int)newParticle.charge;
 
@@ -487,7 +488,7 @@ public class Editor : MonoBehaviour
         return newParticle;
     }
 
-    public Particle CreateParticle(ParticleType type, Vector3 position)
+    public WorldParticle CreateParticle(ParticleType type, Vector3 position)
     {
         var particle = CreateParticle(type);
         particle.transform.position = position;
@@ -495,7 +496,7 @@ public class Editor : MonoBehaviour
         return particle;
     }
 
-    public static bool RemoveParticle(Particle particle)
+    public static bool RemoveParticle(WorldParticle particle)
     {
         Particles.Remove(particle);
         GameObject.Destroy(particle.gameObject);
@@ -505,11 +506,11 @@ public class Editor : MonoBehaviour
         return true;
     }
 
-    public static void RemoveParticles(IEnumerable<Particle> particlesToRemove)
+    public static void RemoveParticles(IEnumerable<WorldParticle> particlesToRemove)
         => particlesToRemove.Select(p => RemoveParticle(p));
 
     public static void RemoveParticles(IEnumerable<Interact> particlesToRemove)
-        => particlesToRemove.Select(p => RemoveParticle(p.GetComponent<Particle>()));
+        => particlesToRemove.Select(p => RemoveParticle(p.GetComponent<WorldParticle>()));
 
     public static void HandleClearElementsClicked()
     {
@@ -525,7 +526,7 @@ public class Editor : MonoBehaviour
 
     public static void ClearElements()
     {
-        var particlesToDelete = new List<Particle>(Particles);
+        var particlesToDelete = new List<WorldParticle>(Particles);
         particlesToDelete.ForEach(p => RemoveParticle(p));
 
         TextNotification.Show("All Particles Cleared");

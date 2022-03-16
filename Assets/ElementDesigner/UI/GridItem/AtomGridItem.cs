@@ -5,14 +5,13 @@ using UnityEngine.UI;
 using System.Linq;
 using System;
 
-public class AtomGridItem : PeriodicTableGridItem
+public class AtomGridItem : ElementGridItem
 {
-    Text numberText, shortNameText, nameText, weightText;
-    Button button;
+    private Text numberText, shortNameText, nameText, weightText;
 
     private ColorBlock buttonColorsActive, buttonColorsInactive;
 
-    private void Init()
+    public void Init()
     {
         numberText = transform.Find("Number")?.GetComponent<Text>();
         shortNameText = transform.Find("ShortName")?.GetComponent<Text>();
@@ -27,21 +26,20 @@ public class AtomGridItem : PeriodicTableGridItem
         buttonColorsInactive.pressedColor = button.colors.disabledColor;
         buttonColorsInactive.selectedColor = button.colors.disabledColor;
     }
-    public void Start()
+    protected override void Start()
     {
         Init();
-
+        base.Start();
     }
-    public void Awake()
+    protected override void Awake()
     {
         Init();
-        SetActive(false);
+        base.Awake();
     }
 
     // Update is called once per frame
-    public void Update()
+    void Update()
     {
-
         var nameWithoutVowels = new string(nameText.text.Where(c => !("aeiou").Contains(c)).ToArray());
         var newShortName = (nameWithoutVowels[0].ToString() + nameWithoutVowels[1].ToString()).ToUpper();
         shortNameText.text = newShortName;
@@ -54,7 +52,7 @@ public class AtomGridItem : PeriodicTableGridItem
         nameText.gameObject.SetActive(active);
         weightText.gameObject.SetActive(active);
 
-        // button.colors = active ? buttonColorsActive : buttonColorsInactive;
+        base.SetActive(active);
     }
 
     public void SetAtomData(Atom atomData)

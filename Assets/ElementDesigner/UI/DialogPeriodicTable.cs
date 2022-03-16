@@ -8,12 +8,12 @@ using UnityEngine.UI;
 public class DialogPeriodicTable : MonoBehaviour
 {
     public Editor editor;
-    private PeriodicTableGridItem selectedItem;
+    private ElementGridItem selectedItem;
 
     private List<AtomGridItem> page1GridItems = new List<AtomGridItem>();
     private List<AtomGridItem> page2GridItems = new List<AtomGridItem>();
 
-    private List<PeriodicTableGridItem> pageGridItems = new List<PeriodicTableGridItem>();
+    private List<ElementGridItem> pageGridItems = new List<ElementGridItem>();
 
     private Button btnLoad, btnDelete, btnIsotopes;
 
@@ -31,7 +31,8 @@ public class DialogPeriodicTable : MonoBehaviour
         page1GridItems.ForEach(item => item.GetComponent<Button>().onClick.AddListener(() => HandleItemSelected(item)));
 
         var page2AtomGridItem = page2Transform.GetComponentInChildren<AtomGridItem>();
-        page2AtomGridItem.Awake(); // .. initialise the atom grid item
+        page2AtomGridItem.Init(); // .. initialise the atom grid item
+
         var page2GridTransform = page2Transform.Find("grid");
         var page2GridTransforms = page2GridTransform.GetComponentsInChildren<RectTransform>();
         page2GridItems = page2GridTransform.GetComponentsInChildren<AtomGridItem>().ToList();
@@ -115,7 +116,7 @@ public class DialogPeriodicTable : MonoBehaviour
         HUD.LockedFocus = false;
     }
 
-    private void HandleItemSelected(PeriodicTableGridItem item)
+    private void HandleItemSelected(ElementGridItem item)
     {
         btnLoad.interactable = (item.atom != null);
         btnDelete.interactable = (item.atom != null);

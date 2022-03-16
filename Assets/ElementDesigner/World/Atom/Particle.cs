@@ -7,7 +7,7 @@ using UnityEngine;
 
 public enum ParticleType { Proton, Neutron, Electron }
 
-public class Particle : WorldElement
+public class WorldParticle : WorldElement
 {
     public enum Charge { Positive = 1, None = 0, Negative = -1 }
     private Vector3 velocity = Vector3.zero;

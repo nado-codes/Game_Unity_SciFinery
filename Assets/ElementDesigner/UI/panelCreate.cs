@@ -12,7 +12,7 @@ public class panelCreate : MonoBehaviour, IPointerExitHandler
 
     public CreationState creationState = CreationState.None;
     private static ElementType designType = ElementType.Atom;
-    public ParticleType particleToCreate = ParticleType.Proton;
+    public ElementType elementToCreate = ElementType.Particle;
     private Element elementToCreateData;
     public GameObject proton, neutron, electron, currentParticleObject;
     private List<Element> loadedElements = new List<Element>();
@@ -139,7 +139,7 @@ public class panelCreate : MonoBehaviour, IPointerExitHandler
         {
             Debug.Log("start drag");
 
-            currentParticleObject = Editor.CreateWorldElement(particleToCreate, null).gameObject;
+            currentParticleObject = Editor.CreateWorldElement<Element>(elementToCreate, null).gameObject;
             creationState = CreationState.Drag;
 
             Editor.SetDragSelectEnabled(false);
