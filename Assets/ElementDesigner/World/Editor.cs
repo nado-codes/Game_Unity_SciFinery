@@ -402,34 +402,45 @@ public class Editor : MonoBehaviour
         TextNotification.Show($"Loaded \"{FileSystem.instance.ActiveElementAs<Atom>().Name}\"");
     }
 
-    public static WorldElement CreateWorldElement(WorldElementType )
+    // NOTE: probably can't create a master method because of how different each element is
+    // Even though they all react to charge, have a weight and name for example,
+    // molecules have "child" atoms whereas a normal atom only contains particles
+    // while the way that they physically behave may be similar, they have unique properties
+    // that can't be effectively passed or represented with a master method
+    // maybe will need to create individual methods "CreateParticle" "CreateAtom" "CreateMolecule"
+    // or need to convert this to generic to prevent any data loss when spawning in the element
+    //
+    // actual spawning in of elements is about the only thing that we can be 100% sure of how it will work
+    // pass in some data to specify what type of object it is or how it will behave, and then spawn
+    // its prefab into the world and activate it
+    public static WorldElement CreateWorldElement<T>(ElementType elementType, T element) where T : WorldElement
     {
         // TODO: later, prefabs for particles, atoms and molecules will be loaded in at runtime using
         // Unity "Addressables" (like AssetBundles)
 
-        var baseTypeNameToLower = typeof(T).BaseType.FullName.ToLower();
-        var typeNameToLower = typeof(T).FullName.ToLower();
+        GameObject elementGameObject = null;
 
-        if (baseTypeNameToLower == "particle")
+        if (elementType == ElementType.Particle)
         {
+            elementGameObject = new GameObject();
+            // GameObject.CreatePrimitive(PrimitiveType.Sphere);
+            elementGameObject.AddComponent<T>();
             // TODO: later, prefabs for particles, atoms and molecules will be loaded in at runtime using
             // Unity "Addressables" (like AssetBundles)
-            GameObject particleGameObject = null;
-
-            if (typeNameToLower == "proton")
+            if (element.Name == "proton")
             {
-                particleGameObject = Instantiate(instance.protonPrefab);
+                elementGameObject = Instantiate(instance.protonPrefab);
             }
-            else if (typeNameToLower == "neutron")
+            else if (element.Name == "neutron")
             {
-                particleGameObject = Instantiate(instance.neutronPrefab);
+                elementGameObject = Instantiate(instance.neutronPrefab);
             }
-            else if (typeNameToLower == "electron")
+            else if (element.Name == "electron")
             {
-                particleGameObject = Instantiate(instance.electronPrefab);
+                elementGameObject = Instantiate(instance.electronPrefab);
             }
 
-            var newParticle = particleGameObject.GetComponent<Particle>();
+            var newParticle = elementGameObject.GetComponent<Particle>();
             newParticle.transform.parent = atomGameObject.transform;
 
             // .. TODO: charge should be SET, not ADDED - this is bad

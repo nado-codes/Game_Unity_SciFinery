@@ -12,10 +12,11 @@ public class Particle : WorldElement
     public enum Charge { Positive = 1, None = 0, Negative = -1 }
     private Vector3 velocity = Vector3.zero;
 
+    // TODO: maybe 'charge' could be determined by weight?
     public Charge charge = Charge.None;
     public ParticleType type = ParticleType.Proton;
 
-    private Canvas signCanvas;
+    private Canvas infoCanvas;
     private Text textSign;
     private TrailRenderer trail;
 
@@ -24,7 +25,7 @@ public class Particle : WorldElement
     protected void Start()
     {
         textSign = GetComponentInChildren<Text>();
-        signCanvas = GetComponentInChildren<Canvas>();
+        infoCanvas = GetComponentInChildren<Canvas>();
         trail = GetComponentInChildren<TrailRenderer>();
 
         var body = transform.Find("Body");
@@ -35,15 +36,15 @@ public class Particle : WorldElement
     {
         transform.Translate(velocity * Time.deltaTime);
 
-        if (textSign != null && signCanvas != null)
+        if (textSign != null && infoCanvas != null)
         {
-            var signCanvasRect = signCanvas.GetComponent<RectTransform>();
+            var signCanvasRect = infoCanvas.GetComponent<RectTransform>();
             var body = transform.Find("Body");
 
             var dist = Vector3.Distance(transform.position, Camera.main.transform.position) * .075f;
             signCanvasRect.localScale = new Vector3(1 + dist, 1 + dist, 1 + dist) * (1 / body.localScale.magnitude);
 
-            signCanvas.gameObject.SetActive(dist > 5);
+            infoCanvas.gameObject.SetActive(dist > 5);
         }
 
         // Apply charges
