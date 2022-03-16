@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System;
+using System.Linq;
 
 public enum CreationState { None, Start, Drag }
 
@@ -33,6 +34,9 @@ public class panelCreate : MonoBehaviour, IPointerExitHandler
         elementButtonsTransform = transform.Find("elementButtons");
         btnPrevTransform = transform.Find("btnPrev");
         btnNextTransform = transform.Find("btnNext");
+
+        var particleButtons = particleButtonsTransform.GetComponentsInChildren<ParticleGridItem>().ToList();
+        particleButtons.ForEach(b => b.OnClick += (Particle pData) => Editor.CreateWorldElement(pData));
     }
 
     public void LoadParticles() => loadedElements.Clear();
@@ -139,7 +143,7 @@ public class panelCreate : MonoBehaviour, IPointerExitHandler
         {
             Debug.Log("start drag");
 
-            currentParticleObject = Editor.CreateWorldElement<Element>(elementToCreate, null).gameObject;
+            // currentParticleObject = Editor.CreateWorldElement<Element>(elementToCreate, null).gameObject;
             creationState = CreationState.Drag;
 
             Editor.SetDragSelectEnabled(false);

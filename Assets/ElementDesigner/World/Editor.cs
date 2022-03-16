@@ -14,7 +14,7 @@ public class Editor : MonoBehaviour
     public static ElementType designType = ElementType.Atom;
 
     // PREFABS
-    [Header("Particle Prefabs")]
+    [Header("Prefabs")]
     public GameObject protonPrefab;
     public GameObject neutronPrefab;
     public GameObject electronPrefab;
@@ -413,12 +413,16 @@ public class Editor : MonoBehaviour
     // actual spawning in of elements is about the only thing that we can be 100% sure of how it will work
     // pass in some data to specify what type of object it is or how it will behave, and then spawn
     // its prefab into the world and activate it
-    public static WorldElement CreateWorldElement<T>(ElementType elementType, T element) where T : Element
+    public static WorldElement CreateWorldElement(Element elementData)
     {
+        if (elementData == null)
+            throw new ApplicationException("elementData cannot be null in call to CreateWorldElement");
+
         // TODO: later, prefabs for particles, atoms and molecules will be loaded in at runtime using
         // Unity "Addressables" (like AssetBundles)
 
         GameObject elementGameObject = null;
+        var elementType = elementData.Type;
 
         if (elementType == ElementType.Particle)
         {
@@ -426,7 +430,7 @@ public class Editor : MonoBehaviour
             // GameObject.CreatePrimitive(PrimitiveType.Sphere);
             // TODO: later, prefabs for particles, atoms and molecules will be loaded in at runtime using
             // Unity "Addressables" (like AssetBundles)
-            if (element.Name == "proton")
+            /* if (element.Name == "proton")
             {
                 elementGameObject = Instantiate(instance.protonPrefab);
             }
@@ -437,7 +441,7 @@ public class Editor : MonoBehaviour
             else if (element.Name == "electron")
             {
                 elementGameObject = Instantiate(instance.electronPrefab);
-            }
+            } */
 
             var newParticle = elementGameObject.GetComponent<WorldParticle>();
             newParticle.transform.parent = atomGameObject.transform;

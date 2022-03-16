@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public delegate void ElementDataDelegate<T>(ElementType type, T data) where T : Element;
+public delegate void ElementDataDelegate<T>(T elementData) where T : Element;
 public class GridItem<T> : MonoBehaviour where T : Element
 {
     public T elementData = null;
@@ -22,7 +22,7 @@ public class GridItem<T> : MonoBehaviour where T : Element
         SetActive(false);
     }
 
-    private void HandleClick() => OnClick?.Invoke(elementData.Type, elementData);
+    private void HandleClick() => OnClick?.Invoke(elementData);
 
     public virtual void SetActive(bool active)
     {
