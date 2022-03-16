@@ -10755,6 +10755,7 @@ MonoBehaviour:
     Weight: 0
     Charge: 0
     Type: 0
+    baseColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &356087620
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33250,6 +33251,7 @@ MonoBehaviour:
     Weight: 0
     Charge: 1
     Type: 0
+    baseColor: {r: 0, g: 0.92168856, b: 1, a: 0}
 --- !u!1 &1250086038
 GameObject:
   m_ObjectHideFlags: 0
@@ -41962,6 +41964,7 @@ MonoBehaviour:
     Weight: 0
     Charge: -1
     Type: 0
+    baseColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &1506481850
 MonoBehaviour:
   m_ObjectHideFlags: 0
