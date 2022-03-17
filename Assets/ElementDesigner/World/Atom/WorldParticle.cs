@@ -12,13 +12,14 @@ public class WorldParticle : WorldElement
     private Vector3 velocity = Vector3.zero;
 
     // TODO: maybe 'charge' could be determined by weight?
-    public int charge = 0;
+    public float Charge = 0;
 
     private Canvas infoCanvas;
     private Text infoText;
     private TrailRenderer trail;
     private Light bodyLight;
     private MeshRenderer bodyMR;
+    private Transform bodyTransform;
 
     public float massMultiplier = 1;
     private bool initialized = false;
@@ -28,18 +29,18 @@ public class WorldParticle : WorldElement
         if (initialized)
             return;
 
-        var body = transform.Find("Body");
-        bodyLight = body.Find("Light").GetComponent<Light>();
-        var infoCanvasTransform = body.Find("InfoCanvas");
+        bodyTransform = transform.Find("Body");
+        bodyLight = bodyTransform.Find("Light").GetComponent<Light>();
+        var infoCanvasTransform = bodyTransform.Find("InfoCanvas");
         infoCanvas = infoCanvasTransform.GetComponent<Canvas>();
 
         infoText = infoCanvasTransform.Find("Text").GetComponent<Text>();
 
         trail = GetComponent<TrailRenderer>();
 
-        bodyMR = body.GetComponent<MeshRenderer>();
+        bodyMR = bodyTransform.GetComponent<MeshRenderer>();
 
-        trail.startWidth = body.lossyScale.magnitude * .25f;
+        trail.startWidth = bodyTransform.lossyScale.magnitude * .25f;
         initialized = true;
     }
     protected void Start()
@@ -68,7 +69,7 @@ public class WorldParticle : WorldElement
         var effectiveForce = Vector3.zero;
         worldParticles.ToList().ForEach(x =>
         {
-            var effectiveCharge = x.charge * charge;
+            var effectiveCharge = x.Charge * Charge;
             var xBody = x.transform.Find("Body");
             var body = transform.Find("Body");
             var massOffset = 1 / (body.lossyScale.magnitude / xBody.lossyScale.magnitude) * massMultiplier;
@@ -82,27 +83,33 @@ public class WorldParticle : WorldElement
         });
 
         velocity += effectiveForce * Time.deltaTime * .5f;
-        trail.time = 10 * (1 / velocity.magnitude);
+        trail.time = 10 * Mathf.Min((1 / velocity.magnitude), 1f);
     }
 
-    public void SetColor(Color newColor)
+    private void SetColor(Color newColor)
     {
         VerifyInitialize();
         bodyLight.color = newColor;
         bodyMR.material.color = newColor;
         bodyMR.material.SetColor("_EmissionColor", newColor);
 
-        // var trailColorKeys = new GradientColorKey[] { new GradientColorKey(Color.green, 0) };
-        // var trailAlphaKeys = new GradientAlphaKey[] { new GradientAlphaKey(0, 0) };
         trail.material.color = newColor;
         trail.material.SetColor("_EmissionColor", newColor);
-
-        // trail.colorGradient.SetKeys(trailColorKeys, trailAlphaKeys);
     }
 
-    public void SetInfoText(string newInfoText)
+    public void SetParticleData<T>(T particleData) where T : Particle
     {
         VerifyInitialize();
+
+        bodyTransform.localScale = new Vector3(particleData.Size, particleData.Size, particleData.Size);
+
+        ColorUtility.TryParseHtmlString(particleData.Color, out Color particleColor);
+        SetColor(particleColor);
+
+        var newInfoText = particleData.Charge == 0 ? string.Empty : particleData.Charge < 0 ? "-" : "+";
         infoText.text = newInfoText;
+
+        Charge = particleData.Charge;
+        massMultiplier = particleData.Weight;
     }
 }

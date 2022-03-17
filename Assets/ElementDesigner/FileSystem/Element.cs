@@ -7,8 +7,8 @@ public class Element
 
     public string ShortName;
     public string Name;
-    public int Weight;
-    public int Charge;
+    public float Weight;
+    public float Charge;
     public ElementType Type;
 
 

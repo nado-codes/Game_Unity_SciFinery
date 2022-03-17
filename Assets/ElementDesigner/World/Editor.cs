@@ -427,20 +427,14 @@ public class Editor : MonoBehaviour
 
         if (elementType == ElementType.Particle)
         {
-            var elementDataAsParticle = elementData as Particle;
-
             newWorldElementGO = Instantiate(instance.particlePrefab);
             newWorldElementGO.transform.parent = atomGameObject.transform;
 
+            var elementDataAsParticle = elementData as Particle;
             var newWorldParticle = newWorldElementGO.GetComponent<WorldParticle>();
+            newWorldParticle.SetParticleData(elementDataAsParticle);
 
-            ColorUtility.TryParseHtmlString(elementDataAsParticle.BaseColor, out Color particleColor);
-            newWorldParticle.SetColor(particleColor);
-
-            var infoText = elementData.Charge == 0 ? string.Empty : elementData.Charge < 0 ? "-" : "+";
-            newWorldParticle.SetInfoText(infoText);
             newWorldElement = newWorldParticle;
-
             Particles.Add(newWorldParticle);
         }
         else if (elementType == ElementType.Atom)
@@ -472,7 +466,7 @@ public class Editor : MonoBehaviour
 
         var newParticle = particleGameObject.GetComponent<WorldParticle>();
         newParticle.transform.parent = atomGameObject.transform;
-        FileSystem.instance.ActiveElementAs<Atom>().Charge += (int)newParticle.charge;
+        FileSystem.instance.ActiveElementAs<Atom>().Charge += (int)newParticle.Charge;
 
         Particles.Add(newParticle);
 
@@ -494,7 +488,7 @@ public class Editor : MonoBehaviour
         Particles.Remove(particle);
         GameObject.Destroy(particle.gameObject);
 
-        FileSystem.instance.ActiveElementAs<Atom>().Charge -= (int)particle.charge;
+        FileSystem.instance.ActiveElementAs<Atom>().Charge -= (int)particle.Charge;
 
         return true;
     }
