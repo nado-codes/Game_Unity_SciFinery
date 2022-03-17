@@ -17537,7 +17537,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfe0148bd6553944e88a239e69b06c7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  particlePrefab: {fileID: 0}
+  particlePrefab: {fileID: 9056266128716195521, guid: 0b0040bea647ecd4b9f49180bae6a23f,
+    type: 3}
   atomPrefab: {fileID: 0}
   moleculePrefab: {fileID: 0}
   textClassification: {fileID: 0}
@@ -64124,16 +64125,6 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 612247308}
-    - target: {fileID: 9056266128684409360, guid: 0b0040bea647ecd4b9f49180bae6a23f,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9056266128684409360, guid: 0b0040bea647ecd4b9f49180bae6a23f,
-        type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 9056266128716195521, guid: 0b0040bea647ecd4b9f49180bae6a23f,
         type: 3}
       propertyPath: m_Name
@@ -64194,10 +64185,5 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9056266129111126216, guid: 0b0040bea647ecd4b9f49180bae6a23f,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: b18437bff783b78499ab19ed85461678, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0b0040bea647ecd4b9f49180bae6a23f, type: 3}
