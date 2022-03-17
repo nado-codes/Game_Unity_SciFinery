@@ -15,10 +15,7 @@ public class Editor : MonoBehaviour
 
     // PREFABS
     [Header("Prefabs")]
-    public GameObject protonPrefab;
-    public GameObject neutronPrefab;
-    public GameObject electronPrefab;
-    [Header("Element Prefabs")]
+    public GameObject particlePrefab;
     public GameObject atomPrefab;
     public GameObject moleculePrefab;
 
@@ -59,12 +56,8 @@ public class Editor : MonoBehaviour
         else
             throw new ApplicationException("There may be only one instance of Editor");
 
-        if (protonPrefab == null)
-            throw new ArgumentNullException("protonPrefab must be set in Editor");
-        if (neutronPrefab == null)
-            throw new ArgumentNullException("neutronPrefab must be set in Editor");
-        if (electronPrefab == null)
-            throw new ArgumentNullException("electronPrefab must be set in Editor");
+        if (particlePrefab == null)
+            throw new ArgumentNullException("particlePrefab must be set in Editor");
 
         Particles.AddRange(FindObjectsOfType<WorldParticle>());
 
@@ -421,30 +414,16 @@ public class Editor : MonoBehaviour
         // TODO: later, prefabs for particles, atoms and molecules will be loaded in at runtime using
         // Unity "Addressables" (like AssetBundles)
 
-        GameObject elementGameObject = null;
+        WorldElement newWorldElement = null;
+        GameObject newWorldElementGO = null;
         var elementType = elementData.Type;
 
         if (elementType == ElementType.Particle)
         {
-            elementGameObject = new GameObject();
-            // GameObject.CreatePrimitive(PrimitiveType.Sphere);
-            // TODO: later, prefabs for particles, atoms and molecules will be loaded in at runtime using
-            // Unity "Addressables" (like AssetBundles)
-            /* if (element.Name == "proton")
-            {
-                elementGameObject = Instantiate(instance.protonPrefab);
-            }
-            else if (element.Name == "neutron")
-            {
-                elementGameObject = Instantiate(instance.neutronPrefab);
-            }
-            else if (element.Name == "electron")
-            {
-                elementGameObject = Instantiate(instance.electronPrefab);
-            } */
+            newWorldElementGO = Instantiate(instance.particlePrefab);
+            newWorldElementGO.transform.parent = atomGameObject.transform;
 
-            var newParticle = elementGameObject.GetComponent<WorldParticle>();
-            newParticle.transform.parent = atomGameObject.transform;
+            var newParticle = newWorldElement.GetComponent<WorldParticle>();
 
             // .. TODO: charge should be SET, not ADDED - this is bad
             FileSystem.instance.ActiveElementAs<Atom>().Charge += (int)newParticle.charge;
@@ -462,7 +441,7 @@ public class Editor : MonoBehaviour
 
         FileSystem.instance.hasUnsavedChanges = true;
 
-        return null;
+        return newWorldElement;
     }
 
     public static WorldParticle CreateParticle(ParticleType type)
@@ -471,12 +450,12 @@ public class Editor : MonoBehaviour
         // Unity "Addressables" (like AssetBundles)
         GameObject particleGameObject = null;
 
-        if (type == ParticleType.Proton)
+        /* if (type == ParticleType.Proton)
             particleGameObject = Instantiate(instance.protonPrefab);
         else if (type == ParticleType.Neutron)
             particleGameObject = Instantiate(instance.neutronPrefab);
         else
-            particleGameObject = Instantiate(instance.electronPrefab);
+            particleGameObject = Instantiate(instance.electronPrefab); */
 
         var newParticle = particleGameObject.GetComponent<WorldParticle>();
         newParticle.transform.parent = atomGameObject.transform;
