@@ -8,5 +8,5 @@ public class Particle : Element
     private Color baseColor;
 
     ///<summary>Hexadecimal value representing the baseColor of a particle in world space</summary>
-    public string BaseColor => ColorUtility.ToHtmlStringRGBA(baseColor);
+    public string BaseColor => "#" + ColorUtility.ToHtmlStringRGBA(baseColor);
 }

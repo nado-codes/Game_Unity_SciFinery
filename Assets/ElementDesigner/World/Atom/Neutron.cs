@@ -7,7 +7,7 @@ public class Neutron : WorldParticle
     // Start is called before the first frame update
     new void Start()
     {
-        type = ParticleType.Neutron;
+        // type = ParticleType.Neutron;
 
         base.Start();
     }

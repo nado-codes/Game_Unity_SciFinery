@@ -11,6 +11,8 @@ public class Atom : Element
     public int NeutronCount;
     public int ElectronCount;
 
+    public int[] ParticleIds;
+
     // TODO: Valence shells and electrons divided into shells
     // TODO: Valence shell composition to affect reactivity
 

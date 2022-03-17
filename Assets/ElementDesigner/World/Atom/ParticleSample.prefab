@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 9056266128194315844}
   - component: {fileID: 9056266128194315843}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: InfoCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,6 +29,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -0.537}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9056266128807174613}
   m_Father: {fileID: 9056266129111126218}
@@ -111,7 +112,7 @@ GameObject:
   - component: {fileID: 9056266128684409375}
   - component: {fileID: 9056266128684409360}
   m_Layer: 0
-  m_Name: Point Light
+  m_Name: Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -127,6 +128,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 9056266129111126218}
   m_RootOrder: 0
@@ -202,10 +204,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9056266128716195522}
-  - component: {fileID: 9056266128716195523}
   - component: {fileID: 8487721134995654214}
   - component: {fileID: 3156277807892339538}
   - component: {fileID: 2504366720028377726}
+  - component: {fileID: 2060426439166979223}
   m_Layer: 0
   m_Name: ParticleSample
   m_TagString: Untagged
@@ -223,26 +225,12 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.63, y: 2.16, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9056266129111126218}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9056266128716195523
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9056266128716195521}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2cce438ca482889438ec743c52f4c02e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  charge: 1
-  type: 0
-  massMultiplier: 0.001
 --- !u!65 &8487721134995654214
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -292,7 +280,7 @@ TrailRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0273381396591674e934faaf1f917a70, type: 2}
+  - {fileID: 2100000, guid: b18437bff783b78499ab19ed85461678, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -367,7 +355,7 @@ TrailRenderer:
       atime5: 0
       atime6: 0
       atime7: 0
-      m_Mode: 0
+      m_Mode: 1
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
     numCornerVertices: 0
@@ -379,6 +367,20 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
+--- !u!114 &2060426439166979223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9056266128716195521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85d486d75ef707646af01dd2e751d0e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  charge: 0
+  massMultiplier: 1
 --- !u!1 &9056266128807174612
 GameObject:
   m_ObjectHideFlags: 0
@@ -391,7 +393,7 @@ GameObject:
   - component: {fileID: 9056266128807174615}
   - component: {fileID: 9056266128807174614}
   m_Layer: 5
-  m_Name: TextSign
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -407,6 +409,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.24023685, y: 0.24023685, z: 0.24023685}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 9056266128194315842}
   m_RootOrder: 0
@@ -488,6 +491,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9056266128684409375}
   - {fileID: 9056266128194315842}

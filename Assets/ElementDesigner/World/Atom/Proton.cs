@@ -7,7 +7,7 @@ public class Proton : WorldParticle
     // Start is called before the first frame update
     new void Start()
     {
-        type = ParticleType.Proton;
+        // type = ParticleType.Proton;
         base.Start();
     }
 }

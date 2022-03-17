@@ -1,10 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public delegate void ElementDataDelegate<T>(T elementData) where T : Element;
-public class GridItem<T> : MonoBehaviour where T : Element
+public class GridItem<T> : MonoBehaviour, IPointerDownHandler where T : Element
 {
     public ElementDataDelegate<T> OnClick;
     public T elementData = null;
@@ -12,6 +11,7 @@ public class GridItem<T> : MonoBehaviour where T : Element
     protected Text numberText, shortNameText, nameText, weightText;
     private ColorBlock buttonColorsActive, buttonColorsInactive;
     protected Button button;
+    private bool isHovered;
 
     public void Init()
     {
@@ -34,6 +34,8 @@ public class GridItem<T> : MonoBehaviour where T : Element
     }
     protected virtual void Start() => Init();
     protected virtual void Awake() => Init();
+
+    public void OnPointerDown(PointerEventData ev) => HandleClick();
 
     public void HandleClick() => OnClick?.Invoke(elementData);
 

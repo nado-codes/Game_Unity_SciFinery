@@ -135,7 +135,7 @@ public class Editor : MonoBehaviour
         atomGameObject.name = "AtomNewAtom";
 
         FileSystem.instance.NewAtom();
-        // LoadAtomData(FileSystem.instance.ActiveElement);
+        LoadElementData(FileSystem.instance.ActiveElement);
 
         FileSystem.instance.hasUnsavedChanges = false;
     }
@@ -170,9 +170,9 @@ public class Editor : MonoBehaviour
 
     void UpdateActiveAtom()
     {
-        var protons = Particles.Where(p => p.charge == WorldParticle.Charge.Positive);
-        var neutrons = Particles.Where(p => p.charge == WorldParticle.Charge.None);
-        var electrons = Particles.Where(p => p.charge == WorldParticle.Charge.Negative);
+        // var protons = Particles.Where(p => p.charge == WorldParticle.Charge.Positive);
+        // var neutrons = Particles.Where(p => p.charge == WorldParticle.Charge.None);
+        // var electrons = Particles.Where(p => p.charge == WorldParticle.Charge.Negative);
 
         // FileSystem.instance.ActiveElementAs<Atom>().Number = protons.Count();
         // FileSystem.instance.ActiveElementAs<Atom>().ProtonCount = protons.Count();
@@ -370,28 +370,35 @@ public class Editor : MonoBehaviour
         }
     }
 
-    public void LoadAtomData(Atom atomData)
+    public void LoadElementData<T>(T elementData) where T : Element
     {
         ClearElements();
         // Camera.main.transform.position = instance.cameraStartPos;
         // Camera.main.transform.rotation = instance.cameraStartAngle;
-
-        var particlesToCreate = new List<ParticleType>();
-
-        particlesToCreate.AddRange(Enumerable.Range(0, atomData.ProtonCount).Select(n => ParticleType.Proton));
-        particlesToCreate.AddRange(Enumerable.Range(0, atomData.NeutronCount).Select(n => ParticleType.Neutron));
-        particlesToCreate.AddRange(Enumerable.Range(0, atomData.ElectronCount).Select(n => ParticleType.Electron));
-
-        // .. create each particle in a random position, with electrons further away than protons and neutrons
-        particlesToCreate.ForEach(particleToCreate =>
+        var elementType = elementData.Type;
+        if (elementType == ElementType.Atom)
         {
-            var radius = particleToCreate != ParticleType.Electron ? 1 : 20;
-            var randPos = UnityEngine.Random.insideUnitSphere * radius;
+            var particlesToCreate = new List<ParticleType>();
 
-            CreateParticle(particleToCreate, randPos);
-        });
+            // TODO: get a list of particles to create by reading the particleIds from elementData
 
-        FileSystem.instance.ActiveElement = atomData;
+            // particlesToCreate.AddRange(Enumerable.Range(0, elementData.ProtonCount).Select(n => ParticleType.Proton));
+            // particlesToCreate.AddRange(Enumerable.Range(0, elementData.NeutronCount).Select(n => ParticleType.Neutron));
+            // particlesToCreate.AddRange(Enumerable.Range(0, elementData.ElectronCount).Select(n => ParticleType.Electron));
+
+            // .. create each particle in a random position, with electrons further away than protons and neutrons
+            particlesToCreate.ForEach(particleToCreate =>
+            {
+                var radius = particleToCreate != ParticleType.Electron ? 1 : 20;
+                var randPos = UnityEngine.Random.insideUnitSphere * radius;
+
+                CreateParticle(particleToCreate, randPos);
+            });
+        }
+
+
+
+        FileSystem.instance.ActiveElement = elementData;
         TextNotification.Show($"Loaded \"{FileSystem.instance.ActiveElementAs<Atom>().Name}\"");
     }
 
@@ -418,22 +425,23 @@ public class Editor : MonoBehaviour
         GameObject newWorldElementGO = null;
         var elementType = elementData.Type;
 
-        Debug.Log("creating " + elementData.Name);
-
         if (elementType == ElementType.Particle)
         {
-            Debug.Log(elementData.Name + " is a particle");
+            var elementDataAsParticle = elementData as Particle;
+
             newWorldElementGO = Instantiate(instance.particlePrefab);
             newWorldElementGO.transform.parent = atomGameObject.transform;
 
+            var newWorldParticle = newWorldElementGO.GetComponent<WorldParticle>();
 
+            ColorUtility.TryParseHtmlString(elementDataAsParticle.BaseColor, out Color particleColor);
+            newWorldParticle.SetColor(particleColor);
 
-            var newParticle = newWorldElement.GetComponent<WorldParticle>();
+            var infoText = elementData.Charge == 0 ? string.Empty : elementData.Charge < 0 ? "-" : "+";
+            newWorldParticle.SetInfoText(infoText);
+            newWorldElement = newWorldParticle;
 
-            // .. TODO: charge should be SET, not ADDED - this is bad
-            // FileSystem.instance.ActiveElementAs<Atom>().Charge += (int)newParticle.charge;
-
-            Particles.Add(newParticle);
+            Particles.Add(newWorldParticle);
         }
         else if (elementType == ElementType.Atom)
         {
@@ -465,9 +473,6 @@ public class Editor : MonoBehaviour
         var newParticle = particleGameObject.GetComponent<WorldParticle>();
         newParticle.transform.parent = atomGameObject.transform;
         FileSystem.instance.ActiveElementAs<Atom>().Charge += (int)newParticle.charge;
-
-        if (newParticle.type != type)
-            Debug.LogWarning($"Failed to create a particle of type {type}. Created an electron by default");
 
         Particles.Add(newParticle);
 

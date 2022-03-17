@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WorldElectron : WorldParticle
+public class Electron : WorldParticle
 {
     // Start is called before the first frame update
     new void Start()
     {
-        type = ParticleType.Electron;
+        // type = ParticleType.Electron;
 
         base.Start();
     }

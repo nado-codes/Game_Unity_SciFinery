@@ -1,9 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using System;
 using System.Linq;
 
 public enum CreationState { None, Start, Drag }
@@ -15,7 +13,8 @@ public class panelCreate : MonoBehaviour, IPointerExitHandler
     private static ElementType designType = ElementType.Atom;
     public ElementType elementToCreate = ElementType.Particle;
     private Element elementToCreateData;
-    public GameObject proton, neutron, electron, currentParticleObject;
+    public WorldElement currentWorldElement;
+
     private List<Element> loadedElements = new List<Element>();
     private static Transform particleButtonsTransform, elementButtonsTransform, btnPrevTransform, btnNextTransform;
     private static List<AtomGridItem> elementButtons = new List<AtomGridItem>();
@@ -111,12 +110,13 @@ public class panelCreate : MonoBehaviour, IPointerExitHandler
 
             var cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-            currentParticleObject.transform.position = cameraRay.origin + (cameraRay.direction * particleDistance);
+            currentWorldElement.transform.position = cameraRay.origin + (cameraRay.direction * particleDistance);
 
             if (Input.GetMouseButtonUp(0))
             {
                 particleDistance = particleDefaultDistance;
-                currentParticleObject = null;
+                currentWorldElement.enabled = true;
+                currentWorldElement = null;
                 creationState = CreationState.None;
                 Editor.SetDragSelectEnabled(true);
             }
@@ -148,7 +148,8 @@ public class panelCreate : MonoBehaviour, IPointerExitHandler
         {
             Debug.Log("start drag");
 
-            currentParticleObject = Editor.CreateWorldElement(elementToCreateData).gameObject;
+            currentWorldElement = Editor.CreateWorldElement(elementToCreateData);
+            currentWorldElement.enabled = false;
             creationState = CreationState.Drag;
 
             Editor.SetDragSelectEnabled(false);
