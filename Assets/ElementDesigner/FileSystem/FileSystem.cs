@@ -9,7 +9,25 @@ public class FileSystem : MonoBehaviour
 {
     const string fileExtension = "ed";
     const string elementsRoot = "./Elements";
-    public static FileSystem instance;
+
+    private static FileSystem _instance;
+    public static FileSystem instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                var newFileSystem = FindObjectOfType<FileSystem>();
+
+                if (newFileSystem == null)
+                    newFileSystem = Camera.main.gameObject.AddComponent<FileSystem>();
+
+                _instance = newFileSystem;
+            }
+
+            return _instance;
+        }
+    }
 
     // ACTIVE ELEMENT
     private string activeElementFileName => ActiveElementAs<Atom>().ShortName.ToLower() + "_" + ActiveElementAs<Atom>().Guid;
@@ -26,8 +44,6 @@ public class FileSystem : MonoBehaviour
 
     void Start()
     {
-        instance = this;
-
         LoadedAtoms = LoadElementsOfType<Atom>().ToList();
         LoadedMolecules = LoadElementsOfType<Molecule>().ToList();
         LoadedProducts = LoadElementsOfType<Product>().ToList();
@@ -152,14 +168,15 @@ public class FileSystem : MonoBehaviour
 
     private static IEnumerable<T> LoadElementsOfType<T>() where T : Element
     {
-        if (!Directory.Exists(elementsRoot))
-            return new List<T>();
-
         var typeName = typeof(T).FullName;
         ElementType elementType;
         Enum.TryParse(typeName, out elementType);
 
-        var files = Directory.GetFiles($"{elementsRoot}/{elementType.ToString()}/", $"*.{fileExtension}");
+        var elementsOfTypeDir = $"{elementsRoot}/{elementType.ToString()}/";
+        if (!Directory.Exists(elementsOfTypeDir))
+            return new List<T>();
+
+        var files = Directory.GetFiles(elementsOfTypeDir, $"*.{fileExtension}");
         var loadedElements = new List<T>();
 
         foreach (string file in files)

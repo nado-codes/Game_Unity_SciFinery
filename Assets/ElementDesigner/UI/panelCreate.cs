@@ -24,9 +24,6 @@ public class panelCreate : MonoBehaviour, IPointerExitHandler
     private bool isHover = false;
     private float particleDistance = 1, zoomSensitivity = 400;
 
-
-
-    // Start is called before the first frame update
     void Start()
     {
         particleDistance = particleDefaultDistance;
@@ -36,7 +33,8 @@ public class panelCreate : MonoBehaviour, IPointerExitHandler
         btnNextTransform = transform.Find("btnNext");
 
         var particleButtons = particleButtonsTransform.GetComponentsInChildren<ParticleGridItem>().ToList();
-        particleButtons.ForEach(b => b.OnClick += (Particle pData) => elementToCreateData = pData);
+        particleButtons.ForEach(b => b.OnClick += HandleElementGridItemClicked<Particle>);
+
     }
 
     public void LoadParticles() => loadedElements.Clear();
@@ -128,6 +126,13 @@ public class panelCreate : MonoBehaviour, IPointerExitHandler
     void OnMouseEnter()
     {
         isHover = true;
+    }
+
+    private void HandleElementGridItemClicked<T>(T elementData) where T : Element
+    {
+        elementToCreateData = elementData;
+        creationState = CreationState.Start;
+        Debug.Log("starting creation");
     }
 
 

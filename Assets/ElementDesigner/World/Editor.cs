@@ -418,15 +418,20 @@ public class Editor : MonoBehaviour
         GameObject newWorldElementGO = null;
         var elementType = elementData.Type;
 
+        Debug.Log("creating " + elementData.Name);
+
         if (elementType == ElementType.Particle)
         {
+            Debug.Log(elementData.Name + " is a particle");
             newWorldElementGO = Instantiate(instance.particlePrefab);
             newWorldElementGO.transform.parent = atomGameObject.transform;
+
+
 
             var newParticle = newWorldElement.GetComponent<WorldParticle>();
 
             // .. TODO: charge should be SET, not ADDED - this is bad
-            FileSystem.instance.ActiveElementAs<Atom>().Charge += (int)newParticle.charge;
+            // FileSystem.instance.ActiveElementAs<Atom>().Charge += (int)newParticle.charge;
 
             Particles.Add(newParticle);
         }
