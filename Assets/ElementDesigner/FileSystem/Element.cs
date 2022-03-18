@@ -3,7 +3,7 @@ using System;
 [Serializable]
 public class Element
 {
-    public string Guid;
+    public int Id;
 
     public string ShortName;
     public string Name;

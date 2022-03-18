@@ -1,26 +1,30 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
 
-public class DialogPeriodicTable : MonoBehaviour
+public class DialogPeriodicTable<T> : MonoBehaviour where T : Element
 {
-    public Editor editor;
-    private GridItem<Element> selectedItem;
+    private static DialogPeriodicTable<T> instance;
+    private GridItem<T> selectedItem;
 
-    private List<ElementGridItem> page1GridItems = new List<ElementGridItem>();
-    private List<ElementGridItem> page2GridItems = new List<ElementGridItem>();
-
-    private List<GridItem<Element>> pageGridItems = new List<GridItem<Element>>();
+    private List<GridItem<T>> page1GridItems = new List<GridItem<T>>();
+    private List<GridItem<T>> page2GridItems = new List<GridItem<T>>();
 
     private Button btnLoad, btnDelete, btnIsotopes;
 
     private Transform page1Transform, page2Transform;
 
-    void Start()
+    // TODO: need to get or add the GridItem<T> to the page grid items here
+    private void VerifyInitialize()
     {
+        var periodicTableGameObject = GameObject.Find("dialogPeriodicTable");
+
+        if (instance == null)
+            instance = periodicTableGameObject.AddComponent<DialogPeriodicTable<T>>();
+
         page1Transform = transform.Find("page1");
         page2Transform = transform.Find("page2");
 
@@ -45,6 +49,10 @@ public class DialogPeriodicTable : MonoBehaviour
         OpenPage1();
         Close();
     }
+    void Start()
+    {
+
+    }
 
     void Update()
     {
@@ -55,25 +63,23 @@ public class DialogPeriodicTable : MonoBehaviour
             HandleDeleteSelectedItem();
     }
 
+    // TODO: need to get or load the elements into the grid items here ... maybe only need to load them once
     public void Open()
     {
+        VerifyInitialize();
         gameObject.SetActive(true);
 
-        // .. atoms which are not isotopes
-        var mainAtoms = FileSystem.instance.LoadedAtoms.Where(atom => !atom.IsIsotope);
+        var loadedElements = FileSystem<T>.LoadedElements;
 
-        foreach (Atom atom in mainAtoms)
+        foreach (T elementData in loadedElements)
         {
             // TODO: Create a grid item if the atom won't fit in the table
-            var gridItem = page1GridItems[atom.Number - 1];
+            var gridItem = page1GridItems[elementData.Id - 1];
 
             if (gridItem == null)
-            {
-                Debug.LogWarning("Couldn't fit the atom in the table, skipping");
-                continue;
-            }
+                throw new ApplicationException($"Expected a gridItem for element with Id {elementData.Id} in call to Open, got null");
 
-            // gridItem.SetAtomData(atom);
+            // page1GridItems[elementData.Id-1] = gridItem.SetElementData<T>(elementData);
         }
 
         HUD.LockedFocus = true;

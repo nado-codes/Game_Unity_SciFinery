@@ -5,22 +5,22 @@ using System;
 using System.Linq;
 using UnityEngine;
 
-public class FileSystem : MonoBehaviour
+public class FileSystem<T> : MonoBehaviour where T : Element
 {
     const string fileExtension = "ed";
     const string elementsRoot = "./Elements";
 
-    private static FileSystem _instance;
-    public static FileSystem instance
+    private static FileSystem<T> _instance;
+    public static FileSystem<T> instance
     {
         get
         {
             if (_instance == null)
             {
-                var newFileSystem = FindObjectOfType<FileSystem>();
+                var newFileSystem = FindObjectOfType<FileSystem<T>>();
 
                 if (newFileSystem == null)
-                    newFileSystem = Camera.main.gameObject.AddComponent<FileSystem>();
+                    newFileSystem = Camera.main.gameObject.AddComponent<FileSystem<T>>();
 
                 _instance = newFileSystem;
             }
@@ -35,6 +35,18 @@ public class FileSystem : MonoBehaviour
     public Element ActiveElement { get; set; }
     public bool hasUnsavedChanges = false;
 
+    private List<T> loadedElements;
+    public static List<T> LoadedElements
+    {
+        get
+        {
+            if (instance.loadedElements == null)
+                instance.loadedElements = LoadElements().ToList();
+
+            return instance.loadedElements;
+        }
+    }
+
     // LOADED ELEMENTS
 
     public List<Atom> LoadedAtoms { get; private set; } = new List<Atom>();
@@ -44,12 +56,56 @@ public class FileSystem : MonoBehaviour
 
     void Start()
     {
-        LoadedAtoms = LoadElementsOfType<Atom>().ToList();
-        LoadedMolecules = LoadElementsOfType<Molecule>().ToList();
-        LoadedProducts = LoadElementsOfType<Product>().ToList();
+        //LoadedAtoms = LoadElements<Atom>().ToList();
+        //LoadedMolecules = LoadElements<Molecule>().ToList();
+        //LoadedProducts = LoadElements<Product>().ToList();
     }
 
-    public T ActiveElementAs<T>() where T : Element => ActiveElement as T;
+    public static IEnumerable<T> LoadElements()
+    {
+        var typeName = typeof(T).FullName;
+
+        var elementsOfTypeDir = $"{elementsRoot}/{typeName}/";
+        if (!Directory.Exists(elementsOfTypeDir))
+            return new List<T>();
+
+        var files = Directory.GetFiles(elementsOfTypeDir, $"*.{fileExtension}");
+        var loadedElements = new List<T>();
+
+        foreach (string file in files)
+        {
+            string elementJSON = File.ReadAllText(file);
+            var elementFromJSON = JsonUtility.FromJson<T>(elementJSON);
+
+            // TODO: Can other elements (molecule, product) have "sub-types" like isotopes? Or does it only apply to atoms?
+            if (elementType == ElementType.Atom)
+            {
+                var mainAtomDirectoryName = GetMainElementFilePath(elementFromJSON).Split(new string[1] { $".{fileExtension}" }, StringSplitOptions.None)[0];
+
+                if (Directory.Exists($"{mainAtomDirectoryName}/"))
+                {
+                    var isotopes = Directory.GetFiles($"{mainAtomDirectoryName}/", $"*.{fileExtension}");
+                    var isotopeAtoms = isotopes.Select(isotope =>
+                    {
+                        var isotopeJSON = File.ReadAllText(isotope);
+                        var isotopeAtom = JsonUtility.FromJson<Atom>(isotopeJSON);
+                        isotopeAtom.IsIsotope = true;
+                        return isotopeAtom;
+                    });
+
+                    // .. TODO: this might break because we're casting an Atom to it's base type so it may lose the "IsIsotope" property
+                    // .. Need to QA this
+                    loadedElements.AddRange(isotopeAtoms.Cast<T>());
+                }
+
+                loadedElements.Add(elementFromJSON);
+            }
+        }
+
+        return loadedElements;
+    }
+
+    public U ActiveElementAs<U>() where U : Element => ActiveElement as U;
 
     public Atom NewAtom()
     {
@@ -166,51 +222,7 @@ public class FileSystem : MonoBehaviour
         return $"{mainAtomPath}/{activeElementFileName}_{isotopeNumber}.{fileExtension}";
     }
 
-    private static IEnumerable<T> LoadElementsOfType<T>() where T : Element
-    {
-        var typeName = typeof(T).FullName;
-        ElementType elementType;
-        Enum.TryParse(typeName, out elementType);
 
-        var elementsOfTypeDir = $"{elementsRoot}/{elementType.ToString()}/";
-        if (!Directory.Exists(elementsOfTypeDir))
-            return new List<T>();
-
-        var files = Directory.GetFiles(elementsOfTypeDir, $"*.{fileExtension}");
-        var loadedElements = new List<T>();
-
-        foreach (string file in files)
-        {
-            string elementJSON = File.ReadAllText(file);
-            var elementFromJSON = JsonUtility.FromJson<T>(elementJSON);
-
-            // TODO: Can other elements (molecule, product) have "sub-types" like isotopes? Or does it only apply to atoms?
-            if (elementType == ElementType.Atom)
-            {
-                var mainAtomDirectoryName = GetMainElementFilePath(elementFromJSON).Split(new string[1] { $".{fileExtension}" }, StringSplitOptions.None)[0];
-
-                if (Directory.Exists($"{mainAtomDirectoryName}/"))
-                {
-                    var isotopes = Directory.GetFiles($"{mainAtomDirectoryName}/", $"*.{fileExtension}");
-                    var isotopeAtoms = isotopes.Select(isotope =>
-                    {
-                        var isotopeJSON = File.ReadAllText(isotope);
-                        var isotopeAtom = JsonUtility.FromJson<Atom>(isotopeJSON);
-                        isotopeAtom.IsIsotope = true;
-                        return isotopeAtom;
-                    });
-
-                    // .. TODO: this might break because we're casting an Atom to it's base type so it may lose the "IsIsotope" property
-                    // .. Need to QA this
-                    loadedElements.AddRange(isotopeAtoms.Cast<T>());
-                }
-
-                loadedElements.Add(elementFromJSON);
-            }
-        }
-
-        return loadedElements;
-    }
 
     public void DeleteAtom(Atom atom)
     {

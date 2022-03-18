@@ -44,5 +44,13 @@ public class GridItem<T> : MonoBehaviour, IPointerDownHandler where T : Element
         button.interactable = active;
     }
 
+    public GridItem<U> SetElementData<U>(U ElementData) where U : Element
+    {
+        var newGridItem = gameObject.AddComponent<GridItem<U>>();
+        newGridItem.elementData = ElementData;
+
+        GameObject.Destroy(this);
+        return newGridItem;
+    }
 
 }
