@@ -11,7 +11,10 @@ public enum ElementType { Particle = 0, Atom = 1, Molecule = 2, Product = 3 }
 public class Editor : MonoBehaviour
 {
     private static Editor instance;
-    public static ElementType designType = ElementType.Atom;
+
+    private ElementType designType = ElementType.Atom;
+    public static ElementType DesignType => instance.designType;
+    public static bool HasUnsavedChanges = false;
 
     // PREFABS
     [Header("Prefabs")]
@@ -66,7 +69,7 @@ public class Editor : MonoBehaviour
         textCharge = GameObject.Find("TextCharge")?.GetComponent<Text>();
 
         var designTypeTabs = GameObject.Find("tabsDesignType").GetComponent<Tabs>();
-        designTypeTabs.OnSelectedTabChanged += HandleChangeDesignType;
+        designTypeTabs.OnSelectedTabChanged += (int designTypeId) => HandleChangeDesignTypeClicked((ElementType)designTypeId);
 
         cameraStartPos = Camera.main.transform.position;
         cameraStartAngle = Camera.main.transform.rotation;
@@ -77,77 +80,75 @@ public class Editor : MonoBehaviour
         var rigidbody = gameObject.AddComponent<Rigidbody>();
         rigidbody.useGravity = false;
         rigidbody.isKinematic = true;
-
-        NewAtom();
     }
 
-    void HandleChangeDesignType(int designTypeTabId)
+    public void HandleChangeDesignTypeClicked(ElementType newDesignType)
     {
-        if (FileSystem.instance.hasUnsavedChanges)
-        {
-            var dialogBody = "You have unsaved changes in the editor. Would you like to save before continuing?";
-            DialogYesNo.Open("Save Changes?", dialogBody, () => FileSystem.instance.SaveActiveElement(), null,
-            () => ChangeDesignType((ElementType)designTypeTabId));
-        }
-        else
-            ChangeDesignType((ElementType)designTypeTabId);
-    }
-
-    void ChangeDesignType(ElementType newDesignType)
-    {
-        ClearElements();
-        panelCreate.SetDesignType(newDesignType);
-
         if (newDesignType == ElementType.Atom)
-            NewAtom();
-        else if (newDesignType == ElementType.Molecule)
-            NewMolecule();
-        else if (newDesignType == ElementType.Product)
-            NewProduct();
+            handleChangeDesignType<Atom>();
 
+        panelCreate.SetDesignType(newDesignType);
         designType = newDesignType;
         TextNotification.Show("Design Type: " + newDesignType);
     }
 
-    public void HandleNewElementClicked()
+    private void handleChangeDesignType<T>() where T : Element
     {
-        if (FileSystem.instance.hasUnsavedChanges)
+        if (HasUnsavedChanges)
         {
             var dialogBody = "You have unsaved changes in the editor. Would you like to save before continuing?";
-            DialogYesNo.Open("Save Changes?", dialogBody, () => FileSystem.instance.SaveActiveElement(), null,
-            () => NewElement());
+            DialogYesNo.Open("Save Changes?", dialogBody, () => FileSystem<T>.instance.SaveActiveElement(), null,
+            () =>
+            {
+                ClearParticles();
+                createNewElement<T>();
+            });
         }
         else
-            NewElement();
+        {
+            ClearParticles();
+            createNewElement<T>();
+        }
     }
-    public void NewElement()
+
+    public void HandleNewElementClicked()
+    {
+        if (DesignType == ElementType.Atom)
+            handleCreateNewElement<Atom>();
+    }
+    private void handleCreateNewElement<T>() where T : Element
+    {
+        if (HasUnsavedChanges)
+        {
+            var dialogBody = "You have unsaved changes in the editor. Would you like to save before continuing?";
+            DialogYesNo.Open("Save Changes?", dialogBody, () => FileSystem<T>.instance.SaveActiveElement(), null,
+            createNewElement<T>);
+        }
+        else
+            createNewElement<T>();
+    }
+    private void createNewElement<T>() where T : Element
     {
         if (designType == ElementType.Atom)
-            NewAtom();
+        {
+            atomGameObject = GameObject.Find("Atom") ?? new GameObject();
+            atomGameObject.name = "AtomNewAtom";
+
+            // FileSystem.instance.NewAtom();
+            LoadElementData(FileSystem<T>.instance.ActiveElement);
+
+            HasUnsavedChanges = false;
+        }
         else if (designType == ElementType.Molecule)
-            NewMolecule();
+        {
+            // TODO: new molecule
+        }
         else if (designType == ElementType.Product)
-            NewProduct();
-    }
-    public void NewAtom()
-    {
-        atomGameObject = GameObject.Find("Atom") ?? new GameObject();
-        atomGameObject.name = "AtomNewAtom";
+        {
+            // TODO: new product
+        }
 
-        FileSystem.instance.NewAtom();
-        LoadElementData(FileSystem.instance.ActiveElement);
-
-        FileSystem.instance.hasUnsavedChanges = false;
-    }
-
-    public void NewMolecule()
-    {
-        FileSystem.instance.hasUnsavedChanges = false;
-    }
-
-    public void NewProduct()
-    {
-        FileSystem.instance.hasUnsavedChanges = false;
+        HasUnsavedChanges = false;
     }
 
     void Update()
@@ -157,8 +158,8 @@ public class Editor : MonoBehaviour
 
         UpdateActiveAtom();
 
-        var chargeRound = Mathf.RoundToInt(FileSystem.instance.ActiveElementAs<Atom>().Charge);
-        textCharge.text = $"Charge: {chargeRound} ({FileSystem.instance.ActiveElementAs<Atom>().Charge})";
+        // var chargeRound = Mathf.RoundToInt(FileSystem.instance.ActiveElementAs<Atom>().Charge);
+        // textCharge.text = $"Charge: {chargeRound} ({FileSystem.instance.ActiveElementAs<Atom>().Charge})";
 
         if (_selectedObjects.Any())
         {
@@ -370,9 +371,9 @@ public class Editor : MonoBehaviour
         }
     }
 
-    public void LoadElementData<T>(T elementData) where T : Element
+    public static void LoadElementData<T>(T elementData) where T : Element
     {
-        ClearElements();
+        ClearParticles();
         // Camera.main.transform.position = instance.cameraStartPos;
         // Camera.main.transform.rotation = instance.cameraStartAngle;
         var elementType = elementData.Type;
@@ -392,27 +393,16 @@ public class Editor : MonoBehaviour
                 var radius = particleToCreate != ParticleType.Electron ? 1 : 20;
                 var randPos = UnityEngine.Random.insideUnitSphere * radius;
 
-                CreateParticle(particleToCreate, randPos);
+                instance.CreateParticle(particleToCreate, randPos);
             });
         }
 
 
 
-        FileSystem.instance.ActiveElement = elementData;
-        TextNotification.Show($"Loaded \"{FileSystem.instance.ActiveElementAs<Atom>().Name}\"");
+        FileSystem<T>.instance.ActiveElement = elementData;
+        // TextNotification.Show($"Loaded \"{FileSystem<T>.instance.ActiveElementAs<Atom>().Name}\"");
     }
 
-    // NOTE: probably can't create a master method because of how different each element is
-    // Even though they all react to charge, have a weight and name for example,
-    // molecules have "child" atoms whereas a normal atom only contains particles
-    // while the way that they physically behave may be similar, they have unique properties
-    // that can't be effectively passed or represented with a master method
-    // maybe will need to create individual methods "CreateParticle" "CreateAtom" "CreateMolecule"
-    // or need to convert this to generic to prevent any data loss when spawning in the element
-    //
-    // actual spawning in of elements is about the only thing that we can be 100% sure of how it will work
-    // pass in some data to specify what type of object it is or how it will behave, and then spawn
-    // its prefab into the world and activate it
     public static WorldElement CreateWorldElement(Element elementData)
     {
         if (elementData == null)
@@ -446,7 +436,7 @@ public class Editor : MonoBehaviour
 
         }
 
-        FileSystem.instance.hasUnsavedChanges = true;
+        HasUnsavedChanges = true;
 
         return newWorldElement;
     }
@@ -466,11 +456,11 @@ public class Editor : MonoBehaviour
 
         var newParticle = particleGameObject.GetComponent<WorldParticle>();
         newParticle.transform.parent = atomGameObject.transform;
-        FileSystem.instance.ActiveElementAs<Atom>().Charge += (int)newParticle.Charge;
+        // FileSystem.instance.ActiveElementAs<Atom>().Charge += (int)newParticle.Charge;
 
         Particles.Add(newParticle);
 
-        FileSystem.instance.hasUnsavedChanges = true;
+        HasUnsavedChanges = true;
 
         return newParticle;
     }
@@ -488,7 +478,7 @@ public class Editor : MonoBehaviour
         Particles.Remove(particle);
         GameObject.Destroy(particle.gameObject);
 
-        FileSystem.instance.ActiveElementAs<Atom>().Charge -= (int)particle.Charge;
+        // FileSystem.instance.ActiveElementAs<Atom>().Charge -= (int)particle.Charge;
 
         return true;
     }
@@ -499,19 +489,31 @@ public class Editor : MonoBehaviour
     public static void RemoveParticles(IEnumerable<Interact> particlesToRemove)
         => particlesToRemove.Select(p => RemoveParticle(p.GetComponent<WorldParticle>()));
 
-    public static void HandleClearElementsClicked()
+    public void HandleClearElementsClicked()
     {
-        if (FileSystem.instance.hasUnsavedChanges)
-        {
-            var dialogBody = "You have unsaved changes in the editor. Would you like to save before continuing?";
-            DialogYesNo.Open("Save Changes?", dialogBody, () => FileSystem.instance.SaveActiveElement(), null,
-            () => ClearElements());
-        }
-        else
-            ClearElements();
+        if (designType == ElementType.Atom)
+            handleClearElements<Particle>();
     }
 
-    public static void ClearElements()
+    private void handleClearElements<T>() where T : Element
+    {
+        if (HasUnsavedChanges)
+        {
+            var dialogBody = "You have unsaved changes in the editor. Would you like to save before continuing?";
+            DialogYesNo.Open("Save Changes?", dialogBody, () => FileSystem<T>.instance.SaveActiveElement(), null,
+            clearElements<T>);
+        }
+        else
+            clearElements<T>();
+    }
+
+    private void clearElements<T>() where T : Element
+    {
+        // TODO: implement clearing elements, use if statements here to clear based on design type
+        // We'll need a bunch of lists to store the different types
+    }
+
+    public static void ClearParticles()
     {
         var particlesToDelete = new List<WorldParticle>(Particles);
         particlesToDelete.ForEach(p => RemoveParticle(p));

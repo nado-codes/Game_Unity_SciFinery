@@ -259,19 +259,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -280,6 +271,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &3900857
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -498,19 +495,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -519,6 +507,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &12029349
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -817,19 +811,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -838,6 +823,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &18507538
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1258,19 +1249,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -1279,6 +1261,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &29870859
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2695,19 +2683,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -2716,6 +2695,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &90505054
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3693,7 +3678,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 112733112}
-  - component: {fileID: 112733113}
   m_Layer: 5
   m_Name: grid
   m_TagString: Untagged
@@ -3778,18 +3762,6 @@ RectTransform:
   m_AnchoredPosition: {x: -31.79998, y: 132}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &112733113
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 112733111}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df9bf4bf85108a44c9ca8124f3ce5553, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &114349039
 GameObject:
   m_ObjectHideFlags: 0
@@ -3846,19 +3818,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -3867,6 +3830,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &114349042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4331,19 +4300,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -4352,6 +4312,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &123878885
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6568,19 +6534,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -6589,6 +6546,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &199863831
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7755,19 +7718,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -7776,6 +7730,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &251076834
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9256,19 +9216,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -9277,6 +9228,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &304556297
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9577,19 +9534,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -9598,6 +9546,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &307037453
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10140,19 +10094,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -10161,6 +10106,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &321047921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10637,19 +10588,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -10658,6 +10600,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &344234751
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11764,19 +11712,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -11785,6 +11724,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &379369120
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12165,19 +12110,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -12186,6 +12122,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &388498307
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13408,19 +13350,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -13429,6 +13362,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &460104118
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13647,19 +13586,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -13668,6 +13598,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &478520638
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14128,19 +14064,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -14149,6 +14076,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &493218158
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14857,19 +14790,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -14878,6 +14802,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &518040275
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15016,19 +14946,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -15037,6 +14958,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &529567033
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15331,19 +15258,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -15352,6 +15270,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &542476401
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15490,19 +15414,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -15511,6 +15426,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &545087230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16063,18 +15984,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   atom:
-    Guid: 
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -16083,6 +15995,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!1 &564410358
 GameObject:
   m_ObjectHideFlags: 0
@@ -16516,19 +16434,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -16537,6 +16446,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &574388814
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16919,19 +16834,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -16940,6 +16846,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &593231585
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17402,19 +17314,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -17423,6 +17326,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &612168097
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17620,10 +17529,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfe0148bd6553944e88a239e69b06c7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  particlePrefab: {fileID: 9056266128716195521, guid: 0b0040bea647ecd4b9f49180bae6a23f,
-    type: 3}
-  atomPrefab: {fileID: 0}
-  moleculePrefab: {fileID: 0}
+  protonPrefab: {fileID: 0}
+  neutronPrefab: {fileID: 0}
+  electronPrefab: {fileID: 0}
   textClassification: {fileID: 0}
   textStability: {fileID: 0}
   textCharge: {fileID: 0}
@@ -17640,7 +17548,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c16bb7fce82072941b5d85ec6e694248, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hasUnsavedChanges: 0
 --- !u!1 &617529844
 GameObject:
   m_ObjectHideFlags: 0
@@ -17697,19 +17604,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -17718,6 +17616,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &617529847
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18100,19 +18004,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -18121,6 +18016,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &649495134
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18421,19 +18322,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -18442,6 +18334,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &657882913
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19385,19 +19283,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -19406,6 +19295,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &686167385
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19957,19 +19852,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -19978,6 +19864,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &705293810
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20116,19 +20008,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -20137,6 +20020,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &706448293
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21865,19 +21754,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -21886,6 +21766,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &779138809
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22430,19 +22316,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -22451,6 +22328,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &817288372
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22669,19 +22552,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -22690,6 +22564,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &824519395
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24221,19 +24101,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -24242,6 +24113,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &891332625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25488,8 +25365,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   creationState: 0
-  elementToCreate: 0
-  currentWorldElement: {fileID: 0}
+  particleToCreate: 0
+  proton: {fileID: 0}
+  neutron: {fileID: 0}
+  electron: {fileID: 0}
+  currentParticleObject: {fileID: 0}
   particleDefaultDistance: 5
 --- !u!1 &958859892
 GameObject:
@@ -26106,19 +25986,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -26127,6 +25998,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &978902576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26425,19 +26302,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -26446,6 +26314,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &990186645
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26584,19 +26458,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -26605,6 +26470,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &994375705
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27708,19 +27579,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -27729,6 +27591,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &1032658776
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27867,19 +27735,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -27888,6 +27747,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &1034143728
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30174,19 +30039,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -30195,6 +30051,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &1143591636
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30981,19 +30843,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -31002,6 +30855,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &1159299215
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31596,19 +31455,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -31617,6 +31467,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &1184431022
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31755,19 +31611,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -31776,6 +31623,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &1188274456
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31990,19 +31843,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -32011,6 +31855,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &1199125879
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32793,19 +32643,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -32814,6 +32655,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &1218910121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33587,19 +33434,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -33608,6 +33446,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &1250086041
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34088,19 +33932,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -34109,6 +33944,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &1259775748
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34489,19 +34330,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -34510,6 +34342,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &1281490825
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35634,19 +35472,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -35655,6 +35484,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &1311407692
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36445,19 +36280,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -36466,6 +36292,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &1329766258
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36766,19 +36598,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -36787,6 +36610,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &1335684985
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37044,19 +36873,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -37065,6 +36885,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &1366559920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37285,19 +37111,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -37306,6 +37123,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &1371365660
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37444,19 +37267,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -37465,6 +37279,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &1372386575
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37759,19 +37579,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -37780,6 +37591,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &1380859823
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37918,19 +37735,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -37939,6 +37747,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &1381201930
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38195,19 +38009,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -38216,6 +38021,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &1385947281
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39199,19 +39010,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -39220,6 +39022,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &1423522228
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39358,19 +39166,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -39379,6 +39178,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &1424068457
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40163,19 +39968,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -40184,6 +39980,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &1445122597
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40322,19 +40124,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -40343,6 +40136,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &1448127642
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41059,19 +40858,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -41080,6 +40870,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &1461307685
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41866,19 +41662,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -41887,6 +41674,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &1498033442
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42587,19 +42380,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -42608,6 +42392,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &1512725903
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42746,19 +42536,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -42767,6 +42548,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &1514400312
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44074,19 +43861,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -44095,6 +43873,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &1588244889
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44313,19 +44097,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -44334,6 +44109,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &1592644522
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44605,19 +44386,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -44626,6 +44398,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &1604170079
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45246,19 +45024,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -45267,6 +45036,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &1620663047
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45644,19 +45419,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -45665,6 +45431,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &1632975540
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46451,19 +46223,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -46472,6 +46235,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &1647653794
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46772,19 +46541,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -46793,6 +46553,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &1651022646
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47093,19 +46859,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -47114,6 +46871,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &1655608864
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47433,19 +47196,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -47454,6 +47208,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &1659921880
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47932,19 +47692,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -47953,6 +47704,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &1675133811
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48431,19 +48188,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -48452,6 +48200,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &1688107620
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48672,19 +48426,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -48693,6 +48438,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &1690161703
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49321,19 +49072,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -49342,6 +49084,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &1712082666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49694,19 +49442,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -49715,6 +49454,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &1719234925
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50295,19 +50040,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -50316,6 +50052,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &1744574975
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50454,19 +50196,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -50475,6 +50208,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &1748001409
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -51603,19 +51342,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -51624,6 +51354,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &1789850743
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -51762,19 +51498,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -51783,6 +51510,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &1794692796
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52202,19 +51935,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -52223,6 +51947,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &1814509363
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -53453,19 +53183,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -53474,6 +53195,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &1867224061
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -53612,19 +53339,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -53633,6 +53351,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &1870126412
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -53771,19 +53495,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -53792,6 +53507,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &1870428649
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -54778,19 +54499,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -54799,6 +54511,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &1906058965
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -55086,19 +54804,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -55107,6 +54816,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &1908698939
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -55567,19 +55282,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -55588,6 +55294,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &1920356821
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -56249,19 +55961,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -56270,6 +55973,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &1945562942
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -56648,19 +56357,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -56669,6 +56369,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &1965760055
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -57131,19 +56837,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -57152,6 +56849,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &1971500418
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -57797,19 +57500,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -57818,6 +57512,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &1992691925
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58036,19 +57736,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -58057,6 +57748,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &2004655309
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58275,19 +57972,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -58296,6 +57984,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &2006951836
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58568,19 +58262,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -58589,6 +58274,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &2012167091
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58971,19 +58662,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -58992,6 +58674,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &2023231989
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59374,19 +59062,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -59395,6 +59074,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &2035004363
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60275,19 +59960,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -60296,6 +59972,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &2061490159
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61105,19 +60787,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -61126,6 +60799,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &2070542500
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61670,19 +61349,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -61691,6 +61361,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &2080285150
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62151,19 +61827,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -62172,6 +61839,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &2086889279
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62968,19 +62641,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -62989,6 +62653,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &2102994076
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63209,19 +62879,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -63230,6 +62891,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &2106487555
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63934,19 +63601,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -63955,6 +63613,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &2128092797
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64093,19 +63757,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementData:
-    Guid: 
+  atom:
     ShortName: 
     Name: 
     Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
     Conductivity: 0
     Reactivity: 0
     Toxicity: 0
@@ -64114,6 +63769,12 @@ MonoBehaviour:
     Brittleness: 0
     Malleability: 0
     Ductility: 0
+    ProtonCount: 0
+    NeutronCount: 0
+    ElectronCount: 0
+    Charge: 0
+    Number: 0
+    BondType: 0
 --- !u!114 &2128963729
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -11,7 +11,6 @@ public class panelCreate : MonoBehaviour, IPointerExitHandler
 
     public CreationState creationState = CreationState.None;
     private static ElementType designType = ElementType.Atom;
-    public ElementType elementToCreate = ElementType.Particle;
     private Element elementToCreateData;
     public WorldElement currentWorldElement;
 

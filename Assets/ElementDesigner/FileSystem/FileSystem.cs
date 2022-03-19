@@ -30,10 +30,9 @@ public class FileSystem<T> : MonoBehaviour where T : Element
     }
 
     // ACTIVE ELEMENT
-    private string activeElementFileName => ActiveElementAs<Atom>().ShortName.ToLower() + "_" + ActiveElementAs<Atom>().Guid;
+    private string activeElementFileName => ActiveElementAs<Atom>().ShortName.ToLower() + "_" + ActiveElementAs<Atom>().Id;
 
     public Element ActiveElement { get; set; }
-    public bool hasUnsavedChanges = false;
 
     private List<T> loadedElements;
     public static List<T> LoadedElements
@@ -77,11 +76,12 @@ public class FileSystem<T> : MonoBehaviour where T : Element
             string elementJSON = File.ReadAllText(file);
             var elementFromJSON = JsonUtility.FromJson<T>(elementJSON);
 
-            // TODO: Can other elements (molecule, product) have "sub-types" like isotopes? Or does it only apply to atoms?
-            if (elementType == ElementType.Atom)
+
+            if (typeof(T) == typeof(Atom))
             {
                 var mainAtomDirectoryName = GetMainElementFilePath(elementFromJSON).Split(new string[1] { $".{fileExtension}" }, StringSplitOptions.None)[0];
 
+                // .. TODO: If an atom has isotopes, we can probably just save them as part of the atom file itself
                 if (Directory.Exists($"{mainAtomDirectoryName}/"))
                 {
                     var isotopes = Directory.GetFiles($"{mainAtomDirectoryName}/", $"*.{fileExtension}");
@@ -202,7 +202,7 @@ public class FileSystem<T> : MonoBehaviour where T : Element
 
     private static string GetMainElementFilePath(Element element)
     {
-        var atomFileName = element.ShortName.ToLower() + "_" + element.Guid;
+        var atomFileName = element.ShortName.ToLower() + "_" + element.Id;
         return $"{elementsRoot}/{atomFileName}.{fileExtension}";
     }
     private static string GetIsotopeFilePath(Atom atom)

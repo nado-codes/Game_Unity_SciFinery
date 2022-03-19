@@ -30,7 +30,7 @@ public class DialogPeriodicTable<T> : MonoBehaviour where T : Element
 
         var page1GridTransform = page1Transform.Find("grid");
         var page1GridTransforms = page1GridTransform.GetComponentsInChildren<RectTransform>();
-        page1GridItems = page1GridTransform.GetComponentsInChildren<ElementGridItem>().ToList();
+        page1GridItems = page1GridTransform.GetComponentsInChildren<GridItem<T>>().ToList();
         page1GridItems.ForEach(item => item.GetComponent<Button>().onClick.AddListener(() => HandleItemSelected(item)));
         page1GridItems.ForEach(item => item.GetComponent<Button>().onClick.AddListener(() => HandleItemSelected(item)));
 
@@ -63,8 +63,14 @@ public class DialogPeriodicTable<T> : MonoBehaviour where T : Element
             HandleDeleteSelectedItem();
     }
 
+    public static void Open()
+    {
+        if (Editor.DesignType == ElementType.Atom)
+            DialogPeriodicTable<Atom>.instance.FinishOpen();
+
+    }
     // TODO: need to get or load the elements into the grid items here ... maybe only need to load them once
-    public void Open()
+    private void FinishOpen()
     {
         VerifyInitialize();
         gameObject.SetActive(true);
@@ -79,7 +85,7 @@ public class DialogPeriodicTable<T> : MonoBehaviour where T : Element
             if (gridItem == null)
                 throw new ApplicationException($"Expected a gridItem for element with Id {elementData.Id} in call to Open, got null");
 
-            // page1GridItems[elementData.Id-1] = gridItem.SetElementData<T>(elementData);
+            gridItem.elementData = elementData;
         }
 
         HUD.LockedFocus = true;

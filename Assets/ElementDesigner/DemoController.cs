@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class DemoController : MonoBehaviour
 {
-    public Editor editor;
+    //public Editor editor;
 
     public int timerLimit = 250;
     private int timer = 0;
@@ -48,17 +48,17 @@ public class DemoController : MonoBehaviour
     }
     private void loadRandomAtom()
     {
-        var atomCount = FileSystem.instance.LoadedAtoms.Count;
+        var atomCount = FileSystem<Atom>.instance.LoadedAtoms.Count;
 
-        var allAtomsNotPreviouslyLoaded = FileSystem.instance.LoadedAtoms.Where(atom => !prevLoaded.Any(prevAtom => prevAtom.Weight == atom.Weight));
+        var allAtomsNotPreviouslyLoaded = FileSystem<Atom>.instance.LoadedAtoms.Where(atom => !prevLoaded.Any(prevAtom => prevAtom.Weight == atom.Weight));
         var randomAtomIndex = UnityEngine.Random.Range(0, allAtomsNotPreviouslyLoaded.Count());
         var randomAtom = allAtomsNotPreviouslyLoaded.ElementAt(randomAtomIndex);
-        editor.LoadElementData(randomAtom);
+        Editor.LoadElementData(randomAtom);
 
         if (prevLoaded.Count >= atomCount / 2)
             prevLoaded.RemoveAt(0);
 
-        timerLimit = 240 * Editor.Particles.Count;
+        timerLimit = 240 * Editor<Atom>.Particles.Count;
         timer = 0;
 
         prevLoaded.Add(randomAtom);
