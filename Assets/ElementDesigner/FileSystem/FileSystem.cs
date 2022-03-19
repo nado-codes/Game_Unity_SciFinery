@@ -5,22 +5,22 @@ using System;
 using System.Linq;
 using UnityEngine;
 
-public class FileSystem<T> : MonoBehaviour where T : Element
+public class FileSystem : MonoBehaviour
 {
     const string fileExtension = "ed";
     const string elementsRoot = "./Elements";
 
-    private static FileSystem<T> _instance;
-    public static FileSystem<T> instance
+    private static FileSystem _instance;
+    public static FileSystem instance
     {
         get
         {
             if (_instance == null)
             {
-                var newFileSystem = FindObjectOfType<FileSystem<T>>();
+                var newFileSystem = FindObjectOfType<FileSystem>();
 
                 if (newFileSystem == null)
-                    newFileSystem = Camera.main.gameObject.AddComponent<FileSystem<T>>();
+                    newFileSystem = Camera.main.gameObject.AddComponent<FileSystem>();
 
                 _instance = newFileSystem;
             }
@@ -34,7 +34,7 @@ public class FileSystem<T> : MonoBehaviour where T : Element
 
     public Element ActiveElement { get; set; }
 
-    private List<T> loadedElements;
+    /* private List<T> loadedElements;
     public static List<T> LoadedElements
     {
         get
@@ -44,7 +44,7 @@ public class FileSystem<T> : MonoBehaviour where T : Element
 
             return instance.loadedElements;
         }
-    }
+    } */
 
     // LOADED ELEMENTS
 
@@ -60,7 +60,16 @@ public class FileSystem<T> : MonoBehaviour where T : Element
         //LoadedProducts = LoadElements<Product>().ToList();
     }
 
-    public static IEnumerable<T> LoadElements()
+    public static IEnumerable<Element> LoadElementsOfType(ElementType elementType)
+    {
+        if (elementType == ElementType.Atom)
+            return loadElements<Atom>();
+        else if (elementType == ElementType.Molecule)
+            return loadElements<Molecule>();
+        else
+            throw new NotImplementedException($"Element type \"{elementType.ToString()}\" is not implemented in call to FileSystem.LoadElementsOfType");
+    }
+    private static IEnumerable<T> loadElements<T>() where T : Element
     {
         var typeName = typeof(T).FullName;
 

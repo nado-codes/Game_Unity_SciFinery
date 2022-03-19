@@ -30,4 +30,6 @@ public class Atom : Element
 
 
     public bool IsIsotope { get; set; } = false;
+
+    public Atom[] isotopes;
 }

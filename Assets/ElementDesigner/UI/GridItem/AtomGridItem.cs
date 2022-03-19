@@ -5,14 +5,14 @@ using UnityEngine.UI;
 using System.Linq;
 using System;
 
-public class AtomGridItem : GridItem<Atom>
+public class AtomGridItem : ElementGridItem<Atom>
 {
     // Update is called once per frame
     void Update()
     {
-        var nameWithoutVowels = new string(nameText.text.Where(c => !("aeiou").Contains(c)).ToArray());
+        /* var nameWithoutVowels = new string(nameText.text.Where(c => !("aeiou").Contains(c)).ToArray());
         var newShortName = (nameWithoutVowels[0].ToString() + nameWithoutVowels[1].ToString()).ToUpper();
-        shortNameText.text = newShortName;
+        shortNameText.text = newShortName; */
     }
 
     public override void SetActive(bool active)

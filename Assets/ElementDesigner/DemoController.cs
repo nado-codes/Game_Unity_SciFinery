@@ -48,9 +48,9 @@ public class DemoController : MonoBehaviour
     }
     private void loadRandomAtom()
     {
-        var atomCount = FileSystem<Atom>.instance.LoadedAtoms.Count;
+        var atomCount = FileSystem.instance.LoadedAtoms.Count;
 
-        var allAtomsNotPreviouslyLoaded = FileSystem<Atom>.instance.LoadedAtoms.Where(atom => !prevLoaded.Any(prevAtom => prevAtom.Weight == atom.Weight));
+        var allAtomsNotPreviouslyLoaded = FileSystem.instance.LoadedAtoms.Where(atom => !prevLoaded.Any(prevAtom => prevAtom.Weight == atom.Weight));
         var randomAtomIndex = UnityEngine.Random.Range(0, allAtomsNotPreviouslyLoaded.Count());
         var randomAtom = allAtomsNotPreviouslyLoaded.ElementAt(randomAtomIndex);
         Editor.LoadElementData(randomAtom);
@@ -58,7 +58,7 @@ public class DemoController : MonoBehaviour
         if (prevLoaded.Count >= atomCount / 2)
             prevLoaded.RemoveAt(0);
 
-        timerLimit = 240 * Editor<Atom>.Particles.Count;
+        timerLimit = 240 * Editor.Particles.Count;
         timer = 0;
 
         prevLoaded.Add(randomAtom);

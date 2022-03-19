@@ -1,56 +1,26 @@
+using System;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.EventSystems;
 
-public delegate void ElementDataDelegate<T>(T elementData) where T : Element;
-public class GridItem<T> : MonoBehaviour, IPointerDownHandler where T : Element
+public class GridItem : MonoBehaviour
 {
-    public ElementDataDelegate<T> OnClick;
-    public T elementData = null;
 
-    protected Text numberText, shortNameText, nameText, weightText;
-    private ColorBlock buttonColorsActive, buttonColorsInactive;
-    protected Button button;
-    private bool isHovered;
+    public T UseGridItemOfType<T, U>() where U : Element where T : ElementGridItem<U>
+        => (GetComponent<ElementGridItem<U>>() ?? gameObject.AddComponent<ElementGridItem<U>>()) as T;
 
-    public void Init()
+    public bool HasDataOfType(ElementType elementType)
     {
-        numberText = transform.Find("Number")?.GetComponent<Text>();
-        shortNameText = transform.Find("ShortName")?.GetComponent<Text>();
-        nameText = transform.Find("Name")?.GetComponent<Text>();
-        weightText = transform.Find("Weight")?.GetComponent<Text>();
-
-        nameText.text = elementData?.Name ?? string.Empty;
-
-        button = GetComponent<Button>();
-        buttonColorsActive = button.colors;
-
-        buttonColorsInactive.normalColor = button.colors.disabledColor;
-        buttonColorsInactive.highlightedColor = button.colors.disabledColor;
-        buttonColorsInactive.pressedColor = button.colors.disabledColor;
-        buttonColorsInactive.selectedColor = button.colors.disabledColor;
-
-        SetActive(elementData != null);
+        if (elementType == ElementType.Atom)
+            return UseGridItemOfType<AtomGridItem, Atom>().elementData != null;
+        else if (elementType == ElementType.Molecule)
+            return UseGridItemOfType<MoleculeGridItem, Molecule>().elementData != null;
+        else
+            throw new NotImplementedException($"Element of type \"{elementType}\" is not yet implemented in call to GridItem.SetData");
     }
-    protected virtual void Start() => Init();
-    protected virtual void Awake() => Init();
-
-    public void OnPointerDown(PointerEventData ev) => HandleClick();
-
-    public void HandleClick() => OnClick?.Invoke(elementData);
-
-    public virtual void SetActive(bool active)
+    public void SetData(Element elementData)
     {
-        button.interactable = active;
+        if (elementData is Atom)
+            UseGridItemOfType<AtomGridItem, Atom>().SetAtomData(elementData as Atom);
+        else
+            throw new NotImplementedException($"Element of type \"{elementData.GetType()}\" is not yet implemented in call to GridItem.SetData");
     }
-
-    public GridItem<U> SetElementData<U>(U ElementData) where U : Element
-    {
-        var newGridItem = gameObject.AddComponent<GridItem<U>>();
-        newGridItem.elementData = ElementData;
-
-        GameObject.Destroy(this);
-        return newGridItem;
-    }
-
 }

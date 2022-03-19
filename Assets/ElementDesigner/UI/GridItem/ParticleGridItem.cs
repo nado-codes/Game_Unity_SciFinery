@@ -3,7 +3,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ParticleGridItem : GridItem<Particle>
+public class ParticleGridItem : ElementGridItem<Particle>
 {
     public override void SetActive(bool active)
     {

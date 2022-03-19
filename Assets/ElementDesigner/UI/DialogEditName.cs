@@ -25,7 +25,7 @@ public class DialogEditName : MonoBehaviour
     public void Open()
     {
         gameObject.SetActive(true);
-        inputName.text = FileSystem.instance.ActiveElementAs<Atom>().Name;
+        // inputName.text = FileSystem.instance.ActiveElementAs<Atom>().Name;
         HUD.LockedFocus = true;
     }
 
@@ -40,8 +40,8 @@ public class DialogEditName : MonoBehaviour
         var nameWithoutVowels = new string(inputName.text.Where(c => !("aeiou").Contains(c)).ToArray());
         var newShortName = (nameWithoutVowels[0].ToString() + nameWithoutVowels[1].ToString()).ToUpper();
 
-        FileSystem.instance.ActiveElementAs<Atom>().Name = inputName.text;
-        FileSystem.instance.ActiveElementAs<Atom>().ShortName = newShortName;
+        /* FileSystem.instance.ActiveElementAs<Atom>().Name = inputName.text;
+        FileSystem.instance.ActiveElementAs<Atom>().ShortName = newShortName; */
 
         Close();
     }

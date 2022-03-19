@@ -8,7 +8,6 @@ public enum CreationState { None, Start, Drag }
 
 public class panelCreate : MonoBehaviour, IPointerExitHandler
 {
-
     public CreationState creationState = CreationState.None;
     private static ElementType designType = ElementType.Atom;
     private Element elementToCreateData;

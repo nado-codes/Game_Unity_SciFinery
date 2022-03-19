@@ -97,7 +97,7 @@ public class Editor : MonoBehaviour
         if (HasUnsavedChanges)
         {
             var dialogBody = "You have unsaved changes in the editor. Would you like to save before continuing?";
-            DialogYesNo.Open("Save Changes?", dialogBody, () => FileSystem<T>.instance.SaveActiveElement(), null,
+            DialogYesNo.Open("Save Changes?", dialogBody, () => FileSystem.instance.SaveActiveElement(), null,
             () =>
             {
                 ClearParticles();
@@ -121,7 +121,7 @@ public class Editor : MonoBehaviour
         if (HasUnsavedChanges)
         {
             var dialogBody = "You have unsaved changes in the editor. Would you like to save before continuing?";
-            DialogYesNo.Open("Save Changes?", dialogBody, () => FileSystem<T>.instance.SaveActiveElement(), null,
+            DialogYesNo.Open("Save Changes?", dialogBody, () => FileSystem.instance.SaveActiveElement(), null,
             createNewElement<T>);
         }
         else
@@ -135,7 +135,7 @@ public class Editor : MonoBehaviour
             atomGameObject.name = "AtomNewAtom";
 
             // FileSystem.instance.NewAtom();
-            LoadElementData(FileSystem<T>.instance.ActiveElement);
+            LoadElementData(FileSystem.instance.ActiveElement);
 
             HasUnsavedChanges = false;
         }
@@ -399,7 +399,7 @@ public class Editor : MonoBehaviour
 
 
 
-        FileSystem<T>.instance.ActiveElement = elementData;
+        FileSystem.instance.ActiveElement = elementData;
         // TextNotification.Show($"Loaded \"{FileSystem<T>.instance.ActiveElementAs<Atom>().Name}\"");
     }
 
@@ -500,7 +500,7 @@ public class Editor : MonoBehaviour
         if (HasUnsavedChanges)
         {
             var dialogBody = "You have unsaved changes in the editor. Would you like to save before continuing?";
-            DialogYesNo.Open("Save Changes?", dialogBody, () => FileSystem<T>.instance.SaveActiveElement(), null,
+            DialogYesNo.Open("Save Changes?", dialogBody, () => FileSystem.instance.SaveActiveElement(), null,
             clearElements<T>);
         }
         else

@@ -28,7 +28,7 @@ public class panelName : MonoBehaviour
 
     void Update()
     {
-        var protonCount = FileSystem.instance.ActiveElementAs<Atom>().ProtonCount;
+        /* var protonCount = FileSystem.instance.ActiveElementAs<Atom>().ProtonCount;
         var neutronCount = FileSystem.instance.ActiveElementAs<Atom>().NeutronCount;
 
         numberText.text = protonCount.ToString();
@@ -42,7 +42,7 @@ public class panelName : MonoBehaviour
         else if (FileSystem.instance.ActiveElementAs<Atom>().Charge < 0)
             shortNameText.text = FileSystem.instance.ActiveElementAs<Atom>().ShortName + "-";
         else if (FileSystem.instance.ActiveElementAs<Atom>().Charge > 0)
-            shortNameText.text = FileSystem.instance.ActiveElementAs<Atom>().ShortName + "+";
+            shortNameText.text = FileSystem.instance.ActiveElementAs<Atom>().ShortName + "+"; */
     }
 
     public void SetActive(bool active)

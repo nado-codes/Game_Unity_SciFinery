@@ -3,7 +3,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class IsotopeGridItem : GridItem<Atom>
+public class IsotopeGridItem : ElementGridItem<Atom>
 {
     Text nameText;
 
