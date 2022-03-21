@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.IO;
 using System;
 using UnityEngine;
 using UnityEngine.UI;
@@ -80,6 +81,33 @@ public class Editor : MonoBehaviour
         var rigidbody = gameObject.AddComponent<Rigidbody>();
         rigidbody.useGravity = false;
         rigidbody.isKinematic = true;
+
+        var allAtomsFileNames = Directory.GetFiles("./Elements/Atom/");
+
+        foreach (string atomFileName in allAtomsFileNames)
+        {
+            var atomJSON = File.ReadAllText(atomFileName);
+            var atom = JsonUtility.FromJson<Atom>(atomJSON);
+
+            Color protonColor, neutronColor, electronColor;
+            ColorUtility.TryParseHtmlString("#00E0FF", out protonColor);
+
+            var protonsToAdd = Enumerable.Range(0, atom.ProtonCount).Select(i =>
+                 (new Particle()
+                 {
+                     Id = 1,
+                     Name = "Proton",
+                     Weight = 0.001f,
+                     Charge = 1,
+                     Type = ElementType.Particle,
+                     Color = ColorUtility.TryParseHtmlString
+                 })
+            );
+        }
+
+
+
+        createNewElementOfType<Atom>();
     }
 
     public void HandleChangeDesignTypeClicked(ElementType newDesignType)
@@ -101,52 +129,42 @@ public class Editor : MonoBehaviour
             () =>
             {
                 ClearParticles();
-                createNewElement<T>();
+                createNewElementOfType<T>();
             });
         }
         else
         {
             ClearParticles();
-            createNewElement<T>();
+            createNewElementOfType<T>();
         }
     }
 
     public void HandleNewElementClicked()
     {
         if (DesignType == ElementType.Atom)
-            handleCreateNewElement<Atom>();
+            handleCreateNewElementOfType<Atom>();
+        else
+            throw new NotImplementedException($"Design type {DesignType} is not yet implemented in call to Editor.HandleNewElementClicked");
     }
-    private void handleCreateNewElement<T>() where T : Element
+    private void handleCreateNewElementOfType<T>() where T : Element
     {
         if (HasUnsavedChanges)
         {
             var dialogBody = "You have unsaved changes in the editor. Would you like to save before continuing?";
             DialogYesNo.Open("Save Changes?", dialogBody, () => FileSystem.instance.SaveActiveElement(), null,
-            createNewElement<T>);
+            createNewElementOfType<T>);
         }
         else
-            createNewElement<T>();
+            createNewElementOfType<T>();
     }
-    private void createNewElement<T>() where T : Element
+    private void createNewElementOfType<T>() where T : Element
     {
-        if (designType == ElementType.Atom)
-        {
-            atomGameObject = GameObject.Find("Atom") ?? new GameObject();
-            atomGameObject.name = "AtomNewAtom";
+        var typeName = typeof(T).FullName;
+        atomGameObject = GameObject.Find($"{typeName}") ?? new GameObject();
+        atomGameObject.name = $"{typeName}New{typeName}";
 
-            // FileSystem.instance.NewAtom();
-            LoadElementData(FileSystem.instance.ActiveElement);
-
-            HasUnsavedChanges = false;
-        }
-        else if (designType == ElementType.Molecule)
-        {
-            // TODO: new molecule
-        }
-        else if (designType == ElementType.Product)
-        {
-            // TODO: new product
-        }
+        FileSystem.CreateNewElementOfType<T>();
+        LoadElementData(FileSystem.instance.ActiveElement);
 
         HasUnsavedChanges = false;
     }

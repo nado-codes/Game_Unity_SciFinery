@@ -116,18 +116,23 @@ public class FileSystem : MonoBehaviour
 
     public U ActiveElementAs<U>() where U : Element => ActiveElement as U;
 
-    public Atom NewAtom()
+    public static T CreateNewElementOfType<T>() where T : Element
     {
-        var newAtom = new Atom();
-        newAtom.Number = 1;
-        newAtom.Name = "NewAtom";
-        newAtom.ShortName = "NE";
-        newAtom.ProtonCount = 1;
-        newAtom.ElectronCount = 1;
+        if (typeof(T) == typeof(Atom))
+        {
+            var newAtom = new Atom();
+            newAtom.Number = 1;
+            newAtom.Name = "NewAtom";
+            newAtom.ShortName = "NE";
+            newAtom.ProtonCount = 1;
+            newAtom.ElectronCount = 1;
 
-        ActiveElement = newAtom;
+            instance.ActiveElement = newAtom;
 
-        return newAtom;
+            return newAtom as T;
+        }
+        else
+            throw new NotImplementedException($"Element of type ${typeof(T)} is not yet implemented in call to Editor.CreateNewElementOfType");
     }
 
     public void SaveActiveElement()
