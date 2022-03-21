@@ -19,25 +19,14 @@ public class DialogPeriodicTable : MonoBehaviour
     // TODO: need to get or add the GridItem<T> to the page grid items here
     private void VerifyInitialize()
     {
-        var periodicTableGameObject = GameObject.Find("dialogPeriodicTable");
-
-        /* if (instance == null)
-            instance = periodicTableGameObject.AddComponent<DialogPeriodicTable<T>>(); */
-
         page1Transform = transform.Find("page1");
         page2Transform = transform.Find("page2");
 
         var page1GridTransform = page1Transform.Find("grid");
-        // var otherGridItems = page1GridTransform.GetComponentsInChildren<GridItem>().Where(i => !(i is ElementGridItem<T>)).ToList();
-        // otherGridItems.ForEach(i => i.enabled = false);
         page1GridItems = page1GridTransform.GetComponentsInChildren<GridItem>().ToList();
-        page1GridItems.ForEach(i => i.enabled = true);
-        // page1GridItems.ForEach(item => item.GetComponent<Button>().onClick.AddListener(() => HandleItemSelected(item)));
-        // page1GridItems.ForEach(item => item.GetComponent<Button>().onClick.AddListener(() => HandleItemSelected(item)));
+        page1GridItems.ForEach(item => item.GetComponent<Button>().onClick.AddListener(() => HandleItemSelected(item)));
 
         var page2AtomGridItem = page2Transform.GetComponentInChildren<AtomGridItem>();
-        // page2AtomGridItem.Init(); // .. initialise the atom grid item
-
         var page2GridTransform = page2Transform.Find("grid");
         var page2GridTransforms = page2GridTransform.GetComponentsInChildren<RectTransform>();
         // page2GridItems = page2GridTransform.GetComponentsInChildren<ElementGridItem>().ToList();
@@ -75,10 +64,15 @@ public class DialogPeriodicTable : MonoBehaviour
         foreach (Element elementData in loadedElements)
         {
             // TODO: Create a grid item if the atom won't fit in the table
-            var gridItem = page1GridItems[elementData.Id - 1];
+            var index = (elementData?.Id ?? 0) - 1;
+
+            if (index == -1)
+                throw new ApplicationException($"Invalid or missing index for element {elementData.Name} Id in call to DialogPeriodicTable.Open");
+
+            var gridItem = page1GridItems[index];
 
             if (gridItem == null)
-                throw new ApplicationException($"Expected a gridItem for element with Id {elementData.Id} in call to Open, got null");
+                throw new ApplicationException($"Expected a gridItem for element with Id {elementData.Id} in call to DialogPeriodicTable.Open, got null");
 
             gridItem.SetData(elementData);
         }

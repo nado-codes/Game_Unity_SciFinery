@@ -13,12 +13,12 @@ public class IsotopeGridItem : ElementGridItem<Atom>
 
         base.Start();
     }
-    protected override void Awake()
+    /* protected override void Awake()
     {
         nameText = transform.Find("ShortName").GetComponent<Text>();
 
         base.Awake();
-    }
+    } */
 
     public override void SetActive(bool active)
     {

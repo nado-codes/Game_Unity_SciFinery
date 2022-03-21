@@ -17,6 +17,8 @@ public class AtomGridItem : ElementGridItem<Atom>
 
     public override void SetActive(bool active)
     {
+        VerifyInitialize();
+
         numberText.gameObject.SetActive(active);
         shortNameText.gameObject.SetActive(active);
         nameText.gameObject.SetActive(active);
@@ -27,6 +29,8 @@ public class AtomGridItem : ElementGridItem<Atom>
 
     public void SetAtomData(Atom atomData)
     {
+        VerifyInitialize();
+
         if (atomData == null)
             throw new ApplicationException("Expected atomData in call to SetAtomData in PeriodicTableGridItem, got null");
 
@@ -35,7 +39,7 @@ public class AtomGridItem : ElementGridItem<Atom>
         nameText.text = atomData.Name;
         weightText.text = atomData.Weight.ToString() + ".00";
 
-        // atom = atomData;
+        elementData = atomData;
         SetActive(true);
     }
 }

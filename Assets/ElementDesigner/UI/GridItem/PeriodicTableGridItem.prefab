@@ -338,8 +338,7 @@ GameObject:
   - component: {fileID: 2939009349091738184}
   - component: {fileID: 2939009349091738187}
   - component: {fileID: 2939009349091738186}
-  - component: {fileID: -4530184668006223006}
-  - component: {fileID: 8958046782234897987}
+  - component: {fileID: 2655737222579068211}
   m_Layer: 5
   m_Name: PeriodicTableGridItem
   m_TagString: Untagged
@@ -453,7 +452,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &-4530184668006223006
+--- !u!114 &2655737222579068211
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -462,39 +461,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 2939009349091738180}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a9708d6fd0523b40b8e195cde590abc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  elementData:
-    Id: 0
-    ShortName: 
-    Name: 
-    Weight: 0
-    Charge: 0
-    Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
-    Conductivity: 0
-    Reactivity: 0
-    Toxicity: 0
-    MeltingPoint: 0
-    BoilingPoint: 0
-    Brittleness: 0
-    Malleability: 0
-    Ductility: 0
---- !u!114 &8958046782234897987
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2939009349091738180}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03758cdf947ca634f907f5becfe62265, type: 3}
+  m_Script: {fileID: 11500000, guid: 23d216e0d1ae6db4da78d5a44d8bacdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

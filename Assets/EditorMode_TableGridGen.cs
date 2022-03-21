@@ -68,10 +68,6 @@ public class EditorMode_TableGridGen : MonoBehaviour
                 newGridItem.transform.parent = transform;
                 newGridItem.transform.localScale = Vector3.one;
 
-                // TODO: We don't need this. To be removed. Only used to visualise the numbers on the grid
-                var script = newGridItem.GetComponent<AtomGridItem>();
-                script.Init();
-
                 var newGridItemRect = newGridItem.GetComponent<RectTransform>();
                 newGridItemRect.localPosition = gridStartPos + new Vector3(itemWidth * x, itemWidth * -y, 0);
 
