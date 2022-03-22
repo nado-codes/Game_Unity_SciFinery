@@ -11,4 +11,6 @@ public class Particle : Element
     public string Color => "#" + ColorUtility.ToHtmlStringRGBA(color);
 
     public float Size = 1;
+
+    public void SetColor(Color newColor) => color = newColor;
 }

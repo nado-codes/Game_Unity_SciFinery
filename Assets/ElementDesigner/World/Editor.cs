@@ -91,18 +91,19 @@ public class Editor : MonoBehaviour
 
             Color protonColor, neutronColor, electronColor;
             ColorUtility.TryParseHtmlString("#00E0FF", out protonColor);
+            ColorUtility.TryParseHtmlString("#66FF33", out neutronColor);
+            ColorUtility.TryParseHtmlString("#FF0000", out electronColor);
 
-            var protonsToAdd = Enumerable.Range(0, atom.ProtonCount).Select(i =>
-                 (new Particle()
-                 {
-                     Id = 1,
-                     Name = "Proton",
-                     Weight = 0.001f,
-                     Charge = 1,
-                     Type = ElementType.Particle,
-                     Color = ColorUtility.TryParseHtmlString
-                 })
-            );
+
+
+            var protonsToAdd = Enumerable.Range(0, atom.ProtonCount).Select(i => 1);
+            var neutronsToAdd = Enumerable.Range(0, atom.NeutronCount).Select(i => 2);
+            var electronsToAdd = Enumerable.Range(0, atom.ElectronCount).Select(i => 3);
+
+            atom.ParticleIds = protonsToAdd.Concat(neutronsToAdd.Concat(electronsToAdd)).ToArray();
+
+            var newAtomJSON = JsonUtility.ToJson(atom);
+            File.WriteAllText(atomFileName, newAtomJSON);
         }
 
 

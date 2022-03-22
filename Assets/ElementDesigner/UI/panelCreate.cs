@@ -1,4 +1,4 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -8,6 +8,8 @@ public enum CreationState { None, Start, Drag }
 
 public class panelCreate : MonoBehaviour, IPointerExitHandler
 {
+    private static panelCreate instance;
+
     public CreationState creationState = CreationState.None;
     private static ElementType designType = ElementType.Atom;
     private Element elementToCreateData;
@@ -23,6 +25,8 @@ public class panelCreate : MonoBehaviour, IPointerExitHandler
 
     void Start()
     {
+        instance = this;
+
         particleDistance = particleDefaultDistance;
         particleButtonsTransform = transform.Find("particleButtons");
         elementButtonsTransform = transform.Find("elementButtons");
@@ -43,7 +47,52 @@ public class panelCreate : MonoBehaviour, IPointerExitHandler
 
     public static void SetDesignType(ElementType newDesignType)
     {
-        if (newDesignType != ElementType.Atom)
+        if (newDesignType == ElementType.Atom)
+        {
+            // load particles into creation panel
+            instance.LoadElements(new List<Particle>(){
+                new Particle()
+                 {
+                     Id = 1,
+                     Name = "Proton",
+                     Weight = .001f,
+                     Charge = 1,
+                     Size = 1,
+                     Type = ElementType.Particle,
+                 },
+                 new Particle()
+                 {
+                     Id = 2,
+                     Name = "Neutron",
+                     Weight = 1,
+                     Charge = 0,
+                     Size = 1,
+                     Type = ElementType.Particle,
+                 },
+                 new Particle()
+                 {
+                     Id = 3,
+                     Name = "Electron",
+                     Weight = 3.5f,
+                     Charge = -1,
+                     Size = .5f,
+                     Type = ElementType.Particle,
+                 }
+            });
+        }
+        else if (newDesignType == ElementType.Molecule)
+        {
+            // load particles into creation panel
+        }
+        else if (newDesignType == ElementType.Product)
+        {
+            // load particles into creation panel
+        }
+        else
+            throw new NotImplementedException($"Element of type {newDesignType} is not yet implemented in call to panelCreate.SetDesignType");
+
+        designType = newDesignType;
+        /* if (newDesignType != ElementType.Atom)
         {
             particleButtonsTransform.gameObject.SetActive(false);
             elementButtonsTransform.gameObject.SetActive(true);
@@ -67,9 +116,9 @@ public class panelCreate : MonoBehaviour, IPointerExitHandler
             elementButtonsTransform.gameObject.SetActive(false);
             btnPrevTransform.gameObject.SetActive(false);
             btnNextTransform.gameObject.SetActive(false);
-        }
+        } */
 
-        designType = newDesignType;
+
     }
 
     public static void HandlePrevButtonClicked()
