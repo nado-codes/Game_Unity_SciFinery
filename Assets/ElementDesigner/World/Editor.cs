@@ -94,8 +94,6 @@ public class Editor : MonoBehaviour
             ColorUtility.TryParseHtmlString("#66FF33", out neutronColor);
             ColorUtility.TryParseHtmlString("#FF0000", out electronColor);
 
-
-
             var protonsToAdd = Enumerable.Range(0, atom.ProtonCount).Select(i => 1);
             var neutronsToAdd = Enumerable.Range(0, atom.NeutronCount).Select(i => 2);
             var electronsToAdd = Enumerable.Range(0, atom.ElectronCount).Select(i => 3);
@@ -106,9 +104,9 @@ public class Editor : MonoBehaviour
             File.WriteAllText(atomFileName, newAtomJSON);
         }
 
-
-
-        createNewElementOfType<Atom>();
+        // NOTE: Start the Editor in an initial state, also setting up the UI
+        // with the correct elements and displays
+        HandleChangeDesignTypeClicked(ElementType.Atom);
     }
 
     public void HandleChangeDesignTypeClicked(ElementType newDesignType)

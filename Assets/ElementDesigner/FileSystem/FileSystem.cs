@@ -52,14 +52,6 @@ public class FileSystem : MonoBehaviour
     public List<Molecule> LoadedMolecules { get; private set; } = new List<Molecule>();
     public List<Product> LoadedProducts { get; private set; } = new List<Product>();
 
-
-    void Start()
-    {
-        //LoadedAtoms = LoadElements<Atom>().ToList();
-        //LoadedMolecules = LoadElements<Molecule>().ToList();
-        //LoadedProducts = LoadElements<Product>().ToList();
-    }
-
     public static IEnumerable<Element> LoadElementsOfType(ElementType elementType)
     {
         if (elementType == ElementType.Atom)

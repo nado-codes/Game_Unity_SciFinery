@@ -31,10 +31,13 @@ public class GridItem : MonoBehaviour
         buttonColorsInactive.pressedColor = button.colors.disabledColor;
         buttonColorsInactive.selectedColor = button.colors.disabledColor;
 
-        SetActive(StartActive);
+
     }
 
-    protected virtual void Start() => VerifyInitialize();
+    protected virtual void Start()
+    {
+        SetActive(StartActive);
+    }
 
     public T GetOrAddElementGridItem<T, U>() where U : Element where T : ElementGridItem<U>
         => (GetComponent<T>() ?? gameObject.AddComponent<T>());
@@ -56,10 +59,14 @@ public class GridItem : MonoBehaviour
             GetOrAddElementGridItem<AtomGridItem, Atom>().SetAtomData(elementData as Atom);
         else
             throw new NotImplementedException($"Element of type \"{elementData.GetType()}\" is not yet implemented in call to GridItem.SetData");
+
+        SetActive(true);
     }
 
     public virtual void SetActive(bool active)
     {
+        VerifyInitialize();
+
         var allText = transform.GetComponentsInChildren<Text>().ToList();
         allText.ForEach(t => t.gameObject.SetActive(active));
         button.interactable = active;

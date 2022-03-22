@@ -35,7 +35,7 @@ public class panelCreate : MonoBehaviour, IPointerExitHandler
         btnNextTransform = transform.Find("btnNext");
 
         elementButtons = elementButtonsTransform.GetComponentsInChildren<GridItem>().ToList();
-        SetDesignType(ElementType.Atom);
+        // SetDesignType(ElementType.Atom);
     }
 
     public void LoadParticles() => loadedElements.Clear();
