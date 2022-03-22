@@ -16,8 +16,9 @@ public class panelCreate : MonoBehaviour, IPointerExitHandler
     public WorldElement currentWorldElement;
 
     private List<Element> loadedElements = new List<Element>();
+    private List<Element> visibleLoadedElements = new List<Element>();
     private static Transform particleButtonsTransform, elementButtonsTransform, btnPrevTransform, btnNextTransform;
-    private static List<AtomGridItem> elementButtons = new List<AtomGridItem>();
+    private static List<GridItem> elementButtons = new List<GridItem>();
 
     public float particleDefaultDistance = 5;
     private bool isHover = false;
@@ -33,16 +34,55 @@ public class panelCreate : MonoBehaviour, IPointerExitHandler
         btnPrevTransform = transform.Find("btnPrev");
         btnNextTransform = transform.Find("btnNext");
 
-        var particleButtons = particleButtonsTransform.GetComponentsInChildren<ParticleGridItem>().ToList();
-        particleButtons.ForEach(b => b.OnClick += HandleElementGridItemClicked<Particle>);
-
+        elementButtons = elementButtonsTransform.GetComponentsInChildren<GridItem>().ToList();
+        SetDesignType(ElementType.Atom);
     }
 
     public void LoadParticles() => loadedElements.Clear();
     public void LoadElements(IEnumerable<Element> elements)
     {
-        loadedElements.Clear();
-        loadedElements.AddRange(elements);
+        loadedElements = elements.ToList();
+        var numGridItems = elementButtons.Count;
+        visibleLoadedElements = elements.Where((_, i) => i >= 0 && i < numGridItems).ToList();
+        RenderVisibleElements();
+    }
+
+    public void HandlePrevButtonClicked()
+    {
+        var firstVisibleElementIndex = loadedElements.IndexOf(visibleLoadedElements.FirstOrDefault());
+
+        // .. NOTE: If we're at the start of the list, loop back to the end and add that one
+        var elementToAdd = firstVisibleElementIndex > 0 ? loadedElements[firstVisibleElementIndex - 1] : loadedElements.LastOrDefault();
+        visibleLoadedElements.Insert(0, elementToAdd);
+        visibleLoadedElements.Remove(visibleLoadedElements.LastOrDefault());
+
+        RenderVisibleElements();
+    }
+
+    public void HandleNextButtonClicked()
+    {
+        var lastVisibleElementIndex = loadedElements.IndexOf(visibleLoadedElements.LastOrDefault());
+
+        // .. NOTE: If we're at the end of the list, loop back to the start and add that one
+        var elementToAdd = lastVisibleElementIndex < loadedElements.Count - 1 ? loadedElements[lastVisibleElementIndex + 1] : loadedElements.FirstOrDefault();
+        visibleLoadedElements.Add(elementToAdd);
+        visibleLoadedElements.Remove(visibleLoadedElements.FirstOrDefault());
+
+        RenderVisibleElements();
+    }
+
+    private void RenderVisibleElements()
+    {
+        foreach (Element element in visibleLoadedElements)
+        {
+            var elementIndex = visibleLoadedElements.IndexOf(element);
+            GridItem gridItem = elementButtons[elementIndex];
+
+            if (gridItem == null)
+                throw new NullReferenceException($"Expected a gridItem at index {elementIndex} in call to panelCreate.RenderVisibleElements, got null");
+
+            gridItem.SetData(element);
+        }
     }
 
     public static void SetDesignType(ElementType newDesignType)
@@ -92,44 +132,9 @@ public class panelCreate : MonoBehaviour, IPointerExitHandler
             throw new NotImplementedException($"Element of type {newDesignType} is not yet implemented in call to panelCreate.SetDesignType");
 
         designType = newDesignType;
-        /* if (newDesignType != ElementType.Atom)
-        {
-            particleButtonsTransform.gameObject.SetActive(false);
-            elementButtonsTransform.gameObject.SetActive(true);
-            btnPrevTransform.gameObject.SetActive(true);
-            btnNextTransform.gameObject.SetActive(true);
-
-            // TODO: when elements are loaded in, set their onClick listener to pass their Element data to the particleToCreateData
-            if (newDesignType == ElementType.Molecule)
-            {
-                // get or load atoms into spawning grid
-
-            }
-            else if (newDesignType == ElementType.Product)
-            {
-                // get or load molecules into spawning grid
-            }
-        }
-        else
-        {
-            particleButtonsTransform.gameObject.SetActive(true);
-            elementButtonsTransform.gameObject.SetActive(false);
-            btnPrevTransform.gameObject.SetActive(false);
-            btnNextTransform.gameObject.SetActive(false);
-        } */
-
-
     }
 
-    public static void HandlePrevButtonClicked()
-    {
-        // TODO: scroll the view to the previous atom or molecule
-    }
 
-    public static void HandleNextButtonClicked()
-    {
-        // TODO: scroll to the next atom or molecule
-    }
 
 
     // Update is called once per frame

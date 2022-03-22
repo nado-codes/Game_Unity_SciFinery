@@ -49,6 +49,8 @@ public class GridItem : MonoBehaviour
     }
     public void SetData(Element elementData)
     {
+        if (elementData is Particle)
+            UseGridItemOfType<ParticleGridItem, Particle>().SetAtomData(elementData as Atom);
         if (elementData is Atom)
             UseGridItemOfType<AtomGridItem, Atom>().SetAtomData(elementData as Atom);
         else

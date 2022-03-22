@@ -11,17 +11,22 @@ public class ParticleGridItem : ElementGridItem<Particle>
         base.SetActive(active);
     }
 
-    public void SetAtomData(Atom atomData)
+    public void SetParticleData(Particle particleData)
     {
-        if (atomData == null)
-            throw new ApplicationException("Expected atomData in call to SetAtomData in PeriodicTableGridItem, got null");
+        VerifyInitialize();
 
-        var nameWithoutVowels = new string(atomData.Name.Where(c => !("aeiou").Contains(c)).ToArray());
+        if (particleData == null)
+            throw new ApplicationException("Expected particleData in call to ParticleGridItem.SetAtomData, got null");
+
+        var nameWithoutVowels = new string(particleData.Name.Where(c => !("aeiou").Contains(c)).ToArray());
         var newShortName = (nameWithoutVowels[0].ToString() + nameWithoutVowels[1].ToString()).ToUpper();
-        nameText.text = newShortName + (atomData.Charge > 0 ? "+" : atomData.Charge < 0 ? "-" : string.Empty);
+        nameText.text = newShortName + (particleData.Charge > 0 ? "+" : particleData.Charge < 0 ? "-" : string.Empty);
 
-        // atom = atomData;
-
+        numberText.text = particleData.Id.ToString();
+        nameText.text = particleData.Name;
+        // TODO: add "chargeText" to display charge
+        // weightText.text = particleData.Charge.ToString() + ".00";
+        elementData = particleData;
         SetActive(true);
     }
 }
