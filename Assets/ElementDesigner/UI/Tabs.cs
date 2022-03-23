@@ -22,12 +22,12 @@ public class Tabs : MonoBehaviour
 
         var firstTab = tabs.FirstOrDefault();
 
-        tabs.ForEach((tab) => {
+        tabs.ForEach((tab) =>
+        {
+            tab.OnClick += () => handleTabClicked(tab.index);
+
             var currentTabIndex = tabs.IndexOf(tab);
-
-            tab.OnClick+= () => handleTabClicked(currentTabIndex);
-
-            if(currentTabIndex == selectedTabIndex) 
+            if (currentTabIndex == selectedTabIndex)
                 tab.Select();
             else
                 tab.Deselect();
@@ -36,11 +36,11 @@ public class Tabs : MonoBehaviour
 
     void handleTabClicked(int index)
     {
-        Debug.Log("selected tab "+index);
+        Debug.Log("selected tab " + index);
         var tabToSelect = tabs.FirstOrDefault(tab => tabs.IndexOf(tab) == index);
         tabToSelect.Select();
 
-        var otherTabs = tabs.Where((_,i) => i != index).ToList();
+        var otherTabs = tabs.Where((_, i) => i != index).ToList();
         otherTabs.ForEach(tab => tab.Deselect());
 
         OnSelectedTabChanged?.Invoke(index);

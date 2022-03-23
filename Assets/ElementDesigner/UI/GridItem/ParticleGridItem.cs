@@ -5,12 +5,6 @@ using UnityEngine.UI;
 
 public class ParticleGridItem : ElementGridItem<Particle>
 {
-    public override void SetActive(bool active)
-    {
-        nameText.gameObject.SetActive(active);
-        base.SetActive(active);
-    }
-
     public void SetParticleData(Particle particleData)
     {
         VerifyInitialize();

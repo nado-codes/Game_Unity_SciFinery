@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class Tab : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
+    public int index = -1;
     public VoidFN OnClick;
     private Image image;
     private Color normalColor, selectedColor, hoverColor;

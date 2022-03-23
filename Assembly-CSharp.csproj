@@ -69,7 +69,7 @@
      <Compile Include="Assets\ElementDesigner\UI\GridItem\AtomGridItem.cs" />
      <Compile Include="Assets\Main\CoilAnim.cs" />
      <Compile Include="Assets\ElementDesigner\Globals.cs" />
-     <Compile Include="Assets\ElementDesigner\UI\panelCreate.cs" />
+     <Compile Include="Assets\ElementDesigner\UI\PanelCreate.cs" />
      <Compile Include="Assets\ElementDesigner\UI\DialogEditName.cs" />
      <Compile Include="Assets\ElementDesigner\World\ElementDesignerCamera.cs" />
      <Compile Include="Assets\ElementDesigner\UI\GridItem\ParticleGridItem.cs" />

@@ -114,7 +114,7 @@ public class Editor : MonoBehaviour
         if (newDesignType == ElementType.Atom)
             handleChangeDesignType<Atom>();
 
-        panelCreate.SetDesignType(newDesignType);
+        PanelCreate.SetDesignType(newDesignType);
         designType = newDesignType;
         TextNotification.Show("Design Type: " + newDesignType);
     }
