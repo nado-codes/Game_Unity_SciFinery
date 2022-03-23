@@ -27,7 +27,7 @@ public class AtomGridItem : ElementGridItem<Atom>
         base.SetActive(active);
     }
 
-    public void SetAtomData(Atom atomData)
+    public override void SetData(Atom atomData)
     {
         VerifyInitialize();
 
@@ -39,7 +39,7 @@ public class AtomGridItem : ElementGridItem<Atom>
         nameText.text = atomData.Name;
         weightText.text = atomData.Weight.ToString() + ".00";
 
-        elementData = atomData;
         SetActive(true);
+        base.SetData(atomData);
     }
 }

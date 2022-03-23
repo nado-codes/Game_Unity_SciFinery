@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class GridItem : MonoBehaviour
 {
     public bool StartActive = false;
-    private bool initialized = false;
+    protected bool initialized = false;
 
     protected Text numberText, shortNameText, nameText, weightText;
     private ColorBlock buttonColorsActive, buttonColorsInactive;
@@ -30,14 +30,9 @@ public class GridItem : MonoBehaviour
         buttonColorsInactive.highlightedColor = button.colors.disabledColor;
         buttonColorsInactive.pressedColor = button.colors.disabledColor;
         buttonColorsInactive.selectedColor = button.colors.disabledColor;
-
-
     }
 
-    protected virtual void Start()
-    {
-        SetActive(StartActive);
-    }
+    protected virtual void Start() => SetActive(StartActive);
 
     public T GetOrAddElementGridItem<T, U>() where U : Element where T : ElementGridItem<U>
         => (GetComponent<T>() ?? gameObject.AddComponent<T>());
@@ -67,7 +62,7 @@ public class GridItem : MonoBehaviour
     {
         VerifyInitialize();
 
-        var allText = transform.GetComponentsInChildren<Text>().ToList();
+        var allText = transform.GetComponentsInChildren<Text>(true).ToList();
         allText.ForEach(t => t.gameObject.SetActive(active));
         button.interactable = active;
     }
