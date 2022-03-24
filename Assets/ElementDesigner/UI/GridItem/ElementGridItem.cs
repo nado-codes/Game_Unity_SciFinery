@@ -13,6 +13,8 @@ public class ElementGridItem<T> : GridItem, IPointerDownHandler where T : Elemen
 
     public ElementDataDelegate<T> OnClick;
 
+    protected override void Start() => SetActive(hasData);
+
     protected override void VerifyInitialize()
     {
         base.VerifyInitialize();

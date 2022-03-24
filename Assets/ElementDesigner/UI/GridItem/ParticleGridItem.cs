@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class ParticleGridItem : ElementGridItem<Particle>
 {
-    public void SetParticleData(Particle particleData)
+    public override void SetData(Particle particleData)
     {
         VerifyInitialize();
 
@@ -20,7 +20,8 @@ public class ParticleGridItem : ElementGridItem<Particle>
         nameText.text = particleData.Name;
         // TODO: add "chargeText" to display charge
         // weightText.text = particleData.Charge.ToString() + ".00";
-        elementData = particleData;
+
         SetActive(true);
+        base.SetData(particleData);
     }
 }

@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class GridItem : MonoBehaviour
 {
-    public bool StartActive = false;
     protected bool initialized = false;
 
     protected Text numberText, shortNameText, nameText, weightText;
@@ -32,7 +31,7 @@ public class GridItem : MonoBehaviour
         buttonColorsInactive.selectedColor = button.colors.disabledColor;
     }
 
-    protected virtual void Start() => SetActive(StartActive);
+    protected virtual void Start() => SetActive(false);
 
     public T GetOrAddElementGridItem<T, U>() where U : Element where T : ElementGridItem<U>
         => (GetComponent<T>() ?? gameObject.AddComponent<T>());
@@ -49,9 +48,9 @@ public class GridItem : MonoBehaviour
     public void SetData(Element elementData)
     {
         if (elementData is Particle)
-            GetOrAddElementGridItem<ParticleGridItem, Particle>().SetParticleData(elementData as Particle);
+            GetOrAddElementGridItem<ParticleGridItem, Particle>().SetData(elementData as Particle);
         else if (elementData is Atom)
-            GetOrAddElementGridItem<AtomGridItem, Atom>().SetAtomData(elementData as Atom);
+            GetOrAddElementGridItem<AtomGridItem, Atom>().SetData(elementData as Atom);
         else
             throw new NotImplementedException($"Element of type \"{elementData.GetType()}\" is not yet implemented in call to GridItem.SetData");
 
