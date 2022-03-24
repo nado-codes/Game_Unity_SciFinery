@@ -7,7 +7,7 @@ public class ParticleGridItem : ElementGridItem<Particle>
 {
     public override void SetData(Particle particleData)
     {
-        VerifyInitialize();
+        base.SetData(particleData);
 
         if (particleData == null)
             throw new ApplicationException("Expected particleData in call to ParticleGridItem.SetAtomData, got null");
@@ -22,6 +22,6 @@ public class ParticleGridItem : ElementGridItem<Particle>
         // weightText.text = particleData.Charge.ToString() + ".00";
 
         SetActive(true);
-        base.SetData(particleData);
+
     }
 }
