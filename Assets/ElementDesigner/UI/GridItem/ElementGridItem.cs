@@ -11,10 +11,11 @@ public class ElementGridItem<T> : GridItem, IPointerDownHandler where T : Elemen
     public bool hasData = false; // .. Because of the way Unity works, we can't use "elementData == null"
     public ElementDataDelegate<T> OnClick;
 
+    protected Text numberText, shortNameText, nameText, weightText;
     protected Transform ActiveLayout;
 
 
-    protected override void Start() => SetActive(hasData);
+    protected virtual void Start() => SetActive(hasData);
 
     protected override void VerifyInitialize()
     {
@@ -22,16 +23,13 @@ public class ElementGridItem<T> : GridItem, IPointerDownHandler where T : Elemen
 
         ActiveLayout = transform.Find("Layout_Std");
 
+        nameText = ActiveLayout.Find("Name")?.GetComponent<Text>();
         nameText.text = elementData?.Name ?? string.Empty;
     }
 
     public void OnPointerDown(PointerEventData ev) => HandleClick();
 
     public void HandleClick() => OnClick?.Invoke(elementData);
-
-    public void UpdateLayout()
-    {
-    }
 
     public virtual void SetData(T data)
     {
@@ -46,6 +44,8 @@ public class ElementGridItem<T> : GridItem, IPointerDownHandler where T : Elemen
         otherLayouts.ForEach(l => l.gameObject.SetActive(false));
         layoutToUse.gameObject.SetActive(true);
         ActiveLayout = layoutToUse;
+
+        SetActive(data != null);
     }
 
 

@@ -7,7 +7,6 @@ public class GridItem : MonoBehaviour
 {
     protected bool initialized = false;
 
-    protected Text numberText, shortNameText, nameText, weightText;
     private ColorBlock buttonColorsActive, buttonColorsInactive;
     protected Button button;
 
@@ -18,11 +17,6 @@ public class GridItem : MonoBehaviour
 
         initialized = true;
 
-        numberText = transform.Find("Number")?.GetComponent<Text>();
-        shortNameText = transform.Find("ShortName")?.GetComponent<Text>();
-        nameText = transform.Find("Name")?.GetComponent<Text>();
-        weightText = transform.Find("Weight")?.GetComponent<Text>();
-
         button = GetComponent<Button>();
         buttonColorsActive = button.colors;
         buttonColorsInactive.normalColor = button.colors.disabledColor;
@@ -30,8 +24,6 @@ public class GridItem : MonoBehaviour
         buttonColorsInactive.pressedColor = button.colors.disabledColor;
         buttonColorsInactive.selectedColor = button.colors.disabledColor;
     }
-
-    protected virtual void Start() => SetActive(false);
 
     public T GetOrAddElementGridItem<T, U>() where U : Element where T : ElementGridItem<U>
         => (GetComponent<T>() ?? gameObject.AddComponent<T>());
