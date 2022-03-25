@@ -5,21 +5,6 @@ using UnityEngine.UI;
 
 public class IsotopeGridItem : ElementGridItem<Atom>
 {
-    Text nameText;
-
-    /* protected override void Start()
-    {
-        nameText = transform.Find("ShortName").GetComponent<Text>();
-
-        base.Start();
-    } */
-    /* protected override void Awake()
-    {
-        nameText = transform.Find("ShortName").GetComponent<Text>();
-
-        base.Awake();
-    } */
-
     public override void SetActive(bool active)
     {
         nameText.gameObject.SetActive(active);

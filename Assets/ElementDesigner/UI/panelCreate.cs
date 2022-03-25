@@ -57,36 +57,37 @@ public class PanelCreate : MonoBehaviour, IPointerExitHandler
     {
         if (newDesignType == ElementType.Atom)
         {
+            var protonParticle = new Particle()
+            {
+                Id = 1,
+                Name = "Proton",
+                Weight = .001f,
+                Charge = 1,
+                Size = 1,
+                Type = ElementType.Particle,
+                Color = "#00FFFA"
+            };
+            var neutronParticle = new Particle()
+            {
+                Id = 2,
+                Name = "Neutron",
+                Weight = 1,
+                Charge = 0,
+                Size = 1,
+                Type = ElementType.Particle,
+            };
+            var electronParticle = new Particle()
+            {
+                Id = 3,
+                Name = "Electron",
+                Weight = 3.5f,
+                Charge = -1,
+                Size = .5f,
+                Type = ElementType.Particle,
+            };
+
             // load particles into creation panel
-            Instance.LoadElements(new List<Particle>(){
-                new Particle()
-                 {
-                     Id = 1,
-                     Name = "Proton",
-                     Weight = .001f,
-                     Charge = 1,
-                     Size = 1,
-                     Type = ElementType.Particle,
-                 },
-                 new Particle()
-                 {
-                     Id = 2,
-                     Name = "Neutron",
-                     Weight = 1,
-                     Charge = 0,
-                     Size = 1,
-                     Type = ElementType.Particle,
-                 },
-                 new Particle()
-                 {
-                     Id = 3,
-                     Name = "Electron",
-                     Weight = 3.5f,
-                     Charge = -1,
-                     Size = .5f,
-                     Type = ElementType.Particle,
-                 }
-            });
+            Instance.LoadElements(new List<Particle>() { protonParticle, neutronParticle, electronParticle });
         }
         else if (newDesignType == ElementType.Molecule)
         {

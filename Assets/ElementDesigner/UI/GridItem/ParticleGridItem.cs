@@ -13,18 +13,21 @@ public class ParticleGridItem : ElementGridItem<Particle>
 
         base.SetData(particleData);
 
-        var nameWithoutVowels = new string(particleData.Name.Where(c => !("aeiou").Contains(c)).ToArray());
-        var newShortName = (nameWithoutVowels[0].ToString() + nameWithoutVowels[1].ToString()).ToUpper();
+        var icon = ActiveLayout.Find("Icon").GetComponent<Image>();
 
-        numberText = ActiveLayout.Find("Number")?.GetComponent<Text>();
-        numberText.text = particleData.Id.ToString();
+        if (icon == null)
+            throw new ApplicationException("Expected an icon in call to ParticleGridItem.SetData, got null");
+
+        var validColor = ColorUtility.TryParseHtmlString(particleData.Color, out Color particleColor);
+
+        if (!validColor)
+            throw new ApplicationException($"Invalid color for particle in call to ParticleGridItem.SetData. Must be hex. ({particleData.Color})");
+
+        icon.color = particleColor;
 
         var chargePanelTransform = ActiveLayout.Find("panelCharge");
         var chargeSign = particleData.Charge < 0 ? "-" : string.Empty;
         chargeText = chargePanelTransform.Find("Charge")?.GetComponent<Text>();
         chargeText.text = chargeSign + particleData.Charge;
-
-        // TODO: add "chargeText" to display charge
-        // weightText.text = particleData.Charge.ToString() + ".00";
     }
 }

@@ -17,16 +17,6 @@ public class ElementGridItem<T> : GridItem, IPointerDownHandler where T : Elemen
 
     protected virtual void Start() => SetActive(hasData);
 
-    protected override void VerifyInitialize()
-    {
-        base.VerifyInitialize();
-
-        ActiveLayout = transform.Find("Layout_Std");
-
-        nameText = ActiveLayout.Find("Name")?.GetComponent<Text>();
-        nameText.text = elementData?.Name ?? string.Empty;
-    }
-
     public void OnPointerDown(PointerEventData ev) => HandleClick();
 
     public void HandleClick() => OnClick?.Invoke(elementData);
@@ -44,6 +34,10 @@ public class ElementGridItem<T> : GridItem, IPointerDownHandler where T : Elemen
         otherLayouts.ForEach(l => l.gameObject.SetActive(false));
         layoutToUse.gameObject.SetActive(true);
         ActiveLayout = layoutToUse;
+
+        // Update UI
+        nameText = ActiveLayout.Find("Name")?.GetComponent<Text>();
+        nameText.text = elementData?.Name ?? string.Empty;
 
         SetActive(data != null);
     }
