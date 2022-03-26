@@ -75,6 +75,7 @@ public class PanelCreate : MonoBehaviour, IPointerExitHandler
                 Charge = 0,
                 Size = 1,
                 Type = ElementType.Particle,
+                Color = "#006F05"
             };
             var electronParticle = new Particle()
             {
@@ -84,6 +85,7 @@ public class PanelCreate : MonoBehaviour, IPointerExitHandler
                 Charge = -1,
                 Size = .5f,
                 Type = ElementType.Particle,
+                Color = "#AD0005"
             };
 
             // load particles into creation panel
