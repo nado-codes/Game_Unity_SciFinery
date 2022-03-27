@@ -35,10 +35,19 @@ public class ElementGridItem : MonoBehaviour, IPointerDownHandler
         VerifyInitialize();
 
         List<Transform> allLayouts = GetComponentsInChildren<Transform>().Where(t => t.name.Contains("Layout")).ToList();
-        allLayouts.ForEach(layout => layout.gameObject.SetActive(active));
+        allLayouts.ForEach(layout => {
+            if(layout != ActiveLayout || !active)
+                layout.gameObject.SetActive(false);
+            else if(layout == ActiveLayout)
+                ActiveLayout.gameObject.SetActive(true);
+        });
 
         button.interactable = active;
     }
+
+    // START
+    protected virtual void Start() => SetActive(hasData);
+
     protected virtual void VerifyInitialize()
     {
         if (initialized)
@@ -55,7 +64,6 @@ public class ElementGridItem : MonoBehaviour, IPointerDownHandler
 
         UpdateLayout();
     }
-    protected virtual void Start() => SetActive(hasData);
 
     private void UpdateLayout()
     {
@@ -63,7 +71,6 @@ public class ElementGridItem : MonoBehaviour, IPointerDownHandler
         Transform layoutToUse = transform.Find($"Layout_{elementDataType}") ?? transform.Find("Layout_Std");
         IEnumerable<Transform> allLayouts = GetComponentsInChildren<Transform>().Where(t => t.name.Contains("Layout"));
         List<Transform> otherLayouts = allLayouts.Where(l => l != layoutToUse).ToList();
-
         otherLayouts.ForEach(l => l.gameObject.SetActive(false));
         layoutToUse.gameObject.SetActive(true);
         ActiveLayout = layoutToUse;

@@ -47,6 +47,9 @@ public class AtomGridItem : ElementGridItem
 
     protected override void VerifyInitialize()
     {
+        if(initialized)
+            return;
+        
         base.VerifyInitialize();
 
         numberText = ActiveLayout.Find("Number").GetComponent<Text>();
