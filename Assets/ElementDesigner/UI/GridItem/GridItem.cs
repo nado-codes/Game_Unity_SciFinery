@@ -1,60 +1,40 @@
 using System;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class GridItem : MonoBehaviour
 {
-    protected bool initialized = false;
-
-    private ColorBlock buttonColorsActive, buttonColorsInactive;
-    protected Button button;
-
-    protected virtual void VerifyInitialize()
+    public ElementGridItem UseGridItemForType(ElementType elementType)
     {
-        if (initialized)
-            return;
+        var otherGridItems = GetComponents<ElementGridItem>().Where(gridItem => gridItem.elementDataType != elementType).ToList();
+        otherGridItems.ForEach(gridItem => Destroy(gridItem));
 
-        initialized = true;
-
-        button = GetComponent<Button>();
-        buttonColorsActive = button.colors;
-        buttonColorsInactive.normalColor = button.colors.disabledColor;
-        buttonColorsInactive.highlightedColor = button.colors.disabledColor;
-        buttonColorsInactive.pressedColor = button.colors.disabledColor;
-        buttonColorsInactive.selectedColor = button.colors.disabledColor;
+        if (elementType == ElementType.Atom)
+            return GetOrAddElementGridItem<AtomGridItem>();
+        else if (elementType == ElementType.Molecule)
+            return GetOrAddElementGridItem<MoleculeGridItem>();
+        else
+            throw new NotImplementedException($"Element of type \"{elementType}\" is not yet implemented in call to GridItem.SetData");
     }
-
-    public T GetOrAddElementGridItem<T, U>() where U : Element where T : ElementGridItem<U>
-        => (GetComponent<T>() ?? gameObject.AddComponent<T>());
-
     public bool HasDataOfType(ElementType elementType)
     {
         if (elementType == ElementType.Atom)
-            return GetOrAddElementGridItem<AtomGridItem, Atom>().elementData != null;
+            return true; // GetOrAddElementGridItem<AtomGridItem, Atom>().elementData != null;
         else if (elementType == ElementType.Molecule)
-            return GetOrAddElementGridItem<MoleculeGridItem, Molecule>().elementData != null;
+            return true; // GetOrAddElementGridItem<MoleculeGridItem, Molecule>().elementData != null;
         else
             throw new NotImplementedException($"Element of type \"{elementType}\" is not yet implemented in call to GridItem.SetData");
     }
     public void SetData(Element elementData)
     {
         if (elementData is Particle)
-            GetOrAddElementGridItem<ParticleGridItem, Particle>().SetData(elementData as Particle);
+            GetOrAddElementGridItem<ParticleGridItem>().SetData(elementData);
         else if (elementData is Atom)
-            GetOrAddElementGridItem<AtomGridItem, Atom>().SetData(elementData as Atom);
+            GetOrAddElementGridItem<AtomGridItem>().SetData(elementData);
         else
-            throw new NotImplementedException($"Element of type \"{elementData.GetType()}\" is not yet implemented in call to GridItem.SetData");
-
-        SetActive(true);
+            throw new NotImplementedException($"Element of type \"{elementData.GetType().FullName}\" is not yet implemented in call to GridItem.SetData");
     }
 
-    public virtual void SetActive(bool active)
-    {
-        VerifyInitialize();
-
-        var allText = transform.GetComponentsInChildren<Text>(true).ToList();
-        allText.ForEach(t => t.gameObject.SetActive(active));
-        button.interactable = active;
-    }
+    private T GetOrAddElementGridItem<T>() where T : ElementGridItem
+        => (GetComponent<T>() ?? gameObject.AddComponent<T>());
 }

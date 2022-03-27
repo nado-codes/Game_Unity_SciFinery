@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoleculeGridItem : ElementGridItem<Molecule>
+public class MoleculeGridItem : ElementGridItem
 {
     // Start is called before the first frame update
     protected override void Start()

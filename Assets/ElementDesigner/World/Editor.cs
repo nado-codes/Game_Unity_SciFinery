@@ -7,14 +7,14 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public enum DragState { Init, Active, None }
-public enum ElementType { Particle = 0, Atom = 1, Molecule = 2, Product = 3 }
+public enum ElementType { None = 0, Particle = 1, Atom = 2, Molecule = 3, Product = 4 }
 
 public class Editor : MonoBehaviour
 {
     private static Editor instance;
 
     private ElementType designType = ElementType.Atom;
-    public static ElementType DesignType => instance.designType;
+    public static ElementType DesignType => instance?.designType ?? ElementType.Atom;
     public static bool HasUnsavedChanges = false;
 
     // PREFABS
@@ -114,7 +114,7 @@ public class Editor : MonoBehaviour
         if (newDesignType == ElementType.Atom)
             handleChangeDesignType<Atom>();
 
-        PanelCreate.SetDesignType(newDesignType);
+        panelCreate.SetDesignType(newDesignType);
         designType = newDesignType;
         TextNotification.Show("Design Type: " + newDesignType);
     }

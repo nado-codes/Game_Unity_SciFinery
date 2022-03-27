@@ -3,10 +3,10 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ParticleGridItem : ElementGridItem<Particle>
+public class ParticleGridItem : ElementGridItem
 {
     private Text chargeText;
-    public override void SetData(Particle particleData)
+    public void SetData(Particle particleData)
     {
         if (particleData == null)
             throw new ApplicationException("Expected particleData in call to ParticleGridItem.SetAtomData, got null");

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using System.Linq;
 using System;
 
-public class AtomGridItem : ElementGridItem<Atom>
+public class AtomGridItem : ElementGridItem
 {
     // Update is called once per frame
     void Update()
@@ -27,9 +27,11 @@ public class AtomGridItem : ElementGridItem<Atom>
         base.SetActive(active);
     }
 
-    public override void SetData(Atom atomData)
+    public void SetData(Atom atomData)
     {
         VerifyInitialize();
+
+        base.SetData(atomData);
 
         if (atomData == null)
             throw new ApplicationException("Expected atomData in call to SetAtomData in PeriodicTableGridItem, got null");
@@ -40,6 +42,15 @@ public class AtomGridItem : ElementGridItem<Atom>
         weightText.text = atomData.Weight.ToString() + ".00";
 
         SetActive(true);
-        base.SetData(atomData);
+
+    }
+
+    protected override void VerifyInitialize()
+    {
+        base.VerifyInitialize();
+
+        numberText = ActiveLayout.Find("Number").GetComponent<Text>();
+        shortNameText = ActiveLayout.Find("ShortName").GetComponent<Text>();
+        weightText = ActiveLayout.Find("Weight").GetComponent<Text>();
     }
 }

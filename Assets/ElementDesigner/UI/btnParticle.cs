@@ -6,14 +6,14 @@ using UnityEngine.EventSystems;
 
 public class btnParticle : MonoBehaviour, IPointerDownHandler
 {
-    private PanelCreate panel;
+    private panelCreate panel;
 
 
     public ParticleType particleType;
 
     void Start()
     {
-        panel = GetComponentInParent<PanelCreate>();
+        panel = GetComponentInParent<panelCreate>();
     }
 
     public void OnPointerDown(PointerEventData ev)

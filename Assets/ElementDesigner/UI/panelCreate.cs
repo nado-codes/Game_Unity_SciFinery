@@ -6,16 +6,16 @@ using System.Linq;
 
 public enum CreationState { None, Start, Drag }
 
-public class PanelCreate : MonoBehaviour, IPointerExitHandler
+public class panelCreate : MonoBehaviour, IPointerExitHandler
 {
-    private static PanelCreate instance;
-    public static PanelCreate Instance
+    private static panelCreate instance;
+    public static panelCreate Instance
     {
         get
         {
             if (instance == null)
             {
-                instance = FindObjectOfType<PanelCreate>();
+                instance = FindObjectOfType<panelCreate>();
                 instance?.VerifyInitialize();
             }
 
@@ -29,7 +29,7 @@ public class PanelCreate : MonoBehaviour, IPointerExitHandler
 
     private List<Element> loadedElements = new List<Element>();
     private List<Element> visibleLoadedElements = new List<Element>();
-    private Transform particleButtonsTransform, elementButtonsTransform, btnPrevTransform, btnNextTransform;
+    private Transform elementButtonsTransform, btnPrevTransform, btnNextTransform;
     private List<GridItem> elementButtons = new List<GridItem>();
 
     public float particleDefaultDistance = 5;
@@ -42,12 +42,14 @@ public class PanelCreate : MonoBehaviour, IPointerExitHandler
             return;
 
         particleDistance = particleDefaultDistance;
-        particleButtonsTransform = transform.Find("particleButtons");
-        elementButtonsTransform = transform.Find("elementButtons");
+
         btnPrevTransform = transform.Find("btnPrev");
         btnNextTransform = transform.Find("btnNext");
 
+        elementButtonsTransform = transform.Find("elementButtons");
         elementButtons = elementButtonsTransform.GetComponentsInChildren<GridItem>().ToList();
+        elementButtons.ForEach(btn => btn.UseGridItemForType(Editor.DesignType).OnClick += HandleElementGridItemClicked);
+
         instance = this;
     }
 
@@ -208,7 +210,7 @@ public class PanelCreate : MonoBehaviour, IPointerExitHandler
         isHover = true;
     }
 
-    private void HandleElementGridItemClicked<T>(T elementData) where T : Element
+    private void HandleElementGridItemClicked(Element elementData)
     {
         elementToCreateData = elementData;
         creationState = CreationState.Start;
