@@ -28,11 +28,21 @@ public class GridItem : MonoBehaviour
     public void SetData(Element elementData)
     {
         if (elementData is Particle)
-            GetOrAddElementGridItem<ParticleGridItem>().SetData(elementData);
+            GetOrAddElementGridItem<ParticleGridItem>().SetData(elementData as Particle);
         else if (elementData is Atom)
-            GetOrAddElementGridItem<AtomGridItem>().SetData(elementData);
+            GetOrAddElementGridItem<AtomGridItem>().SetData(elementData as Atom);
         else
             throw new NotImplementedException($"Element of type \"{elementData.GetType().FullName}\" is not yet implemented in call to GridItem.SetData");
+    }
+
+    public ElementGridItem GetGridItemForType(ElementType elementType)
+    {
+        if (elementType == ElementType.Particle)
+            return GetComponent<ParticleGridItem>();
+        else if (elementType == ElementType.Atom)
+            return GetComponent<AtomGridItem>();
+        else
+            throw new NotImplementedException($"Element of type \"{elementType}\" is not yet implemented in call to GridItem.SetData");
     }
 
     private T GetOrAddElementGridItem<T>() where T : ElementGridItem

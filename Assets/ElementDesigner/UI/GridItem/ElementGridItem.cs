@@ -25,7 +25,9 @@ public class ElementGridItem : MonoBehaviour, IPointerDownHandler
     {
         elementData = data;
         hasData = data != null;
-        // elementDataType = Enum.Parse(data.GetType().FullName);
+
+        Enum.TryParse(data.GetType().FullName,out ElementType type);
+        elementDataType = type;
 
         UpdateLayout();
         SetActive(data != null);
@@ -34,7 +36,7 @@ public class ElementGridItem : MonoBehaviour, IPointerDownHandler
     {
         VerifyInitialize();
 
-        List<Transform> allLayouts = GetComponentsInChildren<Transform>().Where(t => t.name.Contains("Layout")).ToList();
+        List<Transform> allLayouts = GetComponentsInChildren<Transform>(true).Where(t => t.name.Contains("Layout")).ToList();
         allLayouts.ForEach(layout => {
             if(layout != ActiveLayout || !active)
                 layout.gameObject.SetActive(false);

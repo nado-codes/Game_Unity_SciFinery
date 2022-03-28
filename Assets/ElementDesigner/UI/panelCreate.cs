@@ -48,7 +48,7 @@ public class panelCreate : MonoBehaviour, IPointerExitHandler
 
         elementButtonsTransform = transform.Find("elementButtons");
         elementButtons = elementButtonsTransform.GetComponentsInChildren<GridItem>().ToList();
-        elementButtons.ForEach(btn => btn.UseGridItemForType(Editor.DesignType).OnClick += HandleElementGridItemClicked);
+        // elementButtons.ForEach(btn => btn.UseGridItemForType(Editor.DesignType).OnClick += (data) => HandleElementGridItemClicked(data));
 
         instance = this;
     }
@@ -194,6 +194,7 @@ public class panelCreate : MonoBehaviour, IPointerExitHandler
                 throw new NullReferenceException($"Expected a gridItem at index {elementIndex} in call to panelCreate.RenderVisibleElements, got null");
 
             gridItem.SetData(element);
+            gridItem.GetGridItemForType(element.Type).OnClick = HandleElementGridItemClicked;
         }
     }
 
