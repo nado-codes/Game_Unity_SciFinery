@@ -66,7 +66,6 @@
      <Compile Include="Assets\ElementDesigner\World\Atom\Proton.cs" />
      <Compile Include="Assets\ElementDesigner\FileSystem\Particle.cs" />
      <Compile Include="Assets\ElementDesigner\World\Atom\Neutron.cs" />
-     <Compile Include="Assets\EditorMode_TableGridGen.cs" />
      <Compile Include="Assets\ElementDesigner\UI\GridItem\AtomGridItem.cs" />
      <Compile Include="Assets\Main\CoilAnim.cs" />
      <Compile Include="Assets\ElementDesigner\Globals.cs" />
