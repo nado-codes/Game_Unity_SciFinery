@@ -14,27 +14,27 @@ public class DialogPeriodicTable : MonoBehaviour
 
     private Button btnLoad, btnDelete, btnIsotopes;
 
-    private Transform page1Transform, page2Transform;
+    private Transform stdLayoutTransform, particleLayoutTransform;
 
     // TODO: need to get or add the GridItem<T> to the page grid items here
     private void VerifyInitialize()
     {
-        page1Transform = transform.Find("page1");
-        page2Transform = transform.Find("page2");
+        stdLayoutTransform = transform.Find("Layout_Std");
+        particleLayoutTransform = transform.Find("Layout_Isotope");
 
-        var page1GridTransform = page1Transform.Find("grid");
+        var page1GridTransform = stdLayoutTransform.Find("grid");
         page1GridItems = page1GridTransform.GetComponentsInChildren<GridItem>().ToList();
         page1GridItems.ForEach(item => item.GetComponent<Button>().onClick.AddListener(() => HandleItemSelected(item)));
 
-        var page2AtomGridItem = page2Transform.GetComponentInChildren<AtomGridItem>();
-        var page2GridTransform = page2Transform.Find("grid");
+        var page2AtomGridItem = particleLayoutTransform.GetComponentInChildren<AtomGridItem>();
+        var page2GridTransform = particleLayoutTransform.Find("grid");
         var page2GridTransforms = page2GridTransform.GetComponentsInChildren<RectTransform>();
         // page2GridItems = page2GridTransform.GetComponentsInChildren<ElementGridItem>().ToList();
         // page2GridItems.ForEach(item => item.GetComponent<Button>().onClick.AddListener(() => HandleItemSelected(item)));
 
         btnLoad = transform.Find("btnLoad").GetComponent<Button>();
         btnDelete = transform.Find("btnDelete").GetComponent<Button>();
-        btnIsotopes = page1Transform.Find("btnIsotopes").GetComponent<Button>();
+        btnIsotopes = stdLayoutTransform.Find("btnIsotopes").GetComponent<Button>();
 
         OpenPage1();
         Close();
@@ -88,16 +88,16 @@ public class DialogPeriodicTable : MonoBehaviour
 
     public void OpenPage1()
     {
-        page2Transform.gameObject.SetActive(false);
-        page1Transform.gameObject.SetActive(true);
+        particleLayoutTransform.gameObject.SetActive(false);
+        stdLayoutTransform.gameObject.SetActive(true);
     }
 
     public void OpenPage2()
     {
-        page2Transform.gameObject.SetActive(true);
-        page1Transform.gameObject.SetActive(false);
+        particleLayoutTransform.gameObject.SetActive(true);
+        stdLayoutTransform.gameObject.SetActive(false);
 
-        var atomGridItem = page2Transform.Find("gridItem").GetComponent<AtomGridItem>();
+        var atomGridItem = particleLayoutTransform.Find("gridItem").GetComponent<AtomGridItem>();
         // atomGridItem.SetAtomData(selectedItem?.elementData);
 
         // var selectedAtomIsotopes = FileSystem.instance.LoadedAtoms.Where(atom => atom.Name == selectedItem.elementData.Name && atom.IsIsotope);

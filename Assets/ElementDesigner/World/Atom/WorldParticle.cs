@@ -17,6 +17,7 @@ public class WorldParticle : WorldElement
     private Canvas infoCanvas;
     private Text infoText;
     private TrailRenderer trail;
+    private ParticleSystem particles;
     private Light bodyLight;
     private MeshRenderer bodyMR;
     private Transform bodyTransform;
@@ -37,6 +38,7 @@ public class WorldParticle : WorldElement
         infoText = infoCanvasTransform.Find("Text").GetComponent<Text>();
 
         trail = GetComponent<TrailRenderer>();
+        particles = GetComponent<ParticleSystem>();
 
         bodyMR = bodyTransform.GetComponent<MeshRenderer>();
 

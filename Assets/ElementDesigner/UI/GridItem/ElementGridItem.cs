@@ -26,7 +26,7 @@ public class ElementGridItem : MonoBehaviour, IPointerDownHandler
         elementData = data;
         hasData = data != null;
 
-        Enum.TryParse(data.GetType().FullName,out ElementType type);
+        Enum.TryParse(data.GetType().FullName, out ElementType type);
         elementDataType = type;
 
         UpdateLayout();
@@ -37,10 +37,11 @@ public class ElementGridItem : MonoBehaviour, IPointerDownHandler
         VerifyInitialize();
 
         List<Transform> allLayouts = GetComponentsInChildren<Transform>(true).Where(t => t.name.Contains("Layout")).ToList();
-        allLayouts.ForEach(layout => {
-            if(layout != ActiveLayout || !active)
+        allLayouts.ForEach(layout =>
+        {
+            if (layout != ActiveLayout || !active)
                 layout.gameObject.SetActive(false);
-            else if(layout == ActiveLayout)
+            else if (layout == ActiveLayout)
                 ActiveLayout.gameObject.SetActive(true);
         });
 
@@ -71,6 +72,10 @@ public class ElementGridItem : MonoBehaviour, IPointerDownHandler
     {
         // Update layout
         Transform layoutToUse = transform.Find($"Layout_{elementDataType}") ?? transform.Find("Layout_Std");
+
+        if (layoutToUse == null)
+            throw new ApplicationException($"At least one layout of name \"Layout_Std\" is required in call to ElementGridItem.UpdateLayout");
+
         IEnumerable<Transform> allLayouts = GetComponentsInChildren<Transform>().Where(t => t.name.Contains("Layout"));
         List<Transform> otherLayouts = allLayouts.Where(l => l != layoutToUse).ToList();
         otherLayouts.ForEach(l => l.gameObject.SetActive(false));
