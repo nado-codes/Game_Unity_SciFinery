@@ -14,11 +14,13 @@ public class Editor : MonoBehaviour
     private static Editor instance;
 
     private ElementType designType = ElementType.Atom;
-    public static ElementType DesignType {
-        get {
-            if(instance == null)
+    public static ElementType DesignType
+    {
+        get
+        {
+            if (instance == null)
                 instance = FindObjectOfType<Editor>();
-            
+
             return instance.designType;
         }
     }
@@ -88,28 +90,6 @@ public class Editor : MonoBehaviour
         var rigidbody = gameObject.AddComponent<Rigidbody>();
         rigidbody.useGravity = false;
         rigidbody.isKinematic = true;
-
-        var allAtomsFileNames = Directory.GetFiles("./Elements/Atom/");
-
-        foreach (string atomFileName in allAtomsFileNames)
-        {
-            var atomJSON = File.ReadAllText(atomFileName);
-            var atom = JsonUtility.FromJson<Atom>(atomJSON);
-
-            Color protonColor, neutronColor, electronColor;
-            ColorUtility.TryParseHtmlString("#00E0FF", out protonColor);
-            ColorUtility.TryParseHtmlString("#66FF33", out neutronColor);
-            ColorUtility.TryParseHtmlString("#FF0000", out electronColor);
-
-            var protonsToAdd = Enumerable.Range(0, atom.ProtonCount).Select(i => 1);
-            var neutronsToAdd = Enumerable.Range(0, atom.NeutronCount).Select(i => 2);
-            var electronsToAdd = Enumerable.Range(0, atom.ElectronCount).Select(i => 3);
-
-            atom.ParticleIds = protonsToAdd.Concat(neutronsToAdd.Concat(electronsToAdd)).ToArray();
-
-            var newAtomJSON = JsonUtility.ToJson(atom);
-            File.WriteAllText(atomFileName, newAtomJSON);
-        }
 
         // NOTE: Start the Editor in an initial state, also setting up the UI
         // with the correct elements and displays
@@ -397,34 +377,42 @@ public class Editor : MonoBehaviour
 
     public static void LoadElementData<T>(T elementData) where T : Element
     {
+        if (elementData == null)
+            throw new ArgumentException("Expected elementData in call to Editor.LoadElementData, got null");
+
         ClearParticles();
         // Camera.main.transform.position = instance.cameraStartPos;
         // Camera.main.transform.rotation = instance.cameraStartAngle;
-        var elementType = elementData.Type;
-        if (elementType == ElementType.Atom)
+        if (elementData.Type == ElementType.Atom)
         {
+            var atomData = elementData as Atom;
             var particlesToCreate = new List<ParticleType>();
 
-            // TODO: get a list of particles to create by reading the particleIds from elementData
+            var particles = FileSystem.LoadElementsOfType(ElementType.Particle);
 
-            // particlesToCreate.AddRange(Enumerable.Range(0, elementData.ProtonCount).Select(n => ParticleType.Proton));
-            // particlesToCreate.AddRange(Enumerable.Range(0, elementData.NeutronCount).Select(n => ParticleType.Neutron));
-            // particlesToCreate.AddRange(Enumerable.Range(0, elementData.ElectronCount).Select(n => ParticleType.Electron));
-
-            // .. create each particle in a random position, with electrons further away than protons and neutrons
-            particlesToCreate.ForEach(particleToCreate =>
+            foreach (int particleId in atomData.ParticleIds)
             {
-                var radius = particleToCreate != ParticleType.Electron ? 1 : 20;
-                var randPos = UnityEngine.Random.insideUnitSphere * radius;
+                try
+                {
+                    var particleToCreateData = particles.FirstOrDefault(p => p.Id == particleId);
 
-                instance.CreateParticle(particleToCreate, randPos);
-            });
+                    if (particleToCreateData == null)
+                        throw new ApplicationException($"No particle found for Id {particleId} in call to Editor.LoadElementData");
+
+                    var radius = particleToCreateData.Charge >= 0 ? 1 : 20;
+                    var randPos = UnityEngine.Random.insideUnitSphere * radius;
+
+                    CreateWorldElement(particleToCreateData, randPos);
+                }
+                catch
+                {
+                    continue;
+                }
+            }
         }
 
-
-
         FileSystem.instance.ActiveElement = elementData;
-        // TextNotification.Show($"Loaded \"{FileSystem<T>.instance.ActiveElementAs<Atom>().Name}\"");
+        TextNotification.Show($"Loaded \"{elementData.Name}\"");
     }
 
     public static WorldElement CreateWorldElement(Element elementData)
@@ -463,6 +451,14 @@ public class Editor : MonoBehaviour
         HasUnsavedChanges = true;
 
         return newWorldElement;
+    }
+
+    public static WorldElement CreateWorldElement(Element elementData, Vector3 position)
+    {
+        var element = CreateWorldElement(elementData);
+        element.transform.position = position;
+
+        return element;
     }
 
     public static WorldParticle CreateParticle(ParticleType type)

@@ -63,19 +63,26 @@ public class DialogPeriodicTable : MonoBehaviour
 
         foreach (Element elementData in loadedElements)
         {
-            // TODO: Create a grid item if the atom won't fit in the table
-            var index = (elementData?.Id ?? 0) - 1;
+            try
+            {
+                // TODO: Create a grid item if the atom won't fit in the table
+                var index = (elementData?.Id ?? 0) - 1;
 
-            if (index == -1)
-                throw new ApplicationException($"Invalid or missing index for element {elementData.Name} Id in call to DialogPeriodicTable.Open");
+                if (index == -1)
+                    throw new ApplicationException($"Invalid or missing index for element {elementData.Name} Id in call to DialogPeriodicTable.Open");
 
-            var gridItem = page1GridItems[index];
+                var gridItem = page1GridItems[index];
 
-            if (gridItem == null)
-                throw new ApplicationException($"Expected a gridItem for element with Id {elementData.Id} in call to DialogPeriodicTable.Open, got null");
+                if (gridItem == null)
+                    throw new ApplicationException($"Expected a gridItem for element with Id {elementData.Id} in call to DialogPeriodicTable.Open, got null");
 
-            gridItem.SetData(elementData);
-            gridItem.GetGridItemForType(elementData.Type).OnClick += (Element data) => selectedElementData = data;
+                gridItem.SetData(elementData);
+                gridItem.GetGridItemForType(elementData.Type).OnClick += (Element data) => selectedElementData = data;
+            }
+            catch
+            {
+                continue;
+            }
         }
 
         HUD.LockedFocus = true;
@@ -145,6 +152,9 @@ public class DialogPeriodicTable : MonoBehaviour
 
     private void HandleLoadSelectedItem()
     {
+        if (selectedElementData == null)
+            throw new ApplicationException("Expected selectedElementData in call to DialogPeriodicTable.HandleLoadSelectedItem, got null");
+
         Editor.LoadElementData(selectedElementData);
         Close();
     }

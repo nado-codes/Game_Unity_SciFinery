@@ -59,47 +59,17 @@ public class panelCreate : MonoBehaviour, IPointerExitHandler
     {
         if (newDesignType == ElementType.Atom)
         {
-            var protonParticle = new Particle()
-            {
-                Id = 1,
-                Name = "Proton",
-                Weight = .001f,
-                Charge = 1,
-                Size = 1,
-                Type = ElementType.Particle,
-                Color = "#00FFFA"
-            };
-            var neutronParticle = new Particle()
-            {
-                Id = 2,
-                Name = "Neutron",
-                Weight = 1,
-                Charge = 0,
-                Size = 1,
-                Type = ElementType.Particle,
-                Color = "#006F05"
-            };
-            var electronParticle = new Particle()
-            {
-                Id = 3,
-                Name = "Electron",
-                Weight = 3.5f,
-                Charge = -1,
-                Size = .5f,
-                Type = ElementType.Particle,
-                Color = "#AD0005"
-            };
-
             // load particles into creation panel
-            Instance.LoadElements(new List<Particle>() { protonParticle, neutronParticle, electronParticle });
+            var particles = FileSystem.LoadElementsOfType(ElementType.Particle);
+            Instance.LoadElements(particles);
         }
         else if (newDesignType == ElementType.Molecule)
         {
-            // load particles into creation panel
+            // load atoms into creation panel
         }
         else if (newDesignType == ElementType.Product)
         {
-            // load particles into creation panel
+            // load molecules into creation panel
         }
         else
             throw new NotImplementedException($"Element of type {newDesignType} is not yet implemented in call to panelCreate.SetDesignType");
