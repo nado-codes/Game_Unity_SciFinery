@@ -53,7 +53,7 @@ public class DemoController : MonoBehaviour
         var allAtomsNotPreviouslyLoaded = FileSystem.instance.LoadedAtoms.Where(atom => !prevLoaded.Any(prevAtom => prevAtom.Weight == atom.Weight));
         var randomAtomIndex = UnityEngine.Random.Range(0, allAtomsNotPreviouslyLoaded.Count());
         var randomAtom = allAtomsNotPreviouslyLoaded.ElementAt(randomAtomIndex);
-        Editor.LoadElementData(randomAtom);
+        Editor.LoadElement(randomAtom);
 
         if (prevLoaded.Count >= atomCount / 2)
             prevLoaded.RemoveAt(0);

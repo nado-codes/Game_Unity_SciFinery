@@ -155,7 +155,7 @@ public class DialogPeriodicTable : MonoBehaviour
         if (selectedElementData == null)
             throw new ApplicationException("Expected selectedElementData in call to DialogPeriodicTable.HandleLoadSelectedItem, got null");
 
-        Editor.LoadElementData(selectedElementData);
+        Editor.LoadElement(selectedElementData);
         Close();
     }
 

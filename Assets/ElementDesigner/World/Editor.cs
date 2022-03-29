@@ -150,7 +150,7 @@ public class Editor : MonoBehaviour
         atomGameObject.name = $"{typeName}New{typeName}";
 
         FileSystem.CreateNewElementOfType<T>();
-        LoadElementData(FileSystem.instance.ActiveElement);
+        LoadElement(FileSystem.instance.ActiveElement);
 
         HasUnsavedChanges = false;
     }
@@ -375,10 +375,10 @@ public class Editor : MonoBehaviour
         }
     }
 
-    public static void LoadElementData<T>(T elementData) where T : Element
+    public static void LoadElement<T>(T elementData) where T : Element
     {
         if (elementData == null)
-            throw new ArgumentException("Expected elementData in call to Editor.LoadElementData, got null");
+            throw new ArgumentException("Expected elementData in call to Editor.LoadElement, got null");
 
         ClearParticles();
         // Camera.main.transform.position = instance.cameraStartPos;
@@ -410,6 +410,10 @@ public class Editor : MonoBehaviour
                 }
             }
         }
+        else if(elementData.Type == ElementType.None)
+            throw new ApplicationException($"Element of type \"None\" is not valid in call to Editor.LoadElement");
+        else
+            throw new NotImplementedException($"Element of type \"{elementData.GetType().FullName}\" is not yet implemented in call to Editor.LoadElementData");
 
         FileSystem.instance.ActiveElement = elementData;
         TextNotification.Show($"Loaded \"{elementData.Name}\"");
