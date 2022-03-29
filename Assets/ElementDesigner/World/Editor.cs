@@ -14,7 +14,14 @@ public class Editor : MonoBehaviour
     private static Editor instance;
 
     private ElementType designType = ElementType.Atom;
-    public static ElementType DesignType => instance?.designType ?? ElementType.Atom;
+    public static ElementType DesignType {
+        get {
+            if(instance == null)
+                instance = FindObjectOfType<Editor>();
+            
+            return instance.designType;
+        }
+    }
     public static bool HasUnsavedChanges = false;
 
     // PREFABS

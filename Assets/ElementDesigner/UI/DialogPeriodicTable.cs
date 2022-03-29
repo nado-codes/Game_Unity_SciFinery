@@ -132,19 +132,20 @@ public class DialogPeriodicTable : MonoBehaviour
 
     public void HandleLoadSelectedItemClicked()
     {
-        /* if (FileSystem.instance.hasUnsavedChanges)
+        if (Editor.HasUnsavedChanges)
         {
             var dialogBody = "You have unsaved changes in the editor. Would you like to save before continuing?";
             DialogYesNo.Open("Save Changes?", dialogBody, () => FileSystem.instance.SaveActiveElement(), null,
             () => HandleLoadSelectedItem());
         }
         else
-            HandleLoadSelectedItem(); */
+            HandleLoadSelectedItem();
     }
 
     private void HandleLoadSelectedItem()
     {
-        // editor.LoadAtomData(selectedItem.elementData);
+        var elementGridItem = selectedItem.GetGridItemForType(Editor.DesignType);
+        Editor.LoadElementData(elementGridItem.elementData);
         Close();
     }
 
