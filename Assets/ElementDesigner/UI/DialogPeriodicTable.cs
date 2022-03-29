@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class DialogPeriodicTable : MonoBehaviour
 {
     private static DialogPeriodicTable instance;
-    private GridItem selectedItem;
+    private Element selectedElementData;
 
     private List<GridItem> page1GridItems = new List<GridItem>();
     private List<GridItem> page2GridItems = new List<GridItem>();
@@ -75,6 +75,7 @@ public class DialogPeriodicTable : MonoBehaviour
                 throw new ApplicationException($"Expected a gridItem for element with Id {elementData.Id} in call to DialogPeriodicTable.Open, got null");
 
             gridItem.SetData(elementData);
+            gridItem.GetGridItemForType(elementData.Type).OnClick += (Element data) => selectedElementData = data;
         }
 
         HUD.LockedFocus = true;
@@ -144,8 +145,7 @@ public class DialogPeriodicTable : MonoBehaviour
 
     private void HandleLoadSelectedItem()
     {
-        var elementGridItem = selectedItem.GetGridItemForType(Editor.DesignType);
-        Editor.LoadElementData(elementGridItem.elementData);
+        Editor.LoadElementData(selectedElementData);
         Close();
     }
 
