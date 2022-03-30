@@ -11,7 +11,7 @@ public class DemoController : MonoBehaviour
     public int timerLimit = 250;
     private int timer = 0;
     private bool isDemo = false;
-    private List<Atom> prevLoaded = new List<Atom>();
+    private List<Element> prevLoaded = new List<Element>();
     private Text timerText;
     private Toggle toggle;
 
@@ -48,9 +48,9 @@ public class DemoController : MonoBehaviour
     }
     private void loadRandomAtom()
     {
-        var atomCount = FileSystem.instance.LoadedAtoms.Count;
+        var atomCount = FileSystem.LoadedElements.Count;
 
-        var allAtomsNotPreviouslyLoaded = FileSystem.instance.LoadedAtoms.Where(atom => !prevLoaded.Any(prevAtom => prevAtom.Weight == atom.Weight));
+        var allAtomsNotPreviouslyLoaded = FileSystem.LoadedElements.Where(atom => !prevLoaded.Any(prevAtom => prevAtom.Weight == atom.Weight));
         var randomAtomIndex = UnityEngine.Random.Range(0, allAtomsNotPreviouslyLoaded.Count());
         var randomAtom = allAtomsNotPreviouslyLoaded.ElementAt(randomAtomIndex);
         Editor.LoadElement(randomAtom);

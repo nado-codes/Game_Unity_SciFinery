@@ -35,7 +35,14 @@ public class FileSystem : MonoBehaviour
 
     // LOADED ELEMENTS
 
-    public List<Atom> LoadedAtoms { get; private set; } = new List<Atom>();
+    private List<Element> loadedElements = new List<Element>();
+    private List<Element> loadedComponentElements = new List<Element>();
+    public static List<Element> LoadedElements { 
+        get => instance.loadedElements; 
+    }
+    public static List<Element> LoadedComponentElements {
+        get => instance.loadedComponentElements;
+    }
 
     public static IEnumerable<Element> LoadElementsOfType(ElementType elementType)
     {
@@ -162,9 +169,48 @@ public class FileSystem : MonoBehaviour
             TextNotification.Show("Save Successful");
         }
     }
-    private void saveAtom(Atom atomData)
+    private void saveAtom(Atom atomData, string mainElementPath)
     {
         var elementExists = File.Exists(GetMainElementFilePath(atomData));
+
+        var existingElementJSON = File.ReadAllText($"{mainElementPath}.{fileExtension}");
+        var existingElement = JsonUtility.FromJson<Atom>(existingElementJSON);
+
+        var activeAtom = ActiveElement as Atom;
+
+        // .. In this context, a "Neutron" is any neutral particle with Charge=0
+        var activeAtomNeutrons = 0; 
+        var atomDataNeutrons = 0;
+        
+        var hasDifferentNeutronCount = atomDataNeutrons != activeAtomNeutrons;
+        var activeAtomIsIsotope = atomData.Name == activeAtom.Name && hasDifferentNeutronCount;
+
+        if (activeAtomIsIsotope)
+        {
+            // .. make sure the atom's isotope directory exists
+            if (!Directory.Exists(mainElementPath))
+                Directory.CreateDirectory(mainElementPath);
+        
+            var isotopePath = GetActiveAtomIsotopeFileName();
+            var isotopeExists = File.Exists(isotopePath);
+            
+            if (!isotopeExists) // .. confirm create isotope
+            {
+                var dialogBody = @"You're about to create the isotope {isotopeShortName} for {mainAtomName}, 
+                with {neutronCount} neutrons. Do you wish to continue?";
+                DialogYesNo.Open("Confirm Create Isotope", dialogBody, ConfirmSaveIsotope);
+            }
+            else
+                ConfirmSaveIsotope(); // .. overwrite isotope
+        }
+        else // .. overwrite the main atom
+        {
+          var activeAtomJSON = JsonUtility.ToJson(ActiveElement);
+            // instance.LoadedAtoms[ActiveElementAs<Atom>().Id - 1] = ActiveElement as Atom;
+            File.WriteAllText($"{mainElementPath}.{fileExtension}", activeAtomJSON);
+            Debug.Log($"Saved active atom {ActiveElementAs<Atom>().Name} at {DateTime.Now}");
+            TextNotification.Show("Save Successful");  
+        }
     }
     // .. Create an isotope for a particlar atom, by creating a directory to store isotopes and then saving the file inside it
     public void ConfirmSaveIsotope()
@@ -190,7 +236,7 @@ public class FileSystem : MonoBehaviour
     }
     public void DeleteAtom(Atom atom)
     {
-        LoadedAtoms.Remove(atom);
+        LoadedElements.Remove(atom);
         File.Delete(!atom.IsIsotope ? GetMainElementFilePath(atom) : GetIsotopeFilePath(atom));
         TextNotification.Show("Delete Successful");
     }
