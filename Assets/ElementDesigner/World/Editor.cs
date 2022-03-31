@@ -104,6 +104,7 @@ public class Editor : MonoBehaviour
         panelCreate.SetDesignType(newDesignType);
         designType = newDesignType;
         TextNotification.Show("Design Type: " + newDesignType);
+        
     }
 
     private void handleChangeDesignType<T>() where T : Element

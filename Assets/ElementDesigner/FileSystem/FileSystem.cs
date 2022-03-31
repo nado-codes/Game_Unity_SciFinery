@@ -45,10 +45,16 @@ public class FileSystem : MonoBehaviour
     }
 
     public static IEnumerable<Element> LoadElementsOfType(ElementType elementType)
+     => elementType switch {
+            ElementType.Particle => loadParticles(),
+            ElementType.Atom => loadElements<Atom>(),
+            ElementType.Molecule => loadElements<Molecule>(),
+            _ => throw new NotImplementedException($"Element type \"{elementType.ToString()}\" is not implemented in call to FileSystem.LoadElementsOfType")
+    };
+
+    private static IEnumerable<Particle> loadParticles()
     {
-        if (elementType == ElementType.Particle)
-        {
-            var protonParticle = new Particle()
+        var protonParticle = new Particle()
             {
                 Id = 1,
                 Name = "Proton",
@@ -76,18 +82,11 @@ public class FileSystem : MonoBehaviour
                 Charge = -1,
                 Size = .5f,
                 Type = ElementType.Particle,
-                Color = "#AD0005"
+                Color = "#FF0000"
             };
 
             var defaultParticles = new Particle[] { protonParticle, neutronParticle, electronParticle };
             return defaultParticles.Concat(loadElements<Particle>());
-        }
-        else if (elementType == ElementType.Atom)
-            return loadElements<Atom>();
-        else if (elementType == ElementType.Molecule)
-            return loadElements<Molecule>();
-        else
-            throw new NotImplementedException($"Element type \"{elementType.ToString()}\" is not implemented in call to FileSystem.LoadElementsOfType");
     }
     public U ActiveElementAs<U>() where U : Element => ActiveElement as U;
     public static T CreateNewElementOfType<T>() where T : Element
