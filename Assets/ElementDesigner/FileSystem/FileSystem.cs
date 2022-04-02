@@ -141,14 +141,9 @@ public class FileSystem : MonoBehaviour
     }
     private void saveAtom(Atom atomData, string mainElementPath)
     {
-        var elementExists = File.Exists(GetMainElementFilePath(atomData));
-
-        var existingElementJSON = File.ReadAllText($"{mainElementPath}.{fileExtension}");
-        var existingElement = JsonUtility.FromJson<Atom>(existingElementJSON);
-
         var activeAtom = activeElement as Atom;
 
-        // .. In this context, a "Neutron" is any neutral particle with Charge=0
+        // .. In this context, a "Neutron" is any neutral particle, or a particle with Charge=0
         var allParticles = loadParticles();
         var activeAtomParticles = allParticles.Where(particle => activeAtom.ParticleIds.Any(id => id == particle.Id));
         var atomDataParticles = allParticles.Where(particle => atomData.ParticleIds.Any(id => id == particle.Id));
@@ -158,8 +153,13 @@ public class FileSystem : MonoBehaviour
         var hasDifferentNeutronCount = atomDataNeutronsCount != activeAtomNeutronsCount;
         var activeAtomIsIsotope = atomData.Name == activeAtom.Name && hasDifferentNeutronCount;
 
+        var elementExists = File.Exists(GetMainElementFilePath(atomData));
+
         if (elementExists)
         {
+            var existingElementJSON = File.ReadAllText($"{mainElementPath}.{fileExtension}");
+            var existingElement = JsonUtility.FromJson<Atom>(existingElementJSON);
+
             if (activeAtomIsIsotope)
             {
                 // TODO: implement saving isotopes

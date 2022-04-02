@@ -5235,12 +5235,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 703a4ce20c707a34d8273d329214b14f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  refreshGrid: 0
-  gridItemPrefab: {fileID: 624726504953380572, guid: 1f86fa79d075ef549b6bd078fcf23bf1,
-    type: 3}
-  columns: 11
-  rows: 5
-  itemWidth: 90
 --- !u!1 &117258943
 GameObject:
   m_ObjectHideFlags: 0
@@ -21774,28 +21768,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0638c57877963b428c4ab8ebbf034a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  atom:
+  elementData:
     Id: 0
     ShortName: 
     Name: 
     Weight: 0
     Charge: 0
     Type: 0
-    Number: 0
-    ProtonCount: 0
-    NeutronCount: 0
-    ElectronCount: 0
-    ParticleIds: 
-    BondType: 0
-    Conductivity: 0
-    Reactivity: 0
-    Toxicity: 0
-    MeltingPoint: 0
-    BoilingPoint: 0
-    Brittleness: 0
-    Malleability: 0
-    Ductility: 0
-    isotopes: []
 --- !u!1 &566333228
 GameObject:
   m_ObjectHideFlags: 0
@@ -74085,18 +74064,6 @@ MonoBehaviour:
       - m_Target: {fileID: 612247313}
         m_TargetAssemblyTypeName: FileSystem, Assembly-CSharp
         m_MethodName: SaveActiveElement
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: DialogPeriodicTable, Assembly-CSharp
-        m_MethodName: Open
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
