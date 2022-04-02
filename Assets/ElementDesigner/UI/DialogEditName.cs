@@ -40,8 +40,9 @@ public class DialogEditName : MonoBehaviour
         var nameWithoutVowels = new string(inputName.text.Where(c => !("aeiou").Contains(c)).ToArray());
         var newShortName = (nameWithoutVowels[0].ToString() + nameWithoutVowels[1].ToString()).ToUpper();
 
-        /* FileSystem.instance.ActiveElementAs<Atom>().Name = inputName.text;
-        FileSystem.instance.ActiveElementAs<Atom>().ShortName = newShortName; */
+        FileSystem.ActiveElement.Name = inputName.text;
+        FileSystem.ActiveElement.ShortName = newShortName;
+        PanelName.SetElementData(FileSystem.ActiveElement);
 
         Close();
     }

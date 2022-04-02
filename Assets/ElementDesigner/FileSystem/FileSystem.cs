@@ -30,63 +30,72 @@ public class FileSystem : MonoBehaviour
     }
 
     // ACTIVE ELEMENT
-    private string activeElementFileName => ActiveElement.ShortName.ToLower() + "_" + ActiveElement.Id;
-    public Element ActiveElement { get; set; }
+    private string activeElementFileName => activeElement.ShortName.ToLower() + "_" + activeElement.Id;
+
+    private Element activeElement { get; set; }
+    public static Element ActiveElement
+    {
+        get => instance.activeElement;
+        set => instance.activeElement = value;
+    }
 
     // LOADED ELEMENTS
 
     private List<Element> loadedElements = new List<Element>();
     private List<Element> loadedComponentElements = new List<Element>();
-    public static List<Element> LoadedElements { 
-        get => instance.loadedElements; 
+    public static List<Element> LoadedElements
+    {
+        get => instance.loadedElements;
     }
-    public static List<Element> LoadedComponentElements {
+    public static List<Element> LoadedComponentElements
+    {
         get => instance.loadedComponentElements;
     }
 
     public static IEnumerable<Element> LoadElementsOfType(ElementType elementType)
-     => elementType switch {
-            ElementType.Particle => loadParticles(),
-            ElementType.Atom => loadElements<Atom>(),
-            ElementType.Molecule => loadElements<Molecule>(),
-            _ => throw new NotImplementedException($"Element type \"{elementType.ToString()}\" is not implemented in call to FileSystem.LoadElementsOfType")
-    };
+     => elementType switch
+     {
+         ElementType.Particle => loadParticles(),
+         ElementType.Atom => loadElements<Atom>(),
+         ElementType.Molecule => loadElements<Molecule>(),
+         _ => throw new NotImplementedException($"Element type \"{elementType.ToString()}\" is not implemented in call to FileSystem.LoadElementsOfType")
+     };
 
     private static IEnumerable<Particle> loadParticles()
     {
         var protonParticle = new Particle()
-            {
-                Id = 1,
-                Name = "Proton",
-                Weight = .001f,
-                Charge = 1,
-                Size = 1,
-                Type = ElementType.Particle,
-                Color = "#00FFFA"
-            };
-            var neutronParticle = new Particle()
-            {
-                Id = 2,
-                Name = "Neutron",
-                Weight = 1,
-                Charge = 0,
-                Size = 1,
-                Type = ElementType.Particle,
-                Color = "#006F05"
-            };
-            var electronParticle = new Particle()
-            {
-                Id = 3,
-                Name = "Electron",
-                Weight = 3.5f,
-                Charge = -1,
-                Size = .5f,
-                Type = ElementType.Particle,
-                Color = "#FF0000"
-            };
+        {
+            Id = 1,
+            Name = "Proton",
+            Weight = .001f,
+            Charge = 1,
+            Size = 1,
+            Type = ElementType.Particle,
+            Color = "#00FFFA"
+        };
+        var neutronParticle = new Particle()
+        {
+            Id = 2,
+            Name = "Neutron",
+            Weight = 1,
+            Charge = 0,
+            Size = 1,
+            Type = ElementType.Particle,
+            Color = "#006F05"
+        };
+        var electronParticle = new Particle()
+        {
+            Id = 3,
+            Name = "Electron",
+            Weight = 3.5f,
+            Charge = -1,
+            Size = .5f,
+            Type = ElementType.Particle,
+            Color = "#FF0000"
+        };
 
-            var defaultParticles = new Particle[] { protonParticle, neutronParticle, electronParticle };
-            return defaultParticles.Concat(loadElements<Particle>());
+        var defaultParticles = new Particle[] { protonParticle, neutronParticle, electronParticle };
+        return defaultParticles.Concat(loadElements<Particle>());
     }
 
     public static T CreateNewElementOfType<T>() where T : Element
@@ -102,7 +111,7 @@ public class FileSystem : MonoBehaviour
             newAtom.ParticleIds = new int[] { 1, 3 };
             newAtom.Type = ElementType.Atom;
 
-            instance.ActiveElement = newAtom;
+            instance.activeElement = newAtom;
 
             return newAtom as T;
         }
@@ -112,59 +121,21 @@ public class FileSystem : MonoBehaviour
     public void SaveActiveElement()
     {
         // .. make sure the elements directory exists
-        var elementsOfTypeDir = $"{elementsRoot}/{ActiveElement.Type}/";
+        var elementsOfTypeDir = $"{elementsRoot}/{activeElement.Type}/";
         if (!Directory.Exists(elementsOfTypeDir))
             Directory.CreateDirectory(elementsOfTypeDir);
 
         // .. if the main atom doesn't exist, create it
         var mainElementPath = $"{elementsOfTypeDir}/{activeElementFileName}";
 
-        var elementExists = File.Exists(GetMainElementFilePath(ActiveElement));
-
-        if (elementExists)
-        {
-            var existingElementJSON = File.ReadAllText($"{mainElementPath}.{fileExtension}");
-            var existingElement = JsonUtility.FromJson<Atom>(existingElementJSON);
-
-            
-            // var activeAtomIsIsotope = existingElement.Name == ActiveElement.Name && existingElement.NeutronCount != ActiveElement.NeutronCount;
-
-            /* if (activeAtomIsIsotope)
-            {
-                // .. make sure the atom's isotope directory exists
-                if (!Directory.Exists(mainElementPath))
-                    Directory.CreateDirectory(mainElementPath);
-
-                var isotopePath = GetActiveAtomIsotopeFileName();
-                var isotopeExists = File.Exists(isotopePath);
-
-                if (!isotopeExists) // .. confirm create isotope
-                {
-                    var dialogBody = @"You're about to create the isotope {isotopeShortName} for {mainAtomName}, 
-                    with {neutronCount} neutrons. Do you wish to continue?";
-
-                    DialogYesNo.Open("Confirm Create Isotope", dialogBody, ConfirmSaveIsotope);
-                }
-                else
-                    ConfirmSaveIsotope(); // .. overwrite isotope
-
-
-            }
-            else // .. overwrite the main atom
-            {
-              var activeAtomJSON = JsonUtility.ToJson(ActiveElement);
-                // instance.LoadedAtoms[ActiveElement.Id - 1] = ActiveElement as Atom;
-                File.WriteAllText($"{mainElementPath}.{fileExtension}", activeAtomJSON);
-                Debug.Log($"Saved active atom {ActiveElement.Name} at {DateTime.Now}");
-                TextNotification.Show("Save Successful");  
-            } */
-        }
+        if (activeElement is Atom)
+            saveAtom(activeElement as Atom, mainElementPath);
         else
         {
-            var activeAtomJSON = JsonUtility.ToJson(ActiveElement);
+            var activeElementJSON = JsonUtility.ToJson(activeElement);
             // instance.LoadedAtoms.Insert(ActiveElement.Id - 1, ActiveElement);
-            File.WriteAllText($"{mainElementPath}.{fileExtension}", activeAtomJSON);
-            Debug.Log($"Saved active atom {ActiveElement.Name} at {DateTime.Now}");
+            File.WriteAllText($"{mainElementPath}.{fileExtension}", activeElementJSON);
+            Debug.Log($"Saved active element {activeElement.Name} at {DateTime.Now}");
             TextNotification.Show("Save Successful");
         }
     }
@@ -175,49 +146,62 @@ public class FileSystem : MonoBehaviour
         var existingElementJSON = File.ReadAllText($"{mainElementPath}.{fileExtension}");
         var existingElement = JsonUtility.FromJson<Atom>(existingElementJSON);
 
-        var activeAtom = ActiveElement as Atom;
+        var activeAtom = activeElement as Atom;
 
         // .. In this context, a "Neutron" is any neutral particle with Charge=0
         var allParticles = loadParticles();
         var activeAtomParticles = allParticles.Where(particle => activeAtom.ParticleIds.Any(id => id == particle.Id));
         var atomDataParticles = allParticles.Where(particle => atomData.ParticleIds.Any(id => id == particle.Id));
-        var activeAtomNeutronsCount = activeAtomParticles.Where(particle => particle.Charge == 0).Count(); 
+        var activeAtomNeutronsCount = activeAtomParticles.Where(particle => particle.Charge == 0).Count();
         var atomDataNeutronsCount = atomDataParticles.Where(particle => particle.Charge == 0).Count();
-        
+
         var hasDifferentNeutronCount = atomDataNeutronsCount != activeAtomNeutronsCount;
         var activeAtomIsIsotope = atomData.Name == activeAtom.Name && hasDifferentNeutronCount;
 
-        if (activeAtomIsIsotope)
+        if (elementExists)
         {
-            // .. make sure the atom's isotope directory exists
-            if (!Directory.Exists(mainElementPath))
-                Directory.CreateDirectory(mainElementPath);
-        
-            var isotopePath = GetActiveAtomIsotopeFileName();
-            var isotopeExists = File.Exists(isotopePath);
-            
-            if (!isotopeExists) // .. confirm create isotope
+            if (activeAtomIsIsotope)
             {
-                var dialogBody = @"You're about to create the isotope {isotopeShortName} for {mainAtomName}, 
-                with {neutronCount} neutrons. Do you wish to continue?";
-                DialogYesNo.Open("Confirm Create Isotope", dialogBody, ConfirmSaveIsotope);
+                // TODO: implement saving isotopes
+                // .. make sure the atom's isotope directory exists
+                /* if (!Directory.Exists(mainElementPath))
+                    Directory.CreateDirectory(mainElementPath);
+
+                var isotopePath = GetActiveAtomIsotopeFileName();
+                var isotopeExists = File.Exists(isotopePath); */
+
+                // TODO: 
+                /* if (!isotopeExists) // .. confirm create isotope
+                {
+                    var dialogBody = @"You're about to create the isotope {isotopeShortName} for {mainAtomName}, 
+                    with {neutronCount} neutrons. Do you wish to continue?";
+                    DialogYesNo.Open("Confirm Create Isotope", dialogBody, confirmSaveIsotope);
+                }
+                else
+                    confirmSaveIsotope(); // .. overwrite isotope */
             }
-            else
-                ConfirmSaveIsotope(); // .. overwrite isotope
+            else // .. overwrite the main atom
+            {
+                // TODO: tidy up this duplicate code (same as line 205-209)
+                var activeAtomJSON = JsonUtility.ToJson(activeElement);
+                File.WriteAllText($"{mainElementPath}.{fileExtension}", activeAtomJSON);
+                Debug.Log($"Saved active atom {activeElement.Name} at {DateTime.Now}");
+                TextNotification.Show("Save Successful");
+            }
         }
-        else // .. overwrite the main atom
+        else
         {
-          var activeAtomJSON = JsonUtility.ToJson(ActiveElement);
-            // instance.LoadedAtoms[ActiveElement.Id - 1] = ActiveElement as Atom;
+            // TODO: tidy up this duplicate code (same as line 205-209)
+            var activeAtomJSON = JsonUtility.ToJson(activeElement);
             File.WriteAllText($"{mainElementPath}.{fileExtension}", activeAtomJSON);
-            Debug.Log($"Saved active atom {ActiveElement.Name} at {DateTime.Now}");
-            TextNotification.Show("Save Successful");  
+            Debug.Log($"Saved active atom {activeElement.Name} at {DateTime.Now}");
+            TextNotification.Show("Save Successful");
         }
     }
     // .. Create an isotope for a particlar atom, by creating a directory to store isotopes and then saving the file inside it
-    public void ConfirmSaveIsotope()
+    private void confirmSaveIsotope()
     {
-        var activeAtomJSON = JsonUtility.ToJson(ActiveElement);
+        var activeAtomJSON = JsonUtility.ToJson(activeElement);
 
         var isotopePath = GetActiveAtomIsotopeFileName();
         var isotopeExists = File.Exists(isotopePath);
@@ -233,7 +217,7 @@ public class FileSystem : MonoBehaviour
             LoadedAtoms[ActiveAtom.Number-1].isotopes[indexInIsotopes] = ActiveAtom;
         } */
         File.WriteAllText(isotopePath, activeAtomJSON);
-        Debug.Log($"Saved isotope {ActiveElement.Name} with neutrons {ActiveElement.NeutronCount} at {DateTime.Now}");
+        // Debug.Log($"Saved isotope {ActiveElement.Name} with neutrons {ActiveElement.NeutronCount} at {DateTime.Now}");
         TextNotification.Show("Save Successful");
     }
     public void DeleteAtom(Atom atom)
@@ -302,8 +286,18 @@ public class FileSystem : MonoBehaviour
     }
     private string GetActiveAtomIsotopeFileName()
     {
-        var mainAtomPath = $"{elementsRoot}/{activeElementFileName}";
-        var isotopeNumber = ActiveElement.NeutronCount < 0 ? "m" + (ActiveElement.NeutronCount * -1) : ActiveElement.NeutronCount.ToString();
-        return $"{mainAtomPath}/{activeElementFileName}_{isotopeNumber}.{fileExtension}";
+        if (activeElement is Atom)
+        {
+            var mainAtomPath = $"{elementsRoot}/{activeElementFileName}";
+            var activeAtom = activeElement as Atom;
+
+            var allNeutronParticles = loadParticles().Where(p => p.Charge == 0);
+            var allNeutronParticleIds = allNeutronParticles.Select(p => p.Id);
+            var activeAtomNeutronCount = activeAtom.ParticleIds.Count(id => allNeutronParticleIds.Contains(id));
+            var isotopeNumber = activeAtomNeutronCount < 0 ? "m" + (activeAtomNeutronCount * -1) : activeAtomNeutronCount.ToString();
+            return $"{mainAtomPath}/{activeElementFileName}_{isotopeNumber}.{fileExtension}";
+        }
+        else
+            throw new ApplicationException($"ActiveElement must be an atom in call to FileSystem.GetActiveAtomIsotopeFileName, got {activeElement.GetType().FullName}");
     }
 }

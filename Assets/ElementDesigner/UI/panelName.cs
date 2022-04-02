@@ -5,13 +5,13 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class panelName : MonoBehaviour
+public class PanelName : MonoBehaviour
 {
-    private static panelName instance;
+    private static PanelName instance;
     Text numberText, shortNameText, nameText, weightText;
 
     public static Text NameText => instance.nameText;
-    public Atom atom;
+    public Element elementData;
 
     void Start()
     {
@@ -26,13 +26,13 @@ public class panelName : MonoBehaviour
         weightText = transform.Find("Weight").GetComponent<Text>();
     }
 
-    void Update()
+    public static void Update()
     {
         /* var protonCount = FileSystem.instance.ActiveElementAs<Atom>().ProtonCount;
         var neutronCount = FileSystem.instance.ActiveElementAs<Atom>().NeutronCount;
 
-        numberText.text = protonCount.ToString();
-        weightText.text = FileSystem.instance.ActiveElementAs<Atom>().Weight.ToString() + ".00";
+        instance.numberText.text = protonCount.ToString();
+        instance.weightText.text = FileSystem.instance.ActiveElementAs<Atom>().Weight.ToString() + ".00";
 
         NameText.text = FileSystem.instance.ActiveElementAs<Atom>().Name;
         Editor.atomGameObject.name = "Atom" + FileSystem.instance.ActiveElementAs<Atom>().Name;
@@ -45,7 +45,7 @@ public class panelName : MonoBehaviour
             shortNameText.text = FileSystem.instance.ActiveElementAs<Atom>().ShortName + "+"; */
     }
 
-    public void SetActive(bool active)
+    private void setActive(bool active)
     {
         numberText.gameObject.SetActive(active);
         shortNameText.gameObject.SetActive(active);
@@ -53,17 +53,29 @@ public class panelName : MonoBehaviour
         weightText.gameObject.SetActive(active);
     }
 
-    public void SetAtomData(Atom atomData)
+    public static void SetElementData(Element newElementData)
     {
-        if (atomData == null)
+        if (newElementData == null)
             throw new ApplicationException("Expected atomData in call to SetAtomData in panelName, got null");
 
-        numberText.text = atomData.Number.ToString();
-        shortNameText.text = atomData.ShortName;
-        nameText.text = atomData.Name;
-        weightText.text = atomData.Weight.ToString() + ".00";
+        if (newElementData is Atom)
+            instance.setAtomData(newElementData as Atom);
+        else
+        {
+            instance.shortNameText.text = newElementData.ShortName;
+            instance.nameText.text = newElementData.Name;
+            instance.weightText.text = newElementData.Weight.ToString() + ".00";
+        }
 
-        atom = atomData;
-        SetActive(true);
+        instance.elementData = newElementData;
+        instance.setActive(true);
+    }
+
+    private void setAtomData(Atom atomData)
+    {
+        instance.numberText.text = atomData.Number.ToString();
+        instance.shortNameText.text = atomData.ShortName;
+        instance.nameText.text = atomData.Name;
+        instance.weightText.text = atomData.Weight.ToString() + ".00";
     }
 }

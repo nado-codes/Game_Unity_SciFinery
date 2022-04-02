@@ -104,7 +104,7 @@ public class Editor : MonoBehaviour
         panelCreate.SetDesignType(newDesignType);
         designType = newDesignType;
         TextNotification.Show("Design Type: " + newDesignType);
-        
+
     }
 
     private void handleChangeDesignType<T>() where T : Element
@@ -151,7 +151,7 @@ public class Editor : MonoBehaviour
         atomGameObject.name = $"{typeName}New{typeName}";
 
         FileSystem.CreateNewElementOfType<T>();
-        LoadElement(FileSystem.instance.ActiveElement);
+        LoadElement(FileSystem.ActiveElement);
 
         HasUnsavedChanges = false;
     }
@@ -206,7 +206,7 @@ public class Editor : MonoBehaviour
             _selectedObjects.ForEach(s =>
             {
                 //GameObject.Destroy(s.gameObject);
-                RemoveParticle(s.GetComponent<WorldParticle>());
+                RemoveWorldElement(s.GetComponent<WorldParticle>());
             });
             _selectedObjects.Clear();
             //RemoveParticles(_selectedObjects);
@@ -411,12 +411,13 @@ public class Editor : MonoBehaviour
                 }
             }
         }
-        else if(elementData.Type == ElementType.None)
+        else if (elementData.Type == ElementType.None)
             throw new ApplicationException($"Element of type \"None\" is not valid in call to Editor.LoadElement");
         else
             throw new NotImplementedException($"Element of type \"{elementData.GetType().FullName}\" is not yet implemented in call to Editor.LoadElementData");
 
-        FileSystem.instance.ActiveElement = elementData;
+        FileSystem.ActiveElement = elementData;
+        PanelName.SetElementData(elementData);
         TextNotification.Show($"Loaded \"{elementData.Name}\"");
     }
 
@@ -426,7 +427,7 @@ public class Editor : MonoBehaviour
             throw new ApplicationException("elementData cannot be null in call to CreateWorldElement");
 
         // TODO: later, prefabs for particles, atoms and molecules will be loaded in at runtime using
-        // Unity "Addressables" (like AssetBundles)
+        // Unity "Addressables" (like AssetBundles) so we don't have to pass them into the component as variables
 
         WorldElement newWorldElement = null;
         GameObject newWorldElementGO = null;
@@ -466,7 +467,7 @@ public class Editor : MonoBehaviour
         return element;
     }
 
-    public static WorldParticle CreateParticle(ParticleType type)
+    private static WorldParticle CreateParticle(ParticleType type)
     {
         // TODO: later, prefabs for particles, atoms and molecules will be loaded in at runtime using
         // Unity "Addressables" (like AssetBundles)
@@ -490,18 +491,11 @@ public class Editor : MonoBehaviour
         return newParticle;
     }
 
-    public WorldParticle CreateParticle(ParticleType type, Vector3 position)
+    // TODO: implement removing world elements
+    public static bool RemoveWorldElement(WorldParticle particle)
     {
-        var particle = CreateParticle(type);
-        particle.transform.position = position;
-
-        return particle;
-    }
-
-    public static bool RemoveParticle(WorldParticle particle)
-    {
-        Particles.Remove(particle);
-        GameObject.Destroy(particle.gameObject);
+        //Particles.Remove(particle);
+        //GameObject.Destroy(particle.gameObject);
 
         // FileSystem.instance.ActiveElementAs<Atom>().Charge -= (int)particle.Charge;
 
@@ -509,10 +503,10 @@ public class Editor : MonoBehaviour
     }
 
     public static void RemoveParticles(IEnumerable<WorldParticle> particlesToRemove)
-        => particlesToRemove.Select(p => RemoveParticle(p));
+        => particlesToRemove.Select(p => RemoveWorldElement(p));
 
     public static void RemoveParticles(IEnumerable<Interact> particlesToRemove)
-        => particlesToRemove.Select(p => RemoveParticle(p.GetComponent<WorldParticle>()));
+        => particlesToRemove.Select(p => RemoveWorldElement(p.GetComponent<WorldParticle>()));
 
     public void HandleClearElementsClicked()
     {
@@ -541,7 +535,7 @@ public class Editor : MonoBehaviour
     public static void ClearParticles()
     {
         var particlesToDelete = new List<WorldParticle>(Particles);
-        particlesToDelete.ForEach(p => RemoveParticle(p));
+        particlesToDelete.ForEach(p => RemoveWorldElement(p));
 
         TextNotification.Show("All Particles Cleared");
     }
