@@ -107,7 +107,7 @@ public class panelCreate : MonoBehaviour, IPointerExitHandler
         {
             Debug.Log("start drag");
 
-            currentWorldElement = Editor.CreateWorldElement(elementToCreateData);
+            currentWorldElement = Editor.CreateSubElement(elementToCreateData);
             currentWorldElement.enabled = false;
             creationState = CreationState.Drag;
 

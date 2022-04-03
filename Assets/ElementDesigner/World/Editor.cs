@@ -149,7 +149,7 @@ public class Editor : MonoBehaviour
         atomGameObject = GameObject.Find($"{typeName}") ?? new GameObject();
         atomGameObject.name = $"{typeName}New{typeName}";
 
-        FileSystem.CreateNewElementOfType<T>();
+        FileSystem.CreateElementOfType<T>();
         LoadElement(FileSystem.ActiveElement);
 
         HasUnsavedChanges = false;
@@ -399,7 +399,9 @@ public class Editor : MonoBehaviour
         TextNotification.Show($"Loaded \"{elementData.Name}\"");
     }
 
-    public static WorldElement CreateWorldElement(Element elementData)
+    // .. NOTE: A "sub-element" is any component element of a parent Element, e.g. a Particle is
+    // a sub-element of an Atom, and an Atom is a sub-element of a Molecule.
+    public static WorldElement CreateSubElement(Element elementData)
     {
         if (elementData == null)
             throw new ApplicationException("elementData cannot be null in call to CreateWorldElement");
@@ -422,7 +424,7 @@ public class Editor : MonoBehaviour
 
             // var activeAtom = FileSystem.ActiveElement as Atom;
             // activeAtom.Charge += elementData.Charge;
-            var chargeRound = Mathf.RoundToInt(FileSystem.instance.ActiveElementAs<Atom>().Charge);
+            var chargeRound = Mathf.RoundToInt(FileSystem.ActiveElementAs<Atom>().Charge);
             textCharge.text = $"Charge: {chargeRound} ({FileSystem.instance.ActiveElementAs<Atom>().Charge})";
 
             newWorldElement = newWorldParticle;
@@ -449,7 +451,7 @@ public class Editor : MonoBehaviour
 
     public static WorldElement CreateWorldElement(Element elementData, Vector3 position)
     {
-        var element = CreateWorldElement(elementData);
+        var element = CreateSubElement(elementData);
         element.transform.position = position;
 
         return element;

@@ -98,7 +98,7 @@ public class FileSystem : MonoBehaviour
         return defaultParticles.Concat(loadElements<Particle>());
     }
 
-    public static T CreateNewElementOfType<T>() where T : Element
+    public static T CreateElementOfType<T>() where T : Element
     {
         if (typeof(T) == typeof(Atom))
         {
@@ -121,10 +121,13 @@ public class FileSystem : MonoBehaviour
 
     // TODO: Use ActiveElementAs to e.g. convert ActiveElement to Atom (where possible) and access "charge" to increase charge
     // when a particle is added during Atom design
-    /* public static T ActiveElementAs<T>() where T: Element
+    public static T ActiveElementAs<T>() where T : Element
     {
-        if(!(ActiveElement is typeof(T)))
-    } */
+        if (ActiveElement.GetType() != typeof(T))
+            throw new ApplicationException("Cannot convert object of type {ActiveElement.GetType()} to {typeof(T)}");
+
+        return ActiveElement as T;
+    }
 
     public static void UpdateActiveElement()
     {
