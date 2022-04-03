@@ -103,7 +103,7 @@ public class FileSystem : MonoBehaviour
         if (typeof(T) == typeof(Atom))
         {
             var newAtom = new Atom();
-            newAtom.Number = 1;
+            newAtom.Id = 1;
             newAtom.Name = "NewAtom";
             newAtom.ShortName = "NE";
             newAtom.ProtonCount = 1;
@@ -117,6 +117,32 @@ public class FileSystem : MonoBehaviour
         }
         else
             throw new NotImplementedException($"Element of type ${typeof(T)} is not yet implemented in call to Editor.CreateNewElementOfType");
+    }
+
+    // TODO: Use ActiveElementAs to e.g. convert ActiveElement to Atom (where possible) and access "charge" to increase charge
+    // when a particle is added during Atom design
+    /* public static T ActiveElementAs<T>() where T: Element
+    {
+        if(!(ActiveElement is typeof(T)))
+    } */
+
+    public static void UpdateActiveElement()
+    {
+        if (Editor.SubElements.Any(el => el.Data == null))
+            throw new ApplicationException("At least one WorldElement is missing data in call to FileSystem.UpdateActiveElement");
+
+        if (ActiveElement is Atom)
+            updateActiveAtom(ActiveElement as Atom);
+        else
+            throw new NotImplementedException($"Element of type ${ActiveElement.GetType().FullName} is not yet implemented in call to Editor.UpdateActiveElement");
+    }
+    private static void updateActiveAtom(Atom activeAtomData)
+    {
+        if (Editor.DesignType != ElementType.Atom)
+            throw new ApplicationException($"Editor DesignType must be Atom in call to FileSystem.updateActiveAtom, got {Editor.DesignType}");
+
+        var newParticleIds = Editor.SubElements.Select(el => el.Data.Id);
+        activeAtomData.ParticleIds = newParticleIds.ToArray();
     }
     public void SaveActiveElement()
     {
@@ -280,7 +306,7 @@ public class FileSystem : MonoBehaviour
         var mainAtomFilePath = GetMainElementFilePath(atom);
         var mainAtomDirectoryName = mainAtomFilePath.Split(new string[1] { $".{fileExtension}" }, StringSplitOptions.None)[0];
 
-        var isotopeFileName = atom.ShortName.ToLower() + atom.Number;
+        var isotopeFileName = atom.ShortName.ToLower() + atom.Id;
         var isotopeNumber = atom.NeutronCount < 0 ? "m" + (atom.NeutronCount * -1) : atom.NeutronCount.ToString();
         return $"{mainAtomDirectoryName}/{isotopeFileName}_{isotopeNumber}.{fileExtension}";
     }

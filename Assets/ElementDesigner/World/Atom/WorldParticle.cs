@@ -66,7 +66,7 @@ public class WorldParticle : WorldElement
         }
 
         // Apply charges
-        var worldParticles = Editor.Particles.Where(x => x != this);
+        var worldParticles = Editor.SubElements.Where(x => x != this);
 
         var effectiveForce = Vector3.zero;
         worldParticles.ToList().ForEach(x =>

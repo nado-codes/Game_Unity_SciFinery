@@ -57,10 +57,9 @@ public class Editor : MonoBehaviour
 
     // PARTICLES
     public static GameObject atomGameObject;
-    public static List<WorldParticle> Particles = new List<WorldParticle>();
 
-    public static IEnumerable<WorldParticle> OtherParticles(WorldParticle particle) =>
-        Particles.Where(x => x != particle);
+    private List<WorldElement> subElements = new List<WorldElement>();
+    public static List<WorldElement> SubElements { get => instance.subElements; }
 
     void Start()
     {
@@ -72,7 +71,7 @@ public class Editor : MonoBehaviour
         if (particlePrefab == null)
             throw new ArgumentNullException("particlePrefab must be set in Editor");
 
-        Particles.AddRange(FindObjectsOfType<WorldParticle>());
+        SubElements.AddRange(FindObjectsOfType<WorldParticle>());
 
         textClassification = GameObject.Find("Classification")?.transform.Find("Value").GetComponent<Text>();
         textStability = GameObject.Find("TextStability")?.GetComponent<Text>();
@@ -161,33 +160,12 @@ public class Editor : MonoBehaviour
         if (!HUD.LockedFocus)
             UpdateInputs();
 
-        UpdateActiveAtom();
-
-        // var chargeRound = Mathf.RoundToInt(FileSystem.instance.ActiveElementAs<Atom>().Charge);
-        // textCharge.text = $"Charge: {chargeRound} ({FileSystem.instance.ActiveElementAs<Atom>().Charge})";
-
         if (_selectedObjects.Any())
         {
             var selectionCenter = _selectedObjects.Count() > 1 ?
                 _selectedObjects.Aggregate(Vector3.zero, (total, next) => total += next.transform.position * .5f) :
                 _selectedObjects.FirstOrDefault().transform.position;
         }
-    }
-
-    void UpdateActiveAtom()
-    {
-        // var protons = Particles.Where(p => p.charge == WorldParticle.Charge.Positive);
-        // var neutrons = Particles.Where(p => p.charge == WorldParticle.Charge.None);
-        // var electrons = Particles.Where(p => p.charge == WorldParticle.Charge.Negative);
-
-        // FileSystem.instance.ActiveElementAs<Atom>().Number = protons.Count();
-        // FileSystem.instance.ActiveElementAs<Atom>().ProtonCount = protons.Count();
-        // FileSystem.instance.ActiveElementAs<Atom>().NeutronCount = neutrons.Count();
-        // FileSystem.instance.ActiveElementAs<Atom>().ElectronCount = electrons.Count();
-        // FileSystem.instance.ActiveElementAs<Atom>().Weight = protons.Count() + neutrons.Count();
-
-        //var charges = Particles.Select(p => (int)p.charge);
-        //FileSystem.instance.ActiveAtom.Charge = charges.Aggregate((totalCharge,charge) => totalCharge += charge);
     }
 
     void UpdateInputs()
@@ -442,18 +420,28 @@ public class Editor : MonoBehaviour
             var newWorldParticle = newWorldElementGO.GetComponent<WorldParticle>();
             newWorldParticle.SetParticleData(elementDataAsParticle);
 
+            // var activeAtom = FileSystem.ActiveElement as Atom;
+            // activeAtom.Charge += elementData.Charge;
+            var chargeRound = Mathf.RoundToInt(FileSystem.instance.ActiveElementAs<Atom>().Charge);
+            textCharge.text = $"Charge: {chargeRound} ({FileSystem.instance.ActiveElementAs<Atom>().Charge})";
+
             newWorldElement = newWorldParticle;
-            Particles.Add(newWorldParticle);
+            SubElements.Add(newWorldParticle);
         }
         else if (elementType == ElementType.Atom)
         {
-
+            // TODO
         }
         else if (elementType == ElementType.Molecule)
         {
-
+            // TODO
         }
 
+
+
+        newWorldElement.SetData(elementData);
+        FileSystem.UpdateActiveElement();
+        PanelName.SetElementData(FileSystem.ActiveElement);
         HasUnsavedChanges = true;
 
         return newWorldElement;
@@ -484,7 +472,7 @@ public class Editor : MonoBehaviour
         newParticle.transform.parent = atomGameObject.transform;
         // FileSystem.instance.ActiveElementAs<Atom>().Charge += (int)newParticle.Charge;
 
-        Particles.Add(newParticle);
+        SubElements.Add(newParticle);
 
         HasUnsavedChanges = true;
 
@@ -492,8 +480,9 @@ public class Editor : MonoBehaviour
     }
 
     // TODO: implement removing world elements
-    public static bool RemoveWorldElement(WorldParticle particle)
+    public static bool RemoveWorldElement(WorldElement element)
     {
+        SubElements.Remove(element);
         //Particles.Remove(particle);
         //GameObject.Destroy(particle.gameObject);
 
@@ -534,7 +523,7 @@ public class Editor : MonoBehaviour
 
     public static void ClearParticles()
     {
-        var particlesToDelete = new List<WorldParticle>(Particles);
+        var particlesToDelete = new List<WorldParticle>(SubElements);
         particlesToDelete.ForEach(p => RemoveWorldElement(p));
 
         TextNotification.Show("All Particles Cleared");

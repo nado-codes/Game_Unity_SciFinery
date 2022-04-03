@@ -5,8 +5,6 @@ public enum BondType { Covalent, Ionic, Metallic }
 [Serializable]
 public class Atom : Element
 {
-    public int Number;
-
     public int ProtonCount;
     public int NeutronCount;
     public int ElectronCount;

@@ -61,7 +61,7 @@ public class DemoController : MonoBehaviour
         if (prevLoaded.Count >= atomCount / 2)
             prevLoaded.RemoveAt(0);
 
-        timerLimit = 240 * Editor.Particles.Count;
+        timerLimit = 240 * Editor.SubElements.Count;
         timer = 0;
 
         prevLoaded.Add(randomAtom);

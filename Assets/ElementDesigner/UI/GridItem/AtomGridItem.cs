@@ -36,7 +36,7 @@ public class AtomGridItem : ElementGridItem
         if (atomData == null)
             throw new ApplicationException("Expected atomData in call to SetAtomData in PeriodicTableGridItem, got null");
 
-        numberText.text = atomData.Number.ToString();
+        numberText.text = atomData.Id.ToString();
         shortNameText.text = atomData.ShortName;
         nameText.text = atomData.Name;
         weightText.text = atomData.Weight.ToString() + ".00";
@@ -47,9 +47,9 @@ public class AtomGridItem : ElementGridItem
 
     protected override void VerifyInitialize()
     {
-        if(initialized)
+        if (initialized)
             return;
-        
+
         base.VerifyInitialize();
 
         numberText = ActiveLayout.Find("Number").GetComponent<Text>();
