@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System;
 using UnityEngine;
@@ -26,26 +25,40 @@ public class PanelName : MonoBehaviour
         if (instance == null)
             instance = FindObjectOfType<PanelName>();
         if (instance == null)
-        {
-            var gameObject = new GameObject();
-            gameObject.name = typeof(PanelName).FullName;
-            instance = gameObject.AddComponent<PanelName>();
-        }
+            throw new ApplicationException("Expected an instance of PanelName, but found nothing");
     }
     public void VerifyInitialize()
     {
         initInstance();
         var instanceTransform = instance.transform;
 
-        numberText = instanceTransform.Find("Number").GetComponent<Text>();
-        shortNameText = instanceTransform.Find("ShortName").GetComponent<Text>();
-        nameText = transform.Find("btnName").GetComponentInChildren<Text>();
-        weightText = transform.Find("Weight").GetComponent<Text>();
+        numberText = instanceTransform.Find("Number")?.GetComponent<Text>();
+        AssertNotNull(numberText, "numberText");
+        shortNameText = instanceTransform.Find("ShortName")?.GetComponent<Text>();
+        AssertNotNull(shortNameText, "shortNameText");
+
+        var btnNameTransform = transform.Find("btnName");
+        nameText = btnNameTransform?.Find("Name")?.GetComponent<Text>();
+        AssertNotNull(nameText, "nameText");
+
+        weightText = transform.Find("Weight")?.GetComponent<Text>();
+        AssertNotNull(weightText, "weightText");
 
         var classificationTransform = transform.Find("Classification");
-        classificationText = classificationTransform.Find("Value").GetComponent<Text>();
+        classificationText = classificationTransform?.Find("Value")?.GetComponent<Text>();
+        AssertNotNull(classificationText, "classificationText");
+
         stabilityText = transform.Find("TextStability").GetComponent<Text>();
+        AssertNotNull(stabilityText, "stabilityText");
         chargeText = transform.Find("TextCharge").GetComponent<Text>();
+        AssertNotNull(chargeText, "chargeText");
+    }
+    private void AssertNotNull<T>(T obj, string propertyName)
+    {
+        var stackTrace = new StackTrace();
+        var callerName = stackTrace.GetFrame(1).GetMethod().Name;
+        if (obj == null)
+            throw new NullReferenceException($"Expected {propertyName} in call to panelName.{callerName}, got null");
     }
     void Start() => VerifyInitialize();
 

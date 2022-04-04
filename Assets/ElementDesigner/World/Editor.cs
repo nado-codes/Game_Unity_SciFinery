@@ -383,8 +383,9 @@ public class Editor : MonoBehaviour
 
                     CreateWorldElement(particleToCreateData, randPos);
                 }
-                catch
+                catch (Exception e)
                 {
+                    Debug.LogError(e);
                     continue;
                 }
             }
@@ -413,26 +414,33 @@ public class Editor : MonoBehaviour
         GameObject newWorldElementGO = null;
         var elementType = elementData.Type;
 
-        if (elementType == ElementType.Particle)
+        try
         {
-            newWorldElementGO = Instantiate(instance.particlePrefab);
+            if (elementType == ElementType.Particle)
+            {
+                newWorldElementGO = Instantiate(instance.particlePrefab);
 
-            var elementDataAsParticle = elementData as Particle;
-            var newWorldParticle = newWorldElementGO.GetComponent<WorldParticle>();
-            newWorldParticle.SetParticleData(elementDataAsParticle);
+                var elementDataAsParticle = elementData as Particle;
+                var newWorldParticle = newWorldElementGO.GetComponent<WorldParticle>();
+                newWorldParticle.SetParticleData(elementDataAsParticle);
 
-            var activeAtom = FileSystem.ActiveElementAs<Atom>().Charge += elementData.Charge;
-            newWorldElement = newWorldParticle;
-            SubElements.Add(newWorldParticle);
+                var activeAtom = FileSystem.ActiveElementAs<Atom>().Charge += elementData.Charge;
+                newWorldElement = newWorldParticle;
+                SubElements.Add(newWorldParticle);
+            }
+            else
+                throw new NotImplementedException($"Element of type {elementType} is not yet implemented in call to Editor.CreateWorldElement");
+
+            newWorldElementGO.transform.parent = elementGameObject.transform;
+            newWorldElement.SetData(elementData);
+            FileSystem.UpdateActiveElement();
+            PanelName.SetElementData(FileSystem.ActiveElement);
+            HasUnsavedChanges = true;
         }
-        else
-            throw new NotImplementedException($"Element of type {elementType} is not yet implemented in call to Editor.CreateWorldElement");
-
-        newWorldElementGO.transform.parent = elementGameObject.transform;
-        newWorldElement.SetData(elementData);
-        FileSystem.UpdateActiveElement();
-        PanelName.SetElementData(FileSystem.ActiveElement);
-        HasUnsavedChanges = true;
+        catch (Exception e)
+        {
+            Debug.LogError(e);
+        }
 
         return newWorldElement;
     }
