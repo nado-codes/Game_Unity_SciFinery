@@ -8,20 +8,37 @@ using UnityEngine.UI;
 public class PanelName : MonoBehaviour
 {
     private static PanelName instance;
+    public static PanelName Instance
+    {
+        get
+        {
+            initInstance();
+            return instance;
+        }
+    }
     Text numberText, shortNameText, nameText, weightText;
     Text classificationText, stabilityText, chargeText;
 
     public static Text NameText => instance.nameText;
 
-    void Start()
+    private static void initInstance()
     {
         if (instance == null)
-            instance = this;
-        else
-            throw new ApplicationException("There can only be one instance of panelName");
+            instance = FindObjectOfType<PanelName>();
+        if (instance == null)
+        {
+            var gameObject = new GameObject();
+            gameObject.name = typeof(PanelName).FullName;
+            instance = gameObject.AddComponent<PanelName>();
+        }
+    }
+    public void VerifyInitialize()
+    {
+        initInstance();
+        var instanceTransform = instance.transform;
 
-        numberText = transform.Find("Number").GetComponent<Text>();
-        shortNameText = transform.Find("ShortName").GetComponent<Text>();
+        numberText = instanceTransform.Find("Number").GetComponent<Text>();
+        shortNameText = instanceTransform.Find("ShortName").GetComponent<Text>();
         nameText = transform.Find("btnName").GetComponentInChildren<Text>();
         weightText = transform.Find("Weight").GetComponent<Text>();
 
@@ -30,21 +47,20 @@ public class PanelName : MonoBehaviour
         stabilityText = transform.Find("TextStability").GetComponent<Text>();
         chargeText = transform.Find("TextCharge").GetComponent<Text>();
     }
-
-    private void setActive(bool active)
-    {
-        numberText.gameObject.SetActive(active);
-        shortNameText.gameObject.SetActive(active);
-        nameText.gameObject.SetActive(active);
-        weightText.gameObject.SetActive(active);
-    }
+    void Start() => VerifyInitialize();
 
     public static void SetElementData(Element newElementData)
+    {
+        Instance.VerifyInitialize();
+        Instance.setElementData(newElementData);
+    }
+
+    private void setElementData(Element newElementData)
     {
         if (newElementData == null)
             throw new ApplicationException("Expected atomData in call to SetAtomData in panelName, got null");
 
-        instance.numberText.text = newElementData.Id.ToString();
+        numberText.text = newElementData.Id.ToString();
 
         var finalShortName =
         newElementData.Charge < 0 ?
@@ -52,17 +68,26 @@ public class PanelName : MonoBehaviour
         newElementData.Charge == 0 ?
             newElementData.ShortName :
             newElementData.ShortName + "+";
-        instance.shortNameText.text = finalShortName;
+        shortNameText.text = finalShortName;
 
-        instance.nameText.text = newElementData.Name;
-        instance.weightText.text = newElementData.Weight + ".00";
+        nameText.text = newElementData.Name;
+        weightText.text = newElementData.Weight + ".00";
 
         // TODO: implement classification
         // instance.classificationText.text = newElementData.Classification;
         // TODO: implement stability/radioactivity
         // instance.stabilityText = newElementData.Stability;
-        instance.chargeText.text = newElementData.Charge.ToString();
+        chargeText.text = newElementData.Charge.ToString();
 
-        instance.setActive(true);
+        setActive(true);
+    }
+
+    private void setActive(bool active)
+    {
+        VerifyInitialize();
+        numberText.gameObject.SetActive(active);
+        shortNameText.gameObject.SetActive(active);
+        nameText.gameObject.SetActive(active);
+        weightText.gameObject.SetActive(active);
     }
 }
