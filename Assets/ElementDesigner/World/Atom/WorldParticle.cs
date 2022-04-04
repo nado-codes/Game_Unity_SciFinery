@@ -66,10 +66,11 @@ public class WorldParticle : WorldElement
         }
 
         // Apply charges
-        var worldParticles = Editor.SubElements.Where(x => x != this);
+        var worldParticles = Editor.SubElements.Cast<WorldParticle>();
+        var otherWorldParticles = worldParticles.Where(x => x != this).ToList();
 
         var effectiveForce = Vector3.zero;
-        worldParticles.ToList().ForEach(x =>
+        otherWorldParticles.ForEach(x =>
         {
             var effectiveCharge = x.Charge * Charge;
             var xBody = x.transform.Find("Body");

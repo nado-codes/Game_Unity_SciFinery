@@ -56,7 +56,7 @@ public class Editor : MonoBehaviour
     private Ray dragSelectStartWorld, dragSelectEndWorld;
 
     // PARTICLES
-    public static GameObject atomGameObject;
+    public static GameObject elementGameObject;
 
     private List<WorldElement> subElements = new List<WorldElement>();
     public static List<WorldElement> SubElements { get => instance.subElements; }
@@ -114,13 +114,13 @@ public class Editor : MonoBehaviour
             DialogYesNo.Open("Save Changes?", dialogBody, () => FileSystem.instance.SaveActiveElement(), null,
             () =>
             {
-                ClearParticles();
+                Editor.instance.clearSubElements();
                 createNewElementOfType<T>();
             });
         }
         else
         {
-            ClearParticles();
+            Editor.instance.clearSubElements();
             createNewElementOfType<T>();
         }
     }
@@ -146,8 +146,8 @@ public class Editor : MonoBehaviour
     private void createNewElementOfType<T>() where T : Element
     {
         var typeName = typeof(T).FullName;
-        atomGameObject = GameObject.Find($"{typeName}") ?? new GameObject();
-        atomGameObject.name = $"{typeName}New{typeName}";
+        elementGameObject = GameObject.Find($"{typeName}") ?? new GameObject();
+        elementGameObject.name = $"{typeName}New{typeName}";
 
         FileSystem.CreateElementOfType<T>();
         LoadElement(FileSystem.ActiveElement);
@@ -359,7 +359,7 @@ public class Editor : MonoBehaviour
         if (elementData == null)
             throw new ArgumentException("Expected elementData in call to Editor.LoadElement, got null");
 
-        ClearParticles();
+        instance.clearSubElements();
         // Camera.main.transform.position = instance.cameraStartPos;
         // Camera.main.transform.rotation = instance.cameraStartAngle;
         if (elementData.Type == ElementType.Atom)
@@ -416,31 +416,19 @@ public class Editor : MonoBehaviour
         if (elementType == ElementType.Particle)
         {
             newWorldElementGO = Instantiate(instance.particlePrefab);
-            newWorldElementGO.transform.parent = atomGameObject.transform;
 
             var elementDataAsParticle = elementData as Particle;
             var newWorldParticle = newWorldElementGO.GetComponent<WorldParticle>();
             newWorldParticle.SetParticleData(elementDataAsParticle);
 
-            // var activeAtom = FileSystem.ActiveElement as Atom;
-            // activeAtom.Charge += elementData.Charge;
-            var chargeRound = Mathf.RoundToInt(FileSystem.ActiveElementAs<Atom>().Charge);
-            textCharge.text = $"Charge: {chargeRound} ({FileSystem.instance.ActiveElementAs<Atom>().Charge})";
-
+            var activeAtom = FileSystem.ActiveElementAs<Atom>().Charge += elementData.Charge;
             newWorldElement = newWorldParticle;
             SubElements.Add(newWorldParticle);
         }
-        else if (elementType == ElementType.Atom)
-        {
-            // TODO
-        }
-        else if (elementType == ElementType.Molecule)
-        {
-            // TODO
-        }
+        else
+            throw new NotImplementedException($"Element of type {elementType} is not yet implemented in call to Editor.CreateWorldElement");
 
-
-
+        newWorldElementGO.transform.parent = elementGameObject.transform;
         newWorldElement.SetData(elementData);
         FileSystem.UpdateActiveElement();
         PanelName.SetElementData(FileSystem.ActiveElement);
@@ -457,77 +445,54 @@ public class Editor : MonoBehaviour
         return element;
     }
 
-    private static WorldParticle CreateParticle(ParticleType type)
-    {
-        // TODO: later, prefabs for particles, atoms and molecules will be loaded in at runtime using
-        // Unity "Addressables" (like AssetBundles)
-        GameObject particleGameObject = null;
-
-        /* if (type == ParticleType.Proton)
-            particleGameObject = Instantiate(instance.protonPrefab);
-        else if (type == ParticleType.Neutron)
-            particleGameObject = Instantiate(instance.neutronPrefab);
-        else
-            particleGameObject = Instantiate(instance.electronPrefab); */
-
-        var newParticle = particleGameObject.GetComponent<WorldParticle>();
-        newParticle.transform.parent = atomGameObject.transform;
-        // FileSystem.instance.ActiveElementAs<Atom>().Charge += (int)newParticle.Charge;
-
-        SubElements.Add(newParticle);
-
-        HasUnsavedChanges = true;
-
-        return newParticle;
-    }
-
     // TODO: implement removing world elements
     public static bool RemoveWorldElement(WorldElement element)
     {
         SubElements.Remove(element);
-        //Particles.Remove(particle);
-        //GameObject.Destroy(particle.gameObject);
+        GameObject.Destroy(element.gameObject);
 
-        // FileSystem.instance.ActiveElementAs<Atom>().Charge -= (int)particle.Charge;
+        if (DesignType == ElementType.Atom)
+        {
+            if (element.Data == null)
+                throw new ApplicationException("Expected element data in call to Editor.RemoveWorldElement, got null");
+            if (!(element.Data is Particle))
+                throw new ApplicationException($"Element data must be of type Particle in call to Editor.RemoveWorldElement, got {element.Data.GetType().FullName}");
+
+            FileSystem.ActiveElementAs<Atom>().Charge -= element.Data.Charge;
+        }
 
         return true;
     }
 
-    public static void RemoveParticles(IEnumerable<WorldParticle> particlesToRemove)
+    /* public static void RemoveParticles(IEnumerable<WorldParticle> particlesToRemove)
         => particlesToRemove.Select(p => RemoveWorldElement(p));
 
-    public static void RemoveParticles(IEnumerable<Interact> particlesToRemove)
-        => particlesToRemove.Select(p => RemoveWorldElement(p.GetComponent<WorldParticle>()));
+    public static void RemoveWorldElements(IEnumerable<Interact> particlesToRemove)
+        => particlesToRemove.Select(p => RemoveWorldElement(p.GetComponent<WorldParticle>())); */
 
-    public void HandleClearElementsClicked()
+    public void HandleClearSubElementsClicked()
     {
         if (designType == ElementType.Atom)
-            handleClearElements<Particle>();
+            handleClearSubElements<Particle>();
     }
 
-    private void handleClearElements<T>() where T : Element
+    private void handleClearSubElements<T>() where T : Element
     {
         if (HasUnsavedChanges)
         {
             var dialogBody = "You have unsaved changes in the editor. Would you like to save before continuing?";
             DialogYesNo.Open("Save Changes?", dialogBody, () => FileSystem.instance.SaveActiveElement(), null,
-            clearElements<T>);
+            this.clearSubElements);
         }
         else
-            clearElements<T>();
+            this.clearSubElements();
     }
 
-    private void clearElements<T>() where T : Element
+    private void clearSubElements()
     {
-        // TODO: implement clearing elements, use if statements here to clear based on design type
-        // We'll need a bunch of lists to store the different types
-    }
+        var elementsToDelete = new List<WorldElement>(SubElements);
+        elementsToDelete.ForEach(p => RemoveWorldElement(p));
 
-    public static void ClearParticles()
-    {
-        var particlesToDelete = new List<WorldParticle>(SubElements);
-        particlesToDelete.ForEach(p => RemoveWorldElement(p));
-
-        TextNotification.Show("All Particles Cleared");
+        TextNotification.Show("All Sub-Elements Cleared");
     }
 }
