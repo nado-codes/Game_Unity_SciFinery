@@ -10,46 +10,41 @@ public class FileSystem : MonoBehaviour
     const string fileExtension = "ed";
     const string elementsRoot = "./Elements";
 
-    private static FileSystem _instance;
-    public static FileSystem instance
+    private static FileSystem instance;
+    public static FileSystem Instance
     {
         get
         {
-            if (_instance == null)
+            if (instance == null)
             {
                 var newFileSystem = FindObjectOfType<FileSystem>();
 
                 if (newFileSystem == null)
                     newFileSystem = Camera.main.gameObject.AddComponent<FileSystem>();
 
-                _instance = newFileSystem;
+                instance = newFileSystem;
             }
 
-            return _instance;
+            return instance;
         }
     }
 
     // ACTIVE ELEMENT
-    private string activeElementFileName => activeElement.ShortName.ToLower() + "_" + activeElement.Id;
+    private string activeElementFileName => $"{activeElement.ShortName.ToLower()}{activeElement.Id}";
 
     private Element activeElement { get; set; }
     public static Element ActiveElement
     {
-        get => instance.activeElement;
-        set => instance.activeElement = value;
+        get => Instance.activeElement;
+        set => Instance.activeElement = value;
     }
 
     // LOADED ELEMENTS
 
     private List<Element> loadedElements = new List<Element>();
-    private List<Element> loadedComponentElements = new List<Element>();
     public static List<Element> LoadedElements
     {
-        get => instance.loadedElements;
-    }
-    public static List<Element> LoadedComponentElements
-    {
-        get => instance.loadedComponentElements;
+        get => Instance.loadedElements;
     }
 
     public static IEnumerable<Element> LoadElementsOfType(ElementType elementType)
@@ -111,7 +106,7 @@ public class FileSystem : MonoBehaviour
             newAtom.ParticleIds = new int[] { 1, 3 };
             newAtom.Type = ElementType.Atom;
 
-            instance.activeElement = newAtom;
+            Instance.activeElement = newAtom;
 
             return newAtom as T;
         }
@@ -150,20 +145,20 @@ public class FileSystem : MonoBehaviour
     public void SaveActiveElement()
     {
         // .. make sure the elements directory exists
-        var elementsOfTypeDir = $"{elementsRoot}/{activeElement.Type}/";
-        if (!Directory.Exists(elementsOfTypeDir))
-            Directory.CreateDirectory(elementsOfTypeDir);
+        var elementDirectoryPath = getElementDirectoryPathForType(activeElement.Type);
+        if (!Directory.Exists(elementDirectoryPath))
+            Directory.CreateDirectory(elementDirectoryPath);
 
         // .. if the main atom doesn't exist, create it
-        var mainElementPath = $"{elementsOfTypeDir}/{activeElementFileName}";
+        var elementFilePath = $"{elementDirectoryPath}/{activeElementFileName}";
 
         if (activeElement is Atom)
-            saveAtom(activeElement as Atom, mainElementPath);
+            saveAtom(activeElement as Atom, elementFilePath);
         else
         {
             var activeElementJSON = JsonUtility.ToJson(activeElement);
             // instance.LoadedAtoms.Insert(ActiveElement.Id - 1, ActiveElement);
-            File.WriteAllText($"{mainElementPath}.{fileExtension}", activeElementJSON);
+            File.WriteAllText($"{elementFilePath}.{fileExtension}", activeElementJSON);
             Debug.Log($"Saved active element {activeElement.Name} at {DateTime.Now}");
             TextNotification.Show("Save Successful");
         }
@@ -333,7 +328,7 @@ public class FileSystem : MonoBehaviour
     }
     private static string getElementFilePath(Element element)
     {
-        var elementFileName = element.ShortName.ToLower() + "_" + element.Id;
+        var elementFileName = $"{element.ShortName.ToLower()}{element.Id}";
         return $"{getElementDirectoryPathForType(element.Type)}/{elementFileName}.{fileExtension}";
     }
 
@@ -344,7 +339,7 @@ public class FileSystem : MonoBehaviour
 
         var isotopeFileName = atom.ShortName.ToLower() + atom.Id;
         var isotopeNumber = atom.NeutronCount < 0 ? "m" + (atom.NeutronCount * -1) : atom.NeutronCount.ToString();
-        return $"{mainAtomDirectoryName}/{isotopeFileName}_{isotopeNumber}.{fileExtension}";
+        return $"{mainAtomDirectoryName}/{isotopeFileName}{isotopeNumber}.{fileExtension}";
     } */
     private string GetActiveAtomIsotopeFileName()
     {
@@ -357,7 +352,7 @@ public class FileSystem : MonoBehaviour
             var allNeutronParticleIds = allNeutronParticles.Select(p => p.Id);
             var activeAtomNeutronCount = activeAtom.ParticleIds.Count(id => allNeutronParticleIds.Contains(id));
             var isotopeNumber = activeAtomNeutronCount < 0 ? "m" + (activeAtomNeutronCount * -1) : activeAtomNeutronCount.ToString();
-            return $"{mainAtomPath}/{activeElementFileName}_{isotopeNumber}.{fileExtension}";
+            return $"{mainAtomPath}/{activeElementFileName}{isotopeNumber}.{fileExtension}";
         }
         else
             throw new ApplicationException($"ActiveElement must be an atom in call to FileSystem.GetActiveAtomIsotopeFileName, got {activeElement.GetType().FullName}");

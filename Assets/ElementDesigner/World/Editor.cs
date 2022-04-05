@@ -111,7 +111,7 @@ public class Editor : MonoBehaviour
         if (HasUnsavedChanges)
         {
             var dialogBody = "You have unsaved changes in the editor. Would you like to save before continuing?";
-            DialogYesNo.Open("Save Changes?", dialogBody, () => FileSystem.instance.SaveActiveElement(), null,
+            DialogYesNo.Open("Save Changes?", dialogBody, () => FileSystem.Instance.SaveActiveElement(), null,
             () =>
             {
                 Editor.instance.clearSubElements();
@@ -137,7 +137,7 @@ public class Editor : MonoBehaviour
         if (HasUnsavedChanges)
         {
             var dialogBody = "You have unsaved changes in the editor. Would you like to save before continuing?";
-            DialogYesNo.Open("Save Changes?", dialogBody, () => FileSystem.instance.SaveActiveElement(), null,
+            DialogYesNo.Open("Save Changes?", dialogBody, () => FileSystem.Instance.SaveActiveElement(), null,
             createNewElementOfType<T>);
         }
         else
@@ -489,7 +489,7 @@ public class Editor : MonoBehaviour
         if (HasUnsavedChanges)
         {
             var dialogBody = "You have unsaved changes in the editor. Would you like to save before continuing?";
-            DialogYesNo.Open("Save Changes?", dialogBody, () => FileSystem.instance.SaveActiveElement(), null,
+            DialogYesNo.Open("Save Changes?", dialogBody, () => FileSystem.Instance.SaveActiveElement(), null,
             this.clearSubElements);
         }
         else

@@ -148,7 +148,7 @@ public class DialogPeriodicTable : MonoBehaviour
         if (Editor.HasUnsavedChanges)
         {
             var dialogBody = "You have unsaved changes in the editor. Would you like to save before continuing?";
-            DialogYesNo.Open("Save Changes?", dialogBody, () => FileSystem.instance.SaveActiveElement(), null,
+            DialogYesNo.Open("Save Changes?", dialogBody, () => FileSystem.Instance.SaveActiveElement(), null,
             () => HandleLoadSelectedItem());
         }
         else
