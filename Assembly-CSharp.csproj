@@ -60,6 +60,7 @@
      <Compile Include="Assets\ElementDesigner\UI\GridItem\IsotopeGridItem.cs" />
      <Compile Include="Assets\ElementDesigner\World\Interact.cs" />
      <Compile Include="Assets\Main\WorldGen.cs" />
+     <Compile Include="Assets\ElementDesigner\UI\PanelName.cs" />
      <Compile Include="Assets\ElementDesigner\World\Selectable.cs" />
      <Compile Include="Assets\Main\Tile.cs" />
      <Compile Include="Assets\ElementDesigner\World\Atom\Proton.cs" />
@@ -76,7 +77,6 @@
      <Compile Include="Assets\ElementDesigner\UI\TextNotification.cs" />
      <Compile Include="Assets\ElementDesigner\UI\Tabs.cs" />
      <Compile Include="Assets\ElementDesigner\World\Atom\Electron.cs" />
-     <Compile Include="Assets\ElementDesigner\UI\PanelNamev2.cs" />
     <Reference Include="UnityEngine">
         <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.32f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>

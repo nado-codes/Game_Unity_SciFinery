@@ -87,7 +87,7 @@ public class FileSystem : MonoBehaviour
         {
             Id = 3,
             Name = "Electron",
-            Weight = 3.5f,
+            Weight = 10f,
             Charge = -1,
             Size = .5f,
             Type = ElementType.Particle,
@@ -249,10 +249,13 @@ public class FileSystem : MonoBehaviour
         // Debug.Log($"Saved isotope {ActiveElement.Name} with neutrons {ActiveElement.NeutronCount} at {DateTime.Now}");
         TextNotification.Show("Save Successful");
     }
-    public void DeleteAtom(Atom atom)
+    public static void DeleteElement(Element elementData)
     {
-        LoadedElements.Remove(atom);
-        File.Delete(!atom.IsIsotope ? GetMainElementFilePath(atom) : GetIsotopeFilePath(atom));
+        LoadedElements.Remove(elementData);
+        File.Delete(GetMainElementFilePath(elementData));
+
+        // TODO: implement deleting isotopes
+        // File.Delete(!elementData.IsIsotope ? GetMainElementFilePath(elementData) : GetIsotopeFilePath(elementData));
         TextNotification.Show("Delete Successful");
     }
 

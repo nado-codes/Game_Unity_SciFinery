@@ -76,7 +76,9 @@ public class WorldParticle : WorldElement
             var xBody = x.transform.Find("Body");
             var body = transform.Find("Body");
             var massOffset = 1 / (body.lossyScale.magnitude / xBody.lossyScale.magnitude) * massMultiplier;
-            var distanceOffset = 10 * (1 / Vector3.Distance(xBody.transform.position, transform.position));
+
+            var distanceToParticle = Vector3.Distance(xBody.transform.position, transform.position);
+            var distanceOffset = 1 / (distanceToParticle > 0 ? distanceToParticle : 1);
 
             // .. comment this out to enable repulsive forces
             //effectiveCharge = effectiveCharge == 1 ? -1 : effectiveCharge;
@@ -85,7 +87,7 @@ public class WorldParticle : WorldElement
             effectiveForce += dirTo * effectiveCharge * massOffset * distanceOffset;
         });
 
-        velocity += effectiveForce * Time.deltaTime * .5f;
+        velocity += effectiveForce * Time.deltaTime;
         trail.time = 10 * Mathf.Min((1 / velocity.magnitude), 1f);
     }
 

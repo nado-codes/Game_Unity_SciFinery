@@ -8,6 +8,7 @@ public class DialogPeriodicTable : MonoBehaviour
 {
     private static DialogPeriodicTable instance;
     private Element selectedElementData;
+    private GridItem selectedGridItem;
 
     private List<GridItem> page1GridItems = new List<GridItem>();
     private List<GridItem> page2GridItems = new List<GridItem>();
@@ -77,7 +78,11 @@ public class DialogPeriodicTable : MonoBehaviour
                     throw new ApplicationException($"Expected a gridItem for element with Id {elementData.Id} in call to DialogPeriodicTable.Open, got null");
 
                 gridItem.SetData(elementData);
-                gridItem.GetGridItemForType(elementData.Type).OnClick += (Element data) => selectedElementData = data;
+                gridItem.GetGridItemForType(elementData.Type).OnClick += (Element data) =>
+                {
+                    selectedGridItem = gridItem;
+                    selectedElementData = data;
+                };
             }
             catch
             {
@@ -166,7 +171,7 @@ public class DialogPeriodicTable : MonoBehaviour
     }
     private void HandleDeleteSelectedItem()
     {
-        // selectedItem.SetActive(false);
-        // FileSystem.instance.DeleteAtom(selectedItem.atom);
+        selectedGridItem.GetGridItemForType(selectedElementData.Type).SetActive(false);
+        FileSystem.DeleteElement(selectedElementData);
     }
 }

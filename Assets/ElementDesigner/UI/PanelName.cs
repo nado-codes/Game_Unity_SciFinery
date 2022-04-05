@@ -1,13 +1,12 @@
-using System.Diagnostics;
-using System.Linq;
+using System.Runtime.CompilerServices;
 using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PanelNamev2 : MonoBehaviour
+public class PanelName : MonoBehaviour
 {
-    private static PanelNamev2 instance;
-    public static PanelNamev2 Instance
+    private static PanelName instance;
+    public static PanelName Instance
     {
         get
         {
@@ -23,9 +22,9 @@ public class PanelNamev2 : MonoBehaviour
     private static void initInstance()
     {
         if (instance == null)
-            instance = FindObjectOfType<PanelNamev2>();
+            instance = FindObjectOfType<PanelName>();
         if (instance == null)
-            throw new ApplicationException("Expected an instance of PanelName, but found nothing");
+            throw new ApplicationException("Expected an instance of PanelName, but found nothing in call to PanelName.initInstance");
     }
     public void VerifyInitialize()
     {
@@ -53,10 +52,8 @@ public class PanelNamev2 : MonoBehaviour
         chargeText = transform.Find("TextCharge").GetComponent<Text>();
         AssertNotNull(chargeText, "chargeText");
     }
-    private void AssertNotNull<T>(T obj, string propertyName)
+    private void AssertNotNull<T>(T obj, string propertyName, [CallerMemberName] string callerName = "")
     {
-        var stackTrace = new StackTrace();
-        var callerName = stackTrace.GetFrame(1).GetMethod().Name;
         if (obj == null)
             throw new NullReferenceException($"Expected {propertyName} in call to panelName.{callerName}, got null");
     }

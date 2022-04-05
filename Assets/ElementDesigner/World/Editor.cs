@@ -396,7 +396,7 @@ public class Editor : MonoBehaviour
             throw new NotImplementedException($"Element of type \"{elementData.GetType().FullName}\" is not yet implemented in call to Editor.LoadElementData");
 
         FileSystem.ActiveElement = elementData;
-        PanelNamev2.SetElementData(elementData);
+        PanelName.SetElementData(elementData);
         TextNotification.Show($"Loaded \"{elementData.Name}\"");
     }
 
@@ -434,7 +434,7 @@ public class Editor : MonoBehaviour
             newWorldElementGO.transform.parent = elementGameObject.transform;
             newWorldElement.SetData(elementData);
             FileSystem.UpdateActiveElement();
-            PanelNamev2.SetElementData(FileSystem.ActiveElement);
+            PanelName.SetElementData(FileSystem.ActiveElement);
             HasUnsavedChanges = true;
         }
         catch (Exception e)
