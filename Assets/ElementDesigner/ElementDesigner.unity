@@ -5139,7 +5139,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 112733112}
-  - component: {fileID: 112733113}
   m_Layer: 5
   m_Name: grid
   m_TagString: Untagged
@@ -5223,18 +5222,6 @@ RectTransform:
   m_AnchoredPosition: {x: -31.79998, y: 132}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &112733113
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 112733111}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 703a4ce20c707a34d8273d329214b14f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &117258943
 GameObject:
   m_ObjectHideFlags: 0
@@ -21718,7 +21705,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -851.3984, y: 431}
+  m_AnchoredPosition: {x: -851.39844, y: 431}
   m_SizeDelta: {x: -1750, y: -906.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &563044204
@@ -21768,7 +21755,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 563044202}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0638c57877963b428c4ab8ebbf034a5, type: 3}
+  m_Script: {fileID: 11500000, guid: 0ee5db8f1349e254a8dd8e4ce4f1769a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &566333228
@@ -27280,7 +27267,6 @@ GameObject:
   - component: {fileID: 704659246}
   - component: {fileID: 704659249}
   - component: {fileID: 704659248}
-  - component: {fileID: 704659247}
   m_Layer: 5
   m_Name: background
   m_TagString: Untagged
@@ -27307,18 +27293,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -66.2}
   m_SizeDelta: {x: 1000, y: 532.5}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &704659247
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 704659245}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0cb1300d014821347bbf6f1a2ebfd366, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &704659248
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -56554,7 +56528,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1516754847}
-  - component: {fileID: 1516754848}
   m_Layer: 5
   m_Name: grid
   m_TagString: Untagged
@@ -56627,18 +56600,6 @@ RectTransform:
   m_AnchoredPosition: {x: -31.799982, y: 132}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1516754848
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1516754846}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df9bf4bf85108a44c9ca8124f3ce5553, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1517741453
 GameObject:
   m_ObjectHideFlags: 0
@@ -58224,7 +58185,6 @@ GameObject:
   - component: {fileID: 1567501366}
   - component: {fileID: 1567501369}
   - component: {fileID: 1567501368}
-  - component: {fileID: 1567501367}
   m_Layer: 5
   m_Name: background
   m_TagString: Untagged
@@ -58251,18 +58211,6 @@ RectTransform:
   m_AnchoredPosition: {x: 1.4000015, y: 0}
   m_SizeDelta: {x: 502.8, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1567501367
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1567501365}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0cb1300d014821347bbf6f1a2ebfd366, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1567501368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67293,7 +67241,6 @@ GameObject:
   - component: {fileID: 1834991225}
   - component: {fileID: 1834991224}
   - component: {fileID: 1834991223}
-  - component: {fileID: 1834991228}
   - component: {fileID: 1834991227}
   m_Layer: 0
   m_Name: TranslateWidgetv3
@@ -67393,18 +67340,6 @@ MonoBehaviour:
   Selectable: 1
   SelectedColor: {r: 0, g: 1, b: 0, a: 0.5}
   isHovered: 0
---- !u!114 &1834991228
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1834991222}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0fa3621e3924f5c4aad5d65154f3e1b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1838454839
 GameObject:
   m_ObjectHideFlags: 0
