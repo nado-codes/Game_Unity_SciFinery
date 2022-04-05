@@ -42,7 +42,7 @@ public class DialogEditName : MonoBehaviour
 
         FileSystem.ActiveElement.Name = inputName.text;
         FileSystem.ActiveElement.ShortName = newShortName;
-        PanelName.SetElementData(FileSystem.ActiveElement);
+        PanelNamev2.SetElementData(FileSystem.ActiveElement);
 
         Close();
     }

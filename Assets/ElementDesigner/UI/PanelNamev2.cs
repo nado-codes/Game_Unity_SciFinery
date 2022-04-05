@@ -4,10 +4,10 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PanelName : MonoBehaviour
+public class PanelNamev2 : MonoBehaviour
 {
-    private static PanelName instance;
-    public static PanelName Instance
+    private static PanelNamev2 instance;
+    public static PanelNamev2 Instance
     {
         get
         {
@@ -23,7 +23,7 @@ public class PanelName : MonoBehaviour
     private static void initInstance()
     {
         if (instance == null)
-            instance = FindObjectOfType<PanelName>();
+            instance = FindObjectOfType<PanelNamev2>();
         if (instance == null)
             throw new ApplicationException("Expected an instance of PanelName, but found nothing");
     }
