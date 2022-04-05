@@ -184,7 +184,7 @@ public class Editor : MonoBehaviour
             _selectedObjects.ForEach(s =>
             {
                 //GameObject.Destroy(s.gameObject);
-                RemoveWorldElement(s.GetComponent<WorldParticle>());
+                RemoveSubElement(s.GetComponent<WorldParticle>());
             });
             _selectedObjects.Clear();
             //RemoveParticles(_selectedObjects);
@@ -381,7 +381,7 @@ public class Editor : MonoBehaviour
                     var radius = particleToCreateData.Charge >= 0 ? 1 : 20;
                     var randPos = UnityEngine.Random.insideUnitSphere * radius;
 
-                    CreateWorldElement(particleToCreateData, randPos);
+                    CreateSubElement(particleToCreateData, randPos);
                 }
                 catch (Exception e)
                 {
@@ -445,7 +445,7 @@ public class Editor : MonoBehaviour
         return newWorldElement;
     }
 
-    public static WorldElement CreateWorldElement(Element elementData, Vector3 position)
+    public static WorldElement CreateSubElement(Element elementData, Vector3 position)
     {
         var element = CreateSubElement(elementData);
         element.transform.position = position;
@@ -454,7 +454,7 @@ public class Editor : MonoBehaviour
     }
 
     // TODO: implement removing world elements
-    public static bool RemoveWorldElement(WorldElement element)
+    public static bool RemoveSubElement(WorldElement element)
     {
         SubElements.Remove(element);
         GameObject.Destroy(element.gameObject);
@@ -499,7 +499,7 @@ public class Editor : MonoBehaviour
     private void clearSubElements()
     {
         var elementsToDelete = new List<WorldElement>(SubElements);
-        elementsToDelete.ForEach(p => RemoveWorldElement(p));
+        elementsToDelete.ForEach(p => RemoveSubElement(p));
 
         TextNotification.Show("All Sub-Elements Cleared");
     }
