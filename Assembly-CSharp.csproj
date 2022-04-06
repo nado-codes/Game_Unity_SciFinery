@@ -77,6 +77,7 @@
      <Compile Include="Assets\ElementDesigner\FileSystem\FileSystemAtomLoader.cs" />
      <Compile Include="Assets\ElementDesigner\FileSystem\FileSystemElementLoader.cs" />
      <Compile Include="Assets\ElementDesigner\FileSystem\FileSystemParticleLoader.cs" />
+     <Compile Include="Assets\ElementDesigner\FileSystem\FileSystemLoader.cs" />
     <Reference Include="UnityEngine">
         <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.32f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>

@@ -64,8 +64,8 @@ public class FileSystem : MonoBehaviour
 
     public static IEnumerable<Element> LoadElementsOfType(ElementType elementType) => elementType switch
     {
-        ElementType.Particle => FileSystemParticleLoader.LoadParticles(),
-        ElementType.Atom => FileSystemAtomLoader.LoadAtoms(),
+        ElementType.Particle => FileSystemLoader.loadElements<Particle>(),
+        ElementType.Atom => FileSystemAtomLoader.LoadElements<
         _ => FileSystemElementLoader.LoadElementsOfType(elementType)
     };
     public static Element LoadElementOfTypeById(ElementType elementType, int id) => FileSystemElementLoader.LoadElementOfTypeById(elementType, id);
