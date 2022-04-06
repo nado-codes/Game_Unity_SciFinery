@@ -7,8 +7,8 @@ using UnityEngine;
 
 public class FileSystem : MonoBehaviour
 {
-    const string fileExtension = "ed";
-    const string elementsRoot = "./Elements";
+    public const string fileExtension = "ed";
+    public const string elementsRoot = "./Elements";
 
     private static FileSystem instance;
     public static FileSystem Instance
@@ -47,52 +47,28 @@ public class FileSystem : MonoBehaviour
         get => Instance.loadedElements;
     }
 
-    public static IEnumerable<Element> LoadElementsOfType(ElementType elementType)
-     => elementType switch
-     {
-         ElementType.Particle => loadParticles(),
-         ElementType.Atom => loadElements<Atom>(),
-         ElementType.Molecule => loadElements<Molecule>(),
-         _ => throw new NotImplementedException($"Element type \"{elementType.ToString()}\" is not implemented in call to FileSystem.LoadElementsOfType")
-     };
-
-    private static IEnumerable<Particle> loadParticles()
+    public static string GetElementDirectoryPathForType(ElementType type)
+      => $"{FileSystem.elementsRoot}/{type}";
+    public static string GetElementDirectoryPathForTypeName(string typeName)
     {
-        var protonParticle = new Particle()
-        {
-            Id = 1,
-            Name = "Proton",
-            Weight = .001f,
-            Charge = 1,
-            Size = 1,
-            Type = ElementType.Particle,
-            Color = "#00FFFA"
-        };
-        var neutronParticle = new Particle()
-        {
-            Id = 2,
-            Name = "Neutron",
-            Weight = 1,
-            Charge = 0,
-            Size = 1,
-            Type = ElementType.Particle,
-            Color = "#006F05"
-        };
-        var electronParticle = new Particle()
-        {
-            Id = 3,
-            Name = "Electron",
-            Weight = 10f,
-            Charge = -1,
-            Size = .5f,
-            Type = ElementType.Particle,
-            Color = "#FF0000"
-        };
+        if (!Enum.TryParse(typeName, out ElementType type))
+            throw new ArgumentException($"Element with typename {typeName} doesn't exist in call to FileSystem.getElementDirectoryPathForTypeName");
 
-        var defaultParticles = new Particle[] { protonParticle, neutronParticle, electronParticle };
-        return defaultParticles.Concat(loadElements<Particle>());
+        return $"{elementsRoot}/{typeName}";
+    }
+    public static string GetElementFilePath(Element element)
+    {
+        var elementFileName = $"{element.ShortName.ToLower()}{element.Id}";
+        return $"{GetElementDirectoryPathForType(element.Type)}/{elementFileName}.{FileSystem.fileExtension}";
     }
 
+    public static IEnumerable<Element> LoadElementsOfType(ElementType elementType) => elementType switch
+    {
+        ElementType.Particle => FileSystemParticleLoader.LoadParticles(),
+        ElementType.Atom => FileSystemAtomLoader.LoadAtoms(),
+        _ => FileSystemElementLoader.LoadElementsOfType(elementType)
+    };
+    public static Element LoadElementOfTypeById(ElementType elementType, int id) => FileSystemElementLoader.LoadElementOfTypeById(elementType, id);
     public static T CreateElementOfType<T>() where T : Element
     {
         if (typeof(T) == typeof(Atom))
@@ -145,7 +121,7 @@ public class FileSystem : MonoBehaviour
     public void SaveActiveElement()
     {
         // .. make sure the elements directory exists
-        var elementDirectoryPath = getElementDirectoryPathForType(activeElement.Type);
+        var elementDirectoryPath = GetElementDirectoryPathForType(activeElement.Type);
         if (!Directory.Exists(elementDirectoryPath))
             Directory.CreateDirectory(elementDirectoryPath);
 
@@ -168,8 +144,14 @@ public class FileSystem : MonoBehaviour
         var activeAtom = activeElement as Atom;
 
         // .. In this context, a "Neutron" is any neutral particle, or a particle with Charge=0
-        var allParticles = loadParticles();
-        var activeAtomParticles = allParticles.Where(particle => activeAtom.ParticleIds.Any(id => id == particle.Id));
+        var allParticles = FileSystemParticleLoader.LoadParticles().ToArray();
+        var activeAtomParticles = new Particle[0];/* activeAtom.ParticleIds.Select(id =>
+        {
+            var particle = allParticles[id - 1];
+
+            // if (particle)
+            return null;
+        }); */
         var atomDataParticles = allParticles.Where(particle => atomData.ParticleIds.Any(id => id == particle.Id));
         var activeAtomNeutronsCount = activeAtomParticles.Where(particle => particle.Charge == 0).Count();
         var atomDataNeutronsCount = atomDataParticles.Where(particle => particle.Charge == 0).Count();
@@ -177,7 +159,7 @@ public class FileSystem : MonoBehaviour
         var hasDifferentNeutronCount = atomDataNeutronsCount != activeAtomNeutronsCount;
         var activeAtomIsIsotope = atomData.Name == activeAtom.Name && hasDifferentNeutronCount;
 
-        var elementExists = File.Exists(getElementFilePath(atomData));
+        var elementExists = File.Exists(GetElementFilePath(atomData));
 
         if (elementExists)
         {
@@ -248,7 +230,7 @@ public class FileSystem : MonoBehaviour
     {
         LoadedElements.Remove(elementData);
 
-        var mainElementFilePath = getElementFilePath(elementData);
+        var mainElementFilePath = GetElementFilePath(elementData);
 
         if (!File.Exists(mainElementFilePath))
             throw new ApplicationException($"The file at path \"{mainElementFilePath}\" doesn't exist in call to FileSystem.DeleteElement");
@@ -260,77 +242,7 @@ public class FileSystem : MonoBehaviour
         TextNotification.Show("Delete Successful");
     }
 
-    private static IEnumerable<T> loadElements<T>() where T : Element
-    {
-        var typeName = typeof(T).FullName;
-        var elementsOfTypeDirPath = getElementDirectoryPathForTypeName(typeName);
 
-        if (!Directory.Exists(elementsOfTypeDirPath))
-            return new List<T>();
-
-        var files = Directory.GetFiles(elementsOfTypeDirPath, $"*.{fileExtension}");
-        var loadedElements = files.Select(elementFilePath =>
-        {
-            string elementJSON = File.ReadAllText(elementFilePath);
-            var elementFromJSON = JsonUtility.FromJson<T>(elementJSON);
-
-            return elementFromJSON;
-
-            // TODO: Isotopes can probably be loaded seperately as will be too difficult to do here... we'll end up returning an array of arrays
-            /* if (typeof(T) == typeof(Atom))
-                return new Element[] { elementFromJSON }.Concat(loadAtomIsotopes(elementFilePath));
-            else */
-        });
-
-        return loadedElements;
-    }
-
-    // TODO: Implement loading isotopes
-    private static IEnumerable<Atom> loadAtomIsotopes(string path)
-    {
-        if (!File.Exists(path))
-            throw new ArgumentException($"No atom exists at path {path} in call to FileSystem.loadAtom");
-
-        // string elementJSON = File.ReadAllText(file);
-        // var elementFromJSON = JsonUtility.FromJson<T>(elementJSON);
-
-        /* var isotopeDirectoryName = getElementFilePath(elementFromJSON).Split(new string[1] { $".{fileExtension}" }, StringSplitOptions.None)[0];
-
-        // .. TODO: If an atom has isotopes, we can probably just save them as part of the atom file itself
-        if (Directory.Exists($"{isotopeDirectoryName}/"))
-        {
-            var isotopes = Directory.GetFiles($"{isotopeDirectoryName}/", $"*.{fileExtension}");
-            var isotopeAtoms = isotopes.Select(isotope =>
-            {
-                var isotopeJSON = File.ReadAllText(isotope);
-                var isotopeAtom = JsonUtility.FromJson<Atom>(isotopeJSON);
-                isotopeAtom.IsIsotope = true;
-                return isotopeAtom;
-            });
-
-            // .. TODO: this might break because we're casting an Atom to it's base type so it may lose the "IsIsotope" property
-            // .. Need to QA this
-            loadedElements.AddRange(isotopeAtoms.Cast<T>());
-        }
-
-        loadedElements.Add(elementFromJSON); */
-
-        return new List<Atom>();
-    }
-    private static string getElementDirectoryPathForType(ElementType type)
-      => $"{elementsRoot}/{type}";
-    private static string getElementDirectoryPathForTypeName(string typeName)
-    {
-        if (!Enum.TryParse(typeName, out ElementType type))
-            throw new ArgumentException($"Element with typename {typeName} doesn't exist in call to FileSystem.getElementDirectoryPathForTypeName");
-
-        return $"{elementsRoot}/{typeName}";
-    }
-    private static string getElementFilePath(Element element)
-    {
-        var elementFileName = $"{element.ShortName.ToLower()}{element.Id}";
-        return $"{getElementDirectoryPathForType(element.Type)}/{elementFileName}.{fileExtension}";
-    }
 
     /* private static string GetIsotopeFilePath(Atom atom)
     {
@@ -341,20 +253,5 @@ public class FileSystem : MonoBehaviour
         var isotopeNumber = atom.NeutronCount < 0 ? "m" + (atom.NeutronCount * -1) : atom.NeutronCount.ToString();
         return $"{mainAtomDirectoryName}/{isotopeFileName}{isotopeNumber}.{fileExtension}";
     } */
-    private string GetActiveAtomIsotopeFileName()
-    {
-        if (activeElement is Atom)
-        {
-            var mainAtomPath = $"{elementsRoot}/{activeElementFileName}";
-            var activeAtom = activeElement as Atom;
 
-            var allNeutronParticles = loadParticles().Where(p => p.Charge == 0);
-            var allNeutronParticleIds = allNeutronParticles.Select(p => p.Id);
-            var activeAtomNeutronCount = activeAtom.ParticleIds.Count(id => allNeutronParticleIds.Contains(id));
-            var isotopeNumber = activeAtomNeutronCount < 0 ? "m" + (activeAtomNeutronCount * -1) : activeAtomNeutronCount.ToString();
-            return $"{mainAtomPath}/{activeElementFileName}{isotopeNumber}.{fileExtension}";
-        }
-        else
-            throw new ApplicationException($"ActiveElement must be an atom in call to FileSystem.GetActiveAtomIsotopeFileName, got {activeElement.GetType().FullName}");
-    }
 }

@@ -36,31 +36,26 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\ElementDesigner\FileSystem\Product.cs" />
      <Compile Include="Assets\ElementDesigner\DemoController.cs" />
      <Compile Include="Assets\ElementDesigner\World\Elements\WorldParticle.cs" />
      <Compile Include="Assets\FaceCam.cs" />
      <Compile Include="Assets\ElementDesigner\FileSystem\FileSystem.cs" />
      <Compile Include="Assets\ElementDesigner\UI\GridItem\ElementGridItem.cs" />
      <Compile Include="Assets\ElementDesigner\UI\Tab.cs" />
-     <Compile Include="Assets\ElementDesigner\FileSystem\Molecule.cs" />
      <Compile Include="Assets\ElementDesigner\World\Elements\Nucleus.cs" />
      <Compile Include="Assets\ElementDesigner\World\DragboxTest.cs" />
      <Compile Include="Assets\ElementDesigner\UI\DialogPeriodicTable.cs" />
      <Compile Include="Assets\ElementDesigner\UI\btnParticle.cs" />
      <Compile Include="Assets\ElementDesigner\UI\DialogYesNo.cs" />
-     <Compile Include="Assets\ElementDesigner\FileSystem\Element.cs" />
      <Compile Include="Assets\PanCam.cs" />
      <Compile Include="Assets\FlyCam.cs" />
      <Compile Include="Assets\ElementDesigner\UI\GridItem\GridItem.cs" />
-     <Compile Include="Assets\ElementDesigner\FileSystem\Atom.cs" />
      <Compile Include="Assets\ElementDesigner\UI\HUD.cs" />
      <Compile Include="Assets\ElementDesigner\World\Editor.cs" />
      <Compile Include="Assets\ElementDesigner\UI\GridItem\IsotopeGridItem.cs" />
      <Compile Include="Assets\Main\WorldGen.cs" />
      <Compile Include="Assets\ElementDesigner\UI\PanelName.cs" />
      <Compile Include="Assets\Main\Tile.cs" />
-     <Compile Include="Assets\ElementDesigner\FileSystem\Particle.cs" />
      <Compile Include="Assets\ElementDesigner\UI\GridItem\AtomGridItem.cs" />
      <Compile Include="Assets\Main\CoilAnim.cs" />
      <Compile Include="Assets\ElementDesigner\Globals.cs" />
@@ -74,6 +69,14 @@
      <Compile Include="Assets\ElementDesigner\World\Elements\Selectable.cs" />
      <Compile Include="Assets\ElementDesigner\World\Elements\WorldElement.cs" />
      <Compile Include="Assets\ElementDesigner\World\Elements\Interact.cs" />
+     <Compile Include="Assets\ElementDesigner\FileSystem\Elements\Product.cs" />
+     <Compile Include="Assets\ElementDesigner\FileSystem\Elements\Element.cs" />
+     <Compile Include="Assets\ElementDesigner\FileSystem\Elements\Particle.cs" />
+     <Compile Include="Assets\ElementDesigner\FileSystem\Elements\Atom.cs" />
+     <Compile Include="Assets\ElementDesigner\FileSystem\Elements\Molecule.cs" />
+     <Compile Include="Assets\ElementDesigner\FileSystem\FileSystemAtomLoader.cs" />
+     <Compile Include="Assets\ElementDesigner\FileSystem\FileSystemElementLoader.cs" />
+     <Compile Include="Assets\ElementDesigner\FileSystem\FileSystemParticleLoader.cs" />
     <Reference Include="UnityEngine">
         <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.32f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>
