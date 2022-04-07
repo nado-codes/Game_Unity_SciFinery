@@ -5,6 +5,7 @@ using System.IO;
 using System;
 using UnityEngine;
 using UnityEngine.UI;
+using EDFileSystem;
 
 public enum DragState { Init, Active, None }
 public enum ElementType { None = 0, Particle = 1, Atom = 2, Molecule = 3, Product = 4 }
