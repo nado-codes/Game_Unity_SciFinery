@@ -78,21 +78,15 @@ namespace EDFileSystem
         }
 
         public static IEnumerable<Element> LoadElementsOfType(ElementType elementType) =>
-            Instance.Loader.LoadElementsOfType(elementType);
+            Instance.Loader.GetOrLoadElementsOfType(elementType);
         public static Element LoadElementOfTypeById(ElementType elementType, int id) =>
-            Instance.loader.LoadElementOfTypeById(elementType, id);
+            Instance.loader.GetOrLoadElementOfTypeById(elementType, id);
         public static T CreateElementOfType<T>() where T : Element
         {
             if (typeof(T) == typeof(Atom))
             {
                 var newAtom = new Atom();
-                newAtom.Id = 1;
-                newAtom.Name = "NewAtom";
-                newAtom.ShortName = "NE";
-                newAtom.ProtonCount = 1;
-                newAtom.ElectronCount = 1;
-                newAtom.ParticleIds = new int[] { 1, 3 };
-                newAtom.Type = ElementType.Atom;
+
 
                 Instance.activeElement = newAtom;
 
@@ -156,7 +150,7 @@ namespace EDFileSystem
             var activeAtom = activeElement as Atom;
 
             // .. In this context, a "Neutron" is any neutral particle, or a particle with Charge=0
-            var allParticles = loader.LoadElements<Particle>().ToArray();
+            var allParticles = loader.GetOrLoadElementsOfType<Particle>().ToArray();
 
             // .. TODO: since this is the ActiveElement, we can probably send through the list of particles
             // .. Maybe we can update the saving methods to take a WorldElement, or Element (data), or both

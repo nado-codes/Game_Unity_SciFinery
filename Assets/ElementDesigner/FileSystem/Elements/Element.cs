@@ -4,6 +4,11 @@ using System;
 [Serializable]
 public class Element
 {
+    ///<summary>Create this element as a deep copy of another, using reflection</summary>
+    public Element(Element element)
+    {
+
+    }
     public int Id;
 
     ///<summary>A shorthand abbreviated version of [Name] e.g. Hydrogen->HY</summary>

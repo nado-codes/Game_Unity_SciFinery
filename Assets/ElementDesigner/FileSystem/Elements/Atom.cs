@@ -5,6 +5,14 @@ public enum BondType { Covalent, Ionic, Metallic }
 [Serializable]
 public class Atom : Element
 {
+    public Atom(int id)
+    {
+        Id = id;
+        Name = "NewAtom";
+        ShortName = "NE";
+        ParticleIds = new int[] { 1, 3 };
+        Type = ElementType.Atom;
+    }
     public int ProtonCount;
     public int NeutronCount;
     public int ElectronCount;
