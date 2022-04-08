@@ -85,6 +85,7 @@ namespace EDFileSystem
         {
             if (typeof(T) == typeof(Atom))
             {
+                var atomsCount = Instance.Loader.GetOrLoadElementsOfType<Atom>().Count();
                 var newAtom = new Atom();
 
 

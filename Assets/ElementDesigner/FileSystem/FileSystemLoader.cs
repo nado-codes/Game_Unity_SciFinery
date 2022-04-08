@@ -8,7 +8,7 @@ namespace EDFileSystem.Loader
 {
     public class FileSystemLoader
     {
-        private readonly Dictionary<ElementType, Element[]> cache = new Dictionary<ElementType, Element[]>();
+        private readonly Dictionary<ElementType, Element[]> cache = new Dictionary<ElementType, FileSystemCache[]>();
         public IEnumerable<T> GetOrLoadElementsOfType<T>() where T : Element
         {
             if (Enum.TryParse(typeof(T).FullName, out ElementType elementType))

@@ -1,16 +1,19 @@
 using System;
+using System.Linq;
 
 public enum BondType { Covalent, Ionic, Metallic }
 
 [Serializable]
 public class Atom : Element
 {
-    public Atom(int id)
+    public Atom()
     {
-        Id = id;
+        Id = 1;
         Name = "NewAtom";
         ShortName = "NE";
-        ParticleIds = new int[] { 1, 3 };
+
+        var protons = Enumerable.Range(0, Id).Select(index => 1);
+        ParticleIds = protons.Concat({ 1,3});
         Type = ElementType.Atom;
     }
     public int ProtonCount;
