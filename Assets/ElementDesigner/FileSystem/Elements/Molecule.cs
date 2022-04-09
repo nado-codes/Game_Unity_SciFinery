@@ -4,6 +4,10 @@ using UnityEngine;
 [Serializable]
 public class Molecule : Element
 {
-    public Atom[] atoms;
+    public Molecule(int id) : base(id)
+    {
+
+    }
+    public int[] atomIds = new int[0];
 }
 

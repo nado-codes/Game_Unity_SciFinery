@@ -16,7 +16,7 @@ namespace EDFileSystem.Loader
             Expiry = DateTime.Now.AddMilliseconds(defaultExpiryMS);
         }
 
-        public void Store(Element[] elements)
+        public IEnumerable<Element> Store(IEnumerable<Element> elements)
         {
             if (elements == null || elements?.Length == 0)
                 throw new ArgumentException("Expected an array of Elements in call to FileSystemCache.Store, got null or empty");
@@ -29,6 +29,10 @@ namespace EDFileSystem.Loader
 
             // TODO: DEEP-COPY array here
             // Contents = elements
+
+            Contents = elements.Select(el => el.Clone());
+
+            return Contents;
         }
     }
 }

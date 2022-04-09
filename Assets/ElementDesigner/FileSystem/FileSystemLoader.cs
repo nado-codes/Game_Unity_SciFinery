@@ -8,7 +8,7 @@ namespace EDFileSystem.Loader
 {
     public class FileSystemLoader
     {
-        private readonly Dictionary<ElementType, Element[]> cache = new Dictionary<ElementType, FileSystemCache[]>();
+        private readonly Dictionary<ElementType, FileSystemCache> cache = new Dictionary<ElementType, FileSystemCache>();
         public IEnumerable<T> GetOrLoadElementsOfType<T>() where T : Element
         {
             if (Enum.TryParse(typeof(T).FullName, out ElementType elementType))
@@ -19,7 +19,7 @@ namespace EDFileSystem.Loader
         public IEnumerable<Element> GetOrLoadElementsOfType(ElementType elementType)
          => elementType switch
          {
-             ElementType.Particle => loadParticles(),
+             ElementType.Particle => cache[ElementType.Particle].Contents ?? cache[ElementType.Particle].Store(loadParticles()),
              ElementType.Atom => getOrLoadElementsOfType<Atom>(),
              _ => throw new NotImplementedException($"Element type \"{elementType.ToString()}\" is not implemented in call to FileSystem.LoadElementsOfType")
          };

@@ -4,8 +4,12 @@ using System;
 [Serializable]
 public class Element
 {
-    ///<summary>Create this element as a deep copy of another, using reflection</summary>
-    public Element(Element element)
+    public Element(int id)
+    {
+        Id = id;
+    }
+
+    public Element Copy()
     {
 
     }

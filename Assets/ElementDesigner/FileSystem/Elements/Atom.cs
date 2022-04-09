@@ -1,44 +1,36 @@
 using System;
 using System.Linq;
 
-public enum BondType { Covalent, Ionic, Metallic }
+public enum BondType { None = 0, Covalent = 1, Ionic = 2, Metallic = 3 }
 
 [Serializable]
 public class Atom : Element
 {
-    public Atom()
+    public Atom() : base(1)
     {
-        Id = 1;
         Name = "NewAtom";
-        ShortName = "NE";
-
-        var protons = Enumerable.Range(0, Id).Select(index => 1);
-        ParticleIds = protons.Concat({ 1,3});
+        ShortName = "NW";
+        ParticleIds = new int[] { 1, 3 };
         Type = ElementType.Atom;
     }
-    public int ProtonCount;
-    public int NeutronCount;
-    public int ElectronCount;
 
-    public int[] ParticleIds;
+    public int NeutralParticleCount = 0;
+
+    public int[] ParticleIds = new int[0];
 
     // TODO: Valence shells and electrons divided into shells
     // TODO: Valence shell composition to affect reactivity
 
-    public BondType BondType;
+    public BondType BondType = BondType.None;
 
-    public int Conductivity;
-    public int Reactivity;
-    public int Toxicity;
-    public int MeltingPoint;
-    public int BoilingPoint;
-    public int Brittleness;
-    public int Malleability;
-    public int Ductility;
-
-
+    public int Conductivity = 0;
+    public int Reactivity = 0;
+    public int Toxicity = 0;
+    public int MeltingPoint = 0;
+    public int BoilingPoint = 0;
+    public int Brittleness = 0;
+    public int Malleability = 0;
+    public int Ductility = 0;
 
     public bool IsIsotope { get; set; } = false;
-
-    public int[] IsotopeAtomIds;
 }
