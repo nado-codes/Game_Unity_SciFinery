@@ -18,7 +18,7 @@ namespace EDFileSystem.Loader
 
         public IEnumerable<Element> Store(IEnumerable<Element> elements)
         {
-            if (elements == null || elements?.Length == 0)
+            if (elements == null || elements?.Count() == 0)
                 throw new ArgumentException("Expected an array of Elements in call to FileSystemCache.Store, got null or empty");
 
             var firstElementFullName = elements.FirstOrDefault().GetType().FullName;
@@ -30,7 +30,7 @@ namespace EDFileSystem.Loader
             // TODO: DEEP-COPY array here
             // Contents = elements
 
-            Contents = elements.Select(el => el.Clone());
+            // Contents = elements.Select(el => el.Clone());
 
             return Contents;
         }

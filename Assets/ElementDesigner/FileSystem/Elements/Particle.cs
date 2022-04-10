@@ -5,10 +5,7 @@ using UnityEngine;
 [Serializable]
 public class Particle : Element
 {
-    public Particle() : base(1)
-    {
-
-    }
+    public Particle() : base(1) { }
     [SerializeField]
     private Color color;
     ///<summary>Hexadecimal value representing the baseColor of a particle in world space</summary>

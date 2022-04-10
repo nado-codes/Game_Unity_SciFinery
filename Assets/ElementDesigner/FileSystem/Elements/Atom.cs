@@ -11,7 +11,7 @@ public class Atom : Element
         Name = "NewAtom";
         ShortName = "NW";
         ParticleIds = new int[] { 1, 3 };
-        Type = ElementType.Atom;
+        ElementType = ElementType.Atom;
     }
 
     public int NeutralParticleCount = 0;

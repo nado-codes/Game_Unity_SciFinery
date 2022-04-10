@@ -2,8 +2,5 @@ using System;
 
 public class Product : Element
 {
-    public Product() : base(1)
-    {
-
-    }
+    public Product() : base(1) { }
 }

@@ -7,7 +7,6 @@ using EDFileSystem;
 
 public class DialogPeriodicTable : MonoBehaviour
 {
-    private static DialogPeriodicTable instance;
     private Element selectedElementData;
     private GridItem selectedGridItem;
 
@@ -44,7 +43,6 @@ public class DialogPeriodicTable : MonoBehaviour
     void Start()
     {
         VerifyInitialize();
-        // instance = this;
     }
 
     void Update()
@@ -79,7 +77,7 @@ public class DialogPeriodicTable : MonoBehaviour
                     throw new ApplicationException($"Expected a gridItem for element with Id {elementData.Id} in call to DialogPeriodicTable.Open, got null");
 
                 gridItem.SetData(elementData);
-                gridItem.GetGridItemForType(elementData.Type).OnClick += (Element data) =>
+                gridItem.GetGridItemForType(elementData.ElementType).OnClick += (Element data) =>
                 {
                     selectedGridItem = gridItem;
                     selectedElementData = data;
@@ -149,7 +147,7 @@ public class DialogPeriodicTable : MonoBehaviour
         if (Editor.HasUnsavedChanges)
         {
             var dialogBody = "You have unsaved changes in the editor. Would you like to save before continuing?";
-            DialogYesNo.Open("Save Changes?", dialogBody, () => FileSystem.Instance.SaveActiveElement(), null,
+            DialogYesNo.Open("Save Changes?", dialogBody, () => FileSystem.SaveActiveElement(), null,
             () => HandleLoadSelectedItem());
         }
         else
@@ -172,7 +170,7 @@ public class DialogPeriodicTable : MonoBehaviour
     }
     private void HandleDeleteSelectedItem()
     {
-        selectedGridItem.GetGridItemForType(selectedElementData.Type).SetActive(false);
+        selectedGridItem.GetGridItemForType(selectedElementData.ElementType).SetActive(false);
         FileSystem.DeleteElement(selectedElementData);
     }
 }

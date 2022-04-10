@@ -165,7 +165,7 @@ public class panelCreate : MonoBehaviour, IPointerExitHandler
                 throw new NullReferenceException($"Expected a gridItem at index {elementIndex} in call to panelCreate.RenderVisibleElements, got null");
 
             gridItem.SetData(element);
-            gridItem.GetGridItemForType(element.Type).OnClick = HandleElementGridItemClicked;
+            gridItem.GetGridItemForType(element.ElementType).OnClick = HandleElementGridItemClicked;
         }
     }
 

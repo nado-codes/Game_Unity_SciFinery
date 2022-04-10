@@ -8,13 +8,7 @@ public class Element
     {
         Id = id;
     }
-
-    public Element Copy()
-    {
-
-    }
     public int Id;
-
     ///<summary>A shorthand abbreviated version of [Name] e.g. Hydrogen->HY</summary>
     public string ShortName;
     public string Name;
@@ -22,5 +16,5 @@ public class Element
     public float Weight;
     ///<summary>Whether this element attracts or repulses other elements. Works together with Weight to determine overall repulsive/attractive force</summary>
     public float Charge;
-    public ElementType Type;
+    public ElementType ElementType;
 }

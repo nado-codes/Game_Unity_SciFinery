@@ -1,4 +1,4 @@
-using System.Collections;
+using System.Runtime.CompilerServices;
 using System.Collections.Generic;
 using System.IO;
 using System;
@@ -45,7 +45,7 @@ namespace EDFileSystem
         }
 
         // ACTIVE ELEMENT
-        private string activeElementFileName => $"{activeElement.ShortName.ToLower()}{activeElement.Id}";
+        private static string activeElementFileName => $"{Instance.activeElement.ShortName.ToLower()}{Instance.activeElement.Id}";
 
         private Element activeElement { get; set; }
         public static Element ActiveElement
@@ -63,7 +63,7 @@ namespace EDFileSystem
         }
 
         public static string GetElementDirectoryPathForType(ElementType type)
-          => $"{FileSystem.elementsRoot}/{type}";
+          => $"{elementsRoot}/{type}";
         public static string GetElementDirectoryPathForTypeName(string typeName)
         {
             if (!Enum.TryParse(typeName, out ElementType type))
@@ -71,21 +71,20 @@ namespace EDFileSystem
 
             return $"{elementsRoot}/{typeName}";
         }
+        public static string GetElementFileName(Element element)
+            => $"{element.ShortName.ToLower()}{element.Id}";
         public static string GetElementFilePath(Element element)
-        {
-            var elementFileName = $"{element.ShortName.ToLower()}{element.Id}";
-            return $"{GetElementDirectoryPathForType(element.Type)}/{elementFileName}.{FileSystem.fileExtension}";
-        }
+            => $"{GetElementDirectoryPathForType(element.ElementType)}/{GetElementFileName(element)}.{fileExtension}";
 
         public static IEnumerable<Element> LoadElementsOfType(ElementType elementType) =>
-            Instance.Loader.GetOrLoadElementsOfType(elementType);
+            Instance.Loader.LoadElementsOfType(elementType);
         public static Element LoadElementOfTypeById(ElementType elementType, int id) =>
-            Instance.loader.GetOrLoadElementOfTypeById(elementType, id);
+            Instance.loader.LoadElementOfTypeById(elementType, id);
         public static T CreateElementOfType<T>() where T : Element
         {
             if (typeof(T) == typeof(Atom))
             {
-                var atomsCount = Instance.Loader.GetOrLoadElementsOfType<Atom>().Count();
+                var atomsCount = Instance.Loader.LoadElementsOfType<Atom>().Count();
                 var newAtom = new Atom();
 
 
@@ -125,53 +124,80 @@ namespace EDFileSystem
             var newParticleIds = Editor.SubElements.Select(el => el.Data.Id);
             activeAtomData.ParticleIds = newParticleIds.ToArray();
         }
-        public void SaveActiveElement()
+        public static void SaveActiveElement(Element[] subElements)
         {
-            // .. make sure the elements directory exists
-            var elementDirectoryPath = GetElementDirectoryPathForType(activeElement.Type);
+            AssertValidSubElements(Instance.activeElement.ElementType, subElements);
+
+            if (File.Exists(GetElementFilePath(ActiveElement)))
+                DialogYesNo.Open("Overwrite Element",
+                    $"An Element with name {GetElementFileName(ActiveElement)} already exists. Do you want to overwrite it?",
+                    () => saveElement(ActiveElement, subElements)
+                );
+            else
+                saveElement(ActiveElement, subElements);
+        }
+        private static void AssertValidSubElements(ElementType elementType, Element[] subElements)
+        {
+            switch (elementType)
+            {
+                case ElementType.Atom:
+                    subElements.Select(el => AssertValidSubElement(ElementType.Particle, el));
+                    break;
+            };
+        }
+        private static bool AssertValidSubElement(ElementType elementType, Element element, [CallerMemberName] string callerName = "")
+            => element.ElementType == elementType ? true :
+        throw new ArgumentException($"Element must be of type {elementType} in call to {callerName}, got {element.ElementType}");
+
+        private static void saveElement(Element elementData, Element[] subElements)
+        {
+            var elementFilePath = elementData.ElementType switch
+            {
+                ElementType.Atom => saveAtom(elementData, subElements),
+                _ => GetElementFilePath(elementData)
+            };
+
+            // .. if the save was aborted, e.g. when aborting saving of an atom isotope, elementFilePath will be null
+            if (elementFilePath == null)
+                return;
+
+            var elementDirectoryPath = GetElementDirectoryPathForType(elementData.ElementType);
             if (!Directory.Exists(elementDirectoryPath))
                 Directory.CreateDirectory(elementDirectoryPath);
 
-            // .. if the main atom doesn't exist, create it
-            var elementFilePath = $"{elementDirectoryPath}/{activeElementFileName}";
+            var elementJSON = JsonUtility.ToJson(elementData);
+            File.WriteAllText(elementFilePath, elementJSON);
 
-            if (activeElement is Atom)
-                saveAtom(activeElement as Atom, elementFilePath);
-            else
-            {
-                var activeElementJSON = JsonUtility.ToJson(activeElement);
-                // instance.LoadedAtoms.Insert(ActiveElement.Id - 1, ActiveElement);
-                File.WriteAllText($"{elementFilePath}.{fileExtension}", activeElementJSON);
-                Debug.Log($"Saved active element {activeElement.Name} at {DateTime.Now}");
-                TextNotification.Show("Save Successful");
-            }
         }
-        private void saveAtom(Atom atomData, string mainElementPath)
+        private static string saveAtom(Element elementData, Element[] subElements)
         {
-            var activeAtom = activeElement as Atom;
+            // .. if this atom doesn't exist, there's no need to check for isotopes. Just save it.
+            var atomFilePath = GetElementFilePath(elementData);
+            if (!File.Exists(atomFilePath))
+                return atomFilePath;
 
-            // .. In this context, a "Neutron" is any neutral particle, or a particle with Charge=0
-            var allParticles = loader.GetOrLoadElementsOfType<Particle>().ToArray();
+            // .. if the atom exists, we should check if the new data is an isotope or not
+            var atomData = elementData as Atom;
+            var particles = subElements.Cast<Particle>();
 
-            // .. TODO: since this is the ActiveElement, we can probably send through the list of particles
-            // .. Maybe we can update the saving methods to take a WorldElement, or Element (data), or both
-            // .. Using WorldElement we can get their subcomponents like particles and not have to query them over and over..
-            var activeAtomParticles = activeAtom.ParticleIds.Select(id =>
+            var existingAtomJSON = File.ReadAllText(atomFilePath);
+            var existingAtom = JsonUtility.FromJson<Atom>(existingAtomJSON);
+
+            var allParticles = Instance.Loader.LoadElementsOfType<Particle>();
+            var existingAtomParticles = Instance.Loader.LoadElementsOfTypeByIds<Particle>(existingAtom.ParticleIds);
+            var atomNeutronCount = particles.Where(particle => particle.Charge == 0).Count();
+            var existingAtomNeutronCount = existingAtomParticles.Where(particle => particle.Charge == 0).Count();
+            var activeAtomIsIsotope = atomNeutronCount != existingAtomNeutronCount;
+
+            if (activeAtomIsIsotope)
             {
-                var particle = allParticles[id - 1];
+                DialogYesNo<string>.Open("Create Isotope?", $"You're about to create an isotope for \"{existingAtom.Name}\". Do you want to do that?",
+                    () =>
+                    {
 
-                if (particle == null)
-                    throw new NullReferenceException($"Particle with id {id} doesn't exist in call to saveAtom");
-
-                return particle;
-            });
-
-            var atomDataParticles = allParticles.Where(particle => atomData.ParticleIds.Any(id => id == particle.Id));
-            var activeAtomNeutronsCount = activeAtomParticles.Where(particle => particle.Charge == 0).Count();
-            var atomDataNeutronsCount = atomDataParticles.Where(particle => particle.Charge == 0).Count();
-
-            var hasDifferentNeutronCount = atomDataNeutronsCount != activeAtomNeutronsCount;
-            var activeAtomIsIsotope = atomData.Name == activeAtom.Name && hasDifferentNeutronCount;
+                    }
+                );
+            }
 
             var elementExists = File.Exists(GetElementFilePath(atomData));
 

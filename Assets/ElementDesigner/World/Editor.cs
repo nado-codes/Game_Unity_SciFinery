@@ -363,7 +363,7 @@ public class Editor : MonoBehaviour
         instance.clearSubElements();
         // Camera.main.transform.position = instance.cameraStartPos;
         // Camera.main.transform.rotation = instance.cameraStartAngle;
-        if (elementData.Type == ElementType.Atom)
+        if (elementData.ElementType == ElementType.Atom)
         {
             var atomData = elementData as Atom;
             var particlesToCreate = new List<ParticleType>();
@@ -391,7 +391,7 @@ public class Editor : MonoBehaviour
                 }
             }
         }
-        else if (elementData.Type == ElementType.None)
+        else if (elementData.ElementType == ElementType.None)
             throw new ApplicationException($"Element of type \"None\" is not valid in call to Editor.LoadElement");
         else
             throw new NotImplementedException($"Element of type \"{elementData.GetType().FullName}\" is not yet implemented in call to Editor.LoadElementData");
@@ -413,7 +413,7 @@ public class Editor : MonoBehaviour
 
         WorldElement newWorldElement = null;
         GameObject newWorldElementGO = null;
-        var elementType = elementData.Type;
+        var elementType = elementData.ElementType;
 
         try
         {

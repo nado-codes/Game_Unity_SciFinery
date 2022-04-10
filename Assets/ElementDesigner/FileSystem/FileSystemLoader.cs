@@ -9,31 +9,38 @@ namespace EDFileSystem.Loader
     public class FileSystemLoader
     {
         private readonly Dictionary<ElementType, FileSystemCache> cache = new Dictionary<ElementType, FileSystemCache>();
-        public IEnumerable<T> GetOrLoadElementsOfType<T>() where T : Element
+        public IEnumerable<T> LoadElementsOfType<T>() where T : Element
         {
             if (Enum.TryParse(typeof(T).FullName, out ElementType elementType))
-                return GetOrLoadElementsOfType(elementType).Cast<T>();
+                return LoadElementsOfType(elementType).Cast<T>();
             else
-                throw new ApplicationException($"Element \"{typeof(T).FullName}\" is not a valid ElementType in call to FileSystemLoader.LoadElements<T : Element>");
+                throw new ApplicationException($"Element \"{typeof(T).FullName}\" is not a valid ElementType in call to LoadElements<T : Element>");
         }
-        public IEnumerable<Element> GetOrLoadElementsOfType(ElementType elementType)
+        public IEnumerable<Element> LoadElementsOfType(ElementType elementType)
          => elementType switch
          {
-             ElementType.Particle => cache[ElementType.Particle].Contents ?? cache[ElementType.Particle].Store(loadParticles()),
-             ElementType.Atom => getOrLoadElementsOfType<Atom>(),
-             _ => throw new NotImplementedException($"Element type \"{elementType.ToString()}\" is not implemented in call to FileSystem.LoadElementsOfType")
+             ElementType.Particle => loadParticles(),
+             ElementType.Atom => loadElementsOfType<Atom>(),
+             _ => throw new NotImplementedException($"Element type \"{elementType.ToString()}\" is not implemented in call to LoadElementsOfType")
          };
 
-        public Element GetOrLoadElementOfTypeById(ElementType elementType, int id)
+        public Element LoadElementOfTypeById<T>(int id) where T : Element
+            => loadElementOfTypeById<T>(id);
+
+        public IEnumerable<T> LoadElementsOfTypeByIds<T>(IEnumerable<int> ids) where T : Element
+            => loadElementsOfTypeByIds<T>(ids);
+
+        public Element LoadElementOfTypeById(ElementType elementType, int id)
            => elementType switch
            {
-               ElementType.Atom => getOrLoadElementOfTypeById<Atom>(id),
+               ElementType.Particle => loadElementOfTypeById<Particle>(id),
+               ElementType.Atom => loadElementOfTypeById<Atom>(id),
                _ => throw new NotImplementedException(
-                   $"Element type \"{elementType.ToString()}\" is not implemented in call to FileSystem.LoadElementOfTypeById"
+                   $"Element type \"{elementType.ToString()}\" is not implemented in call to LoadElementOfTypeById"
                 )
            };
 
-        private static IEnumerable<T> getOrLoadElementsOfType<T>() where T : Element
+        private static IEnumerable<T> loadElementsOfType<T>() where T : Element
         {
             var typeName = typeof(T).FullName;
             var elementsOfTypeDirPath = FileSystem.GetElementDirectoryPathForTypeName(typeName);
@@ -53,27 +60,33 @@ namespace EDFileSystem.Loader
 
             return loadedElements;
         }
-
-        private static T getOrLoadElementOfTypeById<T>(int id) where T : Element
+        private static IEnumerable<T> loadElementsOfTypeByIds<T>(IEnumerable<int> ids) where T : Element
         {
-            var elementsOfType = getOrLoadElementsOfType<T>();
-            var elementById = elementsOfType.FirstOrDefault(e => e.Id == id);
+            var elementsOfType = loadElementsOfType<T>();
+            return ids.Select(id => getElementById<T>(id, elementsOfType));
+        }
+        private static T loadElementOfTypeById<T>(int id) where T : Element
+        {
+            var elementsOfType = loadElementsOfType<T>();
+            return getElementById<T>(id, elementsOfType);
+        }
+        private static T getElementById<T>(int id, IEnumerable<T> elements) where T : Element
+        {
+            if (id < 1) throw new ArgumentException("id must be greater than 0 in call to getElementById");
 
-            if (elementById == null)
-            {
-                throw new ApplicationException(
-                    $"{typeof(T).FullName} with Id {id} doesn't exist in call to FileSystemLoader.loadElementOfTypeById"
-                );
-            }
+            T element = elements.ElementAt(id - 1);
 
-            return elementById;
+            if (element == null)
+                throw new NullReferenceException("Element with id {id} doesn't exist in call to getElementById");
+
+            return element;
         }
 
         // TODO: Implement loading isotopes
         private static IEnumerable<Atom> loadAtomIsotopes(string path)
         {
             if (!File.Exists(path))
-                throw new ArgumentException($"No atom exists at path {path} in call to FileSystem.loadAtom");
+                throw new ArgumentException($"No atom exists at path {path} in call to loadAtom");
 
             // TODO: Implement loading isotopes
 
@@ -89,7 +102,7 @@ namespace EDFileSystem.Loader
                 Weight = .001f,
                 Charge = 1,
                 Size = 1,
-                Type = ElementType.Particle,
+                ElementType = ElementType.Particle,
                 Color = "#00FFFA"
             };
             var neutronParticle = new Particle()
@@ -99,7 +112,7 @@ namespace EDFileSystem.Loader
                 Weight = 1,
                 Charge = 0,
                 Size = 1,
-                Type = ElementType.Particle,
+                ElementType = ElementType.Particle,
                 Color = "#006F05"
             };
             var electronParticle = new Particle()
@@ -109,12 +122,12 @@ namespace EDFileSystem.Loader
                 Weight = 10f,
                 Charge = -1,
                 Size = .5f,
-                Type = ElementType.Particle,
+                ElementType = ElementType.Particle,
                 Color = "#FF0000"
             };
 
             var defaultParticles = new Particle[] { protonParticle, neutronParticle, electronParticle };
-            return defaultParticles.Concat(getOrLoadElementsOfType<Particle>());
+            return defaultParticles.Concat(loadElementsOfType<Particle>());
         }
     }
 }
