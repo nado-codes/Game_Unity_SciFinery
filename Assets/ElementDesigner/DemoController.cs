@@ -3,7 +3,6 @@ using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using EDFileSystem;
 
 public class DemoController : MonoBehaviour
 {
@@ -24,7 +23,7 @@ public class DemoController : MonoBehaviour
         isDemo = toggle.isOn;
 
         timerText = GameObject.Find("textDemoTimer").GetComponent<Text>();
-        allElements = FileSystem.LoadElementsOfType(ElementType.Atom).ToList();
+        allElements = FileSystemLoader.LoadElementsOfType(ElementType.Atom).ToList();
     }
 
     // Update is called once per frame

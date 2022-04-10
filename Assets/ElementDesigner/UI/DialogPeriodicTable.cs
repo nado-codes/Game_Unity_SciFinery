@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
-using EDFileSystem;
 
 public class DialogPeriodicTable : MonoBehaviour
 {
@@ -59,7 +58,7 @@ public class DialogPeriodicTable : MonoBehaviour
         VerifyInitialize();
         gameObject.SetActive(true);
 
-        var loadedElements = FileSystem.LoadElementsOfType(Editor.DesignType);
+        var loadedElements = FileSystemLoader.LoadElementsOfType(Editor.DesignType);
 
         foreach (Element elementData in loadedElements)
         {

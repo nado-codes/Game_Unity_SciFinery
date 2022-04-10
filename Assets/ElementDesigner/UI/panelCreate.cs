@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using System.Linq;
-using EDFileSystem;
 
 public enum CreationState { None, Start, Drag }
 
@@ -61,7 +60,7 @@ public class panelCreate : MonoBehaviour, IPointerExitHandler
         if (newDesignType == ElementType.Atom)
         {
             // load particles into creation panel
-            var particles = FileSystem.LoadElementsOfType(ElementType.Particle);
+            var particles = FileSystemLoader.LoadElementsOfType(ElementType.Particle);
             Instance.LoadElements(particles);
         }
         else if (newDesignType == ElementType.Molecule)

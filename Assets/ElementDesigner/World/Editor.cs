@@ -5,7 +5,6 @@ using System.IO;
 using System;
 using UnityEngine;
 using UnityEngine.UI;
-using EDFileSystem;
 
 public enum DragState { Init, Active, None }
 public enum ElementType { None = 0, Particle = 1, Atom = 2, Molecule = 3, Product = 4 }
@@ -373,7 +372,7 @@ public class Editor : MonoBehaviour
             var atomData = elementData as Atom;
             var particlesToCreate = new List<ParticleType>();
 
-            var particles = FileSystem.LoadElementsOfType(ElementType.Particle);
+            var particles = FileSystemLoader.LoadElementsOfType(ElementType.Particle);
 
             foreach (int particleId in atomData.ParticleIds)
             {
