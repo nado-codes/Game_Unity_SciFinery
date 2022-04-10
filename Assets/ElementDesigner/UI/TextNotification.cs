@@ -45,7 +45,6 @@ public class TextNotification : MonoBehaviour
             }
             else
             {
-                Debug.Log("notification hidden");
                 gameObject.SetActive(false);
             }
         }

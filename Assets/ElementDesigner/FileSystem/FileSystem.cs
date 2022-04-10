@@ -80,20 +80,11 @@ namespace EDFileSystem
             Instance.Loader.LoadElementsOfType(elementType);
         public static Element LoadElementOfTypeById(ElementType elementType, int id) =>
             Instance.loader.LoadElementOfTypeById(elementType, id);
-        public static T CreateElementOfType<T>() where T : Element
+        public static T CreateElementOfType<T>() where T : Element, new()
         {
-            if (typeof(T) == typeof(Atom))
-            {
-                var atomsCount = Instance.Loader.LoadElementsOfType<Atom>().Count();
-                var newAtom = new Atom();
-
-
-                Instance.activeElement = newAtom;
-
-                return newAtom as T;
-            }
-            else
-                throw new NotImplementedException($"Element of type ${typeof(T)} is not yet implemented in call to Editor.CreateNewElementOfType");
+            var newElement = new T();
+            Instance.activeElement = newElement;
+            return newElement;
         }
 
         // TODO: Use ActiveElementAs to e.g. convert ActiveElement to Atom (where possible) and access "charge" to increase charge
@@ -124,33 +115,26 @@ namespace EDFileSystem
             var newParticleIds = Editor.SubElements.Select(el => el.Data.Id);
             activeAtomData.ParticleIds = newParticleIds.ToArray();
         }
-        public static void SaveActiveElement(Element[] subElements)
+        public static void SaveActiveElement(IEnumerable<Element> subElements)
         {
-            AssertValidSubElements(Instance.activeElement.ElementType, subElements);
-
-            if (File.Exists(GetElementFilePath(ActiveElement)))
-                DialogYesNo.Open("Overwrite Element",
-                    $"An Element with name {GetElementFileName(ActiveElement)} already exists. Do you want to overwrite it?",
-                    () => saveElement(ActiveElement, subElements)
-                );
-            else
-                saveElement(ActiveElement, subElements);
+            saveElement(ActiveElement, subElements);
         }
-        private static void AssertValidSubElements(ElementType elementType, Element[] subElements)
+        private static void assertValidSubElements(ElementType elementType, IEnumerable<Element> subElements)
         {
             switch (elementType)
             {
                 case ElementType.Atom:
-                    subElements.Select(el => AssertValidSubElement(ElementType.Particle, el));
+                    subElements.Select(el => assertValidSubElement(ElementType.Particle, el));
                     break;
             };
         }
-        private static bool AssertValidSubElement(ElementType elementType, Element element, [CallerMemberName] string callerName = "")
+        private static bool assertValidSubElement(ElementType elementType, Element element, [CallerMemberName] string callerName = "")
             => element.ElementType == elementType ? true :
         throw new ArgumentException($"Element must be of type {elementType} in call to {callerName}, got {element.ElementType}");
 
-        private static void saveElement(Element elementData, Element[] subElements)
+        private static void saveElement(Element elementData, IEnumerable<Element> subElements)
         {
+            assertValidSubElements(Instance.activeElement.ElementType, subElements);
             var elementFilePath = elementData.ElementType switch
             {
                 ElementType.Atom => saveAtom(elementData, subElements),
@@ -169,7 +153,7 @@ namespace EDFileSystem
             File.WriteAllText(elementFilePath, elementJSON);
 
         }
-        private static string saveAtom(Element elementData, Element[] subElements)
+        private static string saveAtom(Element elementData, IEnumerable<Element> subElements)
         {
             // .. if this atom doesn't exist, there's no need to check for isotopes. Just save it.
             var atomFilePath = GetElementFilePath(elementData);
@@ -191,43 +175,28 @@ namespace EDFileSystem
 
             if (activeAtomIsIsotope)
             {
-                DialogYesNo<string>.Open("Create Isotope?", $"You're about to create an isotope for \"{existingAtom.Name}\". Do you want to do that?",
-                    () =>
-                    {
-
-                    }
+                bool shouldCreateIsotope = false;
+                DialogYesNo.Open("Create Isotope?", $"You're about to create an isotope for \"{existingAtom.Name}\". Do you want to do that?",
+                    () => { shouldCreateIsotope = true; }
                 );
+
+                if (!shouldCreateIsotope)
+                    return null;
+
+                var existingAtomFileName = GetElementFileName(existingAtom);
+                var isotopeFilePath = $"{GetElementDirectoryPathForType(ElementType.Atom)}/{existingAtomFileName}n{atomNeutronCount}.{fileExtension}";
+                return isotopeFilePath;
             }
 
-            var elementExists = File.Exists(GetElementFilePath(atomData));
+            bool shouldOverwrite = false;
+            DialogYesNo.Open("Overwrite?", $"Are you sure you want to overwrite \"{existingAtom.Name}\"?",
+                () => { shouldOverwrite = true; }
+            );
 
-            if (elementExists)
-            {
-                var existingElementJSON = File.ReadAllText($"{mainElementPath}.{fileExtension}");
-                var existingElement = JsonUtility.FromJson<Atom>(existingElementJSON);
+            if (!shouldOverwrite)
+                return null;
 
-                // TODO: can probably split this out into a factory. double-nested if statement
-                if (activeAtomIsIsotope)
-                {
-                    // TODO: implement saving isotopes
-                }
-                else // .. overwrite the main atom
-                {
-                    // TODO: tidy up this duplicate code (same as line 205-209)
-                    var activeAtomJSON = JsonUtility.ToJson(activeElement);
-                    File.WriteAllText($"{mainElementPath}.{fileExtension}", activeAtomJSON);
-                    Debug.Log($"Saved active atom {activeElement.Name} at {DateTime.Now}");
-                    TextNotification.Show("Save Successful");
-                }
-            }
-            else
-            {
-                // TODO: tidy up this duplicate code (same as line 205-209)
-                var activeAtomJSON = JsonUtility.ToJson(activeElement);
-                File.WriteAllText($"{mainElementPath}.{fileExtension}", activeAtomJSON);
-                Debug.Log($"Saved active atom {activeElement.Name} at {DateTime.Now}");
-                TextNotification.Show("Save Successful");
-            }
+            return atomFilePath;
         }
         // TODO: implement saving isotopes
         // .. Create an isotope for a particlar atom, by creating a directory to store isotopes and then saving the file inside it
@@ -250,18 +219,5 @@ namespace EDFileSystem
             // File.Delete(!elementData.IsIsotope ? GetMainElementFilePath(elementData) : GetIsotopeFilePath(elementData));
             TextNotification.Show("Delete Successful");
         }
-
-
-
-        /* private static string GetIsotopeFilePath(Atom atom)
-        {
-            var mainAtomFilePath = getElementFilePath(atom);
-            var mainAtomDirectoryName = mainAtomFilePath.Split(new string[1] { $".{fileExtension}" }, StringSplitOptions.None)[0];
-
-            var isotopeFileName = atom.ShortName.ToLower() + atom.Id;
-            var isotopeNumber = atom.NeutronCount < 0 ? "m" + (atom.NeutronCount * -1) : atom.NeutronCount.ToString();
-            return $"{mainAtomDirectoryName}/{isotopeFileName}{isotopeNumber}.{fileExtension}";
-        } */
-
     }
 }

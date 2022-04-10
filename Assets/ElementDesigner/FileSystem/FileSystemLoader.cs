@@ -62,12 +62,12 @@ namespace EDFileSystem.Loader
         }
         private static IEnumerable<T> loadElementsOfTypeByIds<T>(IEnumerable<int> ids) where T : Element
         {
-            var elementsOfType = loadElementsOfType<T>();
+            var elementsOfType = LoadElementsOfType<T>();
             return ids.Select(id => getElementById<T>(id, elementsOfType));
         }
         private static T loadElementOfTypeById<T>(int id) where T : Element
         {
-            var elementsOfType = loadElementsOfType<T>();
+            var elementsOfType = LoadElementsOfType<T>();
             return getElementById<T>(id, elementsOfType);
         }
         private static T getElementById<T>(int id, IEnumerable<T> elements) where T : Element

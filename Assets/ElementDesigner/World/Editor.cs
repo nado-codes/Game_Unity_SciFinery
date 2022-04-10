@@ -107,12 +107,17 @@ public class Editor : MonoBehaviour
 
     }
 
-    private void handleChangeDesignType<T>() where T : Element
+    public void HandleSave()
+    {
+        FileSystem.SaveActiveElement(subElements.Select(el => el.Data));
+    }
+
+    private void handleChangeDesignType<T>() where T : Element, new()
     {
         if (HasUnsavedChanges)
         {
             var dialogBody = "You have unsaved changes in the editor. Would you like to save before continuing?";
-            DialogYesNo.Open("Save Changes?", dialogBody, () => FileSystem.Instance.SaveActiveElement(), null,
+            DialogYesNo.Open("Save Changes?", dialogBody, HandleSave, null,
             () =>
             {
                 Editor.instance.clearSubElements();
@@ -133,18 +138,18 @@ public class Editor : MonoBehaviour
         else
             throw new NotImplementedException($"Design type {DesignType} is not yet implemented in call to Editor.HandleNewElementClicked");
     }
-    private void handleCreateNewElementOfType<T>() where T : Element
+    private void handleCreateNewElementOfType<T>() where T : Element, new()
     {
         if (HasUnsavedChanges)
         {
             var dialogBody = "You have unsaved changes in the editor. Would you like to save before continuing?";
-            DialogYesNo.Open("Save Changes?", dialogBody, () => FileSystem.Instance.SaveActiveElement(), null,
+            DialogYesNo.Open("Save Changes?", dialogBody, HandleSave, null,
             createNewElementOfType<T>);
         }
         else
             createNewElementOfType<T>();
     }
-    private void createNewElementOfType<T>() where T : Element
+    private void createNewElementOfType<T>() where T : Element, new()
     {
         var typeName = typeof(T).FullName;
         elementGameObject = GameObject.Find($"{typeName}") ?? new GameObject();
@@ -490,7 +495,7 @@ public class Editor : MonoBehaviour
         if (HasUnsavedChanges)
         {
             var dialogBody = "You have unsaved changes in the editor. Would you like to save before continuing?";
-            DialogYesNo.Open("Save Changes?", dialogBody, () => FileSystem.Instance.SaveActiveElement(), null,
+            DialogYesNo.Open("Save Changes?", dialogBody, HandleSave, null,
             this.clearSubElements);
         }
         else

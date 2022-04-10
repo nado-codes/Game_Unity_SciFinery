@@ -2,14 +2,12 @@ using System;
 using UnityEngine.UI;
 using UnityEngine;
 
-public delegate T tFN<T>();
-
 public class Dialog : MonoBehaviour
 {
     protected static Dialog instance;
-    private static Text txTitle, txBody;
+    private Text txTitle, txBody;
 
-    protected void Start()
+    private void verifyInitialize()
     {
         if (instance == null)
             instance = gameObject.GetComponent<Dialog>();
@@ -17,13 +15,16 @@ public class Dialog : MonoBehaviour
         var header = instance.transform.Find("panelHeader");
         txTitle = header.transform.Find("Title").GetComponent<Text>();
         txBody = instance.transform.Find("Body").GetComponent<Text>();
-
+    }
+    protected void Start()
+    {
+        verifyInitialize();
         Close();
     }
 
     public virtual void Open(string title, string body)
     {
-
+        verifyInitialize();
         txTitle.text = title;
         txBody.text = body;
 

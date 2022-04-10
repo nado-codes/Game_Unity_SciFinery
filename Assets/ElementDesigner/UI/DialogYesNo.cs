@@ -33,12 +33,9 @@ public class DialogYesNo : Dialog
         base.Close();
     }
 }
-
 public class DialogYesNo<T> : Dialog
 {
     private static tFN<T> _fnYes, _fnNo, _fnOnClose;
-
-    //protected void Start() => base.Start();
 
     public static void Open(string title, string body, tFN<T> fnYes, tFN<T> fnNo = null, tFN<T> fnOnClose = null)
     {
