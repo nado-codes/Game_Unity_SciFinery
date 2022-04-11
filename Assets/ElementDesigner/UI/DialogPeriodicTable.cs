@@ -58,7 +58,7 @@ public class DialogPeriodicTable : MonoBehaviour
         VerifyInitialize();
         gameObject.SetActive(true);
 
-        var loadedElements = FileSystemLoader.LoadElementsOfType(Editor.DesignType);
+        var loadedElements = loadElementsOfType(Editor.DesignType);
 
         foreach (Element elementData in loadedElements)
         {
@@ -91,6 +91,15 @@ public class DialogPeriodicTable : MonoBehaviour
         HUD.LockedFocus = true;
         OpenPage1();
     }
+    private IEnumerable<Element> loadElementsOfType(ElementType elementType) =>
+        elementType switch
+        {
+            ElementType.Atom
+                => FileSystemLoader.LoadElementsOfType<Atom>().Where((a) => !atomIsIsotope(a)),
+            _ => FileSystemLoader.LoadElementsOfType(elementType)
+        };
+    private bool atomIsIsotope(Atom el) => el.Parent != string.Empty && el.Parent != null;
+
     // TODO: need to get or load the elements into the grid items here ... maybe only need to load them once
     private void handleOpen()
     {

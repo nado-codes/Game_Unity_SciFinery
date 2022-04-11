@@ -117,7 +117,7 @@ public class FileSystem : MonoBehaviour
     {
         assertValidSubElements(Instance.activeElement.ElementType, subElements);
 
-        elementData.ElementType switch
+        var elementFilePath = elementData.ElementType switch
         {
             ElementType.Atom => saveAtom(elementData, subElements),
             _ => GetElementFilePath(elementData)
@@ -163,24 +163,29 @@ public class FileSystem : MonoBehaviour
 
         if (activeAtomIsIsotope)
         {
-            bool shouldCreateIsotope = false;
             DialogYesNo.Open("Create Isotope?", $"You're about to create an isotope for \"{existingAtom.Name}\". Do you want to do that?",
                 () =>
                 {
 
                     var existingAtomFileName = GetElementFileName(existingAtom);
                     var isotopeFilePath = $"{GetElementDirectoryPathForType(ElementType.Atom)}/{existingAtomFileName}n{atomNeutronCount}.{fileExtension}";
-                    var elementJSON = JsonUtility.ToJson(elementData);
-                    File.WriteAllText(elementFilePath, elementJSON);
+                    var atomJSON = JsonUtility.ToJson(atomData);
+                    File.WriteAllText(isotopeFilePath, atomJSON);
                 }
             );
         }
         else
         {
             DialogYesNo.Open("Overwrite?", $"Are you sure you want to overwrite \"{existingAtom.Name}\"?",
-            () => { shouldOverwrite = true; }
+            () =>
+            {
+                var atomJSON = JsonUtility.ToJson(atomData);
+                File.WriteAllText(atomFilePath, atomJSON);
+            }
         );
         }
+
+        return null;
     }
     // TODO: implement saving isotopes
     // .. Create an isotope for a particlar atom, by creating a directory to store isotopes and then saving the file inside it

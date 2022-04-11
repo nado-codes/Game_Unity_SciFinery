@@ -32,5 +32,5 @@ public class Atom : Element
     public int Malleability = 0;
     public int Ductility = 0;
 
-    public bool IsIsotope { get; set; } = false;
+    public string Parent = "";
 }
