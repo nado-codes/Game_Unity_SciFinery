@@ -4,6 +4,7 @@ using System;
 [Serializable]
 public class Element
 {
+    public Element() { }
     public Element(int id)
     {
         Id = id;

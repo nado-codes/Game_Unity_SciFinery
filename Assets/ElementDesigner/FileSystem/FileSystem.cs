@@ -152,11 +152,7 @@ public class FileSystem : MonoBehaviour
 
         var existingAtomParticles = existingAtom.ParticleIds.Select(id =>
         {
-            var particle = allParticles.FirstOrDefault(id);
-
-            if (particle == null)
-                throw new NullReferenceException($"Particle with id {id} doesn't exist in call to saveAtom");
-
+            var particle = FileSystemLoader.LoadElementOfTypeById<Particle>(id);
             return particle;
         });
 

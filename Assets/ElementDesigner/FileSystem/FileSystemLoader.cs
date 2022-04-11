@@ -71,13 +71,40 @@ public class FileSystemLoader
     {
         if (id < 1) throw new ArgumentException("id must be greater than 0 in call to getElementById");
 
-        T element = elements.ElementAt(id - 1);
+        T element = elements.FirstOrDefault(e => e.Id == id);
 
-        if (element == null)
-            throw new NullReferenceException("Element with id {id} doesn't exist in call to getElementById");
-
-        return element;
+        return element != null ? element : getUnknownForType<T>();
     }
+    private static T getUnknownForType<T>() where T : Element
+    {
+        if (Enum.TryParse(typeof(T).FullName, out ElementType elementType))
+        {
+            var newElementId = loadElementsOfType<T>().Count();
+            return (elementType) switch
+            {
+                ElementType.Particle => getUnknownParticle(newElementId) as T,
+                _ => new Element()
+                {
+                    Id = newElementId,
+                    Name = $"Unknown{typeof(T).FullName}",
+                    ShortName = "UKN",
+                    Charge = 1,
+                    Weight = 1
+                } as T
+            };
+        }
+
+        throw new NotImplementedException("Element of type {typeof(T).FullName} is not a valid ElementType in call to getUnknownForType");
+    }
+    private static Particle getUnknownParticle(int id) => new Particle()
+    {
+        Id = id,
+        Name = "UnknownParticle",
+        Charge = 0,
+        Color = "#FFF",
+        Weight = 1,
+        Size = 1
+    };
 
     // TODO: Implement loading isotopes
     private static IEnumerable<Atom> loadAtomIsotopes(string path)
