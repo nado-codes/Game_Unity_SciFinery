@@ -116,7 +116,8 @@ public class FileSystem : MonoBehaviour
     private static void saveElement(Element elementData, IEnumerable<Element> subElements)
     {
         assertValidSubElements(Instance.activeElement.ElementType, subElements);
-        var elementFilePath = elementData.ElementType switch
+
+        elementData.ElementType switch
         {
             ElementType.Atom => saveAtom(elementData, subElements),
             _ => GetElementFilePath(elementData)
@@ -164,26 +165,22 @@ public class FileSystem : MonoBehaviour
         {
             bool shouldCreateIsotope = false;
             DialogYesNo.Open("Create Isotope?", $"You're about to create an isotope for \"{existingAtom.Name}\". Do you want to do that?",
-                () => { shouldCreateIsotope = true; }
+                () =>
+                {
+
+                    var existingAtomFileName = GetElementFileName(existingAtom);
+                    var isotopeFilePath = $"{GetElementDirectoryPathForType(ElementType.Atom)}/{existingAtomFileName}n{atomNeutronCount}.{fileExtension}";
+                    var elementJSON = JsonUtility.ToJson(elementData);
+                    File.WriteAllText(elementFilePath, elementJSON);
+                }
             );
-
-            if (!shouldCreateIsotope)
-                return null;
-
-            var existingAtomFileName = GetElementFileName(existingAtom);
-            var isotopeFilePath = $"{GetElementDirectoryPathForType(ElementType.Atom)}/{existingAtomFileName}n{atomNeutronCount}.{fileExtension}";
-            return isotopeFilePath;
         }
-
-        bool shouldOverwrite = false;
-        DialogYesNo.Open("Overwrite?", $"Are you sure you want to overwrite \"{existingAtom.Name}\"?",
+        else
+        {
+            DialogYesNo.Open("Overwrite?", $"Are you sure you want to overwrite \"{existingAtom.Name}\"?",
             () => { shouldOverwrite = true; }
         );
-
-        if (!shouldOverwrite)
-            return null;
-
-        return atomFilePath;
+        }
     }
     // TODO: implement saving isotopes
     // .. Create an isotope for a particlar atom, by creating a directory to store isotopes and then saving the file inside it
