@@ -145,20 +145,22 @@ public class DialogPeriodicTable : MonoBehaviour
         isotopeLayoutTransform.gameObject.SetActive(true);
         stdLayoutTransform.gameObject.SetActive(false);
 
-        var page2AtomGridItem = page2AtomGridItem.GetGridItemForType<Atom>();
-        atomGridItem.SetData(selectedElementData);
+        page2AtomGridItem.SetData(selectedElementData);
 
         var allAtoms = FileSystemLoader.LoadElementsOfType<Atom>();
         var allIsotopes = allAtoms.Where(a => a.ParentName != null);
         var selectedAtomName = $"{selectedElementData.ShortName.ToLower()}{selectedElementData.Id}";
         var selectedAtomIsotopes = allIsotopes.Where(i => i.ParentName == selectedAtomName);
 
+        if (!selectedAtomIsotopes.Any())
+            return;
+
         var isotopeGridItems = page2GridItems.Select(gi =>
         {
             var atomGridItem = gi.GetGridItemForType<AtomGridItem>();
 
             if (atomGridItem == null)
-                throw new ApplicationException("Expected an AtomGridItem in call to OpenPage2, got null");
+                atomGridItem = gi.gameObject.AddComponent<AtomGridItem>();
 
             return atomGridItem;
         });

@@ -52,6 +52,9 @@ public class AtomGridItem : ElementGridItem
 
         base.VerifyInitialize();
 
+        if (ActiveLayout == null)
+            throw new NullReferenceException("No layout was set in call to VerifyInitialize");
+
         numberText = ActiveLayout.Find("Number").GetComponent<Text>();
         shortNameText = ActiveLayout.Find("ShortName").GetComponent<Text>();
         weightText = ActiveLayout.Find("Weight").GetComponent<Text>();
