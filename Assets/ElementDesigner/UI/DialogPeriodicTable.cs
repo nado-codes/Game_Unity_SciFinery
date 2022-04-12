@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,34 +12,56 @@ public class DialogPeriodicTable : MonoBehaviour
     private GridItem selectedGridItem;
 
     private List<GridItem> page1GridItems = new List<GridItem>();
+    private GridItem page2AtomGridItem;
     private List<GridItem> page2GridItems = new List<GridItem>();
 
     private Button btnLoad, btnDelete, btnIsotopes;
 
-    private Transform stdLayoutTransform, particleLayoutTransform;
+    private Transform stdLayoutTransform, isotopeLayoutTransform;
 
     // TODO: need to get or add the GridItem<T> to the page grid items here
     private void VerifyInitialize()
     {
         stdLayoutTransform = transform.Find("Layout_Std");
-        particleLayoutTransform = transform.Find("Layout_Isotope");
+        AssertNotNull(stdLayoutTransform, "stdLayoutTransform");
+        isotopeLayoutTransform = transform.Find("Layout_Isotope");
+        AssertNotNull(isotopeLayoutTransform, "isotopeLayoutTransform");
 
         var page1GridTransform = stdLayoutTransform.Find("grid");
+        AssertNotNull(page1GridTransform, "page1GridTransform");
         page1GridItems = page1GridTransform.GetComponentsInChildren<GridItem>().ToList();
+        AssertNotEmpty(page1GridItems, "page1GridItems");
         page1GridItems.ForEach(item => item.GetComponent<Button>().onClick.AddListener(() => HandleItemSelected(item)));
 
-        var page2AtomGridItem = particleLayoutTransform.GetComponentInChildren<AtomGridItem>();
-        var page2GridTransform = particleLayoutTransform.Find("grid");
-        var page2GridTransforms = page2GridTransform.GetComponentsInChildren<RectTransform>();
-        // page2GridItems = page2GridTransform.GetComponentsInChildren<ElementGridItem>().ToList();
-        // page2GridItems.ForEach(item => item.GetComponent<Button>().onClick.AddListener(() => HandleItemSelected(item)));
+        var page2AtomGridItemTransform = isotopeLayoutTransform.transform.Find("gridItem");
+        AssertNotNull(page2AtomGridItemTransform, "page2AtomGridItem");
+        page2AtomGridItem = page2AtomGridItemTransform.GetComponent<GridItem>();
+        AssertNotNull(page2AtomGridItem, "page2AtomGridItem");
+        var page2GridTransform = isotopeLayoutTransform.Find("grid");
+        AssertNotNull(page2GridTransform, "page2GridTransform");
+        page2GridItems = page2GridTransform.GetComponentsInChildren<GridItem>().ToList();
+        AssertNotEmpty(page2GridItems, "page2GridItems");
+        page2GridItems.ForEach(item => item.GetComponent<Button>().onClick.AddListener(() => HandleItemSelected(item)));
 
         btnLoad = transform.Find("btnLoad").GetComponent<Button>();
+        AssertNotNull(btnLoad, "btnLoad");
         btnDelete = transform.Find("btnDelete").GetComponent<Button>();
+        AssertNotNull(btnDelete, "btnDelete");
         btnIsotopes = stdLayoutTransform.Find("btnIsotopes").GetComponent<Button>();
+        AssertNotNull(btnIsotopes, "btnIsotopes");
 
         OpenPage1();
         Close();
+    }
+    private void AssertNotNull<T>(T obj, string propertyName, [CallerMemberName] string callerName = "")
+    {
+        if (obj == null)
+            throw new NullReferenceException($"Expected {propertyName} in call to {callerName}, got null");
+    }
+    private void AssertNotEmpty<T>(IEnumerable<T> obj, string propertyName, [CallerMemberName] string callerName = "")
+    {
+        if (obj.Count() < 1)
+            throw new ApplicationException($"{propertyName} is not allowed to be empty in call to {callerName}");
     }
     void Start()
     {
@@ -108,7 +131,7 @@ public class DialogPeriodicTable : MonoBehaviour
 
     public void OpenPage1()
     {
-        particleLayoutTransform.gameObject.SetActive(false);
+        isotopeLayoutTransform.gameObject.SetActive(false);
         stdLayoutTransform.gameObject.SetActive(true);
 
         if (Editor.DesignType == ElementType.Atom)
@@ -119,10 +142,10 @@ public class DialogPeriodicTable : MonoBehaviour
 
     public void OpenPage2()
     {
-        particleLayoutTransform.gameObject.SetActive(true);
+        isotopeLayoutTransform.gameObject.SetActive(true);
         stdLayoutTransform.gameObject.SetActive(false);
 
-        var atomGridItem = particleLayoutTransform.Find("gridItem").GetComponent<AtomGridItem>();
+        var page2AtomGridItem = page2AtomGridItem.GetGridItemForType<Atom>();
         atomGridItem.SetData(selectedElementData);
 
         var allAtoms = FileSystemLoader.LoadElementsOfType<Atom>();
