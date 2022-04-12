@@ -35,6 +35,9 @@ public class GridItem : MonoBehaviour
             throw new NotImplementedException($"Element of type \"{elementData.GetType().FullName}\" is not yet implemented in call to GridItem.SetData");
     }
 
+    public T GetGridItemForType<T>() where T : ElementGridItem
+        => GetComponent<T>();
+
     public ElementGridItem GetGridItemForType(ElementType elementType)
     {
         if (elementType == ElementType.Particle)

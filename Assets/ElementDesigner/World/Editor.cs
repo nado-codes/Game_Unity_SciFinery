@@ -65,8 +65,6 @@ public class Editor : MonoBehaviour
     {
         if (instance == null)
             instance = this;
-        else
-            throw new ApplicationException("There may be only one instance of Editor");
 
         if (particlePrefab == null)
             throw new ArgumentNullException("particlePrefab must be set in Editor");

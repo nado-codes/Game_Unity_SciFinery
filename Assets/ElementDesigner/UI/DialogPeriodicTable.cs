@@ -6,7 +6,8 @@ using UnityEngine.UI;
 
 public class DialogPeriodicTable : MonoBehaviour
 {
-    private Element selectedElementData;
+    private Element selectedElementData
+        => selectedGridItem.GetGridItemForType(Editor.DesignType).elementData;
     private GridItem selectedGridItem;
 
     private List<GridItem> page1GridItems = new List<GridItem>();
@@ -79,7 +80,6 @@ public class DialogPeriodicTable : MonoBehaviour
                 gridItem.GetGridItemForType(elementData.ElementType).OnClick += (Element data) =>
                 {
                     selectedGridItem = gridItem;
-                    selectedElementData = data;
                 };
             }
             catch
@@ -98,7 +98,7 @@ public class DialogPeriodicTable : MonoBehaviour
                 => FileSystemLoader.LoadElementsOfType<Atom>().Where((a) => !atomIsIsotope(a)),
             _ => FileSystemLoader.LoadElementsOfType(elementType)
         };
-    private bool atomIsIsotope(Atom el) => el.Parent != string.Empty && el.Parent != null;
+    private bool atomIsIsotope(Atom el) => el.ParentName != string.Empty && el.ParentName != null;
 
     // TODO: need to get or load the elements into the grid items here ... maybe only need to load them once
     private void handleOpen()
@@ -110,6 +110,11 @@ public class DialogPeriodicTable : MonoBehaviour
     {
         particleLayoutTransform.gameObject.SetActive(false);
         stdLayoutTransform.gameObject.SetActive(true);
+
+        if (Editor.DesignType == ElementType.Atom)
+            btnIsotopes.gameObject.SetActive(true);
+        else
+            btnIsotopes.gameObject.SetActive(false);
     }
 
     public void OpenPage2()
@@ -118,22 +123,39 @@ public class DialogPeriodicTable : MonoBehaviour
         stdLayoutTransform.gameObject.SetActive(false);
 
         var atomGridItem = particleLayoutTransform.Find("gridItem").GetComponent<AtomGridItem>();
-        // atomGridItem.SetAtomData(selectedItem?.elementData);
+        atomGridItem.SetData(selectedElementData);
 
-        // var selectedAtomIsotopes = FileSystem.instance.LoadedAtoms.Where(atom => atom.Name == selectedItem.elementData.Name && atom.IsIsotope);
+        var allAtoms = FileSystemLoader.LoadElementsOfType<Atom>();
+        var allIsotopes = allAtoms.Where(a => a.ParentName != null);
+        var selectedAtomName = $"{selectedElementData.ShortName.ToLower()}{selectedElementData.Id}";
+        var selectedAtomIsotopes = allIsotopes.Where(i => i.ParentName == selectedAtomName);
 
-        /* foreach (ElementGridItem gridItem in page2GridItems)
+        var isotopeGridItems = page2GridItems.Select(gi =>
         {
-            var gridItemIndex = page2GridItems.IndexOf(gridItem);
-            /* var isotopeAtom = selectedAtomIsotopes.FirstOrDefault(atom =>
-                atom.NeutronCount - selectedItem.atom.NeutronCount - 1
-            == gridItemIndex); 
+            var atomGridItem = gi.GetGridItemForType<AtomGridItem>();
 
-            /* if (isotopeAtom != null)
-                gridItem.SetAtomData(isotopeAtom);
-            else
-                gridItem.SetActive(false);
-        }*/
+            if (atomGridItem == null)
+                throw new ApplicationException("Expected an AtomGridItem in call to OpenPage2, got null");
+
+            return atomGridItem;
+        });
+
+        if (isotopeGridItems.Count() < selectedAtomIsotopes.Max(i => i.Id))
+            throw new ApplicationException(
+                @$"Not enough grid items to store number of isotopes. 
+                Expected: ${selectedAtomIsotopes.Max(i => i.Id)}
+                Got: ${isotopeGridItems.Count()}
+        ");
+
+        foreach (Atom isotope in selectedAtomIsotopes)
+        {
+            var isotopeGridItem = isotopeGridItems.ElementAt(isotope.Id);
+
+            if (isotopeGridItem == null)
+                throw new ApplicationException("Expected an AtomGridItem to store isotope in call to OpenPage2, got null");
+
+            isotopeGridItem.SetData(isotope);
+        }
     }
 
     public void Close()
