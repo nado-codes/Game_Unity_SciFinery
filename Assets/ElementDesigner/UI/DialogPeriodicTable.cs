@@ -100,10 +100,6 @@ public class DialogPeriodicTable : MonoBehaviour
                     throw new ApplicationException($"Expected a gridItem for element with Id {elementData.Id} in call to DialogPeriodicTable.Open, got null");
 
                 gridItem.SetData(elementData);
-                gridItem.GetGridItemForType(elementData.ElementType).OnClick += (Element data) =>
-                {
-                    selectedGridItem = gridItem;
-                };
             }
             catch
             {
@@ -118,10 +114,9 @@ public class DialogPeriodicTable : MonoBehaviour
         elementType switch
         {
             ElementType.Atom
-                => FileSystemLoader.LoadElementsOfType<Atom>().Where((a) => !atomIsIsotope(a)),
+                => FileSystemLoader.LoadElementsOfType<Atom>().Where((a) => a.ParentId == -1),
             _ => FileSystemLoader.LoadElementsOfType(elementType)
         };
-    private bool atomIsIsotope(Atom el) => el.ParentName != string.Empty && el.ParentName != null;
 
     // TODO: need to get or load the elements into the grid items here ... maybe only need to load them once
     private void handleOpen()
@@ -148,9 +143,8 @@ public class DialogPeriodicTable : MonoBehaviour
         page2AtomGridItem.SetData(selectedElementData);
 
         var allAtoms = FileSystemLoader.LoadElementsOfType<Atom>();
-        var allIsotopes = allAtoms.Where(a => a.ParentName != null);
-        var selectedAtomName = $"{selectedElementData.ShortName.ToLower()}{selectedElementData.Id}";
-        var selectedAtomIsotopes = allIsotopes.Where(i => i.ParentName == selectedAtomName);
+        var allIsotopes = allAtoms.Where(a => a.ParentId != -1);
+        var selectedAtomIsotopes = allIsotopes.Where(i => i.ParentId == selectedElementData.Id);
 
         if (!selectedAtomIsotopes.Any())
             return;
@@ -195,6 +189,8 @@ public class DialogPeriodicTable : MonoBehaviour
         btnLoad.interactable = isInteractable;
         btnDelete.interactable = isInteractable;
         btnIsotopes.interactable = isInteractable;
+
+        selectedGridItem = item;
     }
 
     public void HandleLoadSelectedItemClicked()

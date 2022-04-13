@@ -35926,7 +35926,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1422129296}
         m_TargetAssemblyTypeName: DialogPeriodicTable, Assembly-CSharp
         m_MethodName: OpenPage1
         m_Mode: 1

@@ -169,6 +169,9 @@ public class FileSystem : MonoBehaviour
 
                     var existingAtomFileName = GetElementFileName(existingAtom);
                     var isotopeFilePath = $"{GetElementDirectoryPathForType(ElementType.Atom)}/{existingAtomFileName}n{atomNeutronCount}.{fileExtension}";
+
+                    atomData.ParentId = existingAtom.Id;
+
                     var atomJSON = JsonUtility.ToJson(atomData);
                     File.WriteAllText(isotopeFilePath, atomJSON);
                 }

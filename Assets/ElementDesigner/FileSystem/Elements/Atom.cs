@@ -32,5 +32,5 @@ public class Atom : Element
     public int Malleability = 0;
     public int Ductility = 0;
 
-    public string ParentName;
+    public int ParentId = -1;
 }
