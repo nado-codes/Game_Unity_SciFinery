@@ -1,5 +1,5 @@
 using System;
-using System.Linq;
+using System.Collections.Generic;
 
 public enum BondType { None = 0, Covalent = 1, Ionic = 2, Metallic = 3 }
 
@@ -10,13 +10,18 @@ public class Atom : Element
     {
         Name = "NewAtom";
         ShortName = "NW";
-        ParticleIds = new int[] { 1, 3 };
+        ParticleIds = new List<int> { 1, 3 };
         ElementType = ElementType.Atom;
     }
 
     public int NeutralParticleCount = 0;
 
-    public int[] ParticleIds = new int[0];
+    public List<int> ParticleIds = new List<int>();
+    [System.NonSerialized]
+    public List<Particle> Particles;
+    public List<int> IsotopeIds = new List<int>();
+    [System.NonSerialized]
+    public List<Atom> Isotopes;
 
     // TODO: Valence shells and electrons divided into shells
     // TODO: Valence shell composition to affect reactivity

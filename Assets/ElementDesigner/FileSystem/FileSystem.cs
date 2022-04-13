@@ -150,17 +150,12 @@ public class FileSystem : MonoBehaviour
         var existingAtomJSON = File.ReadAllText(atomFilePath);
         var existingAtom = JsonUtility.FromJson<Atom>(existingAtomJSON);
 
-        var allParticles = FileSystemLoader.LoadElementsOfType<Particle>();
-
-        var existingAtomParticles = existingAtom.ParticleIds.Select(id =>
-        {
-            var particle = FileSystemLoader.LoadElementOfTypeById<Particle>(id);
-            return particle;
-        });
-
         var atomNeutronCount = particles.Where(particle => particle.Charge == 0).Count();
-        var existingAtomNeutronCount = existingAtomParticles.Where(particle => particle.Charge == 0).Count();
+        var existingAtomNeutronCount = existingAtom.Particles.Where(particle => particle.Charge == 0).Count();
         var activeAtomIsIsotope = atomNeutronCount != existingAtomNeutronCount;
+
+        var allIsotopes = FileSystemLoader.LoadElementsOfType<Atom>().Where(a => a.ParentId != -1);
+        var existingAtomIsotopes = allIsotopes.Where(i => i.ParentId == existingAtom.Id);
 
         if (activeAtomIsIsotope)
         {
@@ -172,6 +167,7 @@ public class FileSystem : MonoBehaviour
                     var isotopeFilePath = $"{GetElementDirectoryPathForType(ElementType.Atom)}/{existingAtomFileName}n{atomNeutronCount}.{fileExtension}";
 
                     atomData.ParentId = existingAtom.Id;
+                    existingAtom.IsotopeIds.Add(atomData.Id);
 
                     var atomJSON = JsonUtility.ToJson(atomData);
                     File.WriteAllText(isotopeFilePath, atomJSON);
