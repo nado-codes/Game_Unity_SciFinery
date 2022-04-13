@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
@@ -122,6 +123,15 @@ public class DialogPeriodicTable : MonoBehaviour
     private void handleOpen()
     {
 
+    }
+
+    public static async Task<string> AwaitTest()
+    {
+        var keepWaiting = true;
+
+        await Task.Delay(3000);
+
+        return "Hello!";
     }
 
     public void OpenPage1()

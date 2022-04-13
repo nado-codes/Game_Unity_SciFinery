@@ -91,6 +91,12 @@ public class Editor : MonoBehaviour
         // NOTE: Start the Editor in an initial state, also setting up the UI
         // with the correct elements and displays
         HandleChangeDesignTypeClicked(ElementType.Atom);
+
+        System.Threading.Tasks.Task.Run(async () =>
+        {
+            var notifText = await DialogPeriodicTable.AwaitTest();
+            TextNotification.Show(notifText);
+        });
     }
 
     public void HandleChangeDesignTypeClicked(ElementType newDesignType)

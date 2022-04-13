@@ -133,6 +133,7 @@ public class FileSystem : MonoBehaviour
 
         var elementJSON = JsonUtility.ToJson(elementData);
         File.WriteAllText(elementFilePath, elementJSON);
+        TextNotification.Show($"Saved {elementData.Name}");
 
     }
     private static string saveAtom(Element elementData, IEnumerable<Element> subElements)
@@ -174,6 +175,7 @@ public class FileSystem : MonoBehaviour
 
                     var atomJSON = JsonUtility.ToJson(atomData);
                     File.WriteAllText(isotopeFilePath, atomJSON);
+                    TextNotification.Show($"Created {existingAtom.Name} isotope \"{atomData.Name}\"");
                 }
             );
         }
@@ -184,7 +186,9 @@ public class FileSystem : MonoBehaviour
             {
                 var atomJSON = JsonUtility.ToJson(atomData);
                 File.WriteAllText(atomFilePath, atomJSON);
+                TextNotification.Show($"Saved {atomData.Name}");
             }
+
         );
         }
 
