@@ -194,7 +194,7 @@ public class FileSystem : MonoBehaviour
     }
     // TODO: implement saving isotopes
     // .. Create an isotope for a particlar atom, by creating a directory to store isotopes and then saving the file inside it
-    private void createIsotope(Atom parent, Atom child)
+    private Atom addIsotope(Atom parent, Atom child)
     {
         var existingAtomFileName = GetElementFileName(parent);
         var isotopeFilePath = $"{GetElementDirectoryPathForType(ElementType.Atom)}/{existingAtomFileName}n{atomNeutronCount}.{fileExtension}";
@@ -203,6 +203,8 @@ public class FileSystem : MonoBehaviour
 
         Array.Resize(ref parent.IsotopeIds, parent.IsotopeIds.Length + 1);
         parent.IsotopeIds[parent.IsotopeIds.Length - 1] = child.Id;
+
+        return
     }
     public static void DeleteElement(Element elementData)
     {
