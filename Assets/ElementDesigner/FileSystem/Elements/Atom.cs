@@ -10,16 +10,16 @@ public class Atom : Element
     {
         Name = "NewAtom";
         ShortName = "NW";
-        ParticleIds = new List<int> { 1, 3 };
+        ParticleIds = new int[] { 1, 3 };
         ElementType = ElementType.Atom;
     }
 
     public int NeutralParticleCount = 0;
 
-    public List<int> ParticleIds = new List<int>();
+    public int[] ParticleIds = new int[0];
     [System.NonSerialized]
     public List<Particle> Particles;
-    public List<int> IsotopeIds = new List<int>();
+    public int[] IsotopeIds = new int[0];
     [System.NonSerialized]
     public List<Atom> Isotopes;
 

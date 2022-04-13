@@ -144,45 +144,47 @@ public class FileSystem : MonoBehaviour
             return atomFilePath;
 
         // .. if the atom exists, we should check if the new data is an isotope or not
-        var atomData = elementData as Atom;
+        var newAtomData = elementData as Atom;
         var particles = subElements.Cast<Particle>();
 
         var existingAtomJSON = File.ReadAllText(atomFilePath);
-        var existingAtom = JsonUtility.FromJson<Atom>(existingAtomJSON);
+        var parentAtom = JsonUtility.FromJson<Atom>(existingAtomJSON);
 
         var atomNeutronCount = particles.Where(particle => particle.Charge == 0).Count();
-        var existingAtomNeutronCount = existingAtom.Particles.Where(particle => particle.Charge == 0).Count();
+        var existingAtomNeutronCount = parentAtom.Particles.Where(particle => particle.Charge == 0).Count();
         var activeAtomIsIsotope = atomNeutronCount != existingAtomNeutronCount;
 
         var allIsotopes = FileSystemLoader.LoadElementsOfType<Atom>().Where(a => a.ParentId != -1);
-        var existingAtomIsotopes = allIsotopes.Where(i => i.ParentId == existingAtom.Id);
+        var existingAtomIsotopes = allIsotopes.Where(i => i.ParentId == parentAtom.Id);
 
         if (activeAtomIsIsotope)
         {
-            DialogYesNo.Open("Create Isotope?", $"You're about to create an isotope for \"{existingAtom.Name}\". Do you want to do that?",
+            DialogYesNo.Open("Create Isotope?", $"You're about to create an isotope for \"{parentAtom.Name}\". Do you want to do that?",
                 () =>
                 {
 
-                    var existingAtomFileName = GetElementFileName(existingAtom);
+                    var existingAtomFileName = GetElementFileName(parentAtom);
                     var isotopeFilePath = $"{GetElementDirectoryPathForType(ElementType.Atom)}/{existingAtomFileName}n{atomNeutronCount}.{fileExtension}";
 
-                    atomData.ParentId = existingAtom.Id;
-                    existingAtom.IsotopeIds.Add(atomData.Id);
+                    newAtomData.ParentId = parentAtom.Id;
 
-                    var atomJSON = JsonUtility.ToJson(atomData);
+                    Array.Resize(ref parentAtom.IsotopeIds, parentAtom.IsotopeIds.Length + 1);
+                    parentAtom.IsotopeIds[parentAtom.IsotopeIds.Length - 1] = newAtomData.Id;
+
+                    var atomJSON = JsonUtility.ToJson(newAtomData);
                     File.WriteAllText(isotopeFilePath, atomJSON);
-                    TextNotification.Show($"Created {existingAtom.Name} isotope \"{atomData.Name}\"");
+                    TextNotification.Show($"Created {parentAtom.Name} isotope \"{newAtomData.Name}\"");
                 }
             );
         }
         else
         {
-            DialogYesNo.Open("Overwrite?", $"Are you sure you want to overwrite \"{existingAtom.Name}\"?",
+            DialogYesNo.Open("Overwrite?", $"Are you sure you want to overwrite \"{parentAtom.Name}\"?",
             () =>
             {
-                var atomJSON = JsonUtility.ToJson(atomData);
+                var atomJSON = JsonUtility.ToJson(newAtomData);
                 File.WriteAllText(atomFilePath, atomJSON);
-                TextNotification.Show($"Saved {atomData.Name}");
+                TextNotification.Show($"Saved {newAtomData.Name}");
             }
 
         );
@@ -192,9 +194,15 @@ public class FileSystem : MonoBehaviour
     }
     // TODO: implement saving isotopes
     // .. Create an isotope for a particlar atom, by creating a directory to store isotopes and then saving the file inside it
-    private void confirmSaveIsotope()
+    private void createIsotope(Atom parent, Atom child)
     {
+        var existingAtomFileName = GetElementFileName(parent);
+        var isotopeFilePath = $"{GetElementDirectoryPathForType(ElementType.Atom)}/{existingAtomFileName}n{atomNeutronCount}.{fileExtension}";
 
+        child.ParentId = parent.Id;
+
+        Array.Resize(ref parent.IsotopeIds, parent.IsotopeIds.Length + 1);
+        parent.IsotopeIds[parent.IsotopeIds.Length - 1] = child.Id;
     }
     public static void DeleteElement(Element elementData)
     {
