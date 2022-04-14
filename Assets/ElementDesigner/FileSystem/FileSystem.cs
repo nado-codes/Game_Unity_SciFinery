@@ -154,10 +154,15 @@ public class FileSystem : MonoBehaviour
         var existingAtomNeutronCount = parentAtom.Particles.Where(particle => particle.Charge == 0).Count();
         var activeAtomIsIsotope = atomNeutronCount != existingAtomNeutronCount;
 
-        var allIsotopes = FileSystemLoader.LoadElementsOfType<Atom>().Where(a => a.ParentId != -1);
-        var existingAtomIsotopes = allIsotopes.Where(i => i.ParentId == parentAtom.Id);
+        var existingIsotope = parentAtom.Isotopes.FirstOrDefault(i =>
+        {
+            var isotopeNeutrons = i.Particles.Where(p => p.Charge == 0);
+            var isotopeNeutronCount = isotopeNeutrons.Count();
 
-        if (activeAtomIsIsotope)
+            return isotopeNeutronCount == atomNeutronCount;
+        });
+
+        if (activeAtomIsIsotope && existingIsotope == null)
         {
             DialogYesNo.Open("Create Isotope?", $"You're about to create an isotope for \"{parentAtom.Name}\". Do you want to do that?",
                 () =>
@@ -179,6 +184,9 @@ public class FileSystem : MonoBehaviour
         }
         else
         {
+            if (existingIsotope != null)
+                parentAtom = existingIsotope;
+
             DialogYesNo.Open("Overwrite?", $"Are you sure you want to overwrite \"{parentAtom.Name}\"?",
             () =>
             {
@@ -186,26 +194,12 @@ public class FileSystem : MonoBehaviour
                 File.WriteAllText(atomFilePath, atomJSON);
                 TextNotification.Show($"Saved {newAtomData.Name}");
             }
-
         );
         }
 
         return null;
     }
-    // TODO: implement saving isotopes
-    // .. Create an isotope for a particlar atom, by creating a directory to store isotopes and then saving the file inside it
-    private Atom addIsotope(Atom parent, Atom child)
-    {
-        var existingAtomFileName = GetElementFileName(parent);
-        var isotopeFilePath = $"{GetElementDirectoryPathForType(ElementType.Atom)}/{existingAtomFileName}n{atomNeutronCount}.{fileExtension}";
 
-        child.ParentId = parent.Id;
-
-        Array.Resize(ref parent.IsotopeIds, parent.IsotopeIds.Length + 1);
-        parent.IsotopeIds[parent.IsotopeIds.Length - 1] = child.Id;
-
-        return
-    }
     public static void DeleteElement(Element elementData)
     {
         LoadedElements.Remove(elementData);
