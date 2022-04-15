@@ -59,11 +59,7 @@ public class Editor : MonoBehaviour
     public static GameObject elementGameObject;
 
     private List<WorldElement> worldElements = new List<WorldElement>();
-    public static List<WorldElement> WorldElements { get => instance.worldElements; }
-
-    // LOADED ELEMENTS
-    public List<Element> LoadedElements = new List<Element>();
-    public List<Element> LoadedSubElements = new List<Element>();
+    public static List<WorldElement> SubElements { get => instance.worldElements; }
 
     void Start()
     {
@@ -73,7 +69,7 @@ public class Editor : MonoBehaviour
         if (particlePrefab == null)
             throw new ArgumentNullException("particlePrefab must be set in Editor");
 
-        WorldElements.AddRange(FindObjectsOfType<WorldParticle>());
+        SubElements.AddRange(FindObjectsOfType<WorldParticle>());
 
         textClassification = GameObject.Find("Classification")?.transform.Find("Value").GetComponent<Text>();
         textStability = GameObject.Find("TextStability")?.GetComponent<Text>();
@@ -440,7 +436,7 @@ public class Editor : MonoBehaviour
 
                 var activeAtom = FileSystem.ActiveElementAs<Atom>().Charge += elementData.Charge;
                 newWorldElement = newWorldParticle;
-                WorldElements.Add(newWorldParticle);
+                SubElements.Add(newWorldParticle);
             }
             else
                 throw new NotImplementedException($"Element of type {elementType} is not yet implemented in call to Editor.CreateWorldElement");
@@ -470,7 +466,7 @@ public class Editor : MonoBehaviour
     // TODO: implement removing world elements
     public static bool RemoveSubElement(WorldElement element)
     {
-        WorldElements.Remove(element);
+        SubElements.Remove(element);
         GameObject.Destroy(element.gameObject);
 
         if (DesignType == ElementType.Atom)
@@ -512,7 +508,7 @@ public class Editor : MonoBehaviour
 
     private void clearSubElements()
     {
-        var elementsToDelete = new List<WorldElement>(WorldElements);
+        var elementsToDelete = new List<WorldElement>(SubElements);
         elementsToDelete.ForEach(p => RemoveSubElement(p));
 
         TextNotification.Show("All Sub-Elements Cleared");

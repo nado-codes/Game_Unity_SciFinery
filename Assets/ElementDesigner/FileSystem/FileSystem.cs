@@ -41,6 +41,7 @@ public class FileSystem : MonoBehaviour
 
 
 
+
     public static string GetElementDirectoryPathForType(ElementType type)
       => $"{elementsRoot}/{type}";
     public static string GetElementDirectoryPathForTypeName(string typeName)
@@ -70,6 +71,11 @@ public class FileSystem : MonoBehaviour
             throw new ApplicationException("Cannot convert object of type {ActiveElement.GetType()} to {typeof(T)}");
 
         return ActiveElement as T;
+    }
+
+    public static void LoadElementsForDesignType(ElementType elementType)
+    {
+
     }
 
     public static void UpdateActiveElement()
