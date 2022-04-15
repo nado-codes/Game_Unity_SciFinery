@@ -156,7 +156,7 @@ public class FileSystemLoader
     private static IEnumerable<Atom> loadAtoms()
     {
         var allAtoms = loadElementsOfType<Atom>();
-        var allParticles = loadElementsOfType<Particle>();
+        var allParticles = loadParticles();
 
         var atomsWithParticlesIsotopes = allAtoms.Select(atom =>
         {

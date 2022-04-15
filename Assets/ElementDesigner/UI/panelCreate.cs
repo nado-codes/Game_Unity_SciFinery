@@ -57,22 +57,16 @@ public class panelCreate : MonoBehaviour, IPointerExitHandler
 
     public static void SetDesignType(ElementType newDesignType)
     {
-        if (newDesignType == ElementType.Atom)
+        switch (newDesignType)
         {
-            // load particles into creation panel
-            var particles = FileSystemLoader.LoadElementsOfType(ElementType.Particle);
-            Instance.LoadElements(particles);
-        }
-        else if (newDesignType == ElementType.Molecule)
-        {
-            // load atoms into creation panel
-        }
-        else if (newDesignType == ElementType.Product)
-        {
-            // load molecules into creation panel
-        }
-        else
-            throw new NotImplementedException($"Element of type {newDesignType} is not yet implemented in call to panelCreate.SetDesignType");
+            case ElementType.Atom:
+                FileSystem.Instance.LoadedSubElements = FileSystemLoader.LoadElementsOfType(newDesignType).ToList();
+                break;
+            default:
+                throw new NotImplementedException($"Element of type {newDesignType} is not yet implemented in call to panelCreate.SetDesignType");
+        };
+
+        Instance.LoadElements(FileSystem.Instance.LoadedSubElements);
     }
 
     public void HandlePrevButtonClicked()

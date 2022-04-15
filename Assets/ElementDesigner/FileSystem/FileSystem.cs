@@ -39,13 +39,7 @@ public class FileSystem : MonoBehaviour
         set => Instance.activeElement = value;
     }
 
-    // LOADED ELEMENTS
 
-    private List<Element> loadedElements = new List<Element>();
-    public static List<Element> LoadedElements
-    {
-        get => Instance.loadedElements;
-    }
 
     public static string GetElementDirectoryPathForType(ElementType type)
       => $"{elementsRoot}/{type}";
@@ -154,15 +148,15 @@ public class FileSystem : MonoBehaviour
         var existingAtomNeutronCount = parentAtom.Particles.Where(particle => particle.Charge == 0).Count();
         var activeAtomIsIsotope = atomNeutronCount != existingAtomNeutronCount;
 
-        var existingIsotope = parentAtom.Isotopes.FirstOrDefault(i =>
+        /* var existingIsotope = parentAtom.Isotopes.FirstOrDefault(i =>
         {
             var isotopeNeutrons = i.Particles.Where(p => p.Charge == 0);
             var isotopeNeutronCount = isotopeNeutrons.Count();
 
             return isotopeNeutronCount == atomNeutronCount;
-        });
+        }); */
 
-        if (activeAtomIsIsotope && existingIsotope == null)
+        if (activeAtomIsIsotope /* && existingIsotope == null */)
         {
             DialogYesNo.Open("Create Isotope?", $"You're about to create an isotope for \"{parentAtom.Name}\". Do you want to do that?",
                 () =>
@@ -184,8 +178,8 @@ public class FileSystem : MonoBehaviour
         }
         else
         {
-            if (existingIsotope != null)
-                parentAtom = existingIsotope;
+            /* if (existingIsotope != null)
+                parentAtom = existingIsotope; */
 
             DialogYesNo.Open("Overwrite?", $"Are you sure you want to overwrite \"{parentAtom.Name}\"?",
             () =>

@@ -58,8 +58,12 @@ public class Editor : MonoBehaviour
     // PARTICLES
     public static GameObject elementGameObject;
 
-    private List<WorldElement> subElements = new List<WorldElement>();
-    public static List<WorldElement> SubElements { get => instance.subElements; }
+    private List<WorldElement> worldElements = new List<WorldElement>();
+    public static List<WorldElement> WorldElements { get => instance.worldElements; }
+
+    // LOADED ELEMENTS
+    public List<Element> LoadedElements = new List<Element>();
+    public List<Element> LoadedSubElements = new List<Element>();
 
     void Start()
     {
@@ -69,7 +73,7 @@ public class Editor : MonoBehaviour
         if (particlePrefab == null)
             throw new ArgumentNullException("particlePrefab must be set in Editor");
 
-        SubElements.AddRange(FindObjectsOfType<WorldParticle>());
+        WorldElements.AddRange(FindObjectsOfType<WorldParticle>());
 
         textClassification = GameObject.Find("Classification")?.transform.Find("Value").GetComponent<Text>();
         textStability = GameObject.Find("TextStability")?.GetComponent<Text>();
@@ -105,6 +109,7 @@ public class Editor : MonoBehaviour
             handleChangeDesignType<Atom>();
 
         panelCreate.SetDesignType(newDesignType);
+        FileSystem.Instance.LoadedElements = FileSystemLoader.LoadElementsOfType(newDesignType).ToList();
         designType = newDesignType;
         TextNotification.Show("Design Type: " + newDesignType);
 
@@ -112,7 +117,7 @@ public class Editor : MonoBehaviour
 
     public void HandleSave()
     {
-        FileSystem.SaveActiveElement(subElements.Select(el => el.Data));
+        FileSystem.SaveActiveElement(worldElements.Select(el => el.Data));
     }
 
     private void handleChangeDesignType<T>() where T : Element, new()
@@ -435,7 +440,7 @@ public class Editor : MonoBehaviour
 
                 var activeAtom = FileSystem.ActiveElementAs<Atom>().Charge += elementData.Charge;
                 newWorldElement = newWorldParticle;
-                SubElements.Add(newWorldParticle);
+                WorldElements.Add(newWorldParticle);
             }
             else
                 throw new NotImplementedException($"Element of type {elementType} is not yet implemented in call to Editor.CreateWorldElement");
@@ -465,7 +470,7 @@ public class Editor : MonoBehaviour
     // TODO: implement removing world elements
     public static bool RemoveSubElement(WorldElement element)
     {
-        SubElements.Remove(element);
+        WorldElements.Remove(element);
         GameObject.Destroy(element.gameObject);
 
         if (DesignType == ElementType.Atom)
@@ -507,7 +512,7 @@ public class Editor : MonoBehaviour
 
     private void clearSubElements()
     {
-        var elementsToDelete = new List<WorldElement>(SubElements);
+        var elementsToDelete = new List<WorldElement>(WorldElements);
         elementsToDelete.ForEach(p => RemoveSubElement(p));
 
         TextNotification.Show("All Sub-Elements Cleared");
