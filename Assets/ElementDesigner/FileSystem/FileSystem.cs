@@ -39,7 +39,13 @@ public class FileSystem : MonoBehaviour
         set => Instance.activeElement = value;
     }
 
+    private List<Element> loadedElements = new List<Element>();
+    private List<Element> loadedSubElements = new List<Element>();
 
+    public static IEnumerable<Element> GetOrLoadElementsOfType(ElementType type)
+    {
+        if (LoadedEl)
+    }
 
 
     public static string GetElementDirectoryPathForType(ElementType type)
@@ -68,20 +74,21 @@ public class FileSystem : MonoBehaviour
     public static T ActiveElementAs<T>() where T : Element
     {
         if (ActiveElement.GetType() != typeof(T))
-            throw new ApplicationException("Cannot convert object of type {ActiveElement.GetType()} to {typeof(T)}");
+            throw new ApplicationException($"Cannot convert object of type {ActiveElement.GetType()} to {typeof(T)}");
 
         return ActiveElement as T;
     }
 
-    public static void LoadElementsForDesignType(ElementType elementType)
-    {
-
-    }
+    public static IEnumerable<Element> GetOrLoadElementsByType(ElementType elementType)
+        => elementType switch
+        {
+            _ => throw new NotImplementedException($"Element of type {elementType} is not yet implemented")
+        };
 
     public static void UpdateActiveElement()
     {
         if (Editor.SubElements.Any(el => el.Data == null))
-            throw new ApplicationException("At least one WorldElement is missing data in call to FileSystem.UpdateActiveElement");
+            throw new ApplicationException("At least one WorldElement is missing data");
 
         if (ActiveElement is Atom)
             updateActiveAtom(ActiveElement as Atom);

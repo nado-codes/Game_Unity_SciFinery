@@ -58,8 +58,12 @@ public class Editor : MonoBehaviour
     // PARTICLES
     public static GameObject elementGameObject;
 
-    private List<WorldElement> worldElements = new List<WorldElement>();
-    public static List<WorldElement> SubElements { get => instance.worldElements; }
+    private List<WorldElement> subElements = new List<WorldElement>();
+    public static List<WorldElement> SubElements { get => instance.subElements; }
+
+    // LOADED ELEMENTS
+    public List<Element> LoadedElements = new List<Element>();
+    public List<Element> LoadedSubElements = new List<Element>();
 
     void Start()
     {
@@ -113,7 +117,7 @@ public class Editor : MonoBehaviour
 
     public void HandleSave()
     {
-        FileSystem.SaveActiveElement(worldElements.Select(el => el.Data));
+        FileSystem.SaveActiveElement(subElements.Select(el => el.Data));
     }
 
     private void handleChangeDesignType<T>() where T : Element, new()
