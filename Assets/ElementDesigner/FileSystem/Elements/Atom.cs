@@ -14,7 +14,8 @@ public class Atom : Element
         ElementType = ElementType.Atom;
     }
 
-    public int NeutralParticleCount = 0;
+    ///<summary>The atomic number of this atom, based on Proton count</summary>
+    public int Number = 1;
 
     public int[] ParticleIds = new int[0];
     public int[] IsotopeIds = new int[0];
@@ -36,3 +37,4 @@ public class Atom : Element
 
 
 }
+

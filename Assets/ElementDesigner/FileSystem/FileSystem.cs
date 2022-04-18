@@ -56,6 +56,8 @@ public class FileSystem : MonoBehaviour
     public static T CreateElementOfType<T>() where T : Element, new()
     {
         var newElement = new T();
+        var allElementsOfType = FileSystemCache.GetOrLoadElementsOfType<T>();
+        newElement.Id = allElementsOfType.Count();
         Instance.activeElement = newElement;
         return newElement;
     }
@@ -77,15 +79,19 @@ public class FileSystem : MonoBehaviour
         if (ActiveElement is Atom)
             updateActiveAtom(ActiveElement as Atom);
         else
-            throw new NotImplementedException($"Element of type ${ActiveElement.GetType().FullName} is not yet implemented in call to Editor.UpdateActiveElement");
+            throw new NotImplementedException($"Element of type ${ActiveElement.GetType().FullName} is not yet implemented");
     }
-    private static void updateActiveAtom(Atom activeAtomData)
+    private static void updateActiveAtom(Atom atom)
     {
         if (Editor.DesignType != ElementType.Atom)
-            throw new ApplicationException($"Editor DesignType must be Atom in call to FileSystem.updateActiveAtom, got {Editor.DesignType}");
+            throw new ApplicationException($"Editor DesignType must be Atom, got {Editor.DesignType}");
 
-        var newParticleIds = Editor.SubElements.Select(el => el.Data.Id);
-        activeAtomData.ParticleIds = newParticleIds.ToArray();
+        var particleIds = Editor.SubElements.Select(el => el.Data.Id);
+        atom.ParticleIds = particleIds.ToArray();
+
+        var particles = FileSystemCache.GetOrLoadElementsOfTypeByIds<Particle>(particleIds);
+        var protonCount = particles.Count(p => p.Charge > 0);
+        atom.Number = protonCount;
     }
     public static void SaveActiveElement(IEnumerable<Element> subElements)
     {
@@ -127,61 +133,70 @@ public class FileSystem : MonoBehaviour
         TextNotification.Show($"Saved {elementData.Name}");
 
     }
+
     private static string saveAtom(Element element, IEnumerable<Element> subElements)
     {
         // .. if this atom doesn't exist, there's no need to check for isotopes. Just save it.
-        var atomFilePath = GetElementFilePath(element);
-        if (!File.Exists(atomFilePath))
-            return atomFilePath;
+        var allAtoms = FileSystemCache.GetOrLoadElementsOfType<Atom>();
+        var atomToSave = element as Atom;
+        var parentAtom = allAtoms.FirstOrDefault(a => a.Number == atomToSave.Number);
 
-        var existingAtomJSON = File.ReadAllText(atomFilePath);
-        var existingAtom = JsonUtility.FromJson<Atom>(existingAtomJSON);
-        var existingAtomParticles = FileSystemCache.GetOrLoadSubElementsOfTypeByIds<Particle>(existingAtom.ParticleIds);
-        var existingAtomNeutronCount = existingAtomParticles.Where(particle => particle.Charge == 0).Count();
+        if (parentAtom == null)
+            return GetElementFilePath(atomToSave);
 
-        var existingAtomIsotopes = FileSystemCache.GetOrLoadElementsOfTypeByIds<Atom>(existingAtom.IsotopeIds);
-        var existingIsotope = existingAtomIsotopes.FirstOrDefault(iso =>
+        var parentAtomParticles = FileSystemCache.GetOrLoadSubElementsOfTypeByIds<Particle>(parentAtom.ParticleIds);
+        var parentAtomNeutronCount = parentAtomParticles.Where(particle => particle.Charge == 0).Count();
+
+        var parentAtomIsotopes = FileSystemCache.GetOrLoadElementsOfTypeByIds<Atom>(parentAtom.IsotopeIds);
+        var existingIsotope = parentAtomIsotopes.FirstOrDefault(iso =>
         {
-            var isotopeParticles = FileSystemCache.GetOrLoadSubElementsOfTypeByIds<Particle>(iso.IsotopeIds);
+            var isotopeParticles = FileSystemCache.GetOrLoadSubElementsOfTypeByIds<Particle>(iso.ParticleIds);
             var isotopeNeutronCount = isotopeParticles.Where(p => p.Charge == 0).Count();
 
-            return (isotopeNeutronCount == existingAtomNeutronCount);
+            return (isotopeNeutronCount == parentAtomNeutronCount);
         });
 
-        var atomToSave = element as Atom;
         var atomParticles = subElements.Cast<Particle>();
         var atomNeutronCount = atomParticles.Where(particle => particle.Charge == 0).Count();
-        var atomIsIsotope = atomNeutronCount != existingAtomNeutronCount;
+        var atomIsIsotope = atomNeutronCount != parentAtomNeutronCount;
 
         if (atomIsIsotope && existingIsotope == null)
         {
-            DialogYesNo.Open("Create Isotope?", $"You're about to create an isotope for \"{existingAtom.Name}\". Do you want to do that?",
+            /* DialogYesNo.Open("Create Isotope?", $"You're about to create an isotope for \"{existingAtom.Name}\". Do you want to do that?",
                 () =>
                 {
 
-                    var existingAtomFileName = GetElementFileName(existingAtom);
-                    var isotopeFilePath = $"{GetElementDirectoryPathForType(ElementType.Atom)}/{existingAtomFileName}n{atomNeutronCount}.{fileExtension}";
-
-                    atomToSave.ParentId = existingAtom.Id;
-
-                    Array.Resize(ref existingAtom.IsotopeIds, existingAtom.IsotopeIds.Length + 1);
-                    existingAtom.IsotopeIds[existingAtom.IsotopeIds.Length - 1] = atomToSave.Id;
-
-                    var atomJSON = JsonUtility.ToJson(atomToSave);
-                    File.WriteAllText(isotopeFilePath, atomJSON);
-                    TextNotification.Show($"Created {existingAtom.Name} isotope \"{atomToSave.Name}\"");
+                    
                 }
-            );
+            ); */
+
+            // .. save the isotope
+            atomToSave.ParentId = parentAtom.Id;
+            atomToSave.Id = allAtoms.Count() + 1;
+            var parentAtomFileName = GetElementFileName(parentAtom);
+            var isotopeFilePath = $"{GetElementDirectoryPathForType(ElementType.Atom)}/{parentAtomFileName}n{atomNeutronCount}.{fileExtension}";
+            var atomToSaveJSON = JsonUtility.ToJson(atomToSave);
+            File.WriteAllText(isotopeFilePath, atomToSaveJSON);
+            FileSystemCache.ReloadElementOfTypeById<Atom>(atomToSave.Id);
+
+            // .. add the isotope to the parent and save it
+            parentAtom.IsotopeIds = parentAtom.IsotopeIds.Concat(new int[] { atomToSave.Id }).ToArray();
+            var parentAtomJSON = JsonUtility.ToJson(parentAtom);
+            File.WriteAllText(GetElementFilePath(parentAtom), parentAtomJSON);
+            FileSystemCache.ReloadElementOfTypeById<Atom>(parentAtom.Id);
+
+            TextNotification.Show($"Created {parentAtom.Name} isotope \"{atomToSave.Name}\"");
         }
         else
         {
             if (existingIsotope != null)
-                existingAtom = existingIsotope;
+                parentAtom = existingIsotope;
 
-            DialogYesNo.Open("Overwrite?", $"Are you sure you want to overwrite \"{existingAtom.Name}\"?",
+            DialogYesNo.Open("Overwrite?", $"Are you sure you want to overwrite \"{parentAtom.Name}\"?",
             () =>
             {
                 var atomJSON = JsonUtility.ToJson(atomToSave);
+                var atomFilePath = GetElementFilePath(parentAtom);
                 File.WriteAllText(atomFilePath, atomJSON);
                 TextNotification.Show($"Saved {atomToSave.Name}");
                 FileSystemCache.ReloadElementOfTypeById<Atom>(atomToSave.Id);

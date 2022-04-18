@@ -101,8 +101,12 @@ public class FileSystemCache : MonoBehaviour
         var updatedElement = FileSystemLoader.LoadElementOfTypeById<T>(id);
         Instance.elements[indexToUpdate] = updatedElement;
     }
-
-
+    public static void UpdateElement(Element element)
+    {
+        var oldElement = Instance.elements.FirstOrDefault(el => el.Id == element.Id);
+        var indexToUpdate = Instance.elements.IndexOf(oldElement);
+        Instance.elements[indexToUpdate] = element;
+    }
     public static void RemoveElementOfTypeById<T>(int id) where T : Element
     {
         if (!Enum.TryParse(typeof(T).FullName, out ElementType type))
@@ -110,7 +114,6 @@ public class FileSystemCache : MonoBehaviour
 
         RemoveElementOfTypeById(id, type);
     }
-
     public static void RemoveElementOfTypeById(int id, ElementType type)
     {
         if (!Instance.elements.ContainsElementsOfType(type))
@@ -132,7 +135,6 @@ public class FileSystemCache : MonoBehaviour
         var elementsById = Instance.elements.Where(el => ids.Contains(el.Id));
         return elementsById.Cast<T>();
     }
-
     private static T getOrLoadElementOfTypeById<T>(int id) where T : Element
     {
         var shouldReload = !Instance.elements.ContainsElementsOfType<T>();
@@ -142,7 +144,6 @@ public class FileSystemCache : MonoBehaviour
         var elementById = Instance.elements.FirstOrDefault(el => el.Id == id);
         return elementById as T;
     }
-
     private static IEnumerable<T> getOrLoadSubElementsOfTypeByIds<T>(IEnumerable<int> ids) where T : Element
     {
         var shouldReload = !Instance.subElements.ContainsElementsOfType<T>();
@@ -152,7 +153,6 @@ public class FileSystemCache : MonoBehaviour
         var elementsById = Instance.subElements.Where(el => ids.Contains(el.Id));
         return elementsById.Cast<T>();
     }
-
     private static T getOrLoadSubElementOfTypeById<T>(int id) where T : Element
     {
         var shouldReload = Instance.subElements.ContainsElementsOfType<T>();

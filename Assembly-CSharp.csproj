@@ -63,7 +63,6 @@
      <Compile Include="Assets\Main\WorldGen.cs" />
      <Compile Include="Assets\ElementDesigner\UI\PanelName.cs" />
      <Compile Include="Assets\Main\Tile.cs" />
-     <Compile Include="Assets\EditorMode_TableGridGen.cs" />
      <Compile Include="Assets\ElementDesigner\UI\GridItem\AtomGridItem.cs" />
      <Compile Include="Assets\ElementDesigner\FileSystem\Elements\Product.cs" />
      <Compile Include="Assets\Main\CoilAnim.cs" />
@@ -78,6 +77,7 @@
      <Compile Include="Assets\ElementDesigner\FileSystem\Elements\Element.cs" />
      <Compile Include="Assets\ElementDesigner\UI\Tabs.cs" />
      <Compile Include="Assets\ElementDesigner\FileSystem\Elements\Molecule.cs" />
+     <Compile Include="Assets\EditorMode_TableGridGen.cs" />
     <Reference Include="UnityEngine">
         <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.32f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>
