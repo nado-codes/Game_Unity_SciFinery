@@ -17,11 +17,8 @@ public class Atom : Element
     public int NeutralParticleCount = 0;
 
     public int[] ParticleIds = new int[0];
-    [System.NonSerialized]
-    public List<Particle> Particles;
     public int[] IsotopeIds = new int[0];
-    [System.NonSerialized]
-    public List<Atom> Isotopes;
+    public int ParentId = -1;
 
     // TODO: Valence shells and electrons divided into shells
     // TODO: Valence shell composition to affect reactivity
@@ -37,5 +34,5 @@ public class Atom : Element
     public int Malleability = 0;
     public int Ductility = 0;
 
-    public int ParentId = -1;
+
 }

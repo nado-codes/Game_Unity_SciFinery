@@ -17,7 +17,7 @@ public class FileSystemLoader
      => elementType switch
      {
          ElementType.Particle => loadParticles(),
-         ElementType.Atom => loadAtoms(),
+         ElementType.Atom => loadElementsOfType<Atom>(),
          _ => throw new NotImplementedException($"Element type \"{elementType.ToString()}\" is not implemented in call to LoadElementsOfType")
      };
 
@@ -151,24 +151,5 @@ public class FileSystemLoader
 
         var defaultParticles = new Particle[] { protonParticle, neutronParticle, electronParticle };
         return defaultParticles.Concat(loadElementsOfType<Particle>());
-    }
-
-    private static IEnumerable<Atom> loadAtoms()
-    {
-        var allAtoms = loadElementsOfType<Atom>();
-        var allParticles = loadParticles();
-
-        var atomsWithParticlesIsotopes = allAtoms.Select(atom =>
-        {
-            var atomParticles = atom.ParticleIds.Select(pId => allParticles.FirstOrDefault(p => p.Id == pId));
-            var atomIsotopes = atom.IsotopeIds.Select(iId => allAtoms.FirstOrDefault(a => a.Id == iId));
-
-            atom.Particles = atomParticles.ToList();
-            atom.Isotopes = atomIsotopes.ToList();
-
-            return atom;
-        });
-
-        return atomsWithParticlesIsotopes;
     }
 }

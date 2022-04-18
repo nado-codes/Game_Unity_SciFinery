@@ -39,9 +39,6 @@ public class FileSystem : MonoBehaviour
         set => Instance.activeElement = value;
     }
 
-    private List<Element> loadedElements = new List<Element>();
-    private List<Element> loadedSubElements = new List<Element>();
-
     public static string GetElementDirectoryPathForType(ElementType type)
       => $"{elementsRoot}/{type}";
     public static string GetElementDirectoryPathForTypeName(string typeName)
@@ -72,53 +69,6 @@ public class FileSystem : MonoBehaviour
 
         return ActiveElement as T;
     }
-
-    public static IEnumerable<Element> GetOrLoadElementsOfType(ElementType type)
-    {
-        var firstElement = Instance.loadedElements.FirstOrDefault();
-
-        if (firstElement?.ElementType != type || firstElement == null)
-            Instance.loadedElements = FileSystemLoader.LoadElementsOfType(type).ToList();
-
-        return Instance.loadedElements;
-    }
-
-    public static IEnumerable<T> GetOrLoadElementsOfType<T>() where T : Element
-    {
-        if (!Enum.TryParse(typeof(T).FullName, out ElementType type))
-            throw new ArgumentException($"Element of type \"{typeof(T).FullName}\" is not parsable to ElementType");
-
-        var firstElement = Instance.loadedElements.FirstOrDefault();
-
-        if (firstElement?.ElementType != type || firstElement == null)
-            Instance.loadedElements = FileSystemLoader.LoadElementsOfType(type).ToList();
-
-        return Instance.loadedElements.Cast<T>();
-    }
-
-    public static IEnumerable<Element> GetOrLoadSubElementsOfType(ElementType type)
-    {
-        var firstElement = Instance.loadedSubElements.FirstOrDefault();
-
-        if (firstElement?.ElementType != type || firstElement == null)
-            Instance.loadedSubElements = FileSystemLoader.LoadElementsOfType(type).ToList();
-
-        return Instance.loadedSubElements;
-    }
-
-    public static IEnumerable<T> GetOrLoadSubElementsOfType<T>() where T : Element
-    {
-        if (!Enum.TryParse(typeof(T).FullName, out ElementType type))
-            throw new ArgumentException($"Element of type \"{typeof(T).FullName}\" is not parsable to ElementType");
-
-        var firstElement = Instance.loadedSubElements.FirstOrDefault();
-
-        if (firstElement?.ElementType != type || firstElement == null)
-            Instance.loadedSubElements = FileSystemLoader.LoadElementsOfType(type).ToList();
-
-        return Instance.loadedSubElements.Cast<T>();
-    }
-
     public static void UpdateActiveElement()
     {
         if (Editor.SubElements.Any(el => el.Data == null))
@@ -177,63 +127,64 @@ public class FileSystem : MonoBehaviour
         TextNotification.Show($"Saved {elementData.Name}");
 
     }
-    private static string saveAtom(Element elementData, IEnumerable<Element> subElements)
+    private static string saveAtom(Element element, IEnumerable<Element> subElements)
     {
         // .. if this atom doesn't exist, there's no need to check for isotopes. Just save it.
-        var atomFilePath = GetElementFilePath(elementData);
+        var atomFilePath = GetElementFilePath(element);
         if (!File.Exists(atomFilePath))
             return atomFilePath;
 
-        // .. if the atom exists, we should check if the new data is an isotope or not
-        var newAtomData = elementData as Atom;
-        var particles = subElements.Cast<Particle>();
-
         var existingAtomJSON = File.ReadAllText(atomFilePath);
-        var parentAtom = JsonUtility.FromJson<Atom>(existingAtomJSON);
+        var existingAtom = JsonUtility.FromJson<Atom>(existingAtomJSON);
+        var existingAtomParticles = FileSystemCache.GetOrLoadSubElementsOfTypeByIds<Particle>(existingAtom.ParticleIds);
+        var existingAtomNeutronCount = existingAtomParticles.Where(particle => particle.Charge == 0).Count();
 
-        var atomNeutronCount = particles.Where(particle => particle.Charge == 0).Count();
-        var existingAtomNeutronCount = parentAtom.Particles.Where(particle => particle.Charge == 0).Count();
-        var activeAtomIsIsotope = atomNeutronCount != existingAtomNeutronCount;
-
-        /* var existingIsotope = parentAtom.Isotopes.FirstOrDefault(i =>
+        var existingAtomIsotopes = FileSystemCache.GetOrLoadElementsOfTypeByIds<Atom>(existingAtom.IsotopeIds);
+        var existingIsotope = existingAtomIsotopes.FirstOrDefault(iso =>
         {
-            var isotopeNeutrons = i.Particles.Where(p => p.Charge == 0);
-            var isotopeNeutronCount = isotopeNeutrons.Count();
+            var isotopeParticles = FileSystemCache.GetOrLoadSubElementsOfTypeByIds<Particle>(iso.IsotopeIds);
+            var isotopeNeutronCount = isotopeParticles.Where(p => p.Charge == 0).Count();
 
-            return isotopeNeutronCount == atomNeutronCount;
-        }); */
+            return (isotopeNeutronCount == existingAtomNeutronCount);
+        });
 
-        if (activeAtomIsIsotope /* && existingIsotope == null */)
+        var atomToSave = element as Atom;
+        var atomParticles = subElements.Cast<Particle>();
+        var atomNeutronCount = atomParticles.Where(particle => particle.Charge == 0).Count();
+        var atomIsIsotope = atomNeutronCount != existingAtomNeutronCount;
+
+        if (atomIsIsotope && existingIsotope == null)
         {
-            DialogYesNo.Open("Create Isotope?", $"You're about to create an isotope for \"{parentAtom.Name}\". Do you want to do that?",
+            DialogYesNo.Open("Create Isotope?", $"You're about to create an isotope for \"{existingAtom.Name}\". Do you want to do that?",
                 () =>
                 {
 
-                    var existingAtomFileName = GetElementFileName(parentAtom);
+                    var existingAtomFileName = GetElementFileName(existingAtom);
                     var isotopeFilePath = $"{GetElementDirectoryPathForType(ElementType.Atom)}/{existingAtomFileName}n{atomNeutronCount}.{fileExtension}";
 
-                    newAtomData.ParentId = parentAtom.Id;
+                    atomToSave.ParentId = existingAtom.Id;
 
-                    Array.Resize(ref parentAtom.IsotopeIds, parentAtom.IsotopeIds.Length + 1);
-                    parentAtom.IsotopeIds[parentAtom.IsotopeIds.Length - 1] = newAtomData.Id;
+                    Array.Resize(ref existingAtom.IsotopeIds, existingAtom.IsotopeIds.Length + 1);
+                    existingAtom.IsotopeIds[existingAtom.IsotopeIds.Length - 1] = atomToSave.Id;
 
-                    var atomJSON = JsonUtility.ToJson(newAtomData);
+                    var atomJSON = JsonUtility.ToJson(atomToSave);
                     File.WriteAllText(isotopeFilePath, atomJSON);
-                    TextNotification.Show($"Created {parentAtom.Name} isotope \"{newAtomData.Name}\"");
+                    TextNotification.Show($"Created {existingAtom.Name} isotope \"{atomToSave.Name}\"");
                 }
             );
         }
         else
         {
-            /* if (existingIsotope != null)
-                parentAtom = existingIsotope; */
+            if (existingIsotope != null)
+                existingAtom = existingIsotope;
 
-            DialogYesNo.Open("Overwrite?", $"Are you sure you want to overwrite \"{parentAtom.Name}\"?",
+            DialogYesNo.Open("Overwrite?", $"Are you sure you want to overwrite \"{existingAtom.Name}\"?",
             () =>
             {
-                var atomJSON = JsonUtility.ToJson(newAtomData);
+                var atomJSON = JsonUtility.ToJson(atomToSave);
                 File.WriteAllText(atomFilePath, atomJSON);
-                TextNotification.Show($"Saved {newAtomData.Name}");
+                TextNotification.Show($"Saved {atomToSave.Name}");
+                FileSystemCache.ReloadElementOfTypeById<Atom>(atomToSave.Id);
             }
         );
         }
@@ -243,17 +194,12 @@ public class FileSystem : MonoBehaviour
 
     public static void DeleteElement(Element elementData)
     {
-        Instance.loadedElements.Remove(elementData);
+        var elementFilePath = GetElementFilePath(elementData);
+        if (!File.Exists(elementFilePath))
+            throw new ApplicationException($"The file at path \"{elementFilePath}\" doesn't exist");
 
-        var mainElementFilePath = GetElementFilePath(elementData);
-
-        if (!File.Exists(mainElementFilePath))
-            throw new ApplicationException($"The file at path \"{mainElementFilePath}\" doesn't exist in call to FileSystem.DeleteElement");
-
-        File.Delete(mainElementFilePath);
-
-        // TODO: implement deleting isotopes
-        // File.Delete(!elementData.IsIsotope ? GetMainElementFilePath(elementData) : GetIsotopeFilePath(elementData));
-        TextNotification.Show("Delete Successful");
+        File.Delete(elementFilePath);
+        FileSystemCache.RemoveElementOfTypeById(elementData.Id, elementData.ElementType);
+        TextNotification.Show($"Deleted \"{elementData.Name}\"");
     }
 }

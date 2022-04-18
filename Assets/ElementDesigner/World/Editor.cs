@@ -12,18 +12,19 @@ public enum ElementType { None = 0, Particle = 1, Atom = 2, Molecule = 3, Produc
 public class Editor : MonoBehaviour
 {
     private static Editor instance;
-
-    private ElementType designType = ElementType.Atom;
-    public static ElementType DesignType
+    public static Editor Instance
     {
         get
         {
             if (instance == null)
                 instance = FindObjectOfType<Editor>();
 
-            return instance.designType;
+            return instance;
         }
     }
+
+    private ElementType designType = ElementType.Atom;
+    public static ElementType DesignType => Instance.designType;
     public static bool HasUnsavedChanges = false;
 
     // PREFABS
@@ -59,7 +60,7 @@ public class Editor : MonoBehaviour
     public static GameObject elementGameObject;
 
     private List<WorldElement> subElements = new List<WorldElement>();
-    public static List<WorldElement> SubElements { get => instance.subElements; }
+    public static List<WorldElement> SubElements { get => Instance.subElements; }
 
     // LOADED ELEMENTS
     public List<Element> LoadedElements = new List<Element>();
@@ -117,16 +118,16 @@ public class Editor : MonoBehaviour
         if (HasUnsavedChanges)
         {
             var dialogBody = "You have unsaved changes in the editor. Would you like to save before continuing?";
-            DialogYesNo.Open("Save Changes?", dialogBody, HandleSave, null,
-            () =>
+            DialogYesNo.Open("Save Changes?", dialogBody, this.HandleSave, null,
+            (VoidFN)(() =>
             {
-                Editor.instance.clearSubElements();
+                Editor.Instance.clearSubElements();
                 createNewElementOfType<T>();
-            });
+            }));
         }
         else
         {
-            Editor.instance.clearSubElements();
+            Editor.Instance.clearSubElements();
             createNewElementOfType<T>();
         }
     }
@@ -365,7 +366,7 @@ public class Editor : MonoBehaviour
         if (elementData == null)
             throw new ArgumentException("Expected elementData in call to Editor.LoadElement, got null");
 
-        instance.clearSubElements();
+        Instance.clearSubElements();
         // Camera.main.transform.position = instance.cameraStartPos;
         // Camera.main.transform.rotation = instance.cameraStartAngle;
         if (elementData.ElementType == ElementType.Atom)
@@ -373,7 +374,7 @@ public class Editor : MonoBehaviour
             var atomData = elementData as Atom;
             var particlesToCreate = new List<ParticleType>();
 
-            var particles = FileSystem.GetOrLoadElementsOfType(ElementType.Particle);
+            var particles = FileSystemCache.GetOrLoadElementsOfType(ElementType.Particle);
 
             foreach (int particleId in atomData.ParticleIds)
             {
@@ -424,7 +425,7 @@ public class Editor : MonoBehaviour
         {
             if (elementType == ElementType.Particle)
             {
-                newWorldElementGO = Instantiate(instance.particlePrefab);
+                newWorldElementGO = Instantiate(Instance.particlePrefab);
 
                 var elementDataAsParticle = elementData as Particle;
                 var newWorldParticle = newWorldElementGO.GetComponent<WorldParticle>();

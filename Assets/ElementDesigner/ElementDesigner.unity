@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4465782, g: 0.49641252, b: 0.5748167, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -27226,7 +27226,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 612247311}
         m_TargetAssemblyTypeName: Editor, Assembly-CSharp
-        m_MethodName: HandleClearParticlesClicked
+        m_MethodName: HandleClearSubElementsClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -30115,6 +30115,8 @@ MonoBehaviour:
   textStability: {fileID: 0}
   textCharge: {fileID: 0}
   selectionBoxRect: {fileID: 1374604300}
+  LoadedElements: []
+  LoadedSubElements: []
 --- !u!114 &612247313
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,35 +1,178 @@
 using System.Collections.Generic;
 using System.Linq;
 using System;
+using UnityEngine;
 
-public class FileSystemCache
+public class FileSystemCache : MonoBehaviour
 {
-    public const int defaultExpiryMS = 4000;
-    public readonly DateTime Expiry;
-
-    private ElementType elementType = ElementType.None;
-    public Element[] Contents { get; private set; }
-    public FileSystemCache(ElementType elementType)
+    private static FileSystemCache instance;
+    public static FileSystemCache Instance
     {
-        Expiry = DateTime.Now.AddMilliseconds(defaultExpiryMS);
+        get
+        {
+            if (instance == null)
+            {
+                var newFileSystem = FindObjectOfType<FileSystemCache>();
+
+                if (newFileSystem == null)
+                    newFileSystem = Camera.main.gameObject.AddComponent<FileSystemCache>();
+
+                instance = newFileSystem;
+            }
+
+            return instance;
+        }
+    }
+    private List<Element> elements = new List<Element>();
+    private List<Element> subElements = new List<Element>();
+
+    public static IEnumerable<Element> GetOrLoadElementsOfType(ElementType type)
+    {
+        var firstElement = Instance.elements.FirstOrDefault();
+
+        if (firstElement?.ElementType != type || firstElement == null)
+            Instance.elements = FileSystemLoader.LoadElementsOfType(type).ToList();
+
+        return Instance.elements;
+    }
+    public static IEnumerable<T> GetOrLoadElementsOfType<T>() where T : Element
+    {
+        if (!Enum.TryParse(typeof(T).FullName, out ElementType type))
+            throw new ArgumentException($"Element of type \"{typeof(T).FullName}\" is not parsable to ElementType");
+
+        var firstElement = Instance.elements.FirstOrDefault();
+
+        if (firstElement?.ElementType != type || firstElement == null)
+            Instance.elements = FileSystemLoader.LoadElementsOfType(type).ToList();
+
+        return Instance.elements.Cast<T>();
+    }
+    public static Element GetOrLoadElementOfTypeById<T>(int id) where T : Element
+        => getOrLoadElementOfTypeById<T>(id);
+    public static IEnumerable<T> GetOrLoadElementsOfTypeByIds<T>(IEnumerable<int> ids) where T : Element
+        => getOrLoadElementsOfTypeByIds<T>(ids);
+    public static Element GetOrLoadElementOfTypeById(ElementType elementType, int id)
+       => elementType switch
+       {
+           ElementType.Particle => getOrLoadElementOfTypeById<Particle>(id),
+           ElementType.Atom => getOrLoadElementOfTypeById<Atom>(id),
+           _ => throw new NotImplementedException(
+               $"Element type \"{elementType.ToString()}\" is not implemented in call to LoadElementOfTypeById"
+            )
+       };
+    public static IEnumerable<Element> GetOrLoadSubElementsOfType(ElementType type)
+    {
+        var firstElement = Instance.subElements.FirstOrDefault();
+
+        if (firstElement?.ElementType != type || firstElement == null)
+            Instance.subElements = FileSystemLoader.LoadElementsOfType(type).ToList();
+
+        return Instance.subElements;
+    }
+    public static IEnumerable<T> GetOrLoadSubElementsOfType<T>() where T : Element
+    {
+        if (!Enum.TryParse(typeof(T).FullName, out ElementType type))
+            throw new ArgumentException($"Element of type \"{typeof(T).FullName}\" is not parsable to ElementType");
+
+        var firstElement = Instance.subElements.FirstOrDefault();
+
+        if (firstElement?.ElementType != type || firstElement == null)
+            Instance.subElements = FileSystemLoader.LoadElementsOfType(type).ToList();
+
+        return Instance.subElements.Cast<T>();
+    }
+    public static Element GetOrLoadSubElementOfTypeById<T>(int id) where T : Element
+        => getOrLoadSubElementOfTypeById<T>(id);
+    public static IEnumerable<T> GetOrLoadSubElementsOfTypeByIds<T>(IEnumerable<int> ids) where T : Element
+        => getOrLoadSubElementsOfTypeByIds<T>(ids);
+    public static Element GetOrLoadSubElementOfTypeById(ElementType elementType, int id)
+       => elementType switch
+       {
+           ElementType.Particle => getOrLoadSubElementOfTypeById<Particle>(id),
+           ElementType.Atom => getOrLoadSubElementOfTypeById<Atom>(id),
+           _ => throw new NotImplementedException(
+               $"Element type \"{elementType.ToString()}\" is not implemented in call to LoadElementOfTypeById"
+            )
+       };
+    public static void ReloadElementOfTypeById<T>(int id) where T : Element
+    {
+        var oldElement = Instance.elements.FirstOrDefault(el => el.Id == id);
+        var indexToUpdate = Instance.elements.IndexOf(oldElement);
+        var updatedElement = FileSystemLoader.LoadElementOfTypeById<T>(id);
+        Instance.elements[indexToUpdate] = updatedElement;
     }
 
-    public IEnumerable<Element> Store(IEnumerable<Element> elements)
+
+    public static void RemoveElementOfTypeById<T>(int id) where T : Element
     {
-        if (elements == null || elements?.Count() == 0)
-            throw new ArgumentException("Expected an array of Elements in call to FileSystemCache.Store, got null or empty");
+        if (!Enum.TryParse(typeof(T).FullName, out ElementType type))
+            throw new ArgumentException($"Element of type \"{typeof(T).FullName}\" is not parsable to ElementType");
 
-        var firstElementFullName = elements.FirstOrDefault().GetType().FullName;
-        if (!Enum.TryParse(firstElementFullName, out ElementType elType))
-            throw new NotImplementedException(
-                $"Element of type \"{firstElementFullName}\" is not implemented in call to FileSystemCache.Store"
-            );
-
-        // TODO: DEEP-COPY array here
-        // Contents = elements
-
-        // Contents = elements.Select(el => el.Clone());
-
-        return Contents;
+        RemoveElementOfTypeById(id, type);
     }
+
+    public static void RemoveElementOfTypeById(int id, ElementType type)
+    {
+        if (!Instance.elements.ContainsElementsOfType(type))
+            throw new ApplicationException($"Elements list does not match type ${type}");
+
+        var elementToRemove = Instance.elements.FirstOrDefault(el => el.Id == id);
+        if (elementToRemove == null)
+            throw new NullReferenceException($"Element with id {id} doesn't exist");
+
+        Instance.elements.Remove(elementToRemove);
+    }
+
+    private static IEnumerable<T> getOrLoadElementsOfTypeByIds<T>(IEnumerable<int> ids) where T : Element
+    {
+        var shouldReload = !Instance.elements.ContainsElementsOfType<T>();
+        if (shouldReload)
+            Instance.elements = FileSystemLoader.LoadElementsOfType<T>().ToList<Element>();
+
+        var elementsById = Instance.elements.Where(el => ids.Contains(el.Id));
+        return elementsById.Cast<T>();
+    }
+
+    private static T getOrLoadElementOfTypeById<T>(int id) where T : Element
+    {
+        var shouldReload = !Instance.elements.ContainsElementsOfType<T>();
+        if (shouldReload)
+            Instance.elements = FileSystemLoader.LoadElementsOfType<T>().ToList<Element>();
+
+        var elementById = Instance.elements.FirstOrDefault(el => el.Id == id);
+        return elementById as T;
+    }
+
+    private static IEnumerable<T> getOrLoadSubElementsOfTypeByIds<T>(IEnumerable<int> ids) where T : Element
+    {
+        var shouldReload = !Instance.subElements.ContainsElementsOfType<T>();
+        if (shouldReload)
+            Instance.subElements = FileSystemLoader.LoadElementsOfType<T>().ToList<Element>();
+
+        var elementsById = Instance.subElements.Where(el => ids.Contains(el.Id));
+        return elementsById.Cast<T>();
+    }
+
+    private static T getOrLoadSubElementOfTypeById<T>(int id) where T : Element
+    {
+        var shouldReload = Instance.subElements.ContainsElementsOfType<T>();
+        if (shouldReload)
+            Instance.subElements = FileSystemLoader.LoadElementsOfType<T>().ToList<Element>();
+
+        var elementById = Instance.subElements.FirstOrDefault(el => el.Id == id);
+        return elementById as T;
+    }
+}
+
+public static class ElementListExtension
+{
+    public static bool ContainsElementsOfType<T>(this List<Element> list)
+    {
+        if (!Enum.TryParse(typeof(T).FullName, out ElementType type))
+            throw new ArgumentException($"Element of type \"{typeof(T).FullName}\" is not parsable to ElementType");
+
+        return list.ContainsElementsOfType(type);
+    }
+    public static bool ContainsElementsOfType(this List<Element> list, ElementType type)
+        => list.Any(el => el.ElementType == type);
 }

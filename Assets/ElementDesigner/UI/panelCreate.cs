@@ -66,7 +66,7 @@ public class panelCreate : MonoBehaviour, IPointerExitHandler
     private static IEnumerable<Element> loadSubElementsForDesignType(ElementType designType)
     => designType switch
     {
-        ElementType.Atom => FileSystem.GetOrLoadSubElementsOfType(ElementType.Particle),
+        ElementType.Atom => FileSystemCache.GetOrLoadSubElementsOfType(ElementType.Particle),
         _ => throw new NotImplementedException($"Designs for elements of type \"{designType}\" is not yet implemented")
     };
 

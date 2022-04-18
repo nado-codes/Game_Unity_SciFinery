@@ -23,7 +23,7 @@ public class DemoController : MonoBehaviour
         isDemo = toggle.isOn;
 
         timerText = GameObject.Find("textDemoTimer").GetComponent<Text>();
-        allElements = FileSystem.GetOrLoadElementsOfType(ElementType.Atom).ToList();
+        allElements = FileSystemCache.GetOrLoadElementsOfType(ElementType.Atom).ToList();
     }
 
     // Update is called once per frame
