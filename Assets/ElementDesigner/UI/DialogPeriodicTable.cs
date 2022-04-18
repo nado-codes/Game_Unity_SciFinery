@@ -115,23 +115,14 @@ public class DialogPeriodicTable : MonoBehaviour
         elementType switch
         {
             ElementType.Atom
-                => FileSystemLoader.LoadElementsOfType<Atom>().Where((a) => a.ParentId == -1),
-            _ => FileSystemLoader.LoadElementsOfType(elementType)
+                => FileSystem.GetOrLoadElementsOfType<Atom>().Where((a) => a.ParentId == -1),
+            _ => FileSystem.GetOrLoadElementsOfType(elementType)
         };
 
     // TODO: need to get or load the elements into the grid items here ... maybe only need to load them once
     private void handleOpen()
     {
 
-    }
-
-    public static async Task<string> AwaitTest()
-    {
-        var keepWaiting = true;
-
-        await Task.Delay(3000);
-
-        return "Hello!";
     }
 
     public void OpenPage1()
@@ -152,7 +143,7 @@ public class DialogPeriodicTable : MonoBehaviour
 
         page2AtomGridItem.SetData(selectedElementData);
 
-        var allAtoms = FileSystemLoader.LoadElementsOfType<Atom>();
+        var allAtoms = FileSystem.GetOrLoadElementsOfType<Atom>();
         var allIsotopes = allAtoms.Where(a => a.ParentId != -1);
         var selectedAtomIsotopes = allIsotopes.Where(i => i.ParentId == selectedElementData.Id);
 

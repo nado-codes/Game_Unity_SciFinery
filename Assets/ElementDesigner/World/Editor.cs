@@ -95,12 +95,6 @@ public class Editor : MonoBehaviour
         // NOTE: Start the Editor in an initial state, also setting up the UI
         // with the correct elements and displays
         HandleChangeDesignTypeClicked(ElementType.Atom);
-
-        System.Threading.Tasks.Task.Run(async () =>
-        {
-            var notifText = await DialogPeriodicTable.AwaitTest();
-            TextNotification.Show(notifText);
-        });
     }
 
     public void HandleChangeDesignTypeClicked(ElementType newDesignType)
@@ -109,10 +103,8 @@ public class Editor : MonoBehaviour
             handleChangeDesignType<Atom>();
 
         panelCreate.SetDesignType(newDesignType);
-        FileSystem.Instance.LoadedElements = FileSystemLoader.LoadElementsOfType(newDesignType).ToList();
         designType = newDesignType;
         TextNotification.Show("Design Type: " + newDesignType);
-
     }
 
     public void HandleSave()
@@ -381,7 +373,7 @@ public class Editor : MonoBehaviour
             var atomData = elementData as Atom;
             var particlesToCreate = new List<ParticleType>();
 
-            var particles = FileSystemLoader.LoadElementsOfType(ElementType.Particle);
+            var particles = FileSystem.GetOrLoadElementsOfType(ElementType.Particle);
 
             foreach (int particleId in atomData.ParticleIds)
             {

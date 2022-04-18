@@ -42,12 +42,6 @@ public class FileSystem : MonoBehaviour
     private List<Element> loadedElements = new List<Element>();
     private List<Element> loadedSubElements = new List<Element>();
 
-    public static IEnumerable<Element> GetOrLoadElementsOfType(ElementType type)
-    {
-        if (LoadedEl)
-    }
-
-
     public static string GetElementDirectoryPathForType(ElementType type)
       => $"{elementsRoot}/{type}";
     public static string GetElementDirectoryPathForTypeName(string typeName)
@@ -79,11 +73,51 @@ public class FileSystem : MonoBehaviour
         return ActiveElement as T;
     }
 
-    public static IEnumerable<Element> GetOrLoadElementsByType(ElementType elementType)
-        => elementType switch
-        {
-            _ => throw new NotImplementedException($"Element of type {elementType} is not yet implemented")
-        };
+    public static IEnumerable<Element> GetOrLoadElementsOfType(ElementType type)
+    {
+        var firstElement = Instance.loadedElements.FirstOrDefault();
+
+        if (firstElement?.ElementType != type || firstElement == null)
+            Instance.loadedElements = FileSystemLoader.LoadElementsOfType(type).ToList();
+
+        return Instance.loadedElements;
+    }
+
+    public static IEnumerable<T> GetOrLoadElementsOfType<T>() where T : Element
+    {
+        if (!Enum.TryParse(typeof(T).FullName, out ElementType type))
+            throw new ArgumentException($"Element of type \"{typeof(T).FullName}\" is not parsable to ElementType");
+
+        var firstElement = Instance.loadedElements.FirstOrDefault();
+
+        if (firstElement?.ElementType != type || firstElement == null)
+            Instance.loadedElements = FileSystemLoader.LoadElementsOfType(type).ToList();
+
+        return Instance.loadedElements.Cast<T>();
+    }
+
+    public static IEnumerable<Element> GetOrLoadSubElementsOfType(ElementType type)
+    {
+        var firstElement = Instance.loadedSubElements.FirstOrDefault();
+
+        if (firstElement?.ElementType != type || firstElement == null)
+            Instance.loadedSubElements = FileSystemLoader.LoadElementsOfType(type).ToList();
+
+        return Instance.loadedSubElements;
+    }
+
+    public static IEnumerable<T> GetOrLoadSubElementsOfType<T>() where T : Element
+    {
+        if (!Enum.TryParse(typeof(T).FullName, out ElementType type))
+            throw new ArgumentException($"Element of type \"{typeof(T).FullName}\" is not parsable to ElementType");
+
+        var firstElement = Instance.loadedSubElements.FirstOrDefault();
+
+        if (firstElement?.ElementType != type || firstElement == null)
+            Instance.loadedSubElements = FileSystemLoader.LoadElementsOfType(type).ToList();
+
+        return Instance.loadedSubElements.Cast<T>();
+    }
 
     public static void UpdateActiveElement()
     {
@@ -209,7 +243,7 @@ public class FileSystem : MonoBehaviour
 
     public static void DeleteElement(Element elementData)
     {
-        LoadedElements.Remove(elementData);
+        Instance.loadedElements.Remove(elementData);
 
         var mainElementFilePath = GetElementFilePath(elementData);
 

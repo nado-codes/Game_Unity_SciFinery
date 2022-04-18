@@ -55,19 +55,20 @@ public class panelCreate : MonoBehaviour, IPointerExitHandler
 
     void Start() => VerifyInitialize();
 
+
+
     public static void SetDesignType(ElementType newDesignType)
     {
-        switch (newDesignType)
-        {
-            case ElementType.Atom:
-                FileSystem.Instance.LoadedSubElements = FileSystemLoader.LoadElementsOfType(newDesignType).ToList();
-                break;
-            default:
-                throw new NotImplementedException($"Element of type {newDesignType} is not yet implemented in call to panelCreate.SetDesignType");
-        };
-
-        Instance.LoadElements(FileSystem.Instance.LoadedSubElements);
+        var subElements = loadSubElementsForDesignType(newDesignType);
+        Instance.LoadElements(subElements);
     }
+
+    private static IEnumerable<Element> loadSubElementsForDesignType(ElementType designType)
+    => designType switch
+    {
+        ElementType.Atom => FileSystem.GetOrLoadSubElementsOfType(ElementType.Particle),
+        _ => throw new NotImplementedException($"Designs for elements of type \"{designType}\" is not yet implemented")
+    };
 
     public void HandlePrevButtonClicked()
     {
