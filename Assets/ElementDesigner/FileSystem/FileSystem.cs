@@ -176,14 +176,15 @@ public class FileSystem : MonoBehaviour
             var parentAtomFileName = GetElementFileName(parentAtom);
             var isotopeFilePath = $"{GetElementDirectoryPathForType(ElementType.Atom)}/{parentAtomFileName}n{atomNeutronCount}.{fileExtension}";
             var atomToSaveJSON = JsonUtility.ToJson(atomToSave);
-            File.WriteAllText(isotopeFilePath, atomToSaveJSON);
-            FileSystemCache.ReloadElementOfTypeById<Atom>(atomToSave.Id);
+            FileSystemCache.AddElement(atomToSave);
 
             // .. add the isotope to the parent and save it
             parentAtom.IsotopeIds = parentAtom.IsotopeIds.Concat(new int[] { atomToSave.Id }).ToArray();
             var parentAtomJSON = JsonUtility.ToJson(parentAtom);
-            File.WriteAllText(GetElementFilePath(parentAtom), parentAtomJSON);
             FileSystemCache.ReloadElementOfTypeById<Atom>(parentAtom.Id);
+
+            File.WriteAllText(isotopeFilePath, atomToSaveJSON);
+            File.WriteAllText(GetElementFilePath(parentAtom), parentAtomJSON);
 
             TextNotification.Show($"Created {parentAtom.Name} isotope \"{atomToSave.Name}\"");
         }

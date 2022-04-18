@@ -26,6 +26,42 @@ public class FileSystemCache : MonoBehaviour
     private List<Element> elements = new List<Element>();
     private List<Element> subElements = new List<Element>();
 
+
+    // TODO: "FileSystemCache" should work like a Repository
+    public IEnumerable<Element> GetAll()
+    {
+        throw new NotImplementedException();
+    }
+    public Element GetById(int id)
+    {
+        throw new NotImplementedException();
+    }
+    public int Add(Element element)
+    {
+        throw new NotImplementedException();
+    }
+
+    public static void AddElement(Element element)
+    {
+        instance.elements.Add(element);
+    }
+
+    public static void AddSubElement(Element element)
+    {
+        instance.subElements.Add(element);
+    }
+
+    // TODO
+    /* public void Update(Element element)
+    {
+
+    } */
+
+    public void Delete()
+    {
+
+    }
+
     public static IEnumerable<Element> GetOrLoadElementsOfType(ElementType type)
     {
         var firstElement = Instance.elements.FirstOrDefault();
@@ -99,6 +135,10 @@ public class FileSystemCache : MonoBehaviour
         var oldElement = Instance.elements.FirstOrDefault(el => el.Id == id);
         var indexToUpdate = Instance.elements.IndexOf(oldElement);
         var updatedElement = FileSystemLoader.LoadElementOfTypeById<T>(id);
+
+        if (indexToUpdate == -1 || Instance.elements.Count() <= indexToUpdate)
+            throw new NullReferenceException($"Element with id {id} does not exist in elements array");
+
         Instance.elements[indexToUpdate] = updatedElement;
     }
     public static void UpdateElement(Element element)
