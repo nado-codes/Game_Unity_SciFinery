@@ -52,6 +52,14 @@ public class FileSystem : MonoBehaviour
         => $"{element.ShortName.ToLower()}{element.Id}";
     public static string GetElementFilePath(Element element)
         => $"{GetElementDirectoryPathForType(element.ElementType)}/{GetElementFileName(element)}.{fileExtension}";
+    public static string GetIsotopeFilePath(Atom atom, Atom parentAtom)
+    {
+        var parentAtomFileName = GetElementFileName(parentAtom);
+        var atomParticles = FileSystemCache.GetOrLoadSubElementsOfTypeByIds<Particle>(atom.ParticleIds);
+        var atomNeutronCount = atomParticles.Where(p => p.Charge == 0).Count();
+
+        return $"{GetElementDirectoryPathForType(ElementType.Atom)}/{parentAtomFileName}n{atomNeutronCount}.{fileExtension}";
+    }
 
     public static T CreateElementOfType<T>() where T : Element, new()
     {
@@ -139,6 +147,8 @@ public class FileSystem : MonoBehaviour
         // .. if this atom doesn't exist, there's no need to check for isotopes. Just save it.
         var allAtoms = FileSystemCache.GetOrLoadElementsOfType<Atom>();
         var atomToSave = element as Atom;
+        var atomParticles = subElements.Cast<Particle>();
+        var atomNeutronCount = atomParticles.Where(particle => particle.Charge == 0).Count();
         var parentAtom = allAtoms.FirstOrDefault(a => a.Number == atomToSave.Number);
 
         if (parentAtom == null)
@@ -153,54 +163,53 @@ public class FileSystem : MonoBehaviour
             var isotopeParticles = FileSystemCache.GetOrLoadSubElementsOfTypeByIds<Particle>(iso.ParticleIds);
             var isotopeNeutronCount = isotopeParticles.Where(p => p.Charge == 0).Count();
 
-            return (isotopeNeutronCount == parentAtomNeutronCount);
+            return (isotopeNeutronCount == atomNeutronCount);
         });
 
-        var atomParticles = subElements.Cast<Particle>();
-        var atomNeutronCount = atomParticles.Where(particle => particle.Charge == 0).Count();
+
         var atomIsIsotope = atomNeutronCount != parentAtomNeutronCount;
 
         if (atomIsIsotope && existingIsotope == null)
         {
-            /* DialogYesNo.Open("Create Isotope?", $"You're about to create an isotope for \"{existingAtom.Name}\". Do you want to do that?",
+            DialogYesNo.Open("Create Isotope?", $"You're about to create an isotope for \"{parentAtom.Name}\". Do you want to do that?",
                 () =>
                 {
+                    // .. save the isotope
+                    atomToSave.ParentId = parentAtom.Id;
+                    atomToSave.Id = allAtoms.Count() + 1;
+                    var isotopeFilePath = GetIsotopeFilePath(atomToSave, parentAtom);
+                    var atomToSaveJSON = JsonUtility.ToJson(atomToSave);
+                    FileSystemCache.AddElement(atomToSave);
+                    File.WriteAllText(isotopeFilePath, atomToSaveJSON);
 
-                    
+                    // .. add the isotope to the parent and save it
+                    parentAtom.IsotopeIds = parentAtom.IsotopeIds.Concat(new int[] { atomToSave.Id }).ToArray();
+                    var parentAtomJSON = JsonUtility.ToJson(parentAtom);
+                    File.WriteAllText(GetElementFilePath(parentAtom), parentAtomJSON);
+                    FileSystemCache.ReloadElementOfTypeById<Atom>(parentAtom.Id);
+
+                    TextNotification.Show($"Created {parentAtom.Name} isotope \"{atomToSave.Name}\"");
                 }
-            ); */
-
-            // .. save the isotope
-            atomToSave.ParentId = parentAtom.Id;
-            atomToSave.Id = allAtoms.Count() + 1;
-            var parentAtomFileName = GetElementFileName(parentAtom);
-            var isotopeFilePath = $"{GetElementDirectoryPathForType(ElementType.Atom)}/{parentAtomFileName}n{atomNeutronCount}.{fileExtension}";
-            var atomToSaveJSON = JsonUtility.ToJson(atomToSave);
-            FileSystemCache.AddElement(atomToSave);
-
-            // .. add the isotope to the parent and save it
-            parentAtom.IsotopeIds = parentAtom.IsotopeIds.Concat(new int[] { atomToSave.Id }).ToArray();
-            var parentAtomJSON = JsonUtility.ToJson(parentAtom);
-            FileSystemCache.ReloadElementOfTypeById<Atom>(parentAtom.Id);
-
-            File.WriteAllText(isotopeFilePath, atomToSaveJSON);
-            File.WriteAllText(GetElementFilePath(parentAtom), parentAtomJSON);
-
-            TextNotification.Show($"Created {parentAtom.Name} isotope \"{atomToSave.Name}\"");
+            );
         }
         else
         {
-            if (existingIsotope != null)
-                parentAtom = existingIsotope;
+            var isIsotope = existingIsotope != null;
+            atomToSave = isIsotope ? existingIsotope : atomToSave;
 
-            DialogYesNo.Open("Overwrite?", $"Are you sure you want to overwrite \"{parentAtom.Name}\"?",
+            var dialogText = !isIsotope ? $"Are you sure you want to overwrite \"{parentAtom.Name}\"?" :
+            $"Are you sure you want to overwrite {parentAtom.Name} isotope \"{existingIsotope.Name}\"?";
+
+            DialogYesNo.Open("Overwrite?", dialogText,
             () =>
             {
+                var atomFilePath = !isIsotope ? GetElementFilePath(parentAtom) : GetIsotopeFilePath(atomToSave, parentAtom);
+
                 var atomJSON = JsonUtility.ToJson(atomToSave);
-                var atomFilePath = GetElementFilePath(parentAtom);
                 File.WriteAllText(atomFilePath, atomJSON);
-                TextNotification.Show($"Saved {atomToSave.Name}");
                 FileSystemCache.ReloadElementOfTypeById<Atom>(atomToSave.Id);
+
+                TextNotification.Show($"Saved {atomToSave.Name}");
             }
         );
         }

@@ -190,7 +190,7 @@ public class FileSystemCache : MonoBehaviour
         if (shouldReload)
             Instance.subElements = FileSystemLoader.LoadElementsOfType<T>().ToList<Element>();
 
-        var elementsById = Instance.subElements.Where(el => ids.Contains(el.Id));
+        var elementsById = ids.Select(id => getOrLoadElementOfTypeById<T>(id));
         return elementsById.Cast<T>();
     }
     private static T getOrLoadSubElementOfTypeById<T>(int id) where T : Element
