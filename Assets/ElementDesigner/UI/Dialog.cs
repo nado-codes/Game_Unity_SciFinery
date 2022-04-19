@@ -30,7 +30,6 @@ public class Dialog : MonoBehaviour
 
         instance.gameObject.SetActive(true);
     }
-
     public virtual void Close()
     {
         verifyInitialize();

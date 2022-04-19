@@ -19,16 +19,22 @@ public class DialogYesNo : Dialog
         instance.Open(title, body);
     }
 
-    public new static YesNo Open(string title, string body)
-    {
-        YesNo? result = null;
+    private static YesNo? result = null;
 
+    public static void OpenForResult(string title, string body)
+    {
         _fnYes = () => result = YesNo.Yes;
         _fnNo = () => result = YesNo.No;
 
-        while (result == null) { }
+        instance.Open(title, body);
+    }
 
-        return (YesNo)result;
+    public static async Task<YesNo> WaitResult()
+    {
+        await Task.Run(() => { while (result == null) { } });
+        var finalResult = result;
+        result = null;
+        return (YesNo)finalResult;
     }
     public void HandleYesButtonClicked()
     {

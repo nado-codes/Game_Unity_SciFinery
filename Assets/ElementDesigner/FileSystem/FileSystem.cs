@@ -118,9 +118,12 @@ public class FileSystem : MonoBehaviour
         => element.ElementType == elementType ? true :
     throw new ArgumentException($"Element must be of type {elementType} in call to {callerName}, got {element.ElementType}");
 
-    private static void saveElement(Element elementData, IEnumerable<Element> subElements)
+    private static async void saveElement(Element elementData, IEnumerable<Element> subElements)
     {
         assertValidSubElements(Instance.activeElement.ElementType, subElements);
+
+        DialogYesNo.OpenForResult("TestYesNo", "Select an Option");
+        var result = await DialogYesNo.WaitResult();
 
         var elementFilePath = elementData.ElementType switch
         {
