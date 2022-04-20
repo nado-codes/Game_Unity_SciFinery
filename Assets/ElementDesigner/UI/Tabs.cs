@@ -1,8 +1,6 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.Events;
 using System.Linq;
 
 public delegate void TabClick(int tabId);
@@ -10,7 +8,7 @@ public class Tabs : MonoBehaviour
 {
     private List<Tab> tabs = new List<Tab>();
 
-    public int selectedTabIndex = 0;
+    public int SelectedTabIndex = 0;
 
     public TabClick OnSelectedTabChanged;
 
@@ -20,14 +18,12 @@ public class Tabs : MonoBehaviour
     {
         tabs = GetComponentsInChildren<Tab>().ToList();
 
-        var firstTab = tabs.FirstOrDefault();
-
         tabs.ForEach((tab) =>
         {
             tab.OnClick += () => handleTabClicked(tab.index);
 
             var currentTabIndex = tabs.IndexOf(tab);
-            if (currentTabIndex == selectedTabIndex)
+            if (currentTabIndex == SelectedTabIndex)
                 tab.Select();
             else
                 tab.Deselect();
@@ -36,13 +32,21 @@ public class Tabs : MonoBehaviour
 
     void handleTabClicked(int index)
     {
-        Debug.Log("selected tab " + index);
+        if (index < 0 || index > tabs.Count - 1)
+            throw new ArgumentException($"index must be between 0 and {tabs.Count - 1} inclusive");
+        SelectTab(index);
+        OnSelectedTabChanged?.Invoke(index);
+    }
+
+    public void SelectTab(int index)
+    {
+        if (index < 0 || index > tabs.Count - 1)
+            throw new ArgumentException($"index must be between 0 and {tabs.Count - 1} inclusive");
+
         var tabToSelect = tabs.FirstOrDefault(tab => tabs.IndexOf(tab) == index);
         tabToSelect.Select();
 
         var otherTabs = tabs.Where((_, i) => i != index).ToList();
         otherTabs.ForEach(tab => tab.Deselect());
-
-        OnSelectedTabChanged?.Invoke(index);
     }
 }

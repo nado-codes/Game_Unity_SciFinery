@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public enum DragState { Init, Active, None }
-public enum ElementType { None = 0, Particle = 1, Atom = 2, Molecule = 3, Product = 4 }
+public enum ElementType { Particle = 0, Atom = 1, Molecule = 2, Product = 3 }
 
 public class Editor : MonoBehaviour
 {
@@ -96,6 +96,7 @@ public class Editor : MonoBehaviour
         // NOTE: Start the Editor in an initial state, also setting up the UI
         // with the correct elements and displays
         HandleChangeDesignTypeClicked(ElementType.Atom);
+        designTypeTabs.SelectTab((int)ElementType.Atom);
     }
 
     public void HandleChangeDesignTypeClicked(ElementType newDesignType)
@@ -397,7 +398,7 @@ public class Editor : MonoBehaviour
                 }
             }
         }
-        else if (elementData.ElementType == ElementType.None)
+        else if (elementData.ElementType == null)
             throw new ApplicationException($"Element of type \"None\" is not valid in call to Editor.LoadElement");
         else
             throw new NotImplementedException($"Element of type \"{elementData.GetType().FullName}\" is not yet implemented in call to Editor.LoadElementData");

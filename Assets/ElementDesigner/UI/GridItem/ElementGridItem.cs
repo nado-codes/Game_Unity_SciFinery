@@ -12,7 +12,7 @@ public class ElementGridItem : MonoBehaviour, IPointerDownHandler
     public bool hasData = false; // .. Because of the way Unity works, we can't use "elementData == null"
     public ElementDataDelegate OnClick;
     public Element elementData;
-    public ElementType elementDataType = ElementType.None;
+    public ElementType elementDataType = ElementType.Particle;
     protected Text numberText, nameText, shortNameText, weightText;
     protected Transform ActiveLayout;
     protected Button button;
