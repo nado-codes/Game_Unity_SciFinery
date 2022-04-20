@@ -184,7 +184,7 @@ public class FileSystem : MonoBehaviour
                 $"You're about to create an isotope for \"{parentAtom.Name}\". Do you want to do that?"
             );
 
-            if (createIsotopeResult == DialogYesNo.YesNo.Yes)
+            if (createIsotopeResult == YesNo.Yes)
             {
                 // .. save the isotope
                 atomToSave.ParentId = parentAtom.Id;
@@ -213,7 +213,7 @@ public class FileSystem : MonoBehaviour
 
             var overwriteResult = await DialogYesNo.OpenForResult("Overwrite?", dialogText);
 
-            if (overwriteResult == DialogYesNo.YesNo.Yes)
+            if (overwriteResult == YesNo.Yes)
             {
                 var atomFilePath = !isIsotope ? GetElementFilePath(parentAtom) : GetIsotopeFilePath(atomToSave, parentAtom);
 
