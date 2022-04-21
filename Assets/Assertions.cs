@@ -10,6 +10,12 @@ public static class Assertions
         if (obj == null)
             throw new NullReferenceException($"Expected {propertyName} in call to {callerName}, got null");
     }
+
+    public static void AssertNotNull<T>(this object parent, T property)
+    {
+        if (property == null)
+            throw new NullReferenceException($"Expected {propertyName} in call to {callerName}, got null");
+    }
     public static void AssertNotEmpty<T>(IEnumerable<T> obj, string propertyName, [CallerMemberName] string callerName = "")
     {
         if (obj.Count() < 1)
