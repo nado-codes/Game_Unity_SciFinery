@@ -24,46 +24,37 @@ public class DialogPeriodicTable : MonoBehaviour
     private void VerifyInitialize()
     {
         stdLayoutTransform = transform.Find("Layout_Std");
-        AssertNotNull(stdLayoutTransform, "stdLayoutTransform");
+        Assertions.AssertNotNull(stdLayoutTransform, "stdLayoutTransform");
         isotopeLayoutTransform = transform.Find("Layout_Isotope");
-        AssertNotNull(isotopeLayoutTransform, "isotopeLayoutTransform");
+        Assertions.AssertNotNull(isotopeLayoutTransform, "isotopeLayoutTransform");
 
         var page1GridTransform = stdLayoutTransform.Find("grid");
-        AssertNotNull(page1GridTransform, "page1GridTransform");
+        Assertions.AssertNotNull(page1GridTransform, "page1GridTransform");
         page1GridItems = page1GridTransform.GetComponentsInChildren<GridItem>().ToList();
-        AssertNotEmpty(page1GridItems, "page1GridItems");
+        Assertions.AssertNotEmpty(page1GridItems, "page1GridItems");
         page1GridItems.ForEach(item => item.GetComponent<Button>().onClick.AddListener(() => HandleItemSelected(item)));
 
         var page2AtomGridItemTransform = isotopeLayoutTransform.transform.Find("gridItem");
-        AssertNotNull(page2AtomGridItemTransform, "page2AtomGridItem");
+        Assertions.AssertNotNull(page2AtomGridItemTransform, "page2AtomGridItem");
         page2AtomGridItem = page2AtomGridItemTransform.GetComponent<GridItem>();
-        AssertNotNull(page2AtomGridItem, "page2AtomGridItem");
+        Assertions.AssertNotNull(page2AtomGridItem, "page2AtomGridItem");
         var page2GridTransform = isotopeLayoutTransform.Find("grid");
-        AssertNotNull(page2GridTransform, "page2GridTransform");
+        Assertions.AssertNotNull(page2GridTransform, "page2GridTransform");
         page2GridItems = page2GridTransform.GetComponentsInChildren<GridItem>().ToList();
-        AssertNotEmpty(page2GridItems, "page2GridItems");
+        Assertions.AssertNotEmpty(page2GridItems, "page2GridItems");
         page2GridItems.ForEach(item => item.GetComponent<Button>().onClick.AddListener(() => HandleItemSelected(item)));
 
         btnLoad = transform.Find("btnLoad").GetComponent<Button>();
-        AssertNotNull(btnLoad, "btnLoad");
+        Assertions.AssertNotNull(btnLoad, "btnLoad");
         btnDelete = transform.Find("btnDelete").GetComponent<Button>();
-        AssertNotNull(btnDelete, "btnDelete");
+        Assertions.AssertNotNull(btnDelete, "btnDelete");
         btnIsotopes = stdLayoutTransform.Find("btnIsotopes").GetComponent<Button>();
-        AssertNotNull(btnIsotopes, "btnIsotopes");
+        Assertions.AssertNotNull(btnIsotopes, "btnIsotopes");
 
         OpenPage1();
         Close();
     }
-    private void AssertNotNull<T>(T obj, string propertyName, [CallerMemberName] string callerName = "")
-    {
-        if (obj == null)
-            throw new NullReferenceException($"Expected {propertyName} in call to {callerName}, got null");
-    }
-    private void AssertNotEmpty<T>(IEnumerable<T> obj, string propertyName, [CallerMemberName] string callerName = "")
-    {
-        if (obj.Count() < 1)
-            throw new ApplicationException($"{propertyName} is not allowed to be empty in call to {callerName}");
-    }
+
     void Start()
     {
         VerifyInitialize();

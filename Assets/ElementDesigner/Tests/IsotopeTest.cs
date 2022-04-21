@@ -10,9 +10,9 @@ public class MyTest
     [Test]
     public void MyTestSimplePasses()
     {
-        // Use the Assert class to test conditions
+        // Use the Assertions.Assert class to test conditions
 
-        
+
     }
 
     // A UnityTest behaves like a coroutine in Play Mode. In Edit Mode you can use
@@ -20,7 +20,7 @@ public class MyTest
     [UnityTest]
     public IEnumerator MyTestWithEnumeratorPasses()
     {
-        // Use the Assert class to test conditions.
+        // Use the Assertions.Assert class to test conditions.
         // Use yield to skip a frame.
         yield return null;
     }

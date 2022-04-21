@@ -7,14 +7,6 @@ using System;
 
 public class AtomGridItem : ElementGridItem
 {
-    // Update is called once per frame
-    void Update()
-    {
-        /* var nameWithoutVowels = new string(nameText.text.Where(c => !("aeiou").Contains(c)).ToArray());
-        var newShortName = (nameWithoutVowels[0].ToString() + nameWithoutVowels[1].ToString()).ToUpper();
-        shortNameText.text = newShortName; */
-    }
-
     public override void SetActive(bool active)
     {
         VerifyInitialize();
@@ -55,8 +47,9 @@ public class AtomGridItem : ElementGridItem
         if (ActiveLayout == null)
             throw new NullReferenceException("No layout was set in call to VerifyInitialize");
 
-        numberText = ActiveLayout.Find("Number").GetComponent<Text>();
-        shortNameText = ActiveLayout.Find("ShortName").GetComponent<Text>();
-        weightText = ActiveLayout.Find("Weight").GetComponent<Text>();
+        numberText = ActiveLayout.Find("Number")?.GetComponent<Text>();
+        // Assertions.AssertNotNull<Text>
+        shortNameText = ActiveLayout.Find("ShortName")?.GetComponent<Text>();
+        weightText = ActiveLayout.Find("Weight")?.GetComponent<Text>();
     }
 }

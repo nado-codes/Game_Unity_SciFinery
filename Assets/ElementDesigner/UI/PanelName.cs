@@ -32,30 +32,25 @@ public class PanelName : MonoBehaviour
         var instanceTransform = instance.transform;
 
         numberText = instanceTransform.Find("Number")?.GetComponent<Text>();
-        AssertNotNull(numberText, "numberText");
+        Assertions.AssertNotNull(numberText, "numberText");
         shortNameText = instanceTransform.Find("ShortName")?.GetComponent<Text>();
-        AssertNotNull(shortNameText, "shortNameText");
+        Assertions.AssertNotNull(shortNameText, "shortNameText");
 
         var btnNameTransform = transform.Find("btnName");
         nameText = btnNameTransform?.Find("Name")?.GetComponent<Text>();
-        AssertNotNull(nameText, "nameText");
+        Assertions.AssertNotNull(nameText, "nameText");
 
         weightText = transform.Find("Weight")?.GetComponent<Text>();
-        AssertNotNull(weightText, "weightText");
+        Assertions.AssertNotNull(weightText, "weightText");
 
         var classificationTransform = transform.Find("Classification");
         classificationText = classificationTransform?.Find("Value")?.GetComponent<Text>();
-        AssertNotNull(classificationText, "classificationText");
+        Assertions.AssertNotNull(classificationText, "classificationText");
 
         stabilityText = transform.Find("TextStability").GetComponent<Text>();
-        AssertNotNull(stabilityText, "stabilityText");
+        Assertions.AssertNotNull(stabilityText, "stabilityText");
         chargeText = transform.Find("TextCharge").GetComponent<Text>();
-        AssertNotNull(chargeText, "chargeText");
-    }
-    private void AssertNotNull<T>(T obj, string propertyName, [CallerMemberName] string callerName = "")
-    {
-        if (obj == null)
-            throw new NullReferenceException($"Expected {propertyName} in call to panelName.{callerName}, got null");
+        Assertions.AssertNotNull(chargeText, "chargeText");
     }
     void Start() => VerifyInitialize();
 

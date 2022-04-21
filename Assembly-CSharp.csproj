@@ -78,6 +78,7 @@
      <Compile Include="Assets\ElementDesigner\FileSystem\Elements\Element.cs" />
      <Compile Include="Assets\ElementDesigner\UI\Tabs.cs" />
      <Compile Include="Assets\ElementDesigner\FileSystem\Elements\Molecule.cs" />
+     <Compile Include="Assets\Assertions.cs" />
     <Reference Include="UnityEngine">
         <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.32f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>

@@ -67,6 +67,7 @@ public class panelCreate : MonoBehaviour, IPointerExitHandler
     => designType switch
     {
         ElementType.Atom => FileSystemCache.GetOrLoadSubElementsOfType(ElementType.Particle),
+        ElementType.Molecule => FileSystemCache.GetOrLoadSubElementsOfType(ElementType.Atom),
         _ => throw new NotImplementedException($"Designs for elements of type \"{designType}\" is not yet implemented")
     };
 
@@ -100,8 +101,6 @@ public class panelCreate : MonoBehaviour, IPointerExitHandler
     {
         if (creationState == CreationState.Start)
         {
-            Debug.Log("start drag");
-
             currentWorldElement = Editor.CreateSubElement(elementToCreateData);
             currentWorldElement.enabled = false;
             creationState = CreationState.Drag;
@@ -120,12 +119,6 @@ public class panelCreate : MonoBehaviour, IPointerExitHandler
 
             bool isZoomIn = scroll < 0;
             bool isZoomOut = scroll > 0;
-
-            if (isZoomIn)
-                Debug.Log("zoom in");
-
-            if (isZoomOut)
-                Debug.Log("zoom out");
 
             if (isZoomOut && particleDistance < 50)
                 particleDistance += zoomSensitivity * Time.deltaTime;
@@ -180,6 +173,5 @@ public class panelCreate : MonoBehaviour, IPointerExitHandler
     {
         elementToCreateData = elementData;
         creationState = CreationState.Start;
-        Debug.Log("starting creation");
     }
 }

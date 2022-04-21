@@ -428,13 +428,25 @@ public class Editor : MonoBehaviour
             {
                 newWorldElementGO = Instantiate(Instance.particlePrefab);
 
-                var elementDataAsParticle = elementData as Particle;
+                var particleData = elementData as Particle;
                 var newWorldParticle = newWorldElementGO.GetComponent<WorldParticle>();
-                newWorldParticle.SetParticleData(elementDataAsParticle);
+                newWorldParticle.SetParticleData(particleData);
 
                 var activeAtom = FileSystem.ActiveElementAs<Atom>().Charge += elementData.Charge;
                 newWorldElement = newWorldParticle;
                 SubElements.Add(newWorldParticle);
+            }
+            else if (elementType == ElementType.Atom)
+            {
+                newWorldElementGO = Instantiate(Instance.atomPrefab);
+
+                var atomData = elementData as Atom;
+                var newWorldAtom = newWorldElementGO.GetComponent<WorldElement>();
+                newWorldAtom.SetData(atomData);
+
+                var activeMolecule = FileSystem.ActiveElementAs<Molecule>().Charge += elementData.Charge;
+                newWorldElement = newWorldAtom;
+                SubElements.Add(newWorldAtom);
             }
             else
                 throw new NotImplementedException($"Element of type {elementType} is not yet implemented in call to Editor.CreateWorldElement");
