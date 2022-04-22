@@ -44,8 +44,6 @@ public class AtomGridItem : ElementGridItem
 
         base.VerifyInitialize();
 
-
-
         if (ActiveLayout == null)
             throw new NullReferenceException("No layout was set in call to VerifyInitialize");
 
