@@ -14,6 +14,7 @@ public class ElementGridItem : MonoBehaviour, IPointerDownHandler
     public Element elementData;
     public ElementType elementDataType = ElementType.Particle;
     protected Text numberText, nameText, shortNameText, weightText;
+    protected GameObject cross;
     protected Transform ActiveLayout;
     protected Button button;
     protected bool initialized = false;
@@ -58,7 +59,12 @@ public class ElementGridItem : MonoBehaviour, IPointerDownHandler
 
         initialized = true;
 
+        cross = transform.Find("Cross")?.gameObject;
+        Assertions.AssertNotNull(cross, "cross");
+        cross.SetActive(false);
+
         button = GetComponent<Button>();
+        Assertions.AssertNotNull(button, "button");
         buttonColorsActive = button.colors;
         buttonColorsInactive.normalColor = button.colors.disabledColor;
         buttonColorsInactive.highlightedColor = button.colors.disabledColor;
@@ -84,6 +90,7 @@ public class ElementGridItem : MonoBehaviour, IPointerDownHandler
 
         // Update UI
         nameText = ActiveLayout.Find("Name")?.GetComponent<Text>();
+        Assertions.AssertNotNull(nameText, "nameText");
         nameText.text = elementData?.Name ?? string.Empty;
     }
 }

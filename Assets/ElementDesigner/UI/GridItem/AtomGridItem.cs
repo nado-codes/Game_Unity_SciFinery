@@ -9,12 +9,27 @@ public class AtomGridItem : ElementGridItem
 {
     public override void SetActive(bool active)
     {
-        VerifyInitialize();
+        try
+        {
+            VerifyInitialize();
 
-        numberText.gameObject.SetActive(active);
-        shortNameText.gameObject.SetActive(active);
-        nameText.gameObject.SetActive(active);
-        weightText.gameObject.SetActive(active);
+            Assertions.AssertNotNull(numberText, "numberText");
+            Assertions.AssertNotNull(shortNameText, "shortNameText");
+            Assertions.AssertNotNull(nameText, "nameText");
+            Assertions.AssertNotNull(weightText, "weightText");
+
+            numberText.gameObject.SetActive(active);
+            shortNameText.gameObject.SetActive(active);
+
+            nameText.gameObject.SetActive(active);
+
+            weightText.gameObject.SetActive(active);
+        }
+        catch (Exception e)
+        {
+            cross.SetActive(true);
+            throw e;
+        }
 
         base.SetActive(active);
     }
@@ -25,16 +40,23 @@ public class AtomGridItem : ElementGridItem
 
         base.SetData(atomData);
 
-        if (atomData == null)
-            throw new ApplicationException("Expected atomData in call to SetAtomData in PeriodicTableGridItem, got null");
+        try
+        {
+            if (atomData == null)
+                throw new ApplicationException("Expected atomData in call to SetAtomData in PeriodicTableGridItem, got null");
 
-        numberText.text = atomData.Id.ToString();
-        shortNameText.text = atomData.ShortName;
-        nameText.text = atomData.Name;
-        weightText.text = atomData.Weight.ToString() + ".00";
+            numberText.text = atomData.Id.ToString();
+            shortNameText.text = atomData.ShortName;
+            nameText.text = atomData.Name;
+            weightText.text = atomData.Weight.ToString() + ".00";
+        }
+        catch (Exception e)
+        {
+            cross.SetActive(true);
+            throw e;
+        }
 
         SetActive(true);
-
     }
 
     protected override void VerifyInitialize()
@@ -44,14 +66,24 @@ public class AtomGridItem : ElementGridItem
 
         base.VerifyInitialize();
 
-        if (ActiveLayout == null)
-            throw new NullReferenceException("No layout was set in call to VerifyInitialize");
+        try
+        {
+            if (ActiveLayout == null)
+                throw new NullReferenceException("No layout was set in call to VerifyInitialize");
+            if (ActiveLayout.name != "Layout_Std")
+                throw new ApplicationException("Layout must be \"Layout_Std\" (Standard)");
 
-        numberText = ActiveLayout.Find("Number")?.GetComponent<Text>();
-        Assertions.AssertNotNull(numberText, "numberText");
-        shortNameText = ActiveLayout.Find("ShortName")?.GetComponent<Text>();
-        Assertions.AssertNotNull(shortNameText, "shortNameText");
-        weightText = ActiveLayout.Find("Weight")?.GetComponent<Text>();
-        Assertions.AssertNotNull(weightText, "weightText");
+            numberText = ActiveLayout.Find("Number")?.GetComponent<Text>();
+            Assertions.AssertNotNull(numberText, "numberText");
+            shortNameText = ActiveLayout.Find("ShortName")?.GetComponent<Text>();
+            Assertions.AssertNotNull(shortNameText, "shortNameText");
+            weightText = ActiveLayout.Find("Weight")?.GetComponent<Text>();
+            Assertions.AssertNotNull(weightText, "weightText");
+        }
+        catch (Exception e)
+        {
+            cross.SetActive(true);
+            throw e;
+        }
     }
 }

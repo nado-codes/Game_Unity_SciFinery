@@ -3,6 +3,7 @@ using System.Runtime.CompilerServices;
 using System.Linq;
 using System;
 
+public delegate bool BoolFN<T>(T obj);
 public static class Assertions
 {
     public static void AssertNotNull<T>(T obj, string propertyName, [CallerMemberName] string callerName = "")
