@@ -6,20 +6,31 @@ using UnityEngine;
 
 public class FileSystemLoader
 {
-    public static IEnumerable<T> LoadElementsOfType<T>() where T : Element
-    {
-        if (Enum.TryParse(typeof(T).FullName, out ElementType elementType))
-            return LoadElementsOfType(elementType).Cast<T>();
-        else
-            throw new ApplicationException($"Element \"{typeof(T).FullName}\" is not a valid ElementType in call to LoadElements<T : Element>");
-    }
     public static IEnumerable<Element> LoadElementsOfType(ElementType elementType)
      => elementType switch
      {
-         ElementType.Particle => loadParticles(),
-         ElementType.Atom => loadElementsOfType<Atom>(),
+         ElementType.Particle => LoadElementsOfType<Particle>(),
+         ElementType.Atom => LoadElementsOfType<Atom>(),
          _ => throw new NotImplementedException($"Element type \"{elementType.ToString()}\" is not implemented in call to LoadElementsOfType")
      };
+
+    public static IEnumerable<T> LoadElementsOfType<T>() where T : Element
+    {
+        if (!Enum.TryParse(typeof(T).FullName, out ElementType elementType))
+            throw new ApplicationException($"Element \"{typeof(T).FullName}\" is not a valid ElementType in call to LoadElements<T : Element>");
+
+        var elements = elementType switch
+        {
+            ElementType.Particle => loadParticles().Cast<T>(),
+            _ => loadElementsOfType<T>()
+        };
+
+        if (elements.Any(el => el.ElementType.ToString() != typeof(T).FullName))
+            throw new ApplicationException($"All elements must be of type {typeof(T).FullName} in call to LoadElementsOfType");
+
+        return elements;
+    }
+
 
     public static Element LoadElementOfTypeById<T>(int id) where T : Element
         => loadElementOfTypeById<T>(id);

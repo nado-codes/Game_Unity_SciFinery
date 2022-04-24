@@ -79,7 +79,7 @@ public class FileSystemCache : MonoBehaviour
         var firstElement = Instance.elements.FirstOrDefault();
 
         if (firstElement?.ElementType != type || firstElement == null)
-            Instance.elements = FileSystemLoader.LoadElementsOfType(type).ToList();
+            Instance.elements = FileSystemLoader.LoadElementsOfType<T>().ToList<Element>();
 
         return Instance.elements.Cast<T>();
     }

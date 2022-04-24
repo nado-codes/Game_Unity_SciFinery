@@ -20,14 +20,12 @@ public class AtomGridItem : ElementGridItem
 
             numberText.gameObject.SetActive(active);
             shortNameText.gameObject.SetActive(active);
-
             nameText.gameObject.SetActive(active);
-
             weightText.gameObject.SetActive(active);
         }
         catch (Exception e)
         {
-            cross.SetActive(true);
+            //cross.SetActive(true);
             throw e;
         }
 
@@ -36,9 +34,9 @@ public class AtomGridItem : ElementGridItem
 
     public void SetData(Atom atomData)
     {
-        VerifyInitialize();
-
         base.SetData(atomData);
+
+        VerifyInitialize();
 
         try
         {
@@ -52,7 +50,7 @@ public class AtomGridItem : ElementGridItem
         }
         catch (Exception e)
         {
-            cross.SetActive(true);
+            //cross.SetActive(true);
             throw e;
         }
 
@@ -68,10 +66,8 @@ public class AtomGridItem : ElementGridItem
 
         try
         {
-            if (ActiveLayout == null)
-                throw new NullReferenceException("No layout was set in call to VerifyInitialize");
             if (ActiveLayout.name != "Layout_Std")
-                throw new ApplicationException("Layout must be \"Layout_Std\" (Standard)");
+                throw new ApplicationException($"Layout must be \"Layout_Std\" (Standard), got {ActiveLayout.name}");
 
             numberText = ActiveLayout.Find("Number")?.GetComponent<Text>();
             Assertions.AssertNotNull(numberText, "numberText");
@@ -82,7 +78,7 @@ public class AtomGridItem : ElementGridItem
         }
         catch (Exception e)
         {
-            cross.SetActive(true);
+            //cross.SetActive(true);
             throw e;
         }
     }

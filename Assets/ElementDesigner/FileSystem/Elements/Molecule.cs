@@ -4,10 +4,13 @@ using UnityEngine;
 [Serializable]
 public class Molecule : Element
 {
-    public Molecule(int id) : base(id)
+    public Molecule() : base(1)
     {
-
+        Name = "NewMolecule";
+        ShortName = "NW";
+        AtomIds = new int[0];
+        ElementType = ElementType.Molecule;
     }
-    public int[] atomIds = new int[0];
+    public int[] AtomIds = new int[0];
 }
 

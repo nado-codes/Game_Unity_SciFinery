@@ -31,6 +31,7 @@ public class WorldParticle : WorldElement
             return;
 
         bodyTransform = transform.Find("Body");
+        Assertions.AssertNotNull(bodyTransform, "bodyTransform");
         bodyLight = bodyTransform.Find("Light").GetComponent<Light>();
         var infoCanvasTransform = bodyTransform.Find("InfoCanvas");
         infoCanvas = infoCanvasTransform.GetComponent<Canvas>();

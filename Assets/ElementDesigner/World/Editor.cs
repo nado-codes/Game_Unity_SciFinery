@@ -1,7 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.IO;
+using System.Threading.Tasks;
 using System;
 using UnityEngine;
 using UnityEngine.UI;
@@ -99,12 +98,22 @@ public class Editor : MonoBehaviour
         designTypeTabs.SelectTab((int)ElementType.Atom);
     }
 
-    public void HandleChangeDesignTypeClicked(ElementType newDesignType)
+    public async void HandleChangeDesignTypeClicked(ElementType newDesignType)
     {
-        if (newDesignType == ElementType.Atom)
-            handleChangeDesignType<Atom>();
+        switch (newDesignType)
+        {
+            case ElementType.Atom:
+                await handleChangeDesignType<Atom>();
+                break;
+            case ElementType.Molecule:
+                await handleChangeDesignType<Molecule>();
+                break;
+            default:
+                throw new NotImplementedException($"Element of type ${newDesignType} is not yet implemented in call to HandleChangeDesignTypeClicked");
+        }
 
         panelCreate.SetDesignType(newDesignType);
+
         designType = newDesignType;
         TextNotification.Show("Design Type: " + newDesignType);
     }
@@ -114,17 +123,18 @@ public class Editor : MonoBehaviour
         FileSystem.SaveActiveElement(subElements.Select(el => el.Data));
     }
 
-    private void handleChangeDesignType<T>() where T : Element, new()
+    private async Task handleChangeDesignType<T>() where T : Element, new()
     {
         if (HasUnsavedChanges)
         {
             var dialogBody = "You have unsaved changes in the editor. Would you like to save before continuing?";
-            DialogYesNo.Open("Save Changes?", dialogBody, this.HandleSave, null,
-            (VoidFN)(() =>
+            var dialogResult = await DialogYesNo.OpenForResult("Save Changes?", dialogBody);
+
+            if (dialogResult == YesNo.Yes)
             {
                 Editor.Instance.clearSubElements();
                 createNewElementOfType<T>();
-            }));
+            }
         }
         else
         {
@@ -367,45 +377,81 @@ public class Editor : MonoBehaviour
         if (elementData == null)
             throw new ArgumentException("Expected elementData in call to Editor.LoadElement, got null");
 
-        Instance.clearSubElements();
         // Camera.main.transform.position = instance.cameraStartPos;
         // Camera.main.transform.rotation = instance.cameraStartAngle;
+        switch (elementData.ElementType)
+        {
+            case ElementType.Atom:
+                LoadAtom(elementData as Atom);
+                break;
+            case ElementType.Molecule:
+                LoadMolecule(elementData as Molecule);
+                break;
+            default:
+                throw new NotImplementedException($"Element of type \"{elementData.GetType().FullName}\" is not yet implemented in call to Editor.LoadElementData");
+        }
         if (elementData.ElementType == ElementType.Atom)
         {
-            var atomData = elementData as Atom;
-            var particlesToCreate = new List<ParticleType>();
 
-            var particles = FileSystemCache.GetOrLoadElementsOfType(ElementType.Particle);
-
-            foreach (int particleId in atomData.ParticleIds)
-            {
-                try
-                {
-                    var particleToCreateData = particles.FirstOrDefault(p => p.Id == particleId);
-
-                    if (particleToCreateData == null)
-                        throw new ApplicationException($"No particle found for Id {particleId} in call to Editor.LoadElementData");
-
-                    var radius = particleToCreateData.Charge >= 0 ? 1 : 20;
-                    var randPos = UnityEngine.Random.insideUnitSphere * radius;
-
-                    CreateSubElement(particleToCreateData, randPos);
-                }
-                catch (Exception e)
-                {
-                    Debug.LogError(e);
-                    continue;
-                }
-            }
         }
-        else if (elementData.ElementType == null)
-            throw new ApplicationException($"Element of type \"None\" is not valid in call to Editor.LoadElement");
         else
-            throw new NotImplementedException($"Element of type \"{elementData.GetType().FullName}\" is not yet implemented in call to Editor.LoadElementData");
 
-        FileSystem.ActiveElement = elementData;
+
+            FileSystem.ActiveElement = elementData;
         PanelName.SetElementData(elementData);
         TextNotification.Show($"Loaded \"{elementData.Name}\"");
+    }
+
+    private static void LoadAtom(Atom atomData)
+    {
+        var particles = FileSystemCache.GetOrLoadElementsOfType(ElementType.Particle);
+
+        foreach (int particleId in atomData.ParticleIds)
+        {
+            try
+            {
+                var particleToCreateData = particles.FirstOrDefault(p => p.Id == particleId);
+
+                if (particleToCreateData == null)
+                    throw new ApplicationException($"No particle found for Id {particleId} in call to Editor.LoadAtom");
+
+                // TODO: later, positions will be able to be saved and re-loaded the next time an element loads
+                var radius = particleToCreateData.Charge >= 0 ? 1 : 20;
+                var randPos = UnityEngine.Random.insideUnitSphere * radius;
+
+                CreateSubElement(particleToCreateData, randPos);
+            }
+            catch (Exception e)
+            {
+                Debug.LogError(e);
+                continue;
+            }
+        }
+    }
+
+    private static void LoadMolecule(Molecule moleculeData)
+    {
+        var atoms = FileSystemCache.GetOrLoadElementsOfType(ElementType.Atom);
+
+        foreach (int atomId in moleculeData.AtomIds)
+        {
+            try
+            {
+                var atomToCreateData = atoms.FirstOrDefault(p => p.Id == atomId);
+
+                if (atomToCreateData == null)
+                    throw new ApplicationException($"No atom found for Id {atomId} in call to Editor.LoadMolecule");
+
+                // TODO: later, positions will be able to be saved and re-loaded the next time an element loads
+                var randPos = UnityEngine.Random.insideUnitSphere * 20;
+                CreateSubElement(atomToCreateData, randPos);
+            }
+            catch (Exception e)
+            {
+                Debug.LogError(e);
+                continue;
+            }
+        }
     }
 
     // .. NOTE: A "sub-element" is any component element of a parent Element, e.g. a Particle is
@@ -442,6 +488,10 @@ public class Editor : MonoBehaviour
 
                 var atomData = elementData as Atom;
                 var newWorldAtom = newWorldElementGO.GetComponent<WorldElement>();
+
+                if (newWorldAtom == null)
+                    throw new ApplicationException("The WorldAtom needs a WorldElement component!");
+
                 newWorldAtom.SetData(atomData);
 
                 var activeMolecule = FileSystem.ActiveElementAs<Molecule>().Charge += elementData.Charge;

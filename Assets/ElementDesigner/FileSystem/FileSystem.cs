@@ -82,25 +82,37 @@ public class FileSystem : MonoBehaviour
     }
     public static void UpdateActiveElement()
     {
+        if (Editor.DesignType != ActiveElement.ElementType)
+            throw new ApplicationException($"Editor DesignType must be {ActiveElement.ElementType}, got {Editor.DesignType}");
         if (Editor.SubElements.Any(el => el.Data == null))
             throw new ApplicationException("At least one WorldElement is missing data");
 
-        if (ActiveElement is Atom)
-            updateActiveAtom(ActiveElement as Atom);
-        else
-            throw new NotImplementedException($"Element of type ${ActiveElement.GetType().FullName} is not yet implemented");
+        switch (ActiveElement.ElementType)
+        {
+            case ElementType.Atom:
+                updateActiveAtom(ActiveElement as Atom);
+                break;
+            case ElementType.Molecule:
+                updateActiveMolecule(ActiveElement as Molecule);
+                break;
+            default:
+                throw new NotImplementedException($"Element of type {ActiveElement.GetType().FullName} is not yet implemented");
+        }
+
     }
     private static void updateActiveAtom(Atom atom)
     {
-        if (Editor.DesignType != ElementType.Atom)
-            throw new ApplicationException($"Editor DesignType must be Atom, got {Editor.DesignType}");
-
         var particleIds = Editor.SubElements.Select(el => el.Data.Id);
         atom.ParticleIds = particleIds.ToArray();
 
         var particles = FileSystemCache.GetOrLoadElementsOfTypeByIds<Particle>(particleIds);
         var protonCount = particles.Count(p => p.Charge > 0);
         atom.Number = protonCount;
+    }
+    private static void updateActiveMolecule(Molecule molecule)
+    {
+        var atomIds = Editor.SubElements.Select(el => el.Data.Id);
+        molecule.AtomIds = atomIds.ToArray();
     }
     public static void SaveActiveElement(IEnumerable<Element> subElements)
     {

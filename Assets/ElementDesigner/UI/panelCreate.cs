@@ -102,6 +102,7 @@ public class panelCreate : MonoBehaviour, IPointerExitHandler
         if (creationState == CreationState.Start)
         {
             currentWorldElement = Editor.CreateSubElement(elementToCreateData);
+            Assertions.AssertNotNull(currentWorldElement, "currentWorldElement");
             currentWorldElement.enabled = false;
             creationState = CreationState.Drag;
 

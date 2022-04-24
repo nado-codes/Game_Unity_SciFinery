@@ -60,8 +60,8 @@ public class ElementGridItem : MonoBehaviour, IPointerDownHandler
         initialized = true;
 
         cross = transform.Find("Cross")?.gameObject;
-        Assertions.AssertNotNull(cross, "cross");
-        cross.SetActive(false);
+        //Assertions.AssertNotNull(cross, "cross");
+        //cross.SetActive(false);
 
         button = GetComponent<Button>();
         Assertions.AssertNotNull(button, "button");
@@ -77,10 +77,9 @@ public class ElementGridItem : MonoBehaviour, IPointerDownHandler
     private void UpdateLayout()
     {
         // Update layout
-        Transform layoutToUse = transform.Find($"Layout_{elementDataType}") ?? transform.Find("Layout_Std");
-
-        if (layoutToUse == null)
-            throw new ApplicationException($"At least one layout of name \"Layout_Std\" is required in call to ElementGridItem.UpdateLayout");
+        Transform elementLayout = transform.Find($"Layout_{elementDataType}") ?? transform.Find("Layout_Std");
+        Transform layoutToUse = elementData != null ? elementLayout : transform.Find("Layout_Std");
+        Assertions.AssertNotNull(layoutToUse, "layoutToUse");
 
         IEnumerable<Transform> allLayouts = GetComponentsInChildren<Transform>().Where(t => t.name.Contains("Layout"));
         List<Transform> otherLayouts = allLayouts.Where(l => l != layoutToUse).ToList();
