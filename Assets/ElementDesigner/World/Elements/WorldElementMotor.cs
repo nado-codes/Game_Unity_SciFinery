@@ -12,7 +12,7 @@ public class WorldElementMotor : MonoBehaviour
             if (worldElement == null)
                 worldElement = GetComponent<WorldElement>();
             if (worldElement == null)
-                throw new ApplicationException("WorldElementMotor requires a WorldElement in order to work correctly. Please add one first.");
+                throw new ApplicationException("WorldElementMotor requires a WorldElement to work properly. Please add one first.");
 
             return worldElement;
         }
@@ -25,16 +25,16 @@ public class WorldElementMotor : MonoBehaviour
         transform.Translate(velocity * Time.deltaTime);
 
         // Apply charges
-        var worldMotors = Editor.SubElements.Select(el => el.GetComponent<WorldElementMotor>());
+        var worldMotors = Editor.SubElements;
         var otherWorldMotors = worldMotors.Where(x => x != this).ToList();
 
         var effectiveForce = Vector3.zero;
         otherWorldMotors.ForEach(x =>
         {
-            var effectiveCharge = x.Charge * Charge;
+            var effectiveCharge = x.Charge * WorldElement.Charge;
             var xBody = x.transform.Find("Body");
             var body = transform.Find("Body");
-            var massOffset = 1 / (body.lossyScale.magnitude / xBody.lossyScale.magnitude) * massMultiplier;
+            var massOffset = 1 / (body.lossyScale.magnitude / xBody.lossyScale.magnitude) * WorldElement.MassMultiplier;
 
             var distanceToParticle = Vector3.Distance(xBody.transform.position, transform.position);
             var distanceOffset = 1 / (distanceToParticle > 0 ? distanceToParticle : 1);
