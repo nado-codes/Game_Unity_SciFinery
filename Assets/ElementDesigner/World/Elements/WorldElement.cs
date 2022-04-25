@@ -7,16 +7,18 @@ public class WorldElement : MonoBehaviour
     public Element Data { get; protected set; }
 
     private Canvas infoCanvas;
-    private Text infoText;
-    private TrailRenderer trail;
+    protected Text infoText;
     private ParticleSystem particles;
     private Light bodyLight;
     private MeshRenderer bodyMR;
-    private Transform bodyTransform;
+    protected Transform bodyTransform;
+    // TODO: maybe 'charge' could be determined by weight?
+    protected float charge = 0;
+    protected float massMultiplier = 1;
 
     private bool initialized = false;
 
-    void VerifyInitialize()
+    protected void VerifyInitialize()
     {
         if (initialized)
             return;
@@ -29,15 +31,15 @@ public class WorldElement : MonoBehaviour
 
         infoText = infoCanvasTransform.Find("Text").GetComponent<Text>();
 
-        trail = GetComponent<TrailRenderer>();
+
         particles = GetComponent<ParticleSystem>();
 
         bodyMR = bodyTransform.GetComponent<MeshRenderer>();
 
-        trail.startWidth = bodyTransform.lossyScale.magnitude * .25f;
+
         initialized = true;
     }
-    protected void Start()
+    protected virtual void Start()
     {
         VerifyInitialize();
     }
@@ -63,8 +65,7 @@ public class WorldElement : MonoBehaviour
         bodyMR.material.color = newColor;
         bodyMR.material.SetColor("_EmissionColor", newColor);
 
-        trail.material.color = newColor;
-        trail.material.SetColor("_EmissionColor", newColor);
+
     }
 
     public void SetData(Element elementData) => Data = elementData;

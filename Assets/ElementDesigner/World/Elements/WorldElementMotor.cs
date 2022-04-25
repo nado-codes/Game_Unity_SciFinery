@@ -1,12 +1,24 @@
 using UnityEngine;
 using System.Linq;
+using System;
 
 public class WorldElementMotor : MonoBehaviour
 {
+    private WorldElement worldElement;
+    private WorldElement WorldElement
+    {
+        get
+        {
+            if (worldElement == null)
+                worldElement = GetComponent<WorldElement>();
+            if (worldElement == null)
+                throw new ApplicationException("WorldElementMotor requires a WorldElement in order to work correctly. Please add one first.");
+
+            return worldElement;
+        }
+    }
     private Vector3 velocity = Vector3.zero;
-    // TODO: maybe 'charge' could be determined by weight?
-    public float Charge = 0;
-    public float massMultiplier = 1;
+    public Vector3 Velocity => new Vector3(velocity.x, velocity.y, velocity.z);
 
     void Update()
     {
