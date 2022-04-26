@@ -102,12 +102,14 @@ public class FileSystem : MonoBehaviour
     }
     private static void updateActiveAtom(Atom atom)
     {
+        var updatedAtom = new Atom(atom);
         var particleIds = Editor.SubElements.Select(el => el.Data.Id);
         atom.ParticleIds = particleIds.ToArray();
 
         var particles = FileSystemCache.GetOrLoadElementsOfTypeByIds<Particle>(particleIds);
         var protonCount = particles.Count(p => p.Charge > 0);
         atom.Number = protonCount;
+
     }
     private static void updateActiveMolecule(Molecule molecule)
     {
