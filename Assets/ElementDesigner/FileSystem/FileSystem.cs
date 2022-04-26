@@ -102,7 +102,6 @@ public class FileSystem : MonoBehaviour
     }
     private static void updateActiveAtom(Atom atom)
     {
-        var updatedAtom = new Atom(atom);
         var particleIds = Editor.SubElements.Select(el => el.Data.Id);
         atom.ParticleIds = particleIds.ToArray();
 

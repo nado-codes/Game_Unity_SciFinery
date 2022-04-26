@@ -1,6 +1,5 @@
 using System;
 using System.Linq;
-using Newtonsoft.JSON;
 
 ///<summary>[Data] Master class. Any object which may exist in world space</summary>
 [Serializable]
