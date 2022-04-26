@@ -5,10 +5,6 @@ using System;
 public class WorldElement : MonoBehaviour
 {
     public Element Data { get; private set; }
-    private Canvas infoCanvas;
-    protected Text infoText;
-    private Light bodyLight;
-    private MeshRenderer bodyMR;
 
     private Transform bodyTransform;
     public Transform BodyTransform
@@ -16,7 +12,7 @@ public class WorldElement : MonoBehaviour
         get
         {
             if (bodyTransform == null)
-                bodyTransform = transform.Find("bodyTransform");
+                bodyTransform = transform.Find("Body");
             if (bodyTransform == null)
                 throw new ApplicationException("WorldElement requires a BodyTransform, but none was present");
 
@@ -24,10 +20,16 @@ public class WorldElement : MonoBehaviour
         }
     }
     // TODO: maybe 'charge' could be determined by weight?
-    protected float charge = 0;
-    public float Charge => charge;
-    protected string chargeString = "";
+    public float Charge { get; private set; }
+    public Color Color { get; private set; }
     public float MassMultiplier { get; private set; }
+
+    protected string chargeString { get; private set; }
+    protected Text infoText { get; private set; }
+
+    private Canvas infoCanvas;
+    private Light bodyLight;
+    private MeshRenderer bodyMR;
 
     private bool initialized = false;
 
@@ -73,14 +75,17 @@ public class WorldElement : MonoBehaviour
         bodyLight.color = newColor;
         bodyMR.material.color = newColor;
         bodyMR.material.SetColor("_EmissionColor", newColor);
+
+        Color = newColor;
     }
 
     public void SetData(Element elementData)
     {
+        VerifyInitialize();
         Data = elementData;
 
         var pCharge = elementData.Charge;
-        charge = pCharge;
+        Charge = pCharge;
 
         chargeString = pCharge == 0 ? string.Empty : pCharge < 0 ? "-" : "+";
         infoText.text = chargeString;

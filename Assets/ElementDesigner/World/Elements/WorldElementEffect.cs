@@ -26,7 +26,7 @@ public class WorldElementEffect : MonoBehaviour
         {
             if (motor == null)
                 motor = GetComponent<WorldElementMotor>();
-            if (motor == null && worldElementMotorIsRequired)
+            if (motor == null && motorIsRequired)
                 throw new ApplicationException("WorldElementEffect requires a WorldElementMotor to work properly. Please add one first.");
 
             return motor;
@@ -57,7 +57,12 @@ public class WorldElementEffect : MonoBehaviour
         motorIsRequired = useTrail;
 
         if (useTrail)
+        {
             trail.time = 10 * Mathf.Min((1 / Motor.Velocity.magnitude), 1f);
+
+            trail.material.color = WorldElement.Color;
+            trail.material.SetColor("_EmissionColor", WorldElement.Color);
+        }
         else
             trail.time = 0;
     }

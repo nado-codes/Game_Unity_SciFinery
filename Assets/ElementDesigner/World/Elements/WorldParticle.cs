@@ -38,15 +38,6 @@ public class WorldParticle : WorldElement
     // WorldElementMotor - For movement
     // WorldElementTrail - For trails
 
-    protected override void SetColor(Color newColor)
-    {
-        base.SetColor(newColor);
-        VerifyInitialize();
-
-        trail.material.color = newColor;
-        trail.material.SetColor("_EmissionColor", newColor);
-    }
-
     public void SetParticleData(Particle particleData)
     {
         base.VerifyInitialize();
