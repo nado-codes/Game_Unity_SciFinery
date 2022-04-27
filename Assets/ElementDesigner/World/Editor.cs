@@ -404,7 +404,7 @@ public class Editor : MonoBehaviour
 
     private static void LoadAtom(Atom atomData)
     {
-        var particles = FileSystemCache.GetOrLoadElementsOfType(ElementType.Particle);
+        var particles = FileSystemCache.GetOrLoadSubElementsOfType<Particle>();
 
         foreach (int particleId in atomData.ParticleIds)
         {

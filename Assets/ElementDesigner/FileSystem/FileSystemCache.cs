@@ -182,6 +182,10 @@ public class FileSystemCache : MonoBehaviour
             Instance.elements = FileSystemLoader.LoadElementsOfType<T>().ToList<Element>();
 
         var elementById = Instance.elements.FirstOrDefault(el => el.Id == id);
+
+        if (elementById == null)
+            throw new NullReferenceException($"Element with id {id} doesn't exist in call to getOrLoadElementOfTypeById");
+
         return elementById as T;
     }
     private static IEnumerable<T> getOrLoadSubElementsOfTypeByIds<T>(IEnumerable<int> ids) where T : Element
@@ -190,7 +194,7 @@ public class FileSystemCache : MonoBehaviour
         if (shouldReload)
             Instance.subElements = FileSystemLoader.LoadElementsOfType<T>().ToList<Element>();
 
-        var elementsById = ids.Select(id => getOrLoadElementOfTypeById<T>(id));
+        var elementsById = Instance.subElements.Where(el => ids.Contains(el.Id));
         return elementsById.Cast<T>();
     }
     private static T getOrLoadSubElementOfTypeById<T>(int id) where T : Element
