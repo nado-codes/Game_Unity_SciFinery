@@ -83,7 +83,7 @@ public class FileSystemCache : MonoBehaviour
 
         return Instance.elements.Cast<T>();
     }
-    public static Element GetOrLoadElementOfTypeById<T>(int id) where T : Element
+    public static T GetOrLoadElementOfTypeById<T>(int id) where T : Element
         => getOrLoadElementOfTypeById<T>(id);
     public static IEnumerable<T> GetOrLoadElementsOfTypeByIds<T>(IEnumerable<int> ids) where T : Element
         => getOrLoadElementsOfTypeByIds<T>(ids);

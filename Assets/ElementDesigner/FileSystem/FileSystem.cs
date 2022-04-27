@@ -68,6 +68,7 @@ public class FileSystem : MonoBehaviour
         var allElementsOfType = FileSystemCache.GetOrLoadElementsOfType<T>();
         newElement.Id = allElementsOfType.Count();
         Instance.activeElement = newElement;
+        FileSystemCache.AddElement(newElement);
         return newElement;
     }
 
@@ -102,14 +103,15 @@ public class FileSystem : MonoBehaviour
     }
     private static void updateActiveAtom(Atom atom)
     {
+        var cacheRef = FileSystemCache.GetOrLoadElementOfTypeById<Atom>(atom.Id);
         var particleIds = Editor.SubElements.Select(el => el.Data.Id);
-        atom.ParticleIds = particleIds.ToArray();
+        cacheRef.ParticleIds = particleIds.ToArray();
 
         var particles = FileSystemCache.GetOrLoadElementsOfTypeByIds<Particle>(particleIds);
         var protonCount = particles.Count(p => p.Charge > 0);
-        atom.Number = protonCount;
-
+        cacheRef.Number = protonCount;
     }
+
     private static void updateActiveMolecule(Molecule molecule)
     {
         var atomIds = Editor.SubElements.Select(el => el.Data.Id);
