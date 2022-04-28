@@ -42,6 +42,7 @@
      <Compile Include="Assets\FaceCam.cs" />
      <Compile Include="Assets\ElementDesigner\FileSystem\FileSystem.cs" />
      <Compile Include="Assets\ElementDesigner\FileSystem\Elements\Particle.cs" />
+     <Compile Include="Assets\ElementDesigner\World\Elements\WorldElementEffect.cs" />
      <Compile Include="Assets\ElementDesigner\FileSystem\FileSystemCache.cs" />
      <Compile Include="Assets\ElementDesigner\UI\GridItem\ElementGridItem.cs" />
      <Compile Include="Assets\ElementDesigner\FileSystem\Elements\Atom.cs" />
@@ -79,7 +80,7 @@
      <Compile Include="Assets\ElementDesigner\UI\Tabs.cs" />
      <Compile Include="Assets\ElementDesigner\World\Elements\WorldElementMotor.cs" />
      <Compile Include="Assets\ElementDesigner\FileSystem\Elements\Molecule.cs" />
-     <Compile Include="Assets\ElementDesigner\World\Elements\WorldElementEffect.cs" />
+     <Compile Include="Assets\ElementDesigner\FileSystem\FileSystemCachev2.cs" />
     <Reference Include="UnityEngine">
         <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.32f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>

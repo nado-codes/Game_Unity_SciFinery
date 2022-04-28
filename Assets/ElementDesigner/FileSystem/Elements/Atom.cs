@@ -10,7 +10,7 @@ public class Atom : Element
     {
         Name = "NewAtom";
         ShortName = "NW";
-        ParticleIds = new int[] { 1, 3 };
+        ParticleIds = new int[] { 1 };
         ElementType = ElementType.Atom;
     }
 

@@ -43,6 +43,8 @@ public class FileSystemCache : MonoBehaviour
 
     public static void AddElement(Element element)
     {
+        var allElementsOfType = FileSystemCache.GetOrLoadElementsOfType(element.ElementType);
+        element.Id = allElementsOfType.Count() + 1;
         instance.elements.Add(element);
     }
 
