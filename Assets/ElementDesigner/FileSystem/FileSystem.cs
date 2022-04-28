@@ -31,13 +31,18 @@ public class FileSystem : MonoBehaviour
     }
 
     // ACTIVE ELEMENT
-    private static string activeElementFileName => $"{Instance.activeElement.ShortName.ToLower()}{Instance.activeElement.Id}";
+    private static string activeElementFileName => $"{ActiveElement.ShortName.ToLower()}{ActiveElement.Id}";
 
-    private Element activeElement { get; set; }
+    private int activeElementId { get; set; }
+    private ElementType activeElementType { get; set; }
     public static Element ActiveElement
     {
-        get => Instance.activeElement;
-        set => Instance.activeElement = value;
+        get => FileSystemCache.GetOrLoadElementOfTypeById(Instance.activeElementType, Instance.activeElementId);
+        set
+        {
+            Instance.activeElementId = value.Id;
+            Instance.activeElementType = value.ElementType;
+        }
     }
 
     public static string GetElementDirectoryPathForType(ElementType type)
@@ -67,7 +72,7 @@ public class FileSystem : MonoBehaviour
         var newElement = new T();
         var allElementsOfType = FileSystemCache.GetOrLoadElementsOfType<T>();
         newElement.Id = allElementsOfType.Count();
-        Instance.activeElement = newElement;
+        ActiveElement = newElement;
         FileSystemCache.AddElement(newElement);
         return newElement;
     }

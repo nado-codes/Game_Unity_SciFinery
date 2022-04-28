@@ -395,8 +395,6 @@ public class Editor : MonoBehaviour
 
         }
         else
-
-
             FileSystem.ActiveElement = elementData;
         PanelName.SetElementData(elementData);
         TextNotification.Show($"Loaded \"{elementData.Name}\"");
@@ -478,7 +476,7 @@ public class Editor : MonoBehaviour
                 var newWorldParticle = newWorldElementGO.GetComponent<WorldParticle>();
                 newWorldParticle.SetParticleData(particleData);
 
-                var activeAtom = FileSystem.ActiveElementAs<Atom>().Charge += elementData.Charge;
+                // var activeAtom = FileSystem.ActiveElementAs<Atom>().Charge += elementData.Charge;
                 newWorldElement = newWorldParticle;
                 SubElements.Add(newWorldParticle);
             }
@@ -494,7 +492,7 @@ public class Editor : MonoBehaviour
 
                 newWorldAtom.SetData(atomData);
 
-                var activeMolecule = FileSystem.ActiveElementAs<Molecule>().Charge += elementData.Charge;
+                // var activeMolecule = FileSystem.ActiveElementAs<Molecule>().Charge += elementData.Charge;
                 newWorldElement = newWorldAtom;
                 SubElements.Add(newWorldAtom);
             }
