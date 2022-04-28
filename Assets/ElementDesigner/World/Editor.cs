@@ -429,7 +429,7 @@ public class Editor : MonoBehaviour
 
     private static void LoadMolecule(Molecule moleculeData)
     {
-        var atoms = FileSystemCache.GetOrLoadElementsOfType(ElementType.Atom);
+        var atoms = FileSystemCache.GetOrLoadSubElementsOfType(ElementType.Atom);
 
         foreach (int atomId in moleculeData.AtomIds)
         {
