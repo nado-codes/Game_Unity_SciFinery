@@ -110,7 +110,7 @@ public class FileSystem : MonoBehaviour
         var particleIds = Editor.SubElements.Select(el => el.Data.Id);
         cacheRef.ParticleIds = particleIds.ToArray();
 
-        var particles = FileSystemCache.GetOrLoadElementsOfTypeByIds<Particle>(particleIds);
+        var particles = FileSystemCache.GetOrLoadSubElementsOfTypeByIds<Particle>(particleIds);
         var protonCount = particles.Count(p => p.Charge > 0);
         cacheRef.Number = protonCount;
     }

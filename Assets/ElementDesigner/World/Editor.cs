@@ -452,15 +452,6 @@ public class Editor : MonoBehaviour
         }
     }
 
-    // DEBUGGING ONLY
-    private static void PrintCachedOfType<T>()
-    {
-        var cached = FileSystemCache.GetOrLoadElementsOfType<Atom>().ToList();
-        Debug.Log($"{typeof(T).FullName}s");
-        cached.ForEach(a => Debug.Log(a.Name + "(" + a.Id + ")"));
-    }
-    // END DEBUGGING ONLY
-
     // .. NOTE: A "sub-element" is any component element of a parent Element, e.g. a Particle is
     // a sub-element of an Atom, and an Atom is a sub-element of a Molecule.
     public static WorldElement CreateSubElement(Element elementData)
@@ -480,10 +471,6 @@ public class Editor : MonoBehaviour
             if (elementType == ElementType.Particle)
             {
                 newWorldElementGO = Instantiate(Instance.particlePrefab);
-
-                // DEBUGGING ONLY
-                Debug.Log("==START==");
-                PrintCachedOfType<Atom>();
 
                 var particleData = elementData as Particle;
                 var newWorldParticle = newWorldElementGO.GetComponent<WorldParticle>();
@@ -514,15 +501,7 @@ public class Editor : MonoBehaviour
             newWorldElementGO.transform.parent = elementGameObject.transform;
             newWorldElement.SetData(elementData);
 
-            // DEBUGGING ONLY
-            Debug.Log("==BEFORE UPDATE==");
-            PrintCachedOfType<Atom>();
-
             FileSystem.UpdateActiveElement();
-
-            Debug.Log("==POST UPDATE==");
-            // DEBUGGING ONLY
-            PrintCachedOfType<Atom>();
 
             PanelName.SetElementData(FileSystem.ActiveElement);
             HasUnsavedChanges = true;
