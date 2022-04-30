@@ -61,17 +61,16 @@ public class FileSystem : MonoBehaviour
     public static string GetIsotopeFilePath(Atom atom, Atom parentAtom)
     {
         var parentAtomFileName = GetElementFileName(parentAtom);
-        var atomParticles = FileSystemCache.GetOrLoadSubElementsOfTypeByIds<Particle>(atom.ParticleIds);
-        var atomNeutronCount = atomParticles.Where(p => p.Charge == 0).Count();
+        var atomNeutronCount = atom.Particles.Count(p => p.Charge == 0);
 
         return $"{GetElementDirectoryPathForType(ElementType.Atom)}/{parentAtomFileName}n{atomNeutronCount}.{fileExtension}";
     }
 
     public static T CreateElementOfType<T>() where T : Element, new()
     {
-        var newElement = new T();
+        var newElement = FileSystemCache.AddElement<T>(new T());
         ActiveElement = newElement;
-        FileSystemCache.AddElement(newElement);
+
         return newElement;
     }
 
@@ -86,8 +85,6 @@ public class FileSystem : MonoBehaviour
     }
     public static void UpdateActiveElement()
     {
-        if (Editor.DesignType != ActiveElement.ElementType)
-            throw new ApplicationException($"Editor DesignType must be {ActiveElement.ElementType}, got {Editor.DesignType}");
         if (Editor.SubElements.Any(el => el.Data == null))
             throw new ApplicationException("At least one WorldElement is missing data");
 
@@ -108,11 +105,7 @@ public class FileSystem : MonoBehaviour
     {
         var cacheRef = FileSystemCache.GetOrLoadElementOfTypeById<Atom>(atom.Id);
         var particleIds = Editor.SubElements.Select(el => el.Data.Id);
-        cacheRef.ParticleIds = particleIds.ToArray();
-
-        var particles = FileSystemCache.GetOrLoadSubElementsOfTypeByIds<Particle>(particleIds);
-        var protonCount = particles.Count(p => p.Charge > 0);
-        cacheRef.Number = protonCount;
+        cacheRef.ChildIds = particleIds.ToArray();
     }
 
     private static void updateActiveMolecule(Molecule molecule)
@@ -160,8 +153,6 @@ public class FileSystem : MonoBehaviour
             // .. if the file already exists, we know we're updating an existing element
             if (isUpdate)
                 FileSystemCache.UpdateElement(element);
-            else
-                FileSystemCache.AddElement(element);
 
             TextNotification.Show($"Saved {element.Name}");
         }
@@ -185,13 +176,13 @@ public class FileSystem : MonoBehaviour
         var parentAtomIsotopes = FileSystemCache.GetOrLoadElementsOfTypeByIds<Atom>(parentAtom.IsotopeIds);
         var existingIsotope = parentAtomIsotopes.FirstOrDefault(iso =>
         {
-            var isotopeParticles = FileSystemCache.GetOrLoadSubElementsOfTypeByIds<Particle>(iso.ParticleIds);
+            var isotopeParticles = FileSystemCache.GetOrLoadSubElementsOfTypeByIds<Particle>(iso.ChildIds);
             var isotopeNeutronCount = isotopeParticles.Where(p => p.Charge == 0).Count();
 
             return (isotopeNeutronCount == atomNeutronCount);
         });
 
-        var parentAtomParticles = FileSystemCache.GetOrLoadSubElementsOfTypeByIds<Particle>(parentAtom.ParticleIds);
+        var parentAtomParticles = FileSystemCache.GetOrLoadSubElementsOfTypeByIds<Particle>(parentAtom.ChildIds);
         var parentAtomNeutronCount = parentAtomParticles.Where(particle => particle.Charge == 0).Count();
         var atomIsIsotope = atomNeutronCount != parentAtomNeutronCount;
 
@@ -209,7 +200,6 @@ public class FileSystem : MonoBehaviour
                 atomToSave.Id = allAtoms.Count() + 1;
                 var isotopeFilePath = GetIsotopeFilePath(atomToSave, parentAtom);
                 var atomToSaveJSON = JsonUtility.ToJson(atomToSave);
-                FileSystemCache.AddElement(atomToSave);
                 File.WriteAllText(isotopeFilePath, atomToSaveJSON);
 
                 // .. add the isotope to the parent and save it

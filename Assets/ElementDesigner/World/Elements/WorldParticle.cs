@@ -8,7 +8,7 @@ using UnityEngine;
 
 public class WorldParticle : WorldElement
 {
-    private bool initialized = false;
+    protected new bool initialized = false;
     private WorldElementMotor motor;
     private WorldElementMotor Motor
     {
@@ -31,7 +31,7 @@ public class WorldParticle : WorldElement
 
     void Update()
     {
-        
+
     }
 
     // TODO: Everything is a WorldElement but not every WorldElement can move or has a trail

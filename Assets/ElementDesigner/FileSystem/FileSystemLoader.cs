@@ -98,8 +98,6 @@ public class FileSystemLoader
                 {
                     Id = newElementId,
                     Name = $"Unknown{typeof(T).FullName}",
-                    ShortName = "UKN",
-                    Charge = 1,
                     Weight = 1
                 } as T
             };
@@ -134,9 +132,10 @@ public class FileSystemLoader
             Id = 1,
             Name = "Proton",
             Weight = .001f,
+            ElementType = ElementType.Particle,
             Charge = 1,
             Size = 1,
-            ElementType = ElementType.Particle,
+
             Color = "#00FFFA"
         };
         var neutronParticle = new Particle()
@@ -144,9 +143,10 @@ public class FileSystemLoader
             Id = 2,
             Name = "Neutron",
             Weight = 1,
+            ElementType = ElementType.Particle,
             Charge = 0,
             Size = 1,
-            ElementType = ElementType.Particle,
+
             Color = "#006F05"
         };
         var electronParticle = new Particle()
@@ -154,9 +154,10 @@ public class FileSystemLoader
             Id = 3,
             Name = "Electron",
             Weight = 10f,
+            ElementType = ElementType.Particle,
             Charge = -1,
             Size = .5f,
-            ElementType = ElementType.Particle,
+
             Color = "#FF0000"
         };
 

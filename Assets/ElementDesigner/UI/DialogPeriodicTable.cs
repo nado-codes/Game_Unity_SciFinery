@@ -81,7 +81,8 @@ public class DialogPeriodicTable : MonoBehaviour
             try
             {
                 // TODO: Create a grid item if the atom won't fit in the table
-                var index = (elementData?.Id ?? 0) - 1;
+                var isAtom = elementData is Atom;
+                var index = (!isAtom ? elementData.Id : (elementData as Atom).Number) - 1;
 
                 if (index == -1)
                     throw new ApplicationException($"Invalid or missing index for element {elementData.Name} Id in call to DialogPeriodicTable.Open");
@@ -160,7 +161,8 @@ public class DialogPeriodicTable : MonoBehaviour
 
         foreach (Atom isotope in selectedAtomIsotopes)
         {
-            var isotopeGridItem = isotopeGridItems.ElementAt(isotope.Id);
+            var neutronCount = isotope.Particles.Count(p => p.Charge == 0);
+            var isotopeGridItem = isotopeGridItems.ElementAt(neutronCount);
 
             if (isotopeGridItem == null)
                 throw new ApplicationException("Expected an AtomGridItem to store isotope in call to OpenPage2, got null");

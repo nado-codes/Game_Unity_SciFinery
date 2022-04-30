@@ -54,10 +54,23 @@ public class PanelName : MonoBehaviour
     }
     void Start() => VerifyInitialize();
 
-    public static void SetElementData(Element newElementData)
+    public static void SetElementData(Element element)
     {
         Instance.VerifyInitialize();
-        Instance.setElementData(newElementData);
+
+        switch (element.ElementType)
+        {
+            case ElementType.Atom:
+                Instance.setAtomData(element as Atom);
+                break;
+        }
+
+        Instance.setElementData(element);
+    }
+
+    private void setAtomData(Atom atom)
+    {
+        numberText.text = atom.Number.ToString();
     }
 
     private void setElementData(Element newElementData)
@@ -65,15 +78,9 @@ public class PanelName : MonoBehaviour
         if (newElementData == null)
             throw new ApplicationException("Expected atomData in call to SetAtomData in panelName, got null");
 
-        numberText.text = newElementData.Id.ToString();
-
-        var finalShortName =
-        newElementData.Charge < 0 ?
-            newElementData.ShortName + "-" :
-        newElementData.Charge == 0 ?
-            newElementData.ShortName :
-            newElementData.ShortName + "+";
-        shortNameText.text = finalShortName;
+        var ch = newElementData.Charge;
+        var chargeSign = ch < 0 ? "-" : ch == 0 ? "" : "+";
+        shortNameText.text = newElementData.ShortName + chargeSign;
 
         nameText.text = newElementData.Name;
         weightText.text = newElementData.Weight + ".00";

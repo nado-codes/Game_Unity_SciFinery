@@ -31,7 +31,7 @@ public class WorldElement : MonoBehaviour
     private Light bodyLight;
     private MeshRenderer bodyMR;
 
-    private bool initialized = false;
+    protected bool initialized = false;
 
     protected virtual void VerifyInitialize()
     {

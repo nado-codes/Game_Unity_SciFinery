@@ -5,18 +5,19 @@ using UnityEngine;
 
 public class Interact : MonoBehaviour
 {
-    enum InteractionState {None, Highlight, Select}
+    enum InteractionState { None, Highlight, Select }
 
     public bool Selectable = true;
 
     private float transparency = .5f;
-    private Color HighlightedColor = new Color(1,1,1,.5f);
-    public Color SelectedColor = new Color(0,1,0,.5f);
+    private Color HighlightedColor = new Color(1, 1, 1, .5f);
+    public Color SelectedColor = new Color(0, 1, 0, .5f);
 
     private InteractionState interactionState = InteractionState.None;
     private GameObject highlightCube;
-    protected Renderer highlightCubeRenderer {
-        get => highlightCube?.GetComponent<Renderer>(); 
+    protected Renderer highlightCubeRenderer
+    {
+        get => highlightCube?.GetComponent<Renderer>();
     }
     public bool isHovered = false;
     private bool isSelected = false;
@@ -40,17 +41,17 @@ public class Interact : MonoBehaviour
         SelectedColor.a = transparency;
         HighlightedColor.a = transparency;
 
-        if(Input.GetMouseButtonUp(0) && !Selectable)
+        if (Input.GetMouseButtonUp(0) && !Selectable)
             highlightCubeRenderer.material.color = HighlightedColor;
 
-        if(!Input.GetMouseButton(0) && !isHovered)
+        if (!Input.GetMouseButton(0) && !isHovered)
             highlightCube?.SetActive(false);
     }
 
     // Hover behaviour
     public void Hover()
     {
-        if(!isSelected)
+        if (!isSelected)
             highlightCubeRenderer.material.color = HighlightedColor;
 
         highlightCube?.SetActive(true);
@@ -58,25 +59,25 @@ public class Interact : MonoBehaviour
     }
     void OnMouseEnter()
     {
-        if(Selectable)
-            Editor.Hover(this);
-        
+        if (Selectable)
+            EditorSelect.Hover(this);
+
         Hover();
     }
 
     // Unhover behaviour
     public void ClearHover()
     {
-        if(!isSelected)
+        if (!isSelected)
             highlightCube?.SetActive(false);
 
         isHovered = false;
     }
     void OnMouseExit()
     {
-        Editor.RemoveHover(this);
+        EditorSelect.RemoveHover(this);
 
-        if(!isSelected && Selectable)
+        if (!isSelected && Selectable)
             ClearHover();
     }
 
@@ -93,11 +94,11 @@ public class Interact : MonoBehaviour
     }
     protected void OnMouseDown()
     {
-        if(Selectable)
-          Editor.Select(this);
+        if (Selectable)
+            EditorSelect.Select(this);
 
         Select();
     }
 
-    
+
 }

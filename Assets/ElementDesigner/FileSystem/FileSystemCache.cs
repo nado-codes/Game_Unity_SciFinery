@@ -41,23 +41,19 @@ public class FileSystemCache : MonoBehaviour
         throw new NotImplementedException();
     }
 
-    public static void AddElement(Element element)
+    public static T AddElement<T>(Element element) where T : Element
     {
-        var allElementsOfType = FileSystemCache.GetOrLoadElementsOfType(element.ElementType);
+        var allElementsOfType = FileSystemCache.GetOrLoadElementsOfType<T>();
         element.Id = allElementsOfType.Count() + 1;
         instance.elements.Add(element);
+
+        return GetOrLoadElementOfTypeById<T>(element.Id);
     }
 
     public static void AddSubElement(Element element)
     {
         instance.subElements.Add(element);
     }
-
-    // TODO
-    /* public void Update(Element element)
-    {
-
-    } */
 
     public void Delete()
     {
@@ -94,6 +90,7 @@ public class FileSystemCache : MonoBehaviour
        {
            ElementType.Particle => getOrLoadElementOfTypeById<Particle>(id),
            ElementType.Atom => getOrLoadElementOfTypeById<Atom>(id),
+           ElementType.Molecule => getOrLoadElementOfTypeById<Molecule>(id),
            _ => throw new NotImplementedException(
                $"Element type \"{elementType.ToString()}\" is not implemented in call to LoadElementOfTypeById"
             )
@@ -121,6 +118,15 @@ public class FileSystemCache : MonoBehaviour
     }
     public static Element GetOrLoadSubElementOfTypeById<T>(int id) where T : Element
         => getOrLoadSubElementOfTypeById<T>(id);
+    public static IEnumerable<Element> GetOrLoadSubElementsOfTypeByIds(ElementType elementType, IEnumerable<int> ids)
+    => elementType switch
+    {
+        ElementType.Particle => getOrLoadSubElementsOfTypeByIds<Particle>(ids),
+        ElementType.Atom => getOrLoadSubElementsOfTypeByIds<Atom>(ids),
+        _ => throw new NotImplementedException(
+            $"Element type \"{elementType.ToString()}\" is not implemented in call to GetOrLoadSubElementOfTypeByIds"
+         )
+    };
     public static IEnumerable<T> GetOrLoadSubElementsOfTypeByIds<T>(IEnumerable<int> ids) where T : Element
         => getOrLoadSubElementsOfTypeByIds<T>(ids);
     public static Element GetOrLoadSubElementOfTypeById(ElementType elementType, int id)
@@ -129,7 +135,7 @@ public class FileSystemCache : MonoBehaviour
            ElementType.Particle => getOrLoadSubElementOfTypeById<Particle>(id),
            ElementType.Atom => getOrLoadSubElementOfTypeById<Atom>(id),
            _ => throw new NotImplementedException(
-               $"Element type \"{elementType.ToString()}\" is not implemented in call to LoadElementOfTypeById"
+               $"Element type \"{elementType.ToString()}\" is not implemented in call to GetOrLoadSubElementOfTypeByIds"
             )
        };
     public static void ReloadElementOfTypeById<T>(int id) where T : Element
@@ -196,7 +202,7 @@ public class FileSystemCache : MonoBehaviour
         if (shouldReload)
             Instance.subElements = FileSystemLoader.LoadElementsOfType<T>().ToList<Element>();
 
-        var elementsById = Instance.subElements.Where(el => ids.Contains(el.Id));
+        var elementsById = ids.Select(id => Instance.subElements.FirstOrDefault(el => el.Id == id));
         return elementsById.Cast<T>();
     }
     private static T getOrLoadSubElementOfTypeById<T>(int id) where T : Element

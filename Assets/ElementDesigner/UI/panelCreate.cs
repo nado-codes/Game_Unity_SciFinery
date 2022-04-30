@@ -106,7 +106,7 @@ public class panelCreate : MonoBehaviour, IPointerExitHandler
             currentWorldElement.enabled = false;
             creationState = CreationState.Drag;
 
-            Editor.SetDragSelectEnabled(false);
+            EditorSelect.SetDragSelectEnabled(false);
         }
     }
 
@@ -137,7 +137,7 @@ public class panelCreate : MonoBehaviour, IPointerExitHandler
                 currentWorldElement.enabled = true;
                 currentWorldElement = null;
                 creationState = CreationState.None;
-                Editor.SetDragSelectEnabled(true);
+                EditorSelect.SetDragSelectEnabled(true);
             }
         }
     }
