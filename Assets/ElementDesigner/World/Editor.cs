@@ -157,12 +157,23 @@ public class Editor : MonoBehaviour
             default:
                 throw new NotImplementedException($"Element of type \"{elementData.GetType().FullName}\" is not yet implemented in call to Editor.LoadElementData");
         }
+
+        // .. Make atom particles orbit eccentrically on the first load
         if (elementData.ElementType == ElementType.Atom)
         {
-
+            SubElements.ForEach(el =>
+            {
+                var nuclei = SubElements.Where(otherEl => otherEl.Data.Id != el.Data.Id && otherEl.Data.Charge > 0);
+                var forces = nuclei.Select(otherEl => el.ForceBetween(otherEl));
+                var effectiveForce = forces.Average();
+                var perpForce = Vector3.Cross(effectiveForce, Vector3.up).normalized * effectiveForce.magnitude;
+                Debug.DrawRay(el.transform.position, effectiveForce, Color.red, 30);
+                Debug.DrawRay(el.transform.position, perpForce, Color.yellow, 30);
+                var motor = el.GetComponent<WorldElementMotor>();
+                motor.AddVelocity(perpForce);
+            });
         }
-        else
-            FileSystem.ActiveElement = elementData;
+
         PanelName.SetElementData(elementData);
         TextNotification.Show($"Loaded \"{elementData.Name}\"");
     }
@@ -176,8 +187,7 @@ public class Editor : MonoBehaviour
                 // TODO: later, positions will be able to be saved and re-loaded the next time an element loads
                 var radius = particle.Charge >= 0 ? 1 : 20;
                 var randPos = UnityEngine.Random.insideUnitSphere * radius;
-
-                CreateSubElement(particle, randPos);
+                var worldElement = CreateSubElement(particle, randPos);
             }
             catch (Exception e)
             {
@@ -284,9 +294,10 @@ public class Editor : MonoBehaviour
     public static void RemoveSubElement(WorldElement element)
     {
         SubElements.Remove(element);
-        GameObject.Destroy(element.gameObject);
         FileSystem.UpdateActiveElement();
         PanelName.SetElementData(FileSystem.ActiveElement);
+        EditorSelect.Deselect(element);
+        GameObject.Destroy(element.gameObject);
     }
 
     public async void HandleClearSubElementsClicked()

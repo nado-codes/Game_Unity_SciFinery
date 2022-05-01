@@ -7,7 +7,7 @@ public class Particle : Element
 {
     public Particle() : base(1)
     {
-
+        ElementType = ElementType.Particle;
     }
     [SerializeField]
     private Color color;

@@ -9,6 +9,7 @@ public class Molecule : Element
         Name = "NewMolecule";
         AtomIds = new int[0];
         ElementType = ElementType.Molecule;
+        SubElementType = ElementType.Atom;
     }
     public int[] AtomIds = new int[0];
 }

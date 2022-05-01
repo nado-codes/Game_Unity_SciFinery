@@ -57,16 +57,13 @@ public class WorldElement : MonoBehaviour
 
     void Update()
     {
-        if (infoText != null && infoCanvas != null)
-        {
-            var signCanvasRect = infoCanvas.GetComponent<RectTransform>();
-            var body = transform.Find("Body");
+        var signCanvasRect = infoCanvas.GetComponent<RectTransform>();
+        var body = transform.Find("Body");
 
-            var dist = Vector3.Distance(transform.position, Camera.main.transform.position) * .075f;
-            signCanvasRect.localScale = new Vector3(1 + dist, 1 + dist, 1 + dist) * (1 / body.localScale.magnitude);
+        var dist = Vector3.Distance(transform.position, Camera.main.transform.position) * .075f;
+        signCanvasRect.localScale = new Vector3(1 + dist, 1 + dist, 1 + dist) * (1 / body.localScale.magnitude);
 
-            infoCanvas.gameObject.SetActive(dist > 5);
-        }
+        infoCanvas.gameObject.SetActive(dist > 5);
     }
 
     protected virtual void SetColor(Color newColor)

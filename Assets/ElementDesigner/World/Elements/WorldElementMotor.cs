@@ -5,7 +5,7 @@ using System;
 public class WorldElementMotor : MonoBehaviour
 {
     private WorldElement worldElement;
-    private WorldElement WorldElement
+    public WorldElement WorldElement
     {
         get
         {
@@ -29,24 +29,18 @@ public class WorldElementMotor : MonoBehaviour
         var otherWorldMotors = worldMotors.Where(x => x != this).ToList();
 
         var effectiveForce = Vector3.zero;
-        otherWorldMotors.ForEach(x =>
+        otherWorldMotors.ForEach(otherElement =>
         {
-            var effectiveCharge = x.Charge * WorldElement.Charge;
-            var xBody = x.transform.Find("Body");
-            var body = transform.Find("Body");
-            var massOffset = 1 / (body.lossyScale.magnitude / xBody.lossyScale.magnitude) * WorldElement.MassMultiplier;
-
-            var distanceToParticle = Vector3.Distance(xBody.transform.position, transform.position);
-            var distanceOffset = 1 / (distanceToParticle > 0 ? distanceToParticle : 1);
-
-            // .. comment this out to enable repulsive forces
-            //effectiveCharge = effectiveCharge == 1 ? -1 : effectiveCharge;
-
-            var dirTo = transform.position - x.transform.position;
-            effectiveForce += dirTo * effectiveCharge * massOffset * distanceOffset;
+            var forceBetween = WorldElement.ForceBetween(otherElement);
+            effectiveForce += forceBetween;
         });
 
         velocity += effectiveForce * Time.deltaTime;
 
+    }
+
+    public void AddVelocity(Vector3 force)
+    {
+        velocity += force;
     }
 }

@@ -227,4 +227,12 @@ public class EditorSelect : MonoBehaviour
             _selectedObjects.Remove(objectToDeselect);
         }
     }
+
+    public static void Deselect(WorldElement element)
+    {
+        var interact = element.GetComponent<Interact>();
+
+        if (interact != null)
+            Deselect(interact);
+    }
 }
