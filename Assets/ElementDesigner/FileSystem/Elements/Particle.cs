@@ -5,8 +5,9 @@ using UnityEngine;
 [Serializable]
 public class Particle : Element
 {
-    public Particle() : base(1)
+    public Particle()
     {
+        Name = "NewParticle";
         ElementType = ElementType.Particle;
     }
     [SerializeField]

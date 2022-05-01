@@ -95,7 +95,7 @@ public class Editor : MonoBehaviour
     {
         FileSystem.SaveActiveElement(subElements.Select(el => el.Data));
     }
-    private async Task handleChangeDesignType<T>() where T : Element, new()
+    private async Task checkUnsaved()
     {
         if (HasUnsavedChanges)
         {
@@ -105,8 +105,10 @@ public class Editor : MonoBehaviour
             if (dialogResult == YesNo.Yes)
                 HandleSave();
         }
-
-        Editor.Instance.clearSubElements();
+    }
+    private async Task handleChangeDesignType<T>() where T : Element, new()
+    {
+        await checkUnsaved();
         createNewElementOfType<T>();
     }
 
@@ -117,16 +119,10 @@ public class Editor : MonoBehaviour
         else
             throw new NotImplementedException($"Design type {DesignType} is not yet implemented in call to Editor.HandleNewElementClicked");
     }
-    private void handleCreateNewElementOfType<T>() where T : Element, new()
+    private async void handleCreateNewElementOfType<T>() where T : Element, new()
     {
-        if (HasUnsavedChanges)
-        {
-            var dialogBody = "You have unsaved changes in the editor. Would you like to save before continuing?";
-            DialogYesNo.Open("Save Changes?", dialogBody, HandleSave, null,
-            createNewElementOfType<T>);
-        }
-        else
-            createNewElementOfType<T>();
+        await checkUnsaved();
+        createNewElementOfType<T>();
     }
     private void createNewElementOfType<T>() where T : Element, new()
     {
@@ -143,6 +139,8 @@ public class Editor : MonoBehaviour
     {
         if (elementData == null)
             throw new ArgumentException("Expected elementData in call to Editor.LoadElement, got null");
+
+        Editor.Instance.clearSubElements();
 
         // Camera.main.transform.position = instance.cameraStartPos;
         // Camera.main.transform.rotation = instance.cameraStartAngle;
@@ -302,15 +300,7 @@ public class Editor : MonoBehaviour
 
     public async void HandleClearSubElementsClicked()
     {
-        if (HasUnsavedChanges)
-        {
-            var dialogBody = "You have unsaved changes in the editor. Would you like to save before continuing?";
-            var result = await DialogYesNo.OpenForResult("Save Changes?", dialogBody);
-
-            if (result == YesNo.Yes)
-                HandleSave();
-        }
-
+        await checkUnsaved();
         clearSubElements();
     }
 

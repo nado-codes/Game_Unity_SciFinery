@@ -4,10 +4,9 @@ using UnityEngine;
 [Serializable]
 public class Molecule : Element
 {
-    public Molecule() : base(1)
+    public Molecule()
     {
         Name = "NewMolecule";
-        AtomIds = new int[0];
         ElementType = ElementType.Molecule;
         SubElementType = ElementType.Atom;
     }

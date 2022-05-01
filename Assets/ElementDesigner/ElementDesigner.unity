@@ -15384,11 +15384,11 @@ RectTransform:
   - {fileID: 35183373}
   - {fileID: 1039740229}
   m_Father: {fileID: 2068782373}
-  m_RootOrder: 6
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 92}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &296629757
@@ -27735,7 +27735,7 @@ RectTransform:
   - {fileID: 40339267}
   - {fileID: 1177106164}
   m_Father: {fileID: 2068782373}
-  m_RootOrder: 3
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -28018,7 +28018,7 @@ RectTransform:
   - {fileID: 1171931113}
   - {fileID: 2094139915}
   m_Father: {fileID: 2068782373}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -30208,7 +30208,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7754c17da3f9e2245a98ecee1e59e320, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectionBoxRect: {fileID: 0}
 --- !u!114 &612247313
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37867,8 +37866,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 252.1, y: 43}
+  m_AnchoredPosition: {x: 0, y: -0.0000097752}
+  m_SizeDelta: {x: 635.5, y: 49.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &751519548
 MonoBehaviour:
@@ -56283,7 +56282,7 @@ RectTransform:
   - {fileID: 2091978203}
   - {fileID: 80689445}
   m_Father: {fileID: 2068782373}
-  m_RootOrder: 2
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -60863,7 +60862,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -497}
+  m_AnchoredPosition: {x: 0, y: -500}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1302083046
@@ -63248,7 +63247,7 @@ GameObject:
   - component: {fileID: 1374604302}
   - component: {fileID: 1374604301}
   m_Layer: 5
-  m_Name: Image
+  m_Name: selectionBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -64818,7 +64817,7 @@ RectTransform:
   - {fileID: 216643664}
   - {fileID: 1337283821}
   m_Father: {fileID: 2068782373}
-  m_RootOrder: 5
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -96063,11 +96062,11 @@ RectTransform:
   m_Children:
   - {fileID: 1594489447}
   - {fileID: 1672620992}
+  - {fileID: 1422129295}
+  - {fileID: 568360980}
+  - {fileID: 296629756}
   - {fileID: 1204231190}
   - {fileID: 563044203}
-  - {fileID: 568360980}
-  - {fileID: 1422129295}
-  - {fileID: 296629756}
   - {fileID: 1301056000}
   - {fileID: 952821659}
   - {fileID: 246270559}

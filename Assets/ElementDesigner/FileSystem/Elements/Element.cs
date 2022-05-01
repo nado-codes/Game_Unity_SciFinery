@@ -7,24 +7,35 @@ using System.Collections.Generic;
 public class Element
 {
     public Element() { }
-    public Element(int id)
-    {
-        Id = id;
-    }
 
     public Element(Element original)
     {
 
     }
 
-    public int Id;
+    public int Id = 1;
     ///<summary>A shorthand abbreviated version of [Name] e.g. Hydrogen->HY</summary>
     public string ShortName =>
         string.Join("", Name.Substring(0, 2).Select((c, i) => i == 0 ? c.ToString().ToUpper() : c.ToString().ToLower()
     ));
     public string Name;
     ///<summary>How physically heavy an element is. Also partially determines how other elements react to it</summary>
-    public float Weight;
+    private float weight;
+    public float Weight
+    {
+        get
+        {
+            if (ElementType == ElementType.Particle)
+                return weight;
+            else
+                return Children.Any() ? Children.Select(c => c.Weight).Aggregate((a, c) => a + c) : 0;
+        }
+        set
+        {
+            if (ElementType == ElementType.Particle)
+                weight = value;
+        }
+    }
     ///<summary>Whether this element attracts or repulses other elements. Works together with Weight to determine overall repulsive/attractive force</summary>
     private int charge = 0;
     public virtual int Charge

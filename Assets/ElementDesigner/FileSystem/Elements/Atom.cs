@@ -7,7 +7,7 @@ public enum BondType { None = 0, Covalent = 1, Ionic = 2, Metallic = 3 }
 [Serializable]
 public class Atom : Element
 {
-    public Atom() : base(1)
+    public Atom()
     {
         Name = "NewAtom";
         ChildIds = new int[] { 1, 3 };

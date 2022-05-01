@@ -68,7 +68,7 @@ public class FileSystem : MonoBehaviour
 
     public static T CreateElementOfType<T>() where T : Element, new()
     {
-        var newElement = FileSystemCache.AddElement<T>(new T());
+        var newElement = new T();
         ActiveElement = newElement;
 
         return newElement;

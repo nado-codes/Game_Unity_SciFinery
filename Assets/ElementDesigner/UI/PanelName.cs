@@ -83,7 +83,7 @@ public class PanelName : MonoBehaviour
         shortNameText.text = newElementData.ShortName + chargeSign;
 
         nameText.text = newElementData.Name;
-        weightText.text = newElementData.Weight + ".00";
+        weightText.text = Math.Round(newElementData.Weight) + ".00";
 
         // TODO: implement classification
         // instance.classificationText.text = newElementData.Classification;

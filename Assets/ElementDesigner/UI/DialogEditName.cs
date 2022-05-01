@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,11 +5,18 @@ using UnityEngine.UI;
 public class DialogEditName : MonoBehaviour
 {
     InputField inputName;
+    Text title;
 
     // Start is called before the first frame update
     void Start()
     {
         inputName = transform.Find("inputName").GetComponent<InputField>();
+
+        var panelHeader = transform.Find("panelHeader");
+        Assertions.AssertNotNull(panelHeader, "panelHeader");
+        title = panelHeader.transform.Find("Title")?.GetComponent<Text>();
+        Assertions.AssertNotNull(title, "title");
+
         Close();
     }
 
@@ -25,7 +30,8 @@ public class DialogEditName : MonoBehaviour
     public void Open()
     {
         gameObject.SetActive(true);
-        // inputName.text = FileSystem.instance.ActiveElementAs<Atom>().Name;
+        title.text = "Name your " + FileSystem.ActiveElement.ElementType.ToString();
+        inputName.text = FileSystem.ActiveElement.Name;
         HUD.LockedFocus = true;
     }
 
@@ -41,6 +47,7 @@ public class DialogEditName : MonoBehaviour
         var newShortName = (nameWithoutVowels[0].ToString() + nameWithoutVowels[1].ToString()).ToUpper();
 
         FileSystem.ActiveElement.Name = inputName.text;
+        FileSystem.UpdateActiveElement();
         PanelName.SetElementData(FileSystem.ActiveElement);
 
         Close();

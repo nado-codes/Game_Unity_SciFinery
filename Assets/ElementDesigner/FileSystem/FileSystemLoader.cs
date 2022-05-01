@@ -115,16 +115,6 @@ public class FileSystemLoader
         Size = 1
     };
 
-    // TODO: Implement loading isotopes
-    private static IEnumerable<Atom> loadAtomIsotopes(string path)
-    {
-        if (!File.Exists(path))
-            throw new ArgumentException($"No atom exists at path {path} in call to loadAtom");
-
-        // TODO: Implement loading isotopes
-
-        return new List<Atom>();
-    }
     private static IEnumerable<Particle> loadParticles()
     {
         var protonParticle = new Particle()
