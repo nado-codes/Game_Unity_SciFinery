@@ -191,9 +191,6 @@ public class FileSystemCache : MonoBehaviour
 
         var elementById = Instance.elements.FirstOrDefault(el => el.Id == id);
 
-        if (elementById == null)
-            throw new NullReferenceException($"Element with id {id} doesn't exist in call to getOrLoadElementOfTypeById");
-
         return elementById as T;
     }
     private static IEnumerable<T> getOrLoadSubElementsOfTypeByIds<T>(IEnumerable<int> ids) where T : Element

@@ -35,13 +35,17 @@ public class FileSystem : MonoBehaviour
 
     private int activeElementId { get; set; }
     private ElementType activeElementType { get; set; }
+    private Element activeElement;
     public static Element ActiveElement
     {
-        get => FileSystemCache.GetOrLoadElementOfTypeById(Instance.activeElementType, Instance.activeElementId);
+        get => FileSystemCache.GetOrLoadElementOfTypeById(Instance.activeElementType, Instance.activeElementId) ?? Instance.activeElement;
         set
         {
             Instance.activeElementId = value.Id;
             Instance.activeElementType = value.ElementType;
+
+            if (FileSystemCache.GetOrLoadElementOfTypeById(Instance.activeElementType, Instance.activeElementId) == null)
+                Instance.activeElement = value;
         }
     }
 
@@ -69,8 +73,6 @@ public class FileSystem : MonoBehaviour
     public static T CreateElementOfType<T>() where T : Element, new()
     {
         var newElement = new T();
-        ActiveElement = newElement;
-
         return newElement;
     }
 
@@ -85,33 +87,27 @@ public class FileSystem : MonoBehaviour
     }
     public static void UpdateActiveElement()
     {
+        if (ActiveElement == null)
+            throw new ApplicationException("ActiveElement cannot be null in call to UpdateActiveElement");
         if (Editor.SubElements.Any(el => el.Data == null))
             throw new ApplicationException("At least one WorldElement is missing data");
 
-        switch (ActiveElement.ElementType)
-        {
-            case ElementType.Atom:
-                updateActiveAtom(ActiveElement as Atom);
-                break;
-            case ElementType.Molecule:
-                updateActiveMolecule(ActiveElement as Molecule);
-                break;
-            default:
-                throw new NotImplementedException($"Element of type {ActiveElement.GetType().FullName} is not yet implemented");
-        }
+        var result = updateElement(ActiveElement);
 
+        // .. if the element is not cached/saved, it's id will be -1, so we
+        if (result.Id == -1)
+            ActiveElement = result;
     }
-    private static void updateActiveAtom(Atom atom)
+    private static Element updateElement(Element element)
     {
-        var cacheRef = FileSystemCache.GetOrLoadElementOfTypeById<Atom>(atom.Id);
-        var particleIds = Editor.SubElements.Select(el => el.Data.Id);
-        cacheRef.ChildIds = particleIds.ToArray();
-    }
+        if (element == null)
+            throw new ApplicationException("Expected an element in call to updateActiveAtom, got null");
 
-    private static void updateActiveMolecule(Molecule molecule)
-    {
-        var atomIds = Editor.SubElements.Select(el => el.Data.Id);
-        molecule.AtomIds = atomIds.ToArray();
+        var cacheRef = FileSystemCache.GetOrLoadElementOfTypeById(element.ElementType, element.Id) ?? element;
+        var newChildIds = Editor.SubElements.Select(el => el.Data.Id);
+        cacheRef.ChildIds = newChildIds.ToArray();
+
+        return cacheRef;
     }
     public static void SaveActiveElement(IEnumerable<Element> subElements)
     {

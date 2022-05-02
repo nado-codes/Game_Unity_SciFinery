@@ -8,12 +8,7 @@ public class Element
 {
     public Element() { }
 
-    public Element(Element original)
-    {
-
-    }
-
-    public int Id = 1;
+    public int Id = -1;
     ///<summary>A shorthand abbreviated version of [Name] e.g. Hydrogen->HY</summary>
     public string ShortName =>
         string.Join("", Name.Substring(0, 2).Select((c, i) => i == 0 ? c.ToString().ToUpper() : c.ToString().ToLower()

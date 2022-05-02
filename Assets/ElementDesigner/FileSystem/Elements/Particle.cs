@@ -9,6 +9,8 @@ public class Particle : Element
     {
         Name = "NewParticle";
         ElementType = ElementType.Particle;
+        // TODO
+        //SubElementType = ElementType.Quark;
     }
     [SerializeField]
     private Color color;

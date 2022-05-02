@@ -56,12 +56,11 @@ public class EditorSelect : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Delete))
         {
-            _selectedObjects.ForEach(s =>
+            _selectedObjects.ToList().ForEach(s =>
             {
                 Editor.RemoveSubElement(s.GetComponent<WorldParticle>());
             });
             _selectedObjects.Clear();
-            //RemoveParticles(_selectedObjects);
         }
     }
 
