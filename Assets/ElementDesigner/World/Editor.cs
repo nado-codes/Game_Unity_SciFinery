@@ -32,6 +32,7 @@ public class Editor : MonoBehaviour
     public Text textClassification;
     public Text textStability;
     public Text textCharge;
+    private Button btnSave;
     // PARTICLES
     public static GameObject elementGameObject;
     public static List<WorldElement> SubElements { get => Instance.subElements; }
@@ -62,6 +63,11 @@ public class Editor : MonoBehaviour
 
         cameraStartPos = Camera.main.transform.position;
         cameraStartAngle = Camera.main.transform.rotation;
+
+        var hudTransform = GameObject.Find("HUD")?.transform;
+        var fileButtonsTransform = hudTransform.Find("FileButtons");
+        btnSave = fileButtonsTransform?.Find("btnSave")?.GetComponent<Button>();
+        Assertions.AssertNotNull(btnSave, "btnSave");
 
         // NOTE: Start the Editor in an initial state, also setting up the UI
         // with the correct elements and displays
@@ -99,9 +105,9 @@ public class Editor : MonoBehaviour
     }
     // .. NOTE: A "sub-element" is any component element of a parent Element, e.g. a Particle is
     // a sub-element of an Atom, and an Atom is a sub-element of a Molecule.
-    public static WorldElement CreateSubElement(Element element)
+    public static WorldElement CreateSubElement(Element elementData)
     {
-        if (element == null)
+        if (elementData == null)
             throw new ApplicationException("elementData cannot be null in call to CreateWorldElement");
 
         // TODO: later, prefabs for particles, atoms and molecules will be loaded in at runtime using
@@ -109,7 +115,7 @@ public class Editor : MonoBehaviour
 
         WorldElement newWorldElement = null;
         GameObject newWorldElementGO = null;
-        var elementType = element.ElementType;
+        var elementType = elementData.ElementType;
 
         try
         {
@@ -117,7 +123,7 @@ public class Editor : MonoBehaviour
             {
                 newWorldElementGO = Instantiate(Instance.particlePrefab);
 
-                var particleData = element as Particle;
+                var particleData = elementData as Particle;
                 var newWorldParticle = newWorldElementGO.GetComponent<WorldParticle>();
                 newWorldParticle.SetParticleData(particleData);
 
@@ -128,7 +134,7 @@ public class Editor : MonoBehaviour
             {
                 newWorldElementGO = Instantiate(Instance.atomPrefab);
 
-                var atomData = element as Atom;
+                var atomData = elementData as Atom;
                 var newWorldAtom = newWorldElementGO.GetComponent<WorldElement>();
 
                 if (newWorldAtom == null)
@@ -143,7 +149,7 @@ public class Editor : MonoBehaviour
                 throw new NotImplementedException($"Element of type {elementType} is not yet implemented in call to Editor.CreateWorldElement");
 
             newWorldElementGO.transform.parent = elementGameObject.transform;
-            newWorldElement.SetData(element);
+            newWorldElement.SetData(elementData);
 
             FileSystem.UpdateActiveElement();
             PanelName.SetElementData(FileSystem.ActiveElement);
@@ -172,24 +178,43 @@ public class Editor : MonoBehaviour
         EditorSelect.Deselect(element);
         GameObject.Destroy(element.gameObject);
     }
-    public void HandleSave()
+    public async void HandleSave()
     {
-        FileSystem.SaveActiveElement(subElements.Select(el => el.Data));
+        if (!HasUnsavedChanges)
+        {
+            TextNotification.Show("No changes to save");
+            return;
+        }
+
+        var saved = await FileSystem.SaveActiveElement(subElements.Select(el => el.Data));
+        HasUnsavedChanges = !saved;
+    }
+
+    public static async Task CheckUnsaved()
+    {
+        if (HasUnsavedChanges)
+        {
+            var dialogBody = "You have unsaved changes in the editor. Would you like to save before continuing?";
+            var dialogResult = await DialogYesNo.OpenForResult("Save Changes?", dialogBody);
+
+            if (dialogResult == YesNo.Yes)
+                Instance.HandleSave();
+        }
     }
     public async void HandleNewElementClicked()
     {
-        await checkUnsaved();
+        await CheckUnsaved();
         clearSubElements();
         createNewElementOfType(Editor.DesignType);
     }
     public async void HandleClearSubElementsClicked()
     {
-        await checkUnsaved();
+        await CheckUnsaved();
         clearSubElements();
     }
     public async void HandleChangeDesignTypeClicked(ElementType newDesignType)
     {
-        await checkUnsaved();
+        await CheckUnsaved();
         createNewElementOfType(newDesignType);
         panelCreate.SetDesignType(newDesignType);
         designType = newDesignType;
@@ -218,18 +243,7 @@ public class Editor : MonoBehaviour
         var newElement = FileSystem.CreateElementOfType<T>();
         LoadElement(newElement);
 
-        HasUnsavedChanges = false;
-    }
-    private async Task checkUnsaved()
-    {
-        if (HasUnsavedChanges)
-        {
-            var dialogBody = "You have unsaved changes in the editor. Would you like to save before continuing?";
-            var dialogResult = await DialogYesNo.OpenForResult("Save Changes?", dialogBody);
-
-            if (dialogResult == YesNo.Yes)
-                HandleSave();
-        }
+        HasUnsavedChanges = true;
     }
     private static void loadElementOfType<T>(T element) where T : Element
     {
@@ -249,35 +263,9 @@ public class Editor : MonoBehaviour
             }
         }
     }
-    /* private static void loadMolecule(Molecule moleculeData)
-    {
-        var atoms = FileSystemCache.GetOrLoadSubElementsOfType(ElementType.Atom);
-
-        foreach (int atomId in moleculeData.AtomIds)
-        {
-            try
-            {
-                var atomToCreateData = atoms.FirstOrDefault(p => p.Id == atomId);
-
-                if (atomToCreateData == null)
-                    throw new ApplicationException($"No atom found for Id {atomId} in call to Editor.LoadMolecule");
-
-                // TODO: later, positions will be able to be saved and re-loaded the next time an element loads
-                var randPos = UnityEngine.Random.insideUnitSphere * 20;
-                CreateSubElement(atomToCreateData, randPos);
-            }
-            catch (Exception e)
-            {
-                Debug.LogError(e);
-                continue;
-            }
-        }
-    } */
     private void clearSubElements()
     {
         var elementsToDelete = new List<WorldElement>(SubElements);
         elementsToDelete.ForEach(p => RemoveSubElement(p));
-
-        TextNotification.Show("All Sub-Elements Cleared");
     }
 }

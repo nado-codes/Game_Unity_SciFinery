@@ -33,21 +33,7 @@ public class FileSystem : MonoBehaviour
     // ACTIVE ELEMENT
     private static string activeElementFileName => $"{ActiveElement.ShortName.ToLower()}{ActiveElement.Id}";
 
-    private int activeElementId { get; set; }
-    private ElementType activeElementType { get; set; }
-    private Element activeElement;
-    public static Element ActiveElement
-    {
-        get => FileSystemCache.GetOrLoadElementOfTypeById(Instance.activeElementType, Instance.activeElementId) ?? Instance.activeElement;
-        set
-        {
-            Instance.activeElementId = value.Id;
-            Instance.activeElementType = value.ElementType;
-
-            if (FileSystemCache.GetOrLoadElementOfTypeById(Instance.activeElementType, Instance.activeElementId) == null)
-                Instance.activeElement = value;
-        }
-    }
+    public static Element ActiveElement { get; set; }
 
     public static string GetElementDirectoryPathForType(ElementType type)
       => $"{elementsRoot}/{type}";
@@ -92,11 +78,8 @@ public class FileSystem : MonoBehaviour
         if (Editor.SubElements.Any(el => el.Data == null))
             throw new ApplicationException("At least one WorldElement is missing data");
 
-        var result = updateElement(ActiveElement);
-
-        // .. if the element is not cached/saved, it's id will be -1, so we
-        if (result.Id == -1)
-            ActiveElement = result;
+        var newChildIds = Editor.SubElements.Select(el => el.Data.Id);
+        ActiveElement.ChildIds = newChildIds.ToArray();
     }
     private static Element updateElement(Element element)
     {
@@ -109,9 +92,9 @@ public class FileSystem : MonoBehaviour
 
         return cacheRef;
     }
-    public static void SaveActiveElement(IEnumerable<Element> subElements)
+    public static Task<bool> SaveActiveElement(IEnumerable<Element> subElements)
     {
-        saveElement(ActiveElement, subElements);
+        return saveElement(ActiveElement, subElements);
     }
     private static void assertValidSubElements(ElementType elementType, IEnumerable<Element> subElements)
     {
@@ -126,7 +109,7 @@ public class FileSystem : MonoBehaviour
         => element.ElementType == elementType ? true :
     throw new ArgumentException($"Element must be of type {elementType} in call to {callerName}, got {element.ElementType}");
 
-    private static async void saveElement(Element element, IEnumerable<Element> subElements)
+    private static async Task<bool> saveElement(Element element, IEnumerable<Element> subElements)
     {
         if (element == null)
             throw new NullReferenceException("Expected an Element, got null");
@@ -138,7 +121,7 @@ public class FileSystem : MonoBehaviour
             Directory.CreateDirectory(elementDirectoryPath);
 
         if (element.ElementType == ElementType.Atom)
-            await saveAtom(element, subElements);
+            return await saveAtom(element, subElements);
         else // .. applies to any other element like Molecules, Products and Particles
         {
             var elementFilePath = GetElementFilePath(element);
@@ -151,10 +134,11 @@ public class FileSystem : MonoBehaviour
                 FileSystemCache.UpdateElement(element);
 
             TextNotification.Show($"Saved {element.Name}");
+            return true;
         }
     }
 
-    private static async Task saveAtom(Element element, IEnumerable<Element> subElements)
+    private static async Task<bool> saveAtom(Element element, IEnumerable<Element> subElements)
     {
         // .. if this atom doesn't exist, there's no need to check for isotopes. Just save it.
         var allAtoms = FileSystemCache.GetOrLoadElementsOfType<Atom>();
@@ -163,8 +147,8 @@ public class FileSystem : MonoBehaviour
 
         if (parentAtom == null)
         {
-            saveElement(element, subElements);
-            return;
+            // .. this might loop infinitely...
+            return await saveElement(element, subElements);
         }
 
         var atomParticles = subElements.Cast<Particle>();
@@ -178,6 +162,13 @@ public class FileSystem : MonoBehaviour
             return (isotopeNeutronCount == atomNeutronCount);
         });
 
+        // .. TODO: there's an issue here. since the "ActiveElement" will point to the cache, this means that
+        // if we load a pre-existing atom and then try to make an isotope of it, the new particles will
+        // get added to the cache which means that the neutron counts will always be the same and it wont 
+        // detect that we're creating an isotope.
+        //
+        // the solution here is to pass in a raw atom as the ActiveElement and update the local reference only
+        // - only update the cache when we actually click "save".
         var parentAtomParticles = FileSystemCache.GetOrLoadSubElementsOfTypeByIds<Particle>(parentAtom.ChildIds);
         var parentAtomNeutronCount = parentAtomParticles.Where(particle => particle.Charge == 0).Count();
         var atomIsIsotope = atomNeutronCount != parentAtomNeutronCount;
@@ -197,6 +188,7 @@ public class FileSystem : MonoBehaviour
                 var isotopeFilePath = GetIsotopeFilePath(atomToSave, parentAtom);
                 var atomToSaveJSON = JsonUtility.ToJson(atomToSave);
                 File.WriteAllText(isotopeFilePath, atomToSaveJSON);
+                FileSystemCache.AddElement<Atom>(atomToSave);
 
                 // .. add the isotope to the parent and save it
                 parentAtom.IsotopeIds = parentAtom.IsotopeIds.Concat(new int[] { atomToSave.Id }).ToArray();
@@ -205,6 +197,7 @@ public class FileSystem : MonoBehaviour
                 FileSystemCache.ReloadElementOfTypeById<Atom>(parentAtom.Id);
 
                 TextNotification.Show($"Created {parentAtom.Name} isotope \"{atomToSave.Name}\"");
+                return true;
             }
         }
         else
@@ -212,8 +205,9 @@ public class FileSystem : MonoBehaviour
             var isIsotope = existingIsotope != null;
             atomToSave = isIsotope ? existingIsotope : atomToSave;
 
-            var dialogText = !isIsotope ? $"Are you sure you want to overwrite \"{parentAtom.Name}\"?" :
-            $"Are you sure you want to overwrite {parentAtom.Name} isotope \"{existingIsotope.Name}\"?";
+            var atomText = $"Are you sure you want to overwrite \"{parentAtom.Name}\"?";
+            var isotopeText = $"Are you sure you want to overwrite {parentAtom.Name} isotope \"{existingIsotope?.Name}\"?";
+            var dialogText = !isIsotope ? atomText : isotopeText;
 
             var overwriteResult = await DialogYesNo.OpenForResult("Overwrite?", dialogText);
 
@@ -226,8 +220,11 @@ public class FileSystem : MonoBehaviour
                 FileSystemCache.ReloadElementOfTypeById<Atom>(atomToSave.Id);
 
                 TextNotification.Show($"Saved {atomToSave.Name}");
+                return true;
             }
         }
+
+        return false;
     }
 
     public static void DeleteElement(Element elementData)

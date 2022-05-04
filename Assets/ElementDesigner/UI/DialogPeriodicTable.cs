@@ -1,7 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
@@ -187,24 +185,16 @@ public class DialogPeriodicTable : MonoBehaviour
         selectedGridItem = item;
     }
 
-    public void HandleLoadSelectedItemClicked()
+    public async void HandleLoadSelectedItemClicked()
     {
-        if (Editor.HasUnsavedChanges)
-        {
-            var dialogBody = "You have unsaved changes in the editor. Would you like to save before continuing?";
-            DialogYesNo.Open("Save Changes?", dialogBody, () => FileSystem.SaveActiveElement(Editor.SubElements.Select(el => el.Data)), null,
-            () => HandleLoadSelectedItem());
-        }
-        else
-            HandleLoadSelectedItem();
+        await Editor.CheckUnsaved();
+        HandleLoadSelectedItem();
     }
 
     private void HandleLoadSelectedItem()
     {
-        if (selectedElementData == null)
-            throw new ApplicationException("Expected selectedElementData in call to DialogPeriodicTable.HandleLoadSelectedItem, got null");
-
-        Editor.LoadElement(selectedElementData);
+        var selectedElementCopy = selectedElementData.Copy();
+        Editor.LoadElement(selectedElementCopy);
         Close();
     }
 

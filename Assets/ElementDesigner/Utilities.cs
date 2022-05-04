@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 
 public static class Utilities
 {
@@ -31,4 +32,20 @@ public static class Utilities
         var aggregate = vectors.Aggregate((a, c) => new Vector3(a.x + c.x, a.y + c.y, a.z + c.z));
         return new Vector3(aggregate.x / length, aggregate.y / length, aggregate.z / length);
     }
+
+    public static Element Copy(this Element element)
+    {
+        var elementJson = JsonUtility.ToJson(element);
+        return copy(elementJson, element.ElementType);
+    }
+
+    private static Element copy(string json, ElementType type) =>
+    type switch
+    {
+        ElementType.Particle => JsonUtility.FromJson<Particle>(json),
+        ElementType.Atom => JsonUtility.FromJson<Atom>(json),
+        ElementType.Molecule => JsonUtility.FromJson<Molecule>(json),
+        ElementType.Product => JsonUtility.FromJson<Product>(json),
+        _ => throw new NotImplementedException($"Element of type ${type} is not yet implemented in call to Copy")
+    };
 }

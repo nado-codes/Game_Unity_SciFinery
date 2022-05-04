@@ -71,6 +71,7 @@
      <Compile Include="Assets\Main\CoilAnim.cs" />
      <Compile Include="Assets\ElementDesigner\Globals.cs" />
      <Compile Include="Assets\ElementDesigner\UI\panelCreate.cs" />
+     <Compile Include="Assets\ElementDesigner\Utilities.cs" />
      <Compile Include="Assets\ElementDesigner\UI\DialogEditName.cs" />
      <Compile Include="Assets\ElementDesigner\World\Elements\Selectable.cs" />
      <Compile Include="Assets\ElementDesigner\World\ElementDesignerCamera.cs" />
@@ -82,7 +83,6 @@
      <Compile Include="Assets\ElementDesigner\World\Elements\WorldElementMotor.cs" />
      <Compile Include="Assets\ElementDesigner\World\EditorSelect.cs" />
      <Compile Include="Assets\ElementDesigner\FileSystem\Elements\Molecule.cs" />
-     <Compile Include="Assets\ElementDesigner\Utilities.cs" />
     <Reference Include="UnityEngine">
         <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.32f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>

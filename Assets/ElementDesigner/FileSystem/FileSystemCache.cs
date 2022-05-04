@@ -44,7 +44,10 @@ public class FileSystemCache : MonoBehaviour
     public static T AddElement<T>(Element element) where T : Element
     {
         var allElementsOfType = FileSystemCache.GetOrLoadElementsOfType<T>();
-        element.Id = allElementsOfType.Count() + 1;
+
+        if (allElementsOfType.Any(e => e.Id == element.Id))
+            throw new ApplicationException($"Element with id ${element.Id} already exists in call to AddElement");
+
         instance.elements.Add(element);
 
         return GetOrLoadElementOfTypeById<T>(element.Id);
