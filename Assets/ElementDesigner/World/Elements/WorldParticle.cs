@@ -27,11 +27,18 @@ public class WorldParticle : WorldElement
     {
         base.Start();
         VerifyInitialize();
+
+
     }
 
     void Update()
     {
-
+        var audioSource = GetComponent<AudioSource>();
+        if (Data.Charge < 0 && audioSource != null)
+        {
+            if (!audioSource.isPlaying)
+                audioSource.Play();
+        }
     }
 
     // TODO: Everything is a WorldElement but not every WorldElement can move or has a trail

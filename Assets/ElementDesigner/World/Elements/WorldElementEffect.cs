@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using System.Linq;
 
 public class WorldElementEffect : MonoBehaviour
 {
@@ -37,6 +38,8 @@ public class WorldElementEffect : MonoBehaviour
     private ParticleSystem particles;
     public bool useTrail = false;
     private TrailRenderer trail;
+    public bool useSound = false;
+    private AudioSource[] audioSources;
 
     private void VerifyInitialize()
     {
@@ -44,6 +47,11 @@ public class WorldElementEffect : MonoBehaviour
 
         trail = GetComponent<TrailRenderer>();
         trail.startWidth = WorldElement.BodyTransform.lossyScale.magnitude * .25f;
+
+        audioSources = GetComponents<AudioSource>();
+
+        if (!useSound)
+            audioSources.ToList().ForEach(a => a.Stop());
     }
 
     void Start()
@@ -65,5 +73,8 @@ public class WorldElementEffect : MonoBehaviour
         }
         else
             trail.time = 0;
+
+
+
     }
 }
