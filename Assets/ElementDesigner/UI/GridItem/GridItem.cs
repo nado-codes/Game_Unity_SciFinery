@@ -27,26 +27,37 @@ public class GridItem : MonoBehaviour
     }
     public void SetData(Element elementData)
     {
-        if (elementData is Particle)
-            GetOrAddElementGridItem<ParticleGridItem>().SetData(elementData as Particle);
-        else if (elementData is Atom)
-            GetOrAddElementGridItem<AtomGridItem>().SetData(elementData as Atom);
-        else
-            throw new NotImplementedException($"Element of type \"{elementData.GetType().FullName}\" is not yet implemented in call to GridItem.SetData");
+        if (elementData == null)
+        {
+            var elementGridItems = GetComponents<ElementGridItem>().ToList();
+            elementGridItems.ForEach(gi => gi.SetData(null));
+            return;
+        }
+
+        switch (elementData.ElementType)
+        {
+            case ElementType.Particle:
+                GetOrAddElementGridItem<ParticleGridItem>().SetData(elementData as Particle);
+                break;
+            case ElementType.Atom:
+                GetOrAddElementGridItem<AtomGridItem>().SetData(elementData as Atom);
+                break;
+            default:
+                GetOrAddElementGridItem<ElementGridItem>().SetData(elementData);
+                break;
+        }
     }
 
     public T GetGridItemForType<T>() where T : ElementGridItem
         => GetComponent<T>();
 
-    public ElementGridItem GetGridItemForType(ElementType elementType)
+    public ElementGridItem GetGridItemForType(ElementType elementType) =>
+    elementType switch
     {
-        if (elementType == ElementType.Particle)
-            return GetComponent<ParticleGridItem>();
-        else if (elementType == ElementType.Atom)
-            return GetComponent<AtomGridItem>();
-        else
-            throw new NotImplementedException($"Element of type \"{elementType}\" is not yet implemented in call to GridItem.SetData");
-    }
+        ElementType.Particle => GetComponent<ParticleGridItem>(),
+        ElementType.Atom => GetComponent<AtomGridItem>(),
+        _ => GetComponent<ElementGridItem>()
+    };
 
     private T GetOrAddElementGridItem<T>() where T : ElementGridItem
         => (GetComponent<T>() ?? gameObject.AddComponent<T>());

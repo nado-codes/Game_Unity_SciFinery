@@ -6,20 +6,31 @@ using UnityEngine;
 
 public class FileSystemLoader
 {
-    public static IEnumerable<T> LoadElementsOfType<T>() where T : Element
-    {
-        if (Enum.TryParse(typeof(T).FullName, out ElementType elementType))
-            return LoadElementsOfType(elementType).Cast<T>();
-        else
-            throw new ApplicationException($"Element \"{typeof(T).FullName}\" is not a valid ElementType in call to LoadElements<T : Element>");
-    }
     public static IEnumerable<Element> LoadElementsOfType(ElementType elementType)
      => elementType switch
      {
-         ElementType.Particle => loadParticles(),
-         ElementType.Atom => loadElementsOfType<Atom>(),
+         ElementType.Particle => LoadElementsOfType<Particle>(),
+         ElementType.Atom => LoadElementsOfType<Atom>(),
          _ => throw new NotImplementedException($"Element type \"{elementType.ToString()}\" is not implemented in call to LoadElementsOfType")
      };
+
+    public static IEnumerable<T> LoadElementsOfType<T>() where T : Element
+    {
+        if (!Enum.TryParse(typeof(T).FullName, out ElementType elementType))
+            throw new ApplicationException($"Element \"{typeof(T).FullName}\" is not a valid ElementType in call to LoadElements<T : Element>");
+
+        var elements = elementType switch
+        {
+            ElementType.Particle => loadParticles().Cast<T>(),
+            _ => loadElementsOfType<T>()
+        };
+
+        if (elements.Any(el => el.ElementType.ToString() != typeof(T).FullName))
+            throw new ApplicationException($"All elements must be of type {typeof(T).FullName} in call to LoadElementsOfType");
+
+        return elements;
+    }
+
 
     public static Element LoadElementOfTypeById<T>(int id) where T : Element
         => loadElementOfTypeById<T>(id);
@@ -87,8 +98,6 @@ public class FileSystemLoader
                 {
                     Id = newElementId,
                     Name = $"Unknown{typeof(T).FullName}",
-                    ShortName = "UKN",
-                    Charge = 1,
                     Weight = 1
                 } as T
             };
@@ -106,16 +115,6 @@ public class FileSystemLoader
         Size = 1
     };
 
-    // TODO: Implement loading isotopes
-    private static IEnumerable<Atom> loadAtomIsotopes(string path)
-    {
-        if (!File.Exists(path))
-            throw new ArgumentException($"No atom exists at path {path} in call to loadAtom");
-
-        // TODO: Implement loading isotopes
-
-        return new List<Atom>();
-    }
     private static IEnumerable<Particle> loadParticles()
     {
         var protonParticle = new Particle()
@@ -123,9 +122,10 @@ public class FileSystemLoader
             Id = 1,
             Name = "Proton",
             Weight = .001f,
+            ElementType = ElementType.Particle,
             Charge = 1,
             Size = 1,
-            ElementType = ElementType.Particle,
+
             Color = "#00FFFA"
         };
         var neutronParticle = new Particle()
@@ -133,9 +133,10 @@ public class FileSystemLoader
             Id = 2,
             Name = "Neutron",
             Weight = 1,
+            ElementType = ElementType.Particle,
             Charge = 0,
             Size = 1,
-            ElementType = ElementType.Particle,
+
             Color = "#006F05"
         };
         var electronParticle = new Particle()
@@ -143,9 +144,10 @@ public class FileSystemLoader
             Id = 3,
             Name = "Electron",
             Weight = 10f,
+            ElementType = ElementType.Particle,
             Charge = -1,
             Size = .5f,
-            ElementType = ElementType.Particle,
+
             Color = "#FF0000"
         };
 

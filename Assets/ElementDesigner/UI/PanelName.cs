@@ -32,37 +32,45 @@ public class PanelName : MonoBehaviour
         var instanceTransform = instance.transform;
 
         numberText = instanceTransform.Find("Number")?.GetComponent<Text>();
-        AssertNotNull(numberText, "numberText");
+        Assertions.AssertNotNull(numberText, "numberText");
         shortNameText = instanceTransform.Find("ShortName")?.GetComponent<Text>();
-        AssertNotNull(shortNameText, "shortNameText");
+        Assertions.AssertNotNull(shortNameText, "shortNameText");
 
         var btnNameTransform = transform.Find("btnName");
         nameText = btnNameTransform?.Find("Name")?.GetComponent<Text>();
-        AssertNotNull(nameText, "nameText");
+        Assertions.AssertNotNull(nameText, "nameText");
 
         weightText = transform.Find("Weight")?.GetComponent<Text>();
-        AssertNotNull(weightText, "weightText");
+        Assertions.AssertNotNull(weightText, "weightText");
 
         var classificationTransform = transform.Find("Classification");
         classificationText = classificationTransform?.Find("Value")?.GetComponent<Text>();
-        AssertNotNull(classificationText, "classificationText");
+        Assertions.AssertNotNull(classificationText, "classificationText");
 
         stabilityText = transform.Find("TextStability").GetComponent<Text>();
-        AssertNotNull(stabilityText, "stabilityText");
+        Assertions.AssertNotNull(stabilityText, "stabilityText");
         chargeText = transform.Find("TextCharge").GetComponent<Text>();
-        AssertNotNull(chargeText, "chargeText");
-    }
-    private void AssertNotNull<T>(T obj, string propertyName, [CallerMemberName] string callerName = "")
-    {
-        if (obj == null)
-            throw new NullReferenceException($"Expected {propertyName} in call to panelName.{callerName}, got null");
+        Assertions.AssertNotNull(chargeText, "chargeText");
     }
     void Start() => VerifyInitialize();
 
-    public static void SetElementData(Element newElementData)
+    public static void SetElementData(Element element)
     {
         Instance.VerifyInitialize();
-        Instance.setElementData(newElementData);
+
+        switch (element.ElementType)
+        {
+            case ElementType.Atom:
+                Instance.setAtomData(element as Atom);
+                break;
+        }
+
+        Instance.setElementData(element);
+    }
+
+    private void setAtomData(Atom atom)
+    {
+        numberText.text = atom.Number.ToString();
     }
 
     private void setElementData(Element newElementData)
@@ -70,18 +78,12 @@ public class PanelName : MonoBehaviour
         if (newElementData == null)
             throw new ApplicationException("Expected atomData in call to SetAtomData in panelName, got null");
 
-        numberText.text = newElementData.Id.ToString();
-
-        var finalShortName =
-        newElementData.Charge < 0 ?
-            newElementData.ShortName + "-" :
-        newElementData.Charge == 0 ?
-            newElementData.ShortName :
-            newElementData.ShortName + "+";
-        shortNameText.text = finalShortName;
+        var ch = newElementData.Charge;
+        var chargeSign = ch < 0 ? "-" : ch == 0 ? "" : "+";
+        shortNameText.text = newElementData.ShortName + chargeSign;
 
         nameText.text = newElementData.Name;
-        weightText.text = newElementData.Weight + ".00";
+        weightText.text = Math.Round(newElementData.Weight) + ".00";
 
         // TODO: implement classification
         // instance.classificationText.text = newElementData.Classification;

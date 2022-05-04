@@ -12,8 +12,9 @@ public class ElementGridItem : MonoBehaviour, IPointerDownHandler
     public bool hasData = false; // .. Because of the way Unity works, we can't use "elementData == null"
     public ElementDataDelegate OnClick;
     public Element elementData;
-    public ElementType elementDataType = ElementType.None;
+    public ElementType elementDataType = ElementType.Particle;
     protected Text numberText, nameText, shortNameText, weightText;
+    protected GameObject cross;
     protected Transform ActiveLayout;
     protected Button button;
     protected bool initialized = false;
@@ -26,7 +27,7 @@ public class ElementGridItem : MonoBehaviour, IPointerDownHandler
         elementData = data;
         hasData = data != null;
 
-        Enum.TryParse(data.GetType().FullName, out ElementType type);
+        Enum.TryParse(data?.GetType().FullName, out ElementType type);
         elementDataType = type;
 
         UpdateLayout();
@@ -58,7 +59,12 @@ public class ElementGridItem : MonoBehaviour, IPointerDownHandler
 
         initialized = true;
 
+        cross = transform.Find("Cross")?.gameObject;
+        //Assertions.AssertNotNull(cross, "cross");
+        //cross.SetActive(false);
+
         button = GetComponent<Button>();
+        Assertions.AssertNotNull(button, "button");
         buttonColorsActive = button.colors;
         buttonColorsInactive.normalColor = button.colors.disabledColor;
         buttonColorsInactive.highlightedColor = button.colors.disabledColor;
@@ -71,10 +77,9 @@ public class ElementGridItem : MonoBehaviour, IPointerDownHandler
     private void UpdateLayout()
     {
         // Update layout
-        Transform layoutToUse = transform.Find($"Layout_{elementDataType}") ?? transform.Find("Layout_Std");
-
-        if (layoutToUse == null)
-            throw new ApplicationException($"At least one layout of name \"Layout_Std\" is required in call to ElementGridItem.UpdateLayout");
+        Transform elementLayout = transform.Find($"Layout_{elementDataType}") ?? transform.Find("Layout_Std");
+        Transform layoutToUse = elementData != null ? elementLayout : transform.Find("Layout_Std");
+        Assertions.AssertNotNull(layoutToUse, "layoutToUse");
 
         IEnumerable<Transform> allLayouts = GetComponentsInChildren<Transform>().Where(t => t.name.Contains("Layout"));
         List<Transform> otherLayouts = allLayouts.Where(l => l != layoutToUse).ToList();
@@ -84,6 +89,7 @@ public class ElementGridItem : MonoBehaviour, IPointerDownHandler
 
         // Update UI
         nameText = ActiveLayout.Find("Name")?.GetComponent<Text>();
+        Assertions.AssertNotNull(nameText, "nameText");
         nameText.text = elementData?.Name ?? string.Empty;
     }
 }

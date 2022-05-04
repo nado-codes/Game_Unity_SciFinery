@@ -55,25 +55,21 @@ public class panelCreate : MonoBehaviour, IPointerExitHandler
 
     void Start() => VerifyInitialize();
 
+
+
     public static void SetDesignType(ElementType newDesignType)
     {
-        if (newDesignType == ElementType.Atom)
-        {
-            // load particles into creation panel
-            var particles = FileSystemLoader.LoadElementsOfType(ElementType.Particle);
-            Instance.LoadElements(particles);
-        }
-        else if (newDesignType == ElementType.Molecule)
-        {
-            // load atoms into creation panel
-        }
-        else if (newDesignType == ElementType.Product)
-        {
-            // load molecules into creation panel
-        }
-        else
-            throw new NotImplementedException($"Element of type {newDesignType} is not yet implemented in call to panelCreate.SetDesignType");
+        var subElements = loadSubElementsForDesignType(newDesignType);
+        Instance.LoadElements(subElements);
     }
+
+    private static IEnumerable<Element> loadSubElementsForDesignType(ElementType designType)
+    => designType switch
+    {
+        ElementType.Atom => FileSystemCache.GetOrLoadSubElementsOfType(ElementType.Particle),
+        ElementType.Molecule => FileSystemCache.GetOrLoadSubElementsOfType(ElementType.Atom),
+        _ => throw new NotImplementedException($"Designs for elements of type \"{designType}\" is not yet implemented")
+    };
 
     public void HandlePrevButtonClicked()
     {
@@ -105,13 +101,12 @@ public class panelCreate : MonoBehaviour, IPointerExitHandler
     {
         if (creationState == CreationState.Start)
         {
-            Debug.Log("start drag");
-
             currentWorldElement = Editor.CreateSubElement(elementToCreateData);
+            Assertions.AssertNotNull(currentWorldElement, "currentWorldElement");
             currentWorldElement.enabled = false;
             creationState = CreationState.Drag;
 
-            Editor.SetDragSelectEnabled(false);
+            EditorSelect.SetDragSelectEnabled(false);
         }
     }
 
@@ -125,12 +120,6 @@ public class panelCreate : MonoBehaviour, IPointerExitHandler
 
             bool isZoomIn = scroll < 0;
             bool isZoomOut = scroll > 0;
-
-            if (isZoomIn)
-                Debug.Log("zoom in");
-
-            if (isZoomOut)
-                Debug.Log("zoom out");
 
             if (isZoomOut && particleDistance < 50)
                 particleDistance += zoomSensitivity * Time.deltaTime;
@@ -148,7 +137,7 @@ public class panelCreate : MonoBehaviour, IPointerExitHandler
                 currentWorldElement.enabled = true;
                 currentWorldElement = null;
                 creationState = CreationState.None;
-                Editor.SetDragSelectEnabled(true);
+                EditorSelect.SetDragSelectEnabled(true);
             }
         }
     }
@@ -185,6 +174,5 @@ public class panelCreate : MonoBehaviour, IPointerExitHandler
     {
         elementToCreateData = elementData;
         creationState = CreationState.Start;
-        Debug.Log("starting creation");
     }
 }

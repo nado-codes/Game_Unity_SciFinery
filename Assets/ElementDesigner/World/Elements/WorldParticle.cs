@@ -1,120 +1,52 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 using Unity;
 using UnityEngine.UI;
 using UnityEngine;
 
-public enum ParticleType { Proton, Neutron, Electron }
-
 public class WorldParticle : WorldElement
 {
-    private Vector3 velocity = Vector3.zero;
-
-    // TODO: maybe 'charge' could be determined by weight?
-    public float Charge = 0;
-
-    private Canvas infoCanvas;
-    private Text infoText;
-    private TrailRenderer trail;
-    private ParticleSystem particles;
-    private Light bodyLight;
-    private MeshRenderer bodyMR;
-    private Transform bodyTransform;
-
-    public float massMultiplier = 1;
-    private bool initialized = false;
-
-    void VerifyInitialize()
+    protected new bool initialized = false;
+    private WorldElementMotor motor;
+    private WorldElementMotor Motor
     {
-        if (initialized)
-            return;
-
-        bodyTransform = transform.Find("Body");
-        bodyLight = bodyTransform.Find("Light").GetComponent<Light>();
-        var infoCanvasTransform = bodyTransform.Find("InfoCanvas");
-        infoCanvas = infoCanvasTransform.GetComponent<Canvas>();
-
-        infoText = infoCanvasTransform.Find("Text").GetComponent<Text>();
-
-        trail = GetComponent<TrailRenderer>();
-        particles = GetComponent<ParticleSystem>();
-
-        bodyMR = bodyTransform.GetComponent<MeshRenderer>();
-
-        trail.startWidth = bodyTransform.lossyScale.magnitude * .25f;
-        initialized = true;
-    }
-    protected void Start()
-    {
-        VerifyInitialize();
-    }
-
-    protected void Update()
-    {
-        transform.Translate(velocity * Time.deltaTime);
-
-        if (infoText != null && infoCanvas != null)
+        get
         {
-            var signCanvasRect = infoCanvas.GetComponent<RectTransform>();
-            var body = transform.Find("Body");
+            if (motor == null)
+                motor = GetComponent<WorldElementMotor>();
+            if (motor == null)
+                throw new ApplicationException("WorldParticle requires a WorldElementMotor to work properly. Please add one first.");
 
-            var dist = Vector3.Distance(transform.position, Camera.main.transform.position) * .075f;
-            signCanvasRect.localScale = new Vector3(1 + dist, 1 + dist, 1 + dist) * (1 / body.localScale.magnitude);
-
-            infoCanvas.gameObject.SetActive(dist > 5);
+            return motor;
         }
-
-        // Apply charges
-        var worldParticles = Editor.SubElements.Cast<WorldParticle>();
-        var otherWorldParticles = worldParticles.Where(x => x != this).ToList();
-
-        var effectiveForce = Vector3.zero;
-        otherWorldParticles.ForEach(x =>
-        {
-            var effectiveCharge = x.Charge * Charge;
-            var xBody = x.transform.Find("Body");
-            var body = transform.Find("Body");
-            var massOffset = 1 / (body.lossyScale.magnitude / xBody.lossyScale.magnitude) * massMultiplier;
-
-            var distanceToParticle = Vector3.Distance(xBody.transform.position, transform.position);
-            var distanceOffset = 1 / (distanceToParticle > 0 ? distanceToParticle : 1);
-
-            // .. comment this out to enable repulsive forces
-            //effectiveCharge = effectiveCharge == 1 ? -1 : effectiveCharge;
-
-            var dirTo = transform.position - x.transform.position;
-            effectiveForce += dirTo * effectiveCharge * massOffset * distanceOffset;
-        });
-
-        velocity += effectiveForce * Time.deltaTime;
-        trail.time = 10 * Mathf.Min((1 / velocity.magnitude), 1f);
     }
 
-    private void SetColor(Color newColor)
+    protected override void Start()
     {
+        base.Start();
         VerifyInitialize();
-        bodyLight.color = newColor;
-        bodyMR.material.color = newColor;
-        bodyMR.material.SetColor("_EmissionColor", newColor);
-
-        trail.material.color = newColor;
-        trail.material.SetColor("_EmissionColor", newColor);
     }
 
-    public void SetParticleData<T>(T particleData) where T : Particle
+    void Update()
     {
-        VerifyInitialize();
 
-        bodyTransform.localScale = new Vector3(particleData.Size, particleData.Size, particleData.Size);
+    }
+
+    // TODO: Everything is a WorldElement but not every WorldElement can move or has a trail
+    // WorldElementMotor - For movement
+    // WorldElementTrail - For trails
+
+    public void SetParticleData(Particle particleData)
+    {
+        base.VerifyInitialize();
+        base.SetData(particleData);
+
+        var pSize = particleData.Size;
+        BodyTransform.localScale = new Vector3(pSize, pSize, pSize);
 
         ColorUtility.TryParseHtmlString(particleData.Color, out Color particleColor);
         SetColor(particleColor);
-
-        var newInfoText = particleData.Charge == 0 ? string.Empty : particleData.Charge < 0 ? "-" : "+";
-        infoText.text = newInfoText;
-
-        Charge = particleData.Charge;
-        massMultiplier = particleData.Weight;
     }
 }

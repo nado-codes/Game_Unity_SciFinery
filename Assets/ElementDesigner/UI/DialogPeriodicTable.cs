@@ -1,7 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
@@ -24,46 +22,37 @@ public class DialogPeriodicTable : MonoBehaviour
     private void VerifyInitialize()
     {
         stdLayoutTransform = transform.Find("Layout_Std");
-        AssertNotNull(stdLayoutTransform, "stdLayoutTransform");
+        Assertions.AssertNotNull(stdLayoutTransform, "stdLayoutTransform");
         isotopeLayoutTransform = transform.Find("Layout_Isotope");
-        AssertNotNull(isotopeLayoutTransform, "isotopeLayoutTransform");
+        Assertions.AssertNotNull(isotopeLayoutTransform, "isotopeLayoutTransform");
 
         var page1GridTransform = stdLayoutTransform.Find("grid");
-        AssertNotNull(page1GridTransform, "page1GridTransform");
+        Assertions.AssertNotNull(page1GridTransform, "page1GridTransform");
         page1GridItems = page1GridTransform.GetComponentsInChildren<GridItem>().ToList();
-        AssertNotEmpty(page1GridItems, "page1GridItems");
+        Assertions.AssertNotEmpty(page1GridItems, "page1GridItems");
         page1GridItems.ForEach(item => item.GetComponent<Button>().onClick.AddListener(() => HandleItemSelected(item)));
 
         var page2AtomGridItemTransform = isotopeLayoutTransform.transform.Find("gridItem");
-        AssertNotNull(page2AtomGridItemTransform, "page2AtomGridItem");
+        Assertions.AssertNotNull(page2AtomGridItemTransform, "page2AtomGridItem");
         page2AtomGridItem = page2AtomGridItemTransform.GetComponent<GridItem>();
-        AssertNotNull(page2AtomGridItem, "page2AtomGridItem");
+        Assertions.AssertNotNull(page2AtomGridItem, "page2AtomGridItem");
         var page2GridTransform = isotopeLayoutTransform.Find("grid");
-        AssertNotNull(page2GridTransform, "page2GridTransform");
+        Assertions.AssertNotNull(page2GridTransform, "page2GridTransform");
         page2GridItems = page2GridTransform.GetComponentsInChildren<GridItem>().ToList();
-        AssertNotEmpty(page2GridItems, "page2GridItems");
+        Assertions.AssertNotEmpty(page2GridItems, "page2GridItems");
         page2GridItems.ForEach(item => item.GetComponent<Button>().onClick.AddListener(() => HandleItemSelected(item)));
 
         btnLoad = transform.Find("btnLoad").GetComponent<Button>();
-        AssertNotNull(btnLoad, "btnLoad");
+        Assertions.AssertNotNull(btnLoad, "btnLoad");
         btnDelete = transform.Find("btnDelete").GetComponent<Button>();
-        AssertNotNull(btnDelete, "btnDelete");
+        Assertions.AssertNotNull(btnDelete, "btnDelete");
         btnIsotopes = stdLayoutTransform.Find("btnIsotopes").GetComponent<Button>();
-        AssertNotNull(btnIsotopes, "btnIsotopes");
+        Assertions.AssertNotNull(btnIsotopes, "btnIsotopes");
 
         OpenPage1();
         Close();
     }
-    private void AssertNotNull<T>(T obj, string propertyName, [CallerMemberName] string callerName = "")
-    {
-        if (obj == null)
-            throw new NullReferenceException($"Expected {propertyName} in call to {callerName}, got null");
-    }
-    private void AssertNotEmpty<T>(IEnumerable<T> obj, string propertyName, [CallerMemberName] string callerName = "")
-    {
-        if (obj.Count() < 1)
-            throw new ApplicationException($"{propertyName} is not allowed to be empty in call to {callerName}");
-    }
+
     void Start()
     {
         VerifyInitialize();
@@ -90,7 +79,8 @@ public class DialogPeriodicTable : MonoBehaviour
             try
             {
                 // TODO: Create a grid item if the atom won't fit in the table
-                var index = (elementData?.Id ?? 0) - 1;
+                var isAtom = elementData is Atom;
+                var index = (!isAtom ? elementData.Id : (elementData as Atom).Number) - 1;
 
                 if (index == -1)
                     throw new ApplicationException($"Invalid or missing index for element {elementData.Name} Id in call to DialogPeriodicTable.Open");
@@ -115,23 +105,14 @@ public class DialogPeriodicTable : MonoBehaviour
         elementType switch
         {
             ElementType.Atom
-                => FileSystemLoader.LoadElementsOfType<Atom>().Where((a) => a.ParentId == -1),
-            _ => FileSystemLoader.LoadElementsOfType(elementType)
+                => FileSystemCache.GetOrLoadElementsOfType<Atom>().Where((a) => a.ParentId == -1),
+            _ => FileSystemCache.GetOrLoadElementsOfType(elementType)
         };
 
     // TODO: need to get or load the elements into the grid items here ... maybe only need to load them once
     private void handleOpen()
     {
 
-    }
-
-    public static async Task<string> AwaitTest()
-    {
-        var keepWaiting = true;
-
-        await Task.Delay(3000);
-
-        return "Hello!";
     }
 
     public void OpenPage1()
@@ -152,7 +133,7 @@ public class DialogPeriodicTable : MonoBehaviour
 
         page2AtomGridItem.SetData(selectedElementData);
 
-        var allAtoms = FileSystemLoader.LoadElementsOfType<Atom>();
+        var allAtoms = FileSystemCache.GetOrLoadElementsOfType<Atom>();
         var allIsotopes = allAtoms.Where(a => a.ParentId != -1);
         var selectedAtomIsotopes = allIsotopes.Where(i => i.ParentId == selectedElementData.Id);
 
@@ -178,7 +159,8 @@ public class DialogPeriodicTable : MonoBehaviour
 
         foreach (Atom isotope in selectedAtomIsotopes)
         {
-            var isotopeGridItem = isotopeGridItems.ElementAt(isotope.Id);
+            var neutronCount = isotope.Particles.Count(p => p.Charge == 0);
+            var isotopeGridItem = isotopeGridItems.ElementAt(neutronCount);
 
             if (isotopeGridItem == null)
                 throw new ApplicationException("Expected an AtomGridItem to store isotope in call to OpenPage2, got null");
@@ -191,6 +173,9 @@ public class DialogPeriodicTable : MonoBehaviour
     {
         gameObject.SetActive(false);
         HUD.LockedFocus = false;
+
+        page1GridItems.ForEach(gi => gi.SetData(null));
+        page2GridItems.ForEach(gi => gi.SetData(null));
     }
 
     private void HandleItemSelected(GridItem item)
@@ -203,24 +188,16 @@ public class DialogPeriodicTable : MonoBehaviour
         selectedGridItem = item;
     }
 
-    public void HandleLoadSelectedItemClicked()
+    public async void HandleLoadSelectedItemClicked()
     {
-        if (Editor.HasUnsavedChanges)
-        {
-            var dialogBody = "You have unsaved changes in the editor. Would you like to save before continuing?";
-            DialogYesNo.Open("Save Changes?", dialogBody, () => FileSystem.SaveActiveElement(Editor.SubElements.Select(el => el.Data)), null,
-            () => HandleLoadSelectedItem());
-        }
-        else
-            HandleLoadSelectedItem();
+        await Editor.CheckUnsaved();
+        HandleLoadSelectedItem();
     }
 
     private void HandleLoadSelectedItem()
     {
-        if (selectedElementData == null)
-            throw new ApplicationException("Expected selectedElementData in call to DialogPeriodicTable.HandleLoadSelectedItem, got null");
-
-        Editor.LoadElement(selectedElementData);
+        var selectedElementCopy = selectedElementData.Copy();
+        Editor.LoadElement(selectedElementCopy);
         Close();
     }
 
