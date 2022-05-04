@@ -10,6 +10,5 @@ public class Molecule : Element
         ElementType = ElementType.Molecule;
         SubElementType = ElementType.Atom;
     }
-    public int[] AtomIds = new int[0];
 }
 

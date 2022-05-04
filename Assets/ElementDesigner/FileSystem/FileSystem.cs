@@ -184,7 +184,7 @@ public class FileSystem : MonoBehaviour
             {
                 // .. save the isotope
                 atomToSave.ParentId = parentAtom.Id;
-                atomToSave.Id = allAtoms.Count() + 1;
+                atomToSave.Id = allAtoms.Max(a => a.Id) + 1;
                 var isotopeFilePath = GetIsotopeFilePath(atomToSave, parentAtom);
                 var atomToSaveJSON = JsonUtility.ToJson(atomToSave);
                 File.WriteAllText(isotopeFilePath, atomToSaveJSON);
@@ -203,7 +203,6 @@ public class FileSystem : MonoBehaviour
         else
         {
             var isIsotope = existingIsotope != null;
-            atomToSave = isIsotope ? existingIsotope : atomToSave;
 
             var atomText = $"Are you sure you want to overwrite \"{parentAtom.Name}\"?";
             var isotopeText = $"Are you sure you want to overwrite {parentAtom.Name} isotope \"{existingIsotope?.Name}\"?";

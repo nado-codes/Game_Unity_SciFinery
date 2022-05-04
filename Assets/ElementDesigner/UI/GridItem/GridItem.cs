@@ -27,6 +27,13 @@ public class GridItem : MonoBehaviour
     }
     public void SetData(Element elementData)
     {
+        if (elementData == null)
+        {
+            var elementGridItems = GetComponents<ElementGridItem>().ToList();
+            elementGridItems.ForEach(gi => gi.SetData(null));
+            return;
+        }
+
         switch (elementData.ElementType)
         {
             case ElementType.Particle:

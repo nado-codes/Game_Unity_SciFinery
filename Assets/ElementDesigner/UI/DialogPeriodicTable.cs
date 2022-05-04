@@ -173,6 +173,9 @@ public class DialogPeriodicTable : MonoBehaviour
     {
         gameObject.SetActive(false);
         HUD.LockedFocus = false;
+
+        page1GridItems.ForEach(gi => gi.SetData(null));
+        page2GridItems.ForEach(gi => gi.SetData(null));
     }
 
     private void HandleItemSelected(GridItem item)

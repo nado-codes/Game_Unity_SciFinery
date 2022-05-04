@@ -27,7 +27,7 @@ public class ElementGridItem : MonoBehaviour, IPointerDownHandler
         elementData = data;
         hasData = data != null;
 
-        Enum.TryParse(data.GetType().FullName, out ElementType type);
+        Enum.TryParse(data?.GetType().FullName, out ElementType type);
         elementDataType = type;
 
         UpdateLayout();

@@ -81,7 +81,7 @@ public class Editor : MonoBehaviour
 
         Editor.Instance.clearSubElements();
         FileSystem.ActiveElement = element;
-        loadElementOfType(element as Atom);
+        loadElementOfType(element);
 
         // .. Make atom particles orbit eccentrically on the first load
         if (element.ElementType == ElementType.Atom)
@@ -247,6 +247,9 @@ public class Editor : MonoBehaviour
     }
     private static void loadElementOfType<T>(T element) where T : Element
     {
+        if (element == null)
+            throw new NullReferenceException("Expected an element in call to loadElementOfType, got null");
+
         foreach (Element subElement in element.Children)
         {
             try
