@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using System.Collections.Generic;
+using UnityEngine;
 
 ///<summary>[Data] Master class. Any object which may exist in world space</summary>
 [Serializable]
@@ -60,12 +61,11 @@ public class Element
     {
         get
         {
-            var childrenIds = children.Select(c => c.Id);
-            var shouldRefreshChildren = ChildIds.Any(id => childrenIds.Count(chId => chId == id) != ChildIds.Count(id2 => id2 == id));
-            if (shouldRefreshChildren)
-                children = FileSystemCache.GetOrLoadSubElementsOfTypeByIds(SubElementType, ChildIds).ToList();
-
+            children = FileSystemCache.GetOrLoadSubElementsOfTypeByIds(SubElementType, ChildIds).ToList();
             return children;
         }
     }
+
+    ///<summary>Hexadecimal value representing the baseColor of a particle in world space</summary>
+    public Color Color => Utilities.BlendColors(children.Select(c => c.Color).ToArray());
 }

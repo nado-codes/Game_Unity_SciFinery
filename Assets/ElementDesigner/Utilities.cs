@@ -48,4 +48,13 @@ public static class Utilities
         ElementType.Product => JsonUtility.FromJson<Product>(json),
         _ => throw new NotImplementedException($"Element of type ${type} is not yet implemented in call to Copy")
     };
+
+    public static Color BlendColors(params Color[] colors)
+    {
+        Color result = new Color(0, 0, 0, 0);
+        foreach (Color c in colors)
+            result += c;
+
+        return result / colors.Length;
+    }
 }

@@ -103,7 +103,10 @@ public class panelCreate : MonoBehaviour, IPointerExitHandler
         {
             currentWorldElement = Editor.CreateSubElement(elementToCreateData);
             Assertions.AssertNotNull(currentWorldElement, "currentWorldElement");
-            currentWorldElement.enabled = false;
+            var motor = currentWorldElement.GetComponent<WorldElementMotor>();
+            if (motor != null)
+                motor.enabled = false;
+
             creationState = CreationState.Drag;
 
             EditorSelect.SetDragSelectEnabled(false);
@@ -134,7 +137,14 @@ public class panelCreate : MonoBehaviour, IPointerExitHandler
             if (Input.GetMouseButtonUp(0))
             {
                 particleDistance = particleDefaultDistance;
-                currentWorldElement.enabled = true;
+
+                var motor = currentWorldElement.GetComponent<WorldElementMotor>();
+                if (motor != null)
+                {
+                    motor.enabled = true;
+                    motor.AddVelocity(Camera.main.GetComponent<FlyCam>().Velocity);
+                }
+
                 currentWorldElement = null;
                 creationState = CreationState.None;
                 EditorSelect.SetDragSelectEnabled(true);

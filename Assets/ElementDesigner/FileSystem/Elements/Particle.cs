@@ -12,10 +12,11 @@ public class Particle : Element
         // TODO
         //SubElementType = ElementType.Quark;
     }
+
     [SerializeField]
     private Color color;
     ///<summary>Hexadecimal value representing the baseColor of a particle in world space</summary>
-    public string Color
+    public new string Color
     {
         get => "#" + ColorUtility.ToHtmlStringRGBA(color);
         set

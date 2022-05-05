@@ -169,14 +169,40 @@ public class Editor : MonoBehaviour
 
         return element;
     }
+
+    public void HandleDeleteSubElementClicked(WorldElement element)
+    {
+        EditorSelect.Deselect(element);
+        if (!validateDeletion(element.Data))
+            return;
+
+        RemoveSubElement(element);
+    }
+
     // TODO: implement removing world elements
     public static void RemoveSubElement(WorldElement element)
     {
         SubElements.Remove(element);
         FileSystem.UpdateActiveElement();
         PanelName.SetElementData(FileSystem.ActiveElement);
-        EditorSelect.Deselect(element);
         GameObject.Destroy(element.gameObject);
+    }
+    private static bool validateDeletion(Element elementToDelete)
+    {
+        // .. if deleting a nucleic element (Proton/Neutron), and it's an atom, validate
+        if (DesignType == ElementType.Atom && elementToDelete.Charge >= 0)
+        {
+            // .. make sure there's at least one other nucleic element
+            var nuclei = SubElements.Where(c => c.Charge >= 0);
+            var canDelete = nuclei.Count() > 1;
+
+            if (!canDelete)
+                TextNotification.Show("You can't delete the last nuclei!");
+
+            return canDelete;
+        }
+
+        return true;
     }
     public async void HandleSave()
     {

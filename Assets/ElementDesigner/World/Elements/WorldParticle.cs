@@ -27,8 +27,6 @@ public class WorldParticle : WorldElement
     {
         base.Start();
         VerifyInitialize();
-
-
     }
 
     void Update()

@@ -76,17 +76,20 @@ public class WorldElement : MonoBehaviour
         Color = newColor;
     }
 
-    public void SetData(Element elementData)
+    public void SetData(Element element)
     {
         VerifyInitialize();
-        Data = elementData;
+        Data = element;
 
-        var pCharge = elementData.Charge;
+        var pCharge = element.Charge;
         Charge = pCharge;
 
         chargeString = pCharge == 0 ? string.Empty : pCharge < 0 ? "-" : "+";
         infoText.text = chargeString;
 
-        MassMultiplier = elementData.Weight;
+        MassMultiplier = element.Weight;
+
+        if (element.ElementType != ElementType.Particle)
+            SetColor(element.Color);
     }
 }

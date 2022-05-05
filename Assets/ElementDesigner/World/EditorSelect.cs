@@ -58,7 +58,7 @@ public class EditorSelect : MonoBehaviour
         {
             _selectedObjects.ToList().ForEach(s =>
             {
-                Editor.RemoveSubElement(s.GetComponent<WorldParticle>());
+                Editor.Instance.HandleDeleteSubElementClicked(s.GetComponent<WorldParticle>());
             });
             _selectedObjects.Clear();
         }
