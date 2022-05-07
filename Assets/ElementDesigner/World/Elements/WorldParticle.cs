@@ -29,7 +29,7 @@ public class WorldParticle : WorldElement
         VerifyInitialize();
     }
 
-    void Update()
+    protected override void Update()
     {
         var audioSource = GetComponent<AudioSource>();
         if (Data.Charge < 0 && audioSource != null)
@@ -37,6 +37,7 @@ public class WorldParticle : WorldElement
             if (!audioSource.isPlaying)
                 audioSource.Play();
         }
+        base.Update();
     }
 
     // TODO: Everything is a WorldElement but not every WorldElement can move or has a trail
@@ -51,7 +52,7 @@ public class WorldParticle : WorldElement
         var pSize = particleData.Size;
         BodyTransform.localScale = new Vector3(pSize, pSize, pSize);
 
-        ColorUtility.TryParseHtmlString(particleData.Color, out Color particleColor);
+        ColorUtility.TryParseHtmlString(particleData.ColorHex, out Color particleColor);
         SetColor(particleColor);
     }
 }

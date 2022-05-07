@@ -110,7 +110,7 @@ public class FileSystemLoader
         Id = id,
         Name = "UnknownParticle",
         Charge = 0,
-        Color = "#FFF",
+        ColorHex = "#FFF",
         Weight = 1,
         Size = 1
     };
@@ -125,8 +125,7 @@ public class FileSystemLoader
             ElementType = ElementType.Particle,
             Charge = 1,
             Size = 1,
-
-            Color = "#00FFFA"
+            ColorHex = "#00FFFA"
         };
         var neutronParticle = new Particle()
         {
@@ -136,8 +135,7 @@ public class FileSystemLoader
             ElementType = ElementType.Particle,
             Charge = 0,
             Size = 1,
-
-            Color = "#006F05"
+            ColorHex = "#006F05"
         };
         var electronParticle = new Particle()
         {
@@ -147,8 +145,7 @@ public class FileSystemLoader
             ElementType = ElementType.Particle,
             Charge = -1,
             Size = .5f,
-
-            Color = "#FF0000"
+            ColorHex = "#FF0000"
         };
 
         var defaultParticles = new Particle[] { protonParticle, neutronParticle, electronParticle };

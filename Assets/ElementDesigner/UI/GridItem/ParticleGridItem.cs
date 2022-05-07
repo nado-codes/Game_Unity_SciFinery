@@ -18,10 +18,10 @@ public class ParticleGridItem : ElementGridItem
         if (icon == null)
             throw new ApplicationException("Expected an icon in call to ParticleGridItem.SetData, got null");
 
-        var validColor = ColorUtility.TryParseHtmlString(particleData.Color, out Color particleColor);
+        var validColor = ColorUtility.TryParseHtmlString(particleData.ColorHex, out Color particleColor);
 
         if (!validColor)
-            throw new ApplicationException($"Invalid color for particle in call to ParticleGridItem.SetData. Must be hex. ({particleData.Color})");
+            throw new ApplicationException($"Invalid color for particle in call to ParticleGridItem.SetData. Must be hex. ({particleData.ColorHex})");
 
         icon.color = particleColor;
 

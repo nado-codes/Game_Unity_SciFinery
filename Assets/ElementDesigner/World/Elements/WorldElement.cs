@@ -24,7 +24,7 @@ public class WorldElement : MonoBehaviour
     public Color Color { get; private set; }
     public float MassMultiplier { get; private set; }
 
-    protected string chargeString { get; private set; }
+    protected string infoString { get; private set; }
     protected Text infoText { get; private set; }
 
     private Canvas infoCanvas;
@@ -45,6 +45,13 @@ public class WorldElement : MonoBehaviour
 
         var infoCanvasTransform = BodyTransform.Find("InfoCanvas");
         infoCanvas = infoCanvasTransform?.GetComponent<Canvas>();
+        Assertions.AssertNotNull(infoCanvas, "infoCanvas");
+
+        var mainCameraTransform = Camera.main.transform;
+        var uiCamera = mainCameraTransform?.Find("UICamera")?.GetComponent<Camera>();
+        Assertions.AssertNotNull(uiCamera, "uiCamera");
+        infoCanvas.worldCamera = uiCamera;
+
         infoText = infoCanvasTransform?.Find("Text").GetComponent<Text>();
         Assertions.AssertNotNull(infoText, "infoText");
 
@@ -55,21 +62,21 @@ public class WorldElement : MonoBehaviour
         VerifyInitialize();
     }
 
-    void Update()
+    protected virtual void Update()
     {
         var signCanvasRect = infoCanvas.GetComponent<RectTransform>();
         var body = transform.Find("Body");
 
         var dist = Vector3.Distance(transform.position, Camera.main.transform.position) * .075f;
-        signCanvasRect.localScale = new Vector3(1 + dist, 1 + dist, 1 + dist) * (1 / body.localScale.magnitude);
+        signCanvasRect.localScale = new Vector3(1 + dist, 1 + dist, 1 + dist) * (1 / body.localScale.magnitude * .5f);
 
-        infoCanvas.gameObject.SetActive(dist > 5);
+        infoCanvas.gameObject.SetActive(dist > 2);
     }
 
     protected virtual void SetColor(Color newColor)
     {
         VerifyInitialize();
-        bodyLight.color = newColor;
+        bodyLight.color = newColor * 2;
         bodyMR.material.color = newColor;
         bodyMR.material.SetColor("_EmissionColor", newColor);
 
@@ -84,8 +91,9 @@ public class WorldElement : MonoBehaviour
         var pCharge = element.Charge;
         Charge = pCharge;
 
-        chargeString = pCharge == 0 ? string.Empty : pCharge < 0 ? "-" : "+";
-        infoText.text = chargeString;
+        var ch = element.Charge;
+        var chargeSign = ch < 0 ? "-" : ch == 0 ? "" : "+";
+        infoText.text = element.ShortName + chargeSign;
 
         MassMultiplier = element.Weight;
 

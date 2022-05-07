@@ -9,14 +9,16 @@ public class Element
 {
     public Element() { }
 
+    ///<summary>The unique id of this element in the element cache</summary>
     public int Id = -1;
     ///<summary>A shorthand abbreviated version of [Name] e.g. Hydrogen->HY</summary>
     public string ShortName =>
         string.Join("", Name.Substring(0, 2).Select((c, i) => i == 0 ? c.ToString().ToUpper() : c.ToString().ToLower()
     ));
     public string Name;
-    ///<summary>How physically heavy an element is. Also partially determines how other elements react to it</summary>
+
     private float weight;
+    ///<summary>How physically heavy an element is. Also partially determines how other elements react to it</summary>
     public float Weight
     {
         get
@@ -32,8 +34,9 @@ public class Element
                 weight = value;
         }
     }
-    ///<summary>Whether this element attracts or repulses other elements. Works together with Weight to determine overall repulsive/attractive force</summary>
+
     private int charge = 0;
+    ///<summary>Whether this element attracts or repulses other elements. Works together with Weight to determine overall repulsive/attractive force</summary>
     public virtual int Charge
     {
         get
@@ -54,9 +57,12 @@ public class Element
     public ElementType ElementType = ElementType.Atom;
     public ElementType SubElementType = ElementType.Particle;
 
+    ///<summary>List of Ids for SubElements attached to this element. Actual type depends on SubElementType</summary>
     public int[] ChildIds = new int[0];
 
     private List<Element> children = new List<Element>();
+
+    ///<summary>List of SubElements attached to this element</summary>
     public List<Element> Children
     {
         get
@@ -66,6 +72,19 @@ public class Element
         }
     }
 
-    ///<summary>Hexadecimal value representing the baseColor of a particle in world space</summary>
-    public Color Color => Utilities.BlendColors(children.Select(c => c.Color).ToArray());
+    [SerializeField]
+    private Color defaultColor = Color.white;
+    ///<summary>Hexadecimal value representing the color of an element in world space</summary>
+    public string ColorHex
+    {
+        get => "#" + ColorUtility.ToHtmlStringRGBA(Color);
+        set
+        {
+            ColorUtility.TryParseHtmlString(value, out Color newColor);
+            defaultColor = newColor;
+        }
+    }
+
+    ///<summary>RGBA value representing the the color of an element in world space</summary>
+    public Color Color => children.Any() ? Utilities.BlendColors(children.Select(c => c.Color).ToArray()) : defaultColor;
 }
