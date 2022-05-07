@@ -1,4 +1,4 @@
-using System.Runtime.CompilerServices;
+using System.Linq;
 using System;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,6 +16,7 @@ public class PanelName : MonoBehaviour
     }
     Text numberText, shortNameText, nameText, weightText;
     Text classificationText, stabilityText, chargeText;
+    //TextM compositionText;
 
     public static Text NameText => instance.nameText;
 
@@ -46,6 +47,10 @@ public class PanelName : MonoBehaviour
         var classificationTransform = transform.Find("Classification");
         classificationText = classificationTransform?.Find("Value")?.GetComponent<Text>();
         Assertions.AssertNotNull(classificationText, "classificationText");
+
+        var compositionTransform = transform.Find("Composition");
+        compositionText = compositionTransform?.Find("Value")?.GetComponent<TextMesh>();
+        Assertions.AssertNotNull(compositionText, "compositionText");
 
         stabilityText = transform.Find("TextStability").GetComponent<Text>();
         Assertions.AssertNotNull(stabilityText, "stabilityText");
@@ -84,6 +89,10 @@ public class PanelName : MonoBehaviour
 
         nameText.text = newElementData.Name;
         weightText.text = Math.Round(newElementData.Weight) + ".00";
+
+        var composition = newElementData.Children.Select(ch
+            => ch.ShortName + "\\u207" + newElementData.Children.Count(other => other.Id == ch.Id));
+        compositionText.text = string.Join("", composition);
 
         // TODO: implement classification
         // instance.classificationText.text = newElementData.Classification;

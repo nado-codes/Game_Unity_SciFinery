@@ -57,4 +57,16 @@ public static class Utilities
 
         return result / colors.Length;
     }
+
+    public static Color Emphasise(this Color color)
+    {
+        var rgb = new float[3] { color.r, color.g, color.b };
+        var emphasised = rgb.Select(n => n == rgb.Max() ? n : 0).ToArray();
+        var result = color;
+        result.r = emphasised[0];
+        result.g = emphasised[1];
+        result.b = emphasised[2];
+
+        return result;
+    }
 }

@@ -76,10 +76,12 @@ public class WorldElement : MonoBehaviour
     protected virtual void SetColor(Color newColor)
     {
         VerifyInitialize();
-        bodyLight.color = newColor * 2;
-        bodyMR.material.color = newColor;
-        bodyMR.material.SetColor("_EmissionColor", newColor);
 
+        var emphasisColor = Data.ElementType != ElementType.Particle ? newColor.Emphasise() : newColor;
+        bodyLight.color = emphasisColor;
+        bodyMR.material.SetColor("_EmissionColor", emphasisColor);
+
+        bodyMR.material.color = newColor;
         Color = newColor;
     }
 

@@ -28,10 +28,6 @@ public class Editor : MonoBehaviour
     public GameObject atomPrefab;
     public GameObject moleculePrefab;
     [Header("Other")]
-    // UI
-    public Text textClassification;
-    public Text textStability;
-    public Text textCharge;
     private Button btnSave;
     // PARTICLES
     public static GameObject elementGameObject;
@@ -54,10 +50,6 @@ public class Editor : MonoBehaviour
 
         SubElements.AddRange(FindObjectsOfType<WorldParticle>());
 
-        textClassification = GameObject.Find("Classification")?.transform.Find("Value").GetComponent<Text>();
-        textStability = GameObject.Find("TextStability")?.GetComponent<Text>();
-        textCharge = GameObject.Find("TextCharge")?.GetComponent<Text>();
-
         var designTypeTabs = GameObject.Find("tabsDesignType").GetComponent<Tabs>();
         designTypeTabs.OnSelectedTabChanged += (int designTypeId) => HandleChangeDesignTypeClicked((ElementType)designTypeId);
 
@@ -71,8 +63,8 @@ public class Editor : MonoBehaviour
 
         // NOTE: Start the Editor in an initial state, also setting up the UI
         // with the correct elements and displays
-        HandleChangeDesignTypeClicked(ElementType.Atom);
-        designTypeTabs.SelectTab((int)ElementType.Atom);
+        HandleChangeDesignTypeClicked(ElementType.Molecule);
+        designTypeTabs.SelectTab((int)ElementType.Molecule);
     }
     public static void LoadElement<T>(T element) where T : Element
     {
