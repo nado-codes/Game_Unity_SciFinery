@@ -396,7 +396,6 @@ GameObject:
   - component: {fileID: 8562700303087297347}
   - component: {fileID: 2449771352854338762}
   - component: {fileID: 6526434354727383946}
-  - component: {fileID: -4058527909403970206}
   - component: {fileID: -528700121739492077}
   m_Layer: 0
   m_Name: AtomSample
@@ -5327,18 +5326,6 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!114 &-4058527909403970206
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3007222311888095228}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a2ba301c99cce945a2a2622e8e46ae8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &-528700121739492077
 MonoBehaviour:
   m_ObjectHideFlags: 0

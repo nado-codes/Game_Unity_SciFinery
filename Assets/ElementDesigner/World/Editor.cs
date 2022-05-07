@@ -63,8 +63,12 @@ public class Editor : MonoBehaviour
 
         // NOTE: Start the Editor in an initial state, also setting up the UI
         // with the correct elements and displays
-        HandleChangeDesignTypeClicked(ElementType.Molecule);
-        designTypeTabs.SelectTab((int)ElementType.Molecule);
+        HandleChangeDesignTypeClicked(ElementType.Atom);
+        designTypeTabs.SelectTab((int)ElementType.Atom);
+
+        var allAtoms = FileSystemCache.GetOrLoadElementsOfType<Atom>();
+        var oxygenAtom = allAtoms.FirstOrDefault(a => a.Name == "Oxygen");
+        LoadElement(oxygenAtom);
     }
     public static void LoadElement<T>(T element) where T : Element
     {
@@ -169,6 +173,7 @@ public class Editor : MonoBehaviour
             return;
 
         RemoveSubElement(element);
+        HasUnsavedChanges = true;
     }
 
     // TODO: implement removing world elements

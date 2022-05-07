@@ -2,6 +2,7 @@ using System.Linq;
 using System;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class PanelName : MonoBehaviour
 {
@@ -16,7 +17,7 @@ public class PanelName : MonoBehaviour
     }
     Text numberText, shortNameText, nameText, weightText;
     Text classificationText, stabilityText, chargeText;
-    //TextM compositionText;
+    TextMeshPro compositionText;
 
     public static Text NameText => instance.nameText;
 
@@ -49,7 +50,7 @@ public class PanelName : MonoBehaviour
         Assertions.AssertNotNull(classificationText, "classificationText");
 
         var compositionTransform = transform.Find("Composition");
-        compositionText = compositionTransform?.Find("Value")?.GetComponent<TextMesh>();
+        compositionText = compositionTransform?.Find("Value")?.GetComponent<TextMeshPro>();
         Assertions.AssertNotNull(compositionText, "compositionText");
 
         stabilityText = transform.Find("TextStability").GetComponent<Text>();
@@ -90,8 +91,12 @@ public class PanelName : MonoBehaviour
         nameText.text = newElementData.Name;
         weightText.text = Math.Round(newElementData.Weight) + ".00";
 
-        var composition = newElementData.Children.Select(ch
-            => ch.ShortName + "\\u207" + newElementData.Children.Count(other => other.Id == ch.Id));
+        var uniqueChildren = newElementData.Children.GroupBy(ch => ch.Id).Select(ch => ch.First());
+        var composition = uniqueChildren.Select(ch =>
+        {
+            var count = newElementData.Children.Count(other => other.Id == ch.Id);
+            return ch.ShortName + (count > 1 ? "<sup>" + count + "</sup>" : "");
+        });
         compositionText.text = string.Join("", composition);
 
         // TODO: implement classification
