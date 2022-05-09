@@ -72,15 +72,16 @@ public class ElementGridItem : MonoBehaviour, IPointerDownHandler
     private void UpdateLayout()
     {
         // Update layout
-        Transform elementLayout = transform.Find($"Layout_{elementDataType}") ?? transform.Find("Layout_Std");
+        var elementLayoutTransform = transform.Find("ElementLayout");
+        IEnumerable<Transform> allLayouts = elementLayoutTransform.GetComponentsInChildren<Transform>().Where(t => t.name.Contains("Layout"));
+        Transform elementLayout = allLayouts.FirstOrDefault(l => l.name == $"Layout_{elementDataType}") ?? transform.Find("Layout_Std");
         Transform layoutToUse = elementData != null ? elementLayout : transform.Find("Layout_Std");
-        Assertions.AssertNotNull(layoutToUse, "layoutToUse");
+        layoutToUse?.gameObject.SetActive(true);
+        ActiveLayout = layoutToUse;
+        Assertions.AssertNotNull(ActiveLayout, "ActiveLayout");
 
-        IEnumerable<Transform> allLayouts = GetComponentsInChildren<Transform>().Where(t => t.name.Contains("Layout"));
         List<Transform> otherLayouts = allLayouts.Where(l => l != layoutToUse).ToList();
         otherLayouts.ForEach(l => l.gameObject.SetActive(false));
-        layoutToUse.gameObject.SetActive(true);
-        ActiveLayout = layoutToUse;
 
         // Update UI
         nameText = ActiveLayout.Find("Name")?.GetComponent<Text>();
