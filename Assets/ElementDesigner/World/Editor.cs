@@ -65,10 +65,6 @@ public class Editor : MonoBehaviour
         // with the correct elements and displays
         HandleChangeDesignTypeClicked(ElementType.Atom);
         designTypeTabs.SelectTab((int)ElementType.Atom);
-
-        var allAtoms = FileSystemCache.GetOrLoadElementsOfType<Atom>();
-        var oxygenAtom = allAtoms.FirstOrDefault(a => a.Name == "Oxygen");
-        LoadElement(oxygenAtom);
     }
     public static void LoadElement<T>(T element) where T : Element
     {

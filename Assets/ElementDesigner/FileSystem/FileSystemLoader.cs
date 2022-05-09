@@ -11,6 +11,7 @@ public class FileSystemLoader
      {
          ElementType.Particle => LoadElementsOfType<Particle>(),
          ElementType.Atom => LoadElementsOfType<Atom>(),
+         ElementType.Molecule => LoadElementsOfType<Molecule>(),
          _ => throw new NotImplementedException($"Element type \"{elementType.ToString()}\" is not implemented in call to LoadElementsOfType")
      };
 

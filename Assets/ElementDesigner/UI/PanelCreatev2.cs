@@ -6,7 +6,7 @@ using System.Linq;
 
 public enum CreationState { None, Start, Drag }
 
-public class panelCreate : MonoBehaviour, IPointerExitHandler
+public class PanelCreatev2 : MonoBehaviour, IPointerExitHandler
 {
     private static panelCreate instance;
     public static panelCreate Instance
@@ -154,6 +154,17 @@ public class panelCreate : MonoBehaviour, IPointerExitHandler
 
     private void RenderVisibleElements()
     {
+        elementButtons.ForEach(eb =>
+        {
+            var gridItem = eb.GetComponent<GridItem>();
+            var elementGridItems = (gridItem?.GetComponents<ElementGridItem>() ?? Array.Empty<ElementGridItem>()).ToList();
+            elementGridItems.ForEach(egi =>
+            {
+                egi.OnClick = null;
+                egi.SetData(null);
+            });
+        });
+
         foreach (Element element in visibleLoadedElements)
         {
             var elementIndex = visibleLoadedElements.IndexOf(element);
