@@ -74,6 +74,8 @@ public class DialogPeriodicTable : MonoBehaviour
 
         var loadedElements = loadElementsOfType(Editor.DesignType);
 
+        page1GridItems.ForEach(gi => gi.SetActive(false));
+
         foreach (Element elementData in loadedElements)
         {
             try

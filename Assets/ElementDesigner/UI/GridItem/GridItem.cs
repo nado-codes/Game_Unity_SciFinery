@@ -1,9 +1,15 @@
 using System;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GridItem : MonoBehaviour
 {
+    public void SetActive(bool active)
+    {
+        var button = GetComponent<Button>();
+        button.interactable = active;
+    }
     public ElementGridItem UseGridItemForType(ElementType elementType)
     {
         var otherGridItems = GetComponents<ElementGridItem>().Where(gridItem => gridItem.elementDataType != elementType).ToList();

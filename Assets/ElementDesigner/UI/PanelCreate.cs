@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 using System.Linq;
 
 public enum CreationState { None, Start, Drag }
@@ -31,6 +32,7 @@ public class PanelCreate : MonoBehaviour, IPointerExitHandler
     private List<Element> visibleLoadedElements = new List<Element>();
     private Transform elementButtonsTransform, btnPrevTransform, btnNextTransform;
     private List<GridItem> elementButtons = new List<GridItem>();
+    private Button btnPrev, btnNext;
 
     public float particleDefaultDistance = 5;
     private bool isHover = false;
@@ -44,11 +46,15 @@ public class PanelCreate : MonoBehaviour, IPointerExitHandler
         particleDistance = particleDefaultDistance;
 
         btnPrevTransform = transform.Find("btnPrev");
+        btnPrev = btnPrevTransform?.GetComponent<Button>();
+        Assertions.AssertNotNull(btnPrev, "btnPrev");
         btnNextTransform = transform.Find("btnNext");
+        btnNext = btnNextTransform?.GetComponent<Button>();
+        Assertions.AssertNotNull(btnNext, "btnNext");
 
         elementButtonsTransform = transform.Find("elementButtons");
-        elementButtons = elementButtonsTransform.GetComponentsInChildren<GridItem>().ToList();
-        // elementButtons.ForEach(btn => btn.UseGridItemForType(Editor.DesignType).OnClick += (data) => HandleElementGridItemClicked(data));
+        elementButtons = elementButtonsTransform?.GetComponentsInChildren<GridItem>().ToList();
+        Assertions.AssertNotEmpty(elementButtons, "elementButtons");
 
         instance = this;
     }
@@ -184,6 +190,10 @@ public class PanelCreate : MonoBehaviour, IPointerExitHandler
         var numGridItems = elementButtons.Count;
         visibleLoadedElements = elements.Where((_, i) => i >= 0 && i < numGridItems).ToList();
         RenderVisibleElements();
+
+        var enableScrollButtons = elements.Count() > elementButtons.Count;
+        btnNext.interactable = enableScrollButtons;
+        btnPrev.interactable = enableScrollButtons;
     }
 
     void OnMouseEnter()

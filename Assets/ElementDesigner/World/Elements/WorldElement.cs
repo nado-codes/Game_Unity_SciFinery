@@ -27,7 +27,7 @@ public class WorldElement : MonoBehaviour
     protected string infoString { get; private set; }
     protected Text infoText { get; private set; }
 
-    private Canvas infoCanvas;
+    private Canvas signCanvas;
     private Light bodyLight;
     private MeshRenderer bodyMR;
 
@@ -43,14 +43,15 @@ public class WorldElement : MonoBehaviour
         bodyLight = BodyTransform?.Find("Light").GetComponent<Light>();
         Assertions.AssertNotNull(bodyLight, "bodyLight");
 
-        var infoCanvasTransform = BodyTransform.Find("InfoCanvas");
-        infoCanvas = infoCanvasTransform?.GetComponent<Canvas>();
-        Assertions.AssertNotNull(infoCanvas, "infoCanvas");
+        var rotorTransform = BodyTransform.Find("Rotor");
+        var infoCanvasTransform = rotorTransform?.Find("InfoCanvas");
+        signCanvas = infoCanvasTransform?.GetComponent<Canvas>();
+        Assertions.AssertNotNull(signCanvas, "infoCanvas");
 
         var mainCameraTransform = Camera.main.transform;
         var uiCamera = mainCameraTransform?.Find("UICamera")?.GetComponent<Camera>();
         Assertions.AssertNotNull(uiCamera, "uiCamera");
-        infoCanvas.worldCamera = uiCamera;
+        signCanvas.worldCamera = uiCamera;
 
         infoText = infoCanvasTransform?.Find("Text").GetComponent<Text>();
         Assertions.AssertNotNull(infoText, "infoText");
@@ -64,13 +65,13 @@ public class WorldElement : MonoBehaviour
 
     protected virtual void Update()
     {
-        var signCanvasRect = infoCanvas.GetComponent<RectTransform>();
+        var signCanvasRect = signCanvas.GetComponent<RectTransform>();
         var body = transform.Find("Body");
 
         var dist = Vector3.Distance(transform.position, Camera.main.transform.position) * .075f;
         signCanvasRect.localScale = new Vector3(1 + dist, 1 + dist, 1 + dist) * (1 / body.localScale.magnitude * .5f);
 
-        infoCanvas.gameObject.SetActive(dist > 2);
+        infoText.gameObject.SetActive(dist > 5);
     }
 
     protected virtual void SetColor(Color newColor)
