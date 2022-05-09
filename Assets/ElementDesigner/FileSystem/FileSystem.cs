@@ -126,6 +126,9 @@ public class FileSystem : MonoBehaviour
         {
             var elementFilePath = GetElementFilePath(element);
             var isUpdate = File.Exists(elementFilePath);
+
+            var allElementsOfType = FileSystemCache.GetOrLoadElementsOfType(element.ElementType);
+            element.Id = allElementsOfType.Max(a => a.Id) + 1;
             var elementJSON = JsonUtility.ToJson(element);
             File.WriteAllText(elementFilePath, elementJSON);
 

@@ -6,16 +6,16 @@ using System.Linq;
 
 public enum CreationState { None, Start, Drag }
 
-public class PanelCreatev2 : MonoBehaviour, IPointerExitHandler
+public class PanelCreate : MonoBehaviour, IPointerExitHandler
 {
-    private static panelCreate instance;
-    public static panelCreate Instance
+    private static PanelCreate instance;
+    public static PanelCreate Instance
     {
         get
         {
             if (instance == null)
             {
-                instance = FindObjectOfType<panelCreate>();
+                instance = FindObjectOfType<PanelCreate>();
                 instance?.VerifyInitialize();
             }
 

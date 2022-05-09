@@ -69,7 +69,7 @@
      <Compile Include="Assets\ElementDesigner\FileSystem\Elements\Product.cs" />
      <Compile Include="Assets\Main\CoilAnim.cs" />
      <Compile Include="Assets\ElementDesigner\Globals.cs" />
-     <Compile Include="Assets\ElementDesigner\UI\panelCreate.cs" />
+     <Compile Include="Assets\ElementDesigner\UI\PanelCreate.cs" />
      <Compile Include="Assets\ElementDesigner\Utilities.cs" />
      <Compile Include="Assets\ElementDesigner\UI\DialogEditName.cs" />
      <Compile Include="Assets\ElementDesigner\World\Elements\Selectable.cs" />
@@ -82,7 +82,6 @@
      <Compile Include="Assets\ElementDesigner\World\Elements\WorldElementMotor.cs" />
      <Compile Include="Assets\ElementDesigner\World\EditorSelect.cs" />
      <Compile Include="Assets\ElementDesigner\FileSystem\Elements\Molecule.cs" />
-     <Compile Include="Assets\ElementDesigner\UI\PanelCreatev2.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />

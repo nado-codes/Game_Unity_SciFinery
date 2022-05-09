@@ -29915,7 +29915,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 612247306}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 36d4db403bbc77e4ea0b9e731d135fbf, type: 3}
@@ -52045,8 +52045,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: panelCreate, Assembly-CSharp
+      - m_Target: {fileID: 952821662}
+        m_TargetAssemblyTypeName: PanelCreate, Assembly-CSharp
         m_MethodName: HandleNextButtonClicked
         m_Mode: 1
         m_Arguments:
@@ -88091,8 +88091,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: panelCreate, Assembly-CSharp
+      - m_Target: {fileID: 952821662}
+        m_TargetAssemblyTypeName: PanelCreate, Assembly-CSharp
         m_MethodName: HandlePrevButtonClicked
         m_Mode: 1
         m_Arguments:

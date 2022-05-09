@@ -30,7 +30,7 @@ public class DialogPeriodicTable : MonoBehaviour
         Assertions.AssertNotNull(page1GridTransform, "page1GridTransform");
         page1GridItems = page1GridTransform.GetComponentsInChildren<GridItem>().ToList();
         Assertions.AssertNotEmpty(page1GridItems, "page1GridItems");
-        page1GridItems.ForEach(item => item.GetComponent<Button>().onClick.AddListener(() => HandleItemSelected(item)));
+        page1GridItems.ForEach(item => item.GetComponent<Button>().onClick.AddListener(() => handleItemSelected(item)));
 
         var page2AtomGridItemTransform = isotopeLayoutTransform.transform.Find("gridItem");
         Assertions.AssertNotNull(page2AtomGridItemTransform, "page2AtomGridItem");
@@ -40,7 +40,7 @@ public class DialogPeriodicTable : MonoBehaviour
         Assertions.AssertNotNull(page2GridTransform, "page2GridTransform");
         page2GridItems = page2GridTransform.GetComponentsInChildren<GridItem>().ToList();
         Assertions.AssertNotEmpty(page2GridItems, "page2GridItems");
-        page2GridItems.ForEach(item => item.GetComponent<Button>().onClick.AddListener(() => HandleItemSelected(item)));
+        page2GridItems.ForEach(item => item.GetComponent<Button>().onClick.AddListener(() => handleItemSelected(item)));
 
         btnLoad = transform.Find("btnLoad").GetComponent<Button>();
         Assertions.AssertNotNull(btnLoad, "btnLoad");
@@ -64,7 +64,7 @@ public class DialogPeriodicTable : MonoBehaviour
             Close();
 
         if (Input.GetKeyDown(KeyCode.Delete))
-            HandleDeleteSelectedItem();
+            handleDeleteSelectedItem();
     }
 
     public void HandleOpenClicked()
@@ -101,20 +101,16 @@ public class DialogPeriodicTable : MonoBehaviour
         HUD.LockedFocus = true;
         OpenPage1();
     }
-    private IEnumerable<Element> loadElementsOfType(ElementType elementType) =>
-        elementType switch
-        {
-            ElementType.Atom
-                => FileSystemCache.GetOrLoadElementsOfType<Atom>().Where((a) => a.ParentId == -1),
-            _ => FileSystemCache.GetOrLoadElementsOfType(elementType)
-        };
-
-    // TODO: need to get or load the elements into the grid items here ... maybe only need to load them once
-    private void handleOpen()
+    public async void HandleLoadSelectedItemClicked()
     {
-
+        await Editor.CheckUnsaved();
+        handleLoadSelectedItem();
     }
-
+    public void HandleDeleteSelectedItemClicked()
+    {
+        var dialogBody = "Deleting an element means that it is gone forever! Are you sure?";
+        DialogYesNo.Open("Delete Element", dialogBody, handleDeleteSelectedItem);
+    }
     public void OpenPage1()
     {
         isotopeLayoutTransform.gameObject.SetActive(false);
@@ -125,7 +121,6 @@ public class DialogPeriodicTable : MonoBehaviour
         else
             btnIsotopes.gameObject.SetActive(false);
     }
-
     public void OpenPage2()
     {
         isotopeLayoutTransform.gameObject.SetActive(true);
@@ -168,7 +163,6 @@ public class DialogPeriodicTable : MonoBehaviour
             isotopeGridItem.SetData(isotope);
         }
     }
-
     public void Close()
     {
         gameObject.SetActive(false);
@@ -178,7 +172,20 @@ public class DialogPeriodicTable : MonoBehaviour
         page2GridItems.ForEach(gi => gi.SetData(null));
     }
 
-    private void HandleItemSelected(GridItem item)
+    private IEnumerable<Element> loadElementsOfType(ElementType elementType) =>
+        elementType switch
+        {
+            ElementType.Atom
+                => FileSystemCache.GetOrLoadElementsOfType<Atom>().Where((a) => a.ParentId == -1),
+            _ => FileSystemCache.GetOrLoadElementsOfType(elementType)
+        };
+
+    // TODO: need to get or load the elements into the grid items here ... maybe only need to load them once
+    private void handleOpen()
+    {
+
+    }
+    private void handleItemSelected(GridItem item)
     {
         var isInteractable = item.HasDataOfType(Editor.DesignType);
         btnLoad.interactable = isInteractable;
@@ -187,26 +194,13 @@ public class DialogPeriodicTable : MonoBehaviour
 
         selectedGridItem = item;
     }
-
-    public async void HandleLoadSelectedItemClicked()
-    {
-        await Editor.CheckUnsaved();
-        HandleLoadSelectedItem();
-    }
-
-    private void HandleLoadSelectedItem()
+    private void handleLoadSelectedItem()
     {
         var selectedElementCopy = selectedElementData.Copy();
         Editor.LoadElement(selectedElementCopy);
         Close();
     }
-
-    public void HandleDeleteSelectedItemClicked()
-    {
-        var dialogBody = "Deleting an element means that it is gone forever! Are you sure?";
-        DialogYesNo.Open("Delete Element", dialogBody, HandleDeleteSelectedItem);
-    }
-    private void HandleDeleteSelectedItem()
+    private void handleDeleteSelectedItem()
     {
         selectedGridItem.GetGridItemForType(selectedElementData.ElementType).SetActive(false);
         FileSystem.DeleteElement(selectedElementData);

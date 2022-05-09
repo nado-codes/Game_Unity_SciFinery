@@ -15,4 +15,11 @@ public class MoleculeGridItem : ElementGridItem
     {
 
     }
+
+    // TODO: add ShortName set for molecules (basically works the same as an AtomGridItem)
+    /*
+        shortNameText = ActiveLayout.Find("ShortName")?.GetComponent<Text>();
+        Assertions.AssertNotNull(shortNameText, "shortNameText");
+        nameText.text = elementData?.ShortName ?? string.Empty;
+    */
 }

@@ -235,7 +235,7 @@ public class Editor : MonoBehaviour
     {
         await CheckUnsaved();
         createNewElementOfType(newDesignType);
-        panelCreate.SetDesignType(newDesignType);
+        PanelCreate.SetDesignType(newDesignType);
         designType = newDesignType;
         TextNotification.Show("Design Type: " + newDesignType);
     }
