@@ -17,12 +17,16 @@ public class ElementGridItem : MonoBehaviour, IPointerDownHandler
     protected Transform ActiveLayout;
     protected Button button;
     protected bool initialized = false;
+
+    private Transform elementLayoutTransform;
     private ColorBlock buttonColorsActive, buttonColorsInactive;
 
     public void OnPointerDown(PointerEventData ev) => HandleClick();
     public void HandleClick() => OnClick?.Invoke(elementData);
     public virtual void SetData(Element data)
     {
+        VerifyInitialize();
+
         elementData = data;
         hasData = data != null;
 
@@ -36,7 +40,7 @@ public class ElementGridItem : MonoBehaviour, IPointerDownHandler
     {
         VerifyInitialize();
 
-        List<Transform> allLayouts = GetComponentsInChildren<Transform>(true).Where(t => t.name.Contains("Layout")).ToList();
+        List<Transform> allLayouts = elementLayoutTransform.GetComponentsInChildren<Transform>(true).Where(t => t.name.Contains("Layout")).ToList();
         allLayouts.ForEach(layout =>
         {
             if (layout != ActiveLayout || !active)
@@ -66,16 +70,18 @@ public class ElementGridItem : MonoBehaviour, IPointerDownHandler
         buttonColorsInactive.pressedColor = button.colors.disabledColor;
         buttonColorsInactive.selectedColor = button.colors.disabledColor;
 
+        elementLayoutTransform = transform.Find("ElementLayout");
+        Assertions.AssertNotNull(elementLayoutTransform, "elementLayoutTransform");
+
         UpdateLayout();
     }
 
     private void UpdateLayout()
     {
         // Update layout
-        var elementLayoutTransform = transform.Find("ElementLayout");
         IEnumerable<Transform> allLayouts = elementLayoutTransform.GetComponentsInChildren<Transform>().Where(t => t.name.Contains("Layout"));
-        Transform elementLayout = allLayouts.FirstOrDefault(l => l.name == $"Layout_{elementDataType}") ?? transform.Find("Layout_Std");
-        Transform layoutToUse = elementData != null ? elementLayout : transform.Find("Layout_Std");
+        Transform elementLayout = allLayouts.FirstOrDefault(l => l.name == $"Layout_{elementDataType}") ?? elementLayoutTransform.Find("Layout_Std");
+        Transform layoutToUse = elementData != null ? elementLayout : elementLayoutTransform.Find("Layout_Std");
         layoutToUse?.gameObject.SetActive(true);
         ActiveLayout = layoutToUse;
         Assertions.AssertNotNull(ActiveLayout, "ActiveLayout");

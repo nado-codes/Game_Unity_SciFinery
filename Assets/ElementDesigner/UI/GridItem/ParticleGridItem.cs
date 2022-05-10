@@ -13,7 +13,10 @@ public class ParticleGridItem : ElementGridItem
 
         base.SetData(particleData);
 
-        var icon = ActiveLayout.Find("Icon").GetComponent<Image>();
+        if (ActiveLayout.name != "Layout_Particle")
+            throw new ApplicationException("ParticleGridItem requires ActiveLayout \"Layout_Particle\" in call to SetData");
+
+        var icon = ActiveLayout.Find("Icon")?.GetComponent<Image>();
 
         if (icon == null)
             throw new ApplicationException("Expected an icon in call to ParticleGridItem.SetData, got null");
