@@ -86,7 +86,7 @@ public class PanelCreate : MonoBehaviour, IPointerExitHandler
         visibleLoadedElements.Insert(0, elementToAdd);
         visibleLoadedElements.Remove(visibleLoadedElements.LastOrDefault());
 
-        RenderVisibleElements();
+        renderVisibleElements();
     }
 
     public void HandleNextButtonClicked()
@@ -98,7 +98,7 @@ public class PanelCreate : MonoBehaviour, IPointerExitHandler
         visibleLoadedElements.Add(elementToAdd);
         visibleLoadedElements.Remove(visibleLoadedElements.FirstOrDefault());
 
-        RenderVisibleElements();
+        renderVisibleElements();
     }
 
     // particleToCreateData will specify all of the element's properties e.g. for molecules, which atoms it contains
@@ -158,7 +158,7 @@ public class PanelCreate : MonoBehaviour, IPointerExitHandler
         }
     }
 
-    private void RenderVisibleElements()
+    private void renderVisibleElements()
     {
         elementButtons.ForEach(eb =>
         {
@@ -189,7 +189,7 @@ public class PanelCreate : MonoBehaviour, IPointerExitHandler
         loadedElements = elements.ToList();
         var numGridItems = elementButtons.Count;
         visibleLoadedElements = elements.Where((_, i) => i >= 0 && i < numGridItems).ToList();
-        RenderVisibleElements();
+        renderVisibleElements();
 
         var enableScrollButtons = elements.Count() > elementButtons.Count;
         btnNext.interactable = enableScrollButtons;
