@@ -47,7 +47,7 @@ public class EditorMode_TableGridGen : MonoBehaviour
 
         if (gridItemPrefab == null) return;
 
-        var otherGridItems = GetComponentsInChildren<AtomGridItem>().ToList();
+        var otherGridItems = GetComponentsInChildren<GridItem>().ToList();
         otherGridItems.ForEach(i => GameObject.DestroyImmediate(i.gameObject));
     }
     void GenerateGrid()
@@ -64,11 +64,12 @@ public class EditorMode_TableGridGen : MonoBehaviour
             for (var x = 0; x < columns; ++x)
             {
                 var newGridItem = Instantiate(gridItemPrefab);
-                newGridItem.name = y.ToString() + "_" + x.ToString();
+                newGridItem.name = y.ToString() + "_" + x.ToString() + "(" + newGridItem.name + ")";
                 newGridItem.transform.parent = transform;
                 newGridItem.transform.localScale = Vector3.one;
 
                 var newGridItemRect = newGridItem.GetComponent<RectTransform>();
+                newGridItemRect.sizeDelta = new Vector2(itemWidth, itemWidth);
                 newGridItemRect.localPosition = gridStartPos + new Vector3(itemWidth * x, itemWidth * -y, 0);
 
                 gridItems.Add(newGridItem);

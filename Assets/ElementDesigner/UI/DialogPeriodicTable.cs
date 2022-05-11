@@ -32,8 +32,8 @@ public class DialogPeriodicTable : MonoBehaviour
         Assertions.AssertNotEmpty(page1GridItems, "page1GridItems");
         page1GridItems.ForEach(item => item.GetComponent<Button>().onClick.AddListener(() => handleItemSelected(item)));
 
-        var page2AtomGridItemTransform = isotopeLayoutTransform.transform.Find("gridItem");
-        Assertions.AssertNotNull(page2AtomGridItemTransform, "page2AtomGridItem");
+        var page2AtomGridItemTransform = isotopeLayoutTransform.transform.Find("ElementButton");
+        Assertions.AssertNotNull(page2AtomGridItemTransform, "page2AtomGridItemTransform");
         page2AtomGridItem = page2AtomGridItemTransform.GetComponent<GridItem>();
         Assertions.AssertNotNull(page2AtomGridItem, "page2AtomGridItem");
         var page2GridTransform = isotopeLayoutTransform.Find("grid");
