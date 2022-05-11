@@ -40,7 +40,7 @@ public class ElementGridItem : MonoBehaviour, IPointerDownHandler
     {
         VerifyInitialize();
 
-        List<Transform> allLayouts = elementLayoutTransform.GetComponentsInChildren<Transform>(true).Where(t => t.name.Contains("Layout")).ToList();
+        List<Transform> allLayouts = elementLayoutTransform.GetComponentsInChildren<Transform>(true).Where(t => t.name.StartsWith("Layout")).ToList();
         allLayouts.ForEach(layout =>
         {
             if (layout != ActiveLayout || !active)
@@ -79,7 +79,7 @@ public class ElementGridItem : MonoBehaviour, IPointerDownHandler
     private void UpdateLayout()
     {
         // Update layout
-        IEnumerable<Transform> allLayouts = elementLayoutTransform.GetComponentsInChildren<Transform>().Where(t => t.name.StartsWith("Layout"));
+        IEnumerable<Transform> allLayouts = elementLayoutTransform.GetComponentsInChildren<Transform>(true).Where(t => t.name.StartsWith("Layout"));
         Transform elementLayout = allLayouts.FirstOrDefault(l => l.name == $"Layout_{elementDataType}") ?? elementLayoutTransform.Find("Layout_Std");
         Transform layoutToUse = elementData != null ? elementLayout : elementLayoutTransform.Find("Layout_Std");
         layoutToUse?.gameObject.SetActive(true);

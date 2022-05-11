@@ -58,25 +58,13 @@ public class PanelCreate : MonoBehaviour, IPointerExitHandler
 
         instance = this;
     }
-
     void Start() => VerifyInitialize();
-
-
 
     public static void SetDesignType(ElementType newDesignType)
     {
         var subElements = loadSubElementsForDesignType(newDesignType);
         Instance.LoadElements(subElements);
     }
-
-    private static IEnumerable<Element> loadSubElementsForDesignType(ElementType designType)
-    => designType switch
-    {
-        ElementType.Atom => FileSystemCache.GetOrLoadSubElementsOfType(ElementType.Particle),
-        ElementType.Molecule => FileSystemCache.GetOrLoadSubElementsOfType(ElementType.Atom),
-        _ => throw new NotImplementedException($"Designs for elements of type \"{designType}\" is not yet implemented")
-    };
-
     public void HandlePrevButtonClicked()
     {
         var firstVisibleElementIndex = loadedElements.IndexOf(visibleLoadedElements.FirstOrDefault());
@@ -88,7 +76,6 @@ public class PanelCreate : MonoBehaviour, IPointerExitHandler
 
         renderVisibleElements();
     }
-
     public void HandleNextButtonClicked()
     {
         var lastVisibleElementIndex = loadedElements.IndexOf(visibleLoadedElements.LastOrDefault());
@@ -100,9 +87,6 @@ public class PanelCreate : MonoBehaviour, IPointerExitHandler
 
         renderVisibleElements();
     }
-
-    // particleToCreateData will specify all of the element's properties e.g. for molecules, which atoms it contains
-    // the "elementType" passed into Editor.CreateWorldElement will determine how the incoming data is read
     public void OnPointerExit(PointerEventData ev)
     {
         if (creationState == CreationState.Start)
@@ -118,8 +102,6 @@ public class PanelCreate : MonoBehaviour, IPointerExitHandler
             EditorSelect.SetDragSelectEnabled(false);
         }
     }
-
-    // Update is called once per frame
     void Update()
     {
         if (creationState == CreationState.Drag)
@@ -169,6 +151,7 @@ public class PanelCreate : MonoBehaviour, IPointerExitHandler
                 egi.OnClick = null;
                 egi.SetData(null);
             });
+            gridItem.SetActive(false);
         });
 
         foreach (Element element in visibleLoadedElements)
@@ -183,7 +166,6 @@ public class PanelCreate : MonoBehaviour, IPointerExitHandler
             gridItem.GetGridItemForType(element.ElementType).OnClick = HandleElementGridItemClicked;
         }
     }
-
     private void LoadElements(IEnumerable<Element> elements)
     {
         loadedElements = elements.ToList();
@@ -195,15 +177,20 @@ public class PanelCreate : MonoBehaviour, IPointerExitHandler
         btnNext.interactable = enableScrollButtons;
         btnPrev.interactable = enableScrollButtons;
     }
-
-    void OnMouseEnter()
+    private void OnMouseEnter()
     {
         isHover = true;
     }
-
     private void HandleElementGridItemClicked(Element elementData)
     {
         elementToCreateData = elementData;
         creationState = CreationState.Start;
     }
+    private static IEnumerable<Element> loadSubElementsForDesignType(ElementType designType)
+    => designType switch
+    {
+        ElementType.Atom => FileSystemCache.GetOrLoadSubElementsOfType(ElementType.Particle),
+        ElementType.Molecule => FileSystemCache.GetOrLoadSubElementsOfType(ElementType.Atom),
+        _ => throw new NotImplementedException($"Designs for elements of type \"{designType}\" is not yet implemented")
+    };
 }

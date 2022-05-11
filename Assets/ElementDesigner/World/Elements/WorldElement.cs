@@ -46,7 +46,7 @@ public class WorldElement : MonoBehaviour
         var rotorTransform = BodyTransform.Find("Rotor");
         var infoCanvasTransform = rotorTransform?.Find("InfoCanvas");
         signCanvas = infoCanvasTransform?.GetComponent<Canvas>();
-        Assertions.AssertNotNull(signCanvas, "infoCanvas");
+        Assertions.AssertNotNull(signCanvas, "signCanvas");
 
         var mainCameraTransform = Camera.main.transform;
         var uiCamera = mainCameraTransform?.Find("UICamera")?.GetComponent<Camera>();
