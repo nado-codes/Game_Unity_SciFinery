@@ -7,7 +7,7 @@ public class FlyCam : MonoBehaviour
 
     private float xSensitivity = 300, ySensitivity = 300;
     public float baseSpeed = 10, accelerationMultiplier = 1f;
-    private float speedSprint = 0, speedStrafe = 0, speedLev = 0;
+    private float speedSprint = 0;
     int forwardDir = 1, strafeDir = 1, levDir = 1;
     public Vector3 Velocity { get; private set; }
 

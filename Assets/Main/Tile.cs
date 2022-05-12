@@ -10,8 +10,6 @@ public class Tile : MonoBehaviour
     private Color stdColor;
     private MeshRenderer mesh;
     private WorldGen worldGen;
-    private float fadeSpeed = 2.5f;
-    private float fadeDeadZone = .25f;
 
     // Start is called before the first frame update
     void Start()
@@ -19,9 +17,9 @@ public class Tile : MonoBehaviour
         col = GetComponent<BoxCollider>();
         mesh = GetComponent<MeshRenderer>();
         worldGen = GetComponentInParent<WorldGen>();
-    
+
         stdColor = mesh.material.color;
-        hoverColor = stdColor*1.25f;
+        hoverColor = stdColor * 1.25f;
     }
 
     public void Deselect()
@@ -38,7 +36,7 @@ public class Tile : MonoBehaviour
 
     void OnMouseExit()
     {
-        if(!selected) ShowHover(false);
+        if (!selected) ShowHover(false);
     }
 
     void OnMouseUp()

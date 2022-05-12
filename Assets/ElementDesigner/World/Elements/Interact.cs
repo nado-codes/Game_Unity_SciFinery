@@ -13,7 +13,6 @@ public class Interact : MonoBehaviour
     private Color HighlightedColor = new Color(1, 1, 1, .5f);
     public Color SelectedColor = new Color(0, 1, 0, .5f);
 
-    private InteractionState interactionState = InteractionState.None;
     private GameObject highlightCube;
     protected Renderer highlightCubeRenderer
     {

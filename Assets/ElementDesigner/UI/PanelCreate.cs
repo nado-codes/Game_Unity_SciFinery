@@ -33,9 +33,7 @@ public class PanelCreate : MonoBehaviour, IPointerExitHandler
     private Transform elementButtonsTransform, btnPrevTransform, btnNextTransform;
     private List<GridItem> elementButtons = new List<GridItem>();
     private Button btnPrev, btnNext;
-
     public float particleDefaultDistance = 5;
-    private bool isHover = false;
     private float particleDistance = 1, zoomSensitivity = 400;
 
     private void VerifyInitialize()
@@ -176,10 +174,6 @@ public class PanelCreate : MonoBehaviour, IPointerExitHandler
         var enableScrollButtons = elements.Count() > elementButtons.Count;
         btnNext.interactable = enableScrollButtons;
         btnPrev.interactable = enableScrollButtons;
-    }
-    private void OnMouseEnter()
-    {
-        isHover = true;
     }
     private void HandleElementGridItemClicked(Element elementData)
     {

@@ -60,9 +60,10 @@ public class Element
     ///<summary>List of Ids for SubElements attached to this element. Actual type depends on SubElementType</summary>
     public int[] ChildIds = new int[0];
 
+    [NonSerialized]
     private List<Element> children = new List<Element>();
 
-    ///<summary>List of SubElements attached to this element</summary>
+    ///<summary>List of SubElements attached to this element</summary> //
     public List<Element> Children
     {
         get

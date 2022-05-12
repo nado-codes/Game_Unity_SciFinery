@@ -22,11 +22,11 @@ public class WorldGen : MonoBehaviour
     {
         worldContainer = new GameObject();
 
-        for(int x = 0; x < worldSizeX; ++x)
+        for (int x = 0; x < worldSizeX; ++x)
         {
-            for(int y = 0; y < worldSizeY; ++y)
+            for (int y = 0; y < worldSizeY; ++y)
             {
-                MakeTile(x,y);
+                MakeTile(x, y);
             }
         }
     }
@@ -35,40 +35,26 @@ public class WorldGen : MonoBehaviour
     {
         var newTile = GameObject.Instantiate(tilePrefab);
 
-        newTile.transform.position = new Vector3(x*1.025f,0,y*1.025f);
+        newTile.transform.position = new Vector3(x * 1.025f, 0, y * 1.025f);
         newTile.transform.parent = worldContainer.transform;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("GRID POS="+GetMouseGridPosition(1));
+        Debug.Log("GRID POS=" + GetMouseGridPosition(1));
     }
 
-    private static Vector3 Vec3Down(Vector3 vec,float offset)
-        => new Vector3(Mathf.Floor(vec.x)+offset,Mathf.Floor(vec.y)+offset,Mathf.Floor(vec.z)+offset);
-
-    private static bool isDrag = false;
-
-    public static void StartDrag()
-    {
-        isDrag = true;
-        Debug.Log("WORLD POS="+GetMouseWorldPosition());
-    }
-
-    public static void StopDrag()
-    {
-        isDrag = false;
-        Debug.Log("WORLD POS="+GetMouseWorldPosition());
-    }
+    private static Vector3 Vec3Down(Vector3 vec, float offset)
+        => new Vector3(Mathf.Floor(vec.x) + offset, Mathf.Floor(vec.y) + offset, Mathf.Floor(vec.z) + offset);
 
     private static Vector2 GetMouseGridPosition(float cellSize)
     {
         var worldPosition = GetMouseWorldPosition();
 
         return new Vector2(
-            Mathf.FloorToInt(worldPosition.x / cellSize)+1,
-            Mathf.FloorToInt(worldPosition.y / cellSize)+1
+            Mathf.FloorToInt(worldPosition.x / cellSize) + 1,
+            Mathf.FloorToInt(worldPosition.y / cellSize) + 1
         );
     }
 
@@ -76,10 +62,10 @@ public class WorldGen : MonoBehaviour
     {
         var cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
-        
-        if(Physics.Raycast(cameraRay.origin,cameraRay.direction,out hit, 250))
+
+        if (Physics.Raycast(cameraRay.origin, cameraRay.direction, out hit, 250))
         {
-            return new Vector2(hit.point.x,hit.point.z);
+            return new Vector2(hit.point.x, hit.point.z);
         }
         else
             return Vector2.negativeInfinity;
@@ -87,15 +73,15 @@ public class WorldGen : MonoBehaviour
 
     public static void SelectTile(Tile tile)
     {
-        if(Input.GetKeyDown(KeyCode.LeftControl))
+        if (Input.GetKeyDown(KeyCode.LeftControl))
         {
             removeTileFromSelection(tile);
         }
         else
         {
-            if(!Input.GetKeyDown(KeyCode.LeftShift))
+            if (!Input.GetKeyDown(KeyCode.LeftShift))
                 ClearSelection();
-                
+
             addTileToSelection(tile);
         }
     }
@@ -110,16 +96,16 @@ public class WorldGen : MonoBehaviour
     private static void addTileToSelection(Tile tile)
     {
         Debug.Log("added tile to selection");
-        if(!tile) throw new ArgumentException("Expected one tile in call to \"AddTileToSelection\", got null");
+        if (!tile) throw new ArgumentException("Expected one tile in call to \"AddTileToSelection\", got null");
 
-        if(!selectedTiles.Contains(tile)) selectedTiles.Add(tile);
+        if (!selectedTiles.Contains(tile)) selectedTiles.Add(tile);
     }
 
     private static void removeTileFromSelection(Tile tile)
     {
         Debug.Log("removed tile from selection");
-        if(!tile) throw new ArgumentException("Expected one tile in call to \"RemoveTileFromSelection\", got null");
+        if (!tile) throw new ArgumentException("Expected one tile in call to \"RemoveTileFromSelection\", got null");
 
-        if(selectedTiles.Contains(tile)) selectedTiles.Remove(tile);
+        if (selectedTiles.Contains(tile)) selectedTiles.Remove(tile);
     }
 }
