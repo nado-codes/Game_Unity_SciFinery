@@ -216,21 +216,21 @@ public static class ElementListExtension
         => list.Any(el => el.ElementType == type);
 
     public static T GetElementOfTypeById<T>(this List<Element> list, int id) where T : Element
-    {
-        var element = list.FirstOrDefault(el => el.Id == id);
-        return element != null ? element as T : null;
-    }
+     => list.FirstOrDefault(el => el.Id == id) as T;
 
     public static IEnumerable<T> GetElementsOfTypeByIds<T>(this List<Element> list, IEnumerable<int> ids) where T : Element
     {
         var elementsById = ids.Select(id => list.FirstOrDefault(el => el.Id == id));
-        return elementsById.Cast<T>();
+        return list.Any() ? elementsById.Cast<T>() : Array.Empty<T>();
     }
 
-    public static void TryReloadForType<T>(this List<Element> list) where T : Element
+    public static IEnumerable<Element> TryReloadForType<T>(this List<Element> list) where T : Element
     {
-        var shouldReload = list.ContainsElementsOfType<T>();
+        var shouldReload = !list.ContainsElementsOfType<T>();
+
         if (shouldReload)
             list = FileSystemLoader.LoadElementsOfType<T>().ToList<Element>();
+
+        return list;
     }
 }
