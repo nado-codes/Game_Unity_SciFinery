@@ -231,12 +231,48 @@ public class FileSystem : MonoBehaviour
 
     public static void DeleteElement(Element elementData)
     {
-        var elementFilePath = GetElementFilePath(elementData);
-        if (!File.Exists(elementFilePath))
-            throw new ApplicationException($"The file at path \"{elementFilePath}\" doesn't exist");
+        if (elementData == null)
+            throw new ArgumentException("Expected elementData in call to DeleteElement, got null");
 
-        File.Delete(elementFilePath);
+        switch (elementData.ElementType)
+        {
+            case ElementType.Atom:
+                deleteAtom(elementData as Atom);
+                break;
+            default:
+                DeleteElement(elementData);
+                break;
+        }
         FileSystemCache.RemoveElementOfTypeById(elementData.Id, elementData.ElementType);
         TextNotification.Show($"Deleted \"{elementData.Name}\"");
+    }
+
+    private static void deleteElement(Element element)
+    {
+        var elementFilePath = GetElementFilePath(element);
+        deleteElement(elementFilePath);
+    }
+
+    private static void deleteElement(string elementFilePath)
+    {
+        if (string.IsNullOrEmpty(elementFilePath))
+            throw new ArgumentException("elementFilePath cannot be null or empty in call to deleteElement");
+        if (!File.Exists(elementFilePath))
+            throw new ArgumentException($"The file at path \"{elementFilePath}\" doesn't exist in call to deleteElement");
+
+        File.Delete(elementFilePath);
+    }
+
+    private static void deleteAtom(Atom atom)
+    {
+        if (atom == null)
+            throw new ArgumentException("Expected an atom in call to deleteAtom, got null");
+
+        var isIsotope = atom.ParentId != -1;
+
+        var parentAtom = FileSystemCache.GetOrLoadElementOfTypeById<Atom>(atom.ParentId);
+        var elementFilePath = isIsotope ? GetIsotopeFilePath(atom, parentAtom) : GetElementFilePath(atom);
+
+        deleteElement(elementFilePath);
     }
 }

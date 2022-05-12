@@ -188,31 +188,18 @@ public class FileSystemCache : MonoBehaviour
     }
     private static T getOrLoadElementOfTypeById<T>(int id) where T : Element
     {
-        var shouldReload = !Instance.elements.ContainsElementsOfType<T>();
-        if (shouldReload)
-            Instance.elements = FileSystemLoader.LoadElementsOfType<T>().ToList<Element>();
-
-        var elementById = Instance.elements.FirstOrDefault(el => el.Id == id);
-
-        return elementById as T;
+        Instance.elements.TryReloadForType<T>();
+        return Instance.elements.GetElementOfTypeById<T>(id);
     }
     private static IEnumerable<T> getOrLoadSubElementsOfTypeByIds<T>(IEnumerable<int> ids) where T : Element
     {
-        var shouldReload = !Instance.subElements.ContainsElementsOfType<T>();
-        if (shouldReload)
-            Instance.subElements = FileSystemLoader.LoadElementsOfType<T>().ToList<Element>();
-
-        var elementsById = ids.Select(id => Instance.subElements.FirstOrDefault(el => el.Id == id));
-        return elementsById.Cast<T>();
+        Instance.subElements.TryReloadForType<T>();
+        return Instance.subElements.GetElementsOfTypeByIds<T>(ids);
     }
     private static T getOrLoadSubElementOfTypeById<T>(int id) where T : Element
     {
-        var shouldReload = Instance.subElements.ContainsElementsOfType<T>();
-        if (shouldReload)
-            Instance.subElements = FileSystemLoader.LoadElementsOfType<T>().ToList<Element>();
-
-        var elementById = Instance.subElements.FirstOrDefault(el => el.Id == id);
-        return elementById as T;
+        Instance.subElements.TryReloadForType<T>();
+        return Instance.subElements.GetElementOfTypeById<T>(id);
     }
 }
 
@@ -227,4 +214,23 @@ public static class ElementListExtension
     }
     public static bool ContainsElementsOfType(this List<Element> list, ElementType type)
         => list.Any(el => el.ElementType == type);
+
+    public static T GetElementOfTypeById<T>(this List<Element> list, int id) where T : Element
+    {
+        var element = list.FirstOrDefault(el => el.Id == id);
+        return element != null ? element as T : null;
+    }
+
+    public static IEnumerable<T> GetElementsOfTypeByIds<T>(this List<Element> list, IEnumerable<int> ids) where T : Element
+    {
+        var elementsById = ids.Select(id => list.FirstOrDefault(el => el.Id == id));
+        return elementsById.Cast<T>();
+    }
+
+    public static void TryReloadForType<T>(this List<Element> list) where T : Element
+    {
+        var shouldReload = list.ContainsElementsOfType<T>();
+        if (shouldReload)
+            list = FileSystemLoader.LoadElementsOfType<T>().ToList<Element>();
+    }
 }
