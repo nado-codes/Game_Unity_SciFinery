@@ -179,12 +179,8 @@ public class FileSystemCache : MonoBehaviour
 
     private static IEnumerable<T> getOrLoadElementsOfTypeByIds<T>(IEnumerable<int> ids) where T : Element
     {
-        var shouldReload = !Instance.elements.ContainsElementsOfType<T>();
-        if (shouldReload)
-            Instance.elements = FileSystemLoader.LoadElementsOfType<T>().ToList<Element>();
-
-        var elementsById = Instance.elements.Where(el => ids.Contains(el.Id));
-        return elementsById.Cast<T>();
+        Instance.elements.TryReloadForType<T>();
+        return Instance.elements.GetElementsOfTypeByIds<T>(ids);
     }
     private static T getOrLoadElementOfTypeById<T>(int id) where T : Element
     {
@@ -202,7 +198,6 @@ public class FileSystemCache : MonoBehaviour
         return Instance.subElements.GetElementOfTypeById<T>(id);
     }
 }
-
 public static class ElementListExtension
 {
     public static bool ContainsElementsOfType<T>(this List<Element> list)
@@ -229,7 +224,10 @@ public static class ElementListExtension
         var shouldReload = !list.ContainsElementsOfType<T>();
 
         if (shouldReload)
-            list = FileSystemLoader.LoadElementsOfType<T>().ToList<Element>();
+        {
+            list.Clear();
+            list.AddRange(FileSystemLoader.LoadElementsOfType<T>());
+        }
 
         return list;
     }
