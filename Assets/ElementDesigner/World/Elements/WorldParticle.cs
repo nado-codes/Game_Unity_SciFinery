@@ -8,7 +8,6 @@ using UnityEngine;
 
 public class WorldParticle : WorldElement
 {
-    protected new bool initialized = false;
     private WorldElementMotor motor;
     private WorldElementMotor Motor
     {

@@ -13,7 +13,7 @@ public class ElementDesignerCamera : FlyCam
     // Update is called once per frame
     new void Update()
     {
-        if(!HUD.LockedFocus)
+         
             base.Update();
     }
 }

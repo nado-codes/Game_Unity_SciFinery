@@ -21,6 +21,25 @@ public class Interact : MonoBehaviour
     public bool isHovered = false;
     private bool isSelected = false;
 
+    private ElementGridItem elementDisplay;
+    public ElementGridItem ElementDisplay
+    {
+        get
+        {
+            if (elementDisplay == null)
+            {
+                var bodyTransform = transform.Find("Body");
+                var rotorTransform = bodyTransform?.Find("Rotor");
+                var infoCanvasTransform = rotorTransform?.Find("InfoCanvas");
+                var elementLayoutTransform = infoCanvasTransform?.Find("ElementLayout");
+                elementDisplay = elementLayoutTransform?.GetComponent<ElementGridItem>();
+                Assertions.AssertNotNull(elementDisplay, "ElementDisplay");
+                elementDisplay.gameObject.SetActive(false);
+            }
+            return elementDisplay;
+        }
+    }
+
     protected void Start()
     {
         Material tMat = Resources.Load("ElementDesigner/TransparentWhite.mat", typeof(Material)) as Material;
@@ -34,6 +53,8 @@ public class Interact : MonoBehaviour
         highlightCube.SetActive(false);
 
         highlightCube.transform.localScale = Vector3.one * 1.1f;
+
+
     }
     public void Update()
     {
@@ -45,6 +66,14 @@ public class Interact : MonoBehaviour
 
         if (!Input.GetMouseButton(0) && !isHovered)
             highlightCube?.SetActive(false);
+
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            var orbitCam = Camera.main.GetComponent<OrbitCam>();
+
+            if (orbitCam != null)
+                orbitCam.TrackedObject = transform;
+        }
     }
 
     // Hover behaviour
@@ -52,6 +81,7 @@ public class Interact : MonoBehaviour
     {
         if (!isSelected)
             highlightCubeRenderer.material.color = HighlightedColor;
+        ElementDisplay.gameObject.SetActive(true);
 
         highlightCube?.SetActive(true);
         isHovered = true;
@@ -70,6 +100,7 @@ public class Interact : MonoBehaviour
         if (!isSelected)
             highlightCube?.SetActive(false);
 
+        ElementDisplay.gameObject.SetActive(false);
         isHovered = false;
     }
     void OnMouseExit()
@@ -90,6 +121,7 @@ public class Interact : MonoBehaviour
     {
         isSelected = false;
         highlightCube.SetActive(false);
+        ElementDisplay.gameObject.SetActive(false);
     }
     protected void OnMouseDown()
     {

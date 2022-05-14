@@ -39,7 +39,6 @@
      <Compile Include="Assets\ElementDesigner\World\Elements\WorldElement.cs" />
      <Compile Include="Assets\ElementDesigner\DemoController.cs" />
      <Compile Include="Assets\ElementDesigner\World\Elements\WorldParticle.cs" />
-     <Compile Include="Assets\FaceCam.cs" />
      <Compile Include="Assets\ElementDesigner\FileSystem\FileSystem.cs" />
      <Compile Include="Assets\ElementDesigner\FileSystem\Elements\Particle.cs" />
      <Compile Include="Assets\ElementDesigner\World\Elements\WorldElementEffect.cs" />
@@ -55,9 +54,7 @@
      <Compile Include="Assets\ElementDesigner\UI\DialogPeriodicTable.cs" />
      <Compile Include="Assets\ElementDesigner\UI\DialogYesNo.cs" />
      <Compile Include="Assets\ElementDesigner\FileSystem\FileSystemLoader.cs" />
-     <Compile Include="Assets\PanCam.cs" />
      <Compile Include="Assets\ElementDesigner\World\Elements\Interact.cs" />
-     <Compile Include="Assets\FlyCam.cs" />
      <Compile Include="Assets\ElementDesigner\UI\GridItem\GridItem.cs" />
      <Compile Include="Assets\ElementDesigner\UI\HUD.cs" />
      <Compile Include="Assets\ElementDesigner\World\Editor.cs" />
@@ -83,6 +80,10 @@
      <Compile Include="Assets\ElementDesigner\World\Elements\WorldElementMotor.cs" />
      <Compile Include="Assets\ElementDesigner\World\EditorSelect.cs" />
      <Compile Include="Assets\ElementDesigner\FileSystem\Elements\Molecule.cs" />
+     <Compile Include="Assets\Cameras\OrbitCam.cs" />
+     <Compile Include="Assets\Cameras\PanCam.cs" />
+     <Compile Include="Assets\Cameras\CameraFacer.cs" />
+     <Compile Include="Assets\Cameras\FlyCam.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
@@ -672,34 +673,34 @@
         <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.32f1\Editor\Data\NetStandard\compat\2.0.0\shims\netfx\System.Xml.Serialization.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VSCode.Editor">
-        <HintPath>D:\Projects\Game Dev\RefinerySim\Library\ScriptAssemblies\Unity.VSCode.Editor.dll</HintPath>
+        <HintPath>D:\Pre-Archive\Projects\Unity\RefinerySim\Library\ScriptAssemblies\Unity.VSCode.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-        <HintPath>D:\Projects\Game Dev\RefinerySim\Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll</HintPath>
+        <HintPath>D:\Pre-Archive\Projects\Unity\RefinerySim\Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualStudio.Editor">
-        <HintPath>D:\Projects\Game Dev\RefinerySim\Library\ScriptAssemblies\Unity.VisualStudio.Editor.dll</HintPath>
+        <HintPath>D:\Pre-Archive\Projects\Unity\RefinerySim\Library\ScriptAssemblies\Unity.VisualStudio.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline.Editor">
-        <HintPath>D:\Projects\Game Dev\RefinerySim\Library\ScriptAssemblies\Unity.Timeline.Editor.dll</HintPath>
+        <HintPath>D:\Pre-Archive\Projects\Unity\RefinerySim\Library\ScriptAssemblies\Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
-        <HintPath>D:\Projects\Game Dev\RefinerySim\Library\ScriptAssemblies\Unity.Timeline.dll</HintPath>
+        <HintPath>D:\Pre-Archive\Projects\Unity\RefinerySim\Library\ScriptAssemblies\Unity.Timeline.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-        <HintPath>D:\Projects\Game Dev\RefinerySim\Library\ScriptAssemblies\Unity.TextMeshPro.dll</HintPath>
+        <HintPath>D:\Pre-Archive\Projects\Unity\RefinerySim\Library\ScriptAssemblies\Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
-        <HintPath>D:\Projects\Game Dev\RefinerySim\Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
+        <HintPath>D:\Pre-Archive\Projects\Unity\RefinerySim\Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PlasticSCM.Editor">
-        <HintPath>D:\Projects\Game Dev\RefinerySim\Library\ScriptAssemblies\Unity.PlasticSCM.Editor.dll</HintPath>
+        <HintPath>D:\Pre-Archive\Projects\Unity\RefinerySim\Library\ScriptAssemblies\Unity.PlasticSCM.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Rider.Editor">
-        <HintPath>D:\Projects\Game Dev\RefinerySim\Library\ScriptAssemblies\Unity.Rider.Editor.dll</HintPath>
+        <HintPath>D:\Pre-Archive\Projects\Unity\RefinerySim\Library\ScriptAssemblies\Unity.Rider.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-        <HintPath>D:\Projects\Game Dev\RefinerySim\Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
+        <HintPath>D:\Pre-Archive\Projects\Unity\RefinerySim\Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

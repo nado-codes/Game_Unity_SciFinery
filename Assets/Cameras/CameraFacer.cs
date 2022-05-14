@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class FaceCam : MonoBehaviour
+public class CameraFacer : MonoBehaviour
 {
 
     Camera mainCam;

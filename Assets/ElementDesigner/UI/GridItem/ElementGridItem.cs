@@ -49,7 +49,8 @@ public class ElementGridItem : MonoBehaviour, IPointerDownHandler
                 ActiveLayout.gameObject.SetActive(true);
         });
 
-        button.interactable = active;
+        if (button != null)
+            button.interactable = active;
     }
 
     // START
@@ -63,12 +64,15 @@ public class ElementGridItem : MonoBehaviour, IPointerDownHandler
         initialized = true;
 
         button = GetComponent<Button>();
-        Assertions.AssertNotNull(button, "button");
-        buttonColorsActive = button.colors;
-        buttonColorsInactive.normalColor = button.colors.disabledColor;
-        buttonColorsInactive.highlightedColor = button.colors.disabledColor;
-        buttonColorsInactive.pressedColor = button.colors.disabledColor;
-        buttonColorsInactive.selectedColor = button.colors.disabledColor;
+
+        if (button != null)
+        {
+            buttonColorsActive = button.colors;
+            buttonColorsInactive.normalColor = button.colors.disabledColor;
+            buttonColorsInactive.highlightedColor = button.colors.disabledColor;
+            buttonColorsInactive.pressedColor = button.colors.disabledColor;
+            buttonColorsInactive.selectedColor = button.colors.disabledColor;
+        }
 
         elementLayoutTransform = transform.Find("ElementLayout");
         Assertions.AssertNotNull(elementLayoutTransform, "elementLayoutTransform");

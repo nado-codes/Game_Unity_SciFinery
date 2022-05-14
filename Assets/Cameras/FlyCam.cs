@@ -22,7 +22,9 @@ public class FlyCam : MonoBehaviour
     // Update is called once per frame
     protected void Update()
     {
-        UpdateAim();
+        if (!HUD.LockedFocus)
+            UpdateAim();
+
         UpdateMovement();
     }
 

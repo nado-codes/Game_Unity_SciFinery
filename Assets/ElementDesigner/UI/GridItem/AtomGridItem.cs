@@ -35,7 +35,6 @@ public class AtomGridItem : ElementGridItem
     public void SetData(Atom atomData)
     {
         base.SetData(atomData);
-
         VerifyInitialize();
 
         try

@@ -30,6 +30,7 @@ public class WorldElement : MonoBehaviour
     private Canvas signCanvas;
     private Light bodyLight;
     private MeshRenderer bodyMR;
+    private Interact interact;
 
     protected bool initialized = false;
 
@@ -55,6 +56,9 @@ public class WorldElement : MonoBehaviour
 
         infoText = infoCanvasTransform?.Find("Text").GetComponent<Text>();
         Assertions.AssertNotNull(infoText, "infoText");
+
+        interact = GetComponent<Interact>();
+        Assertions.AssertNotNull(interact, "interact");
 
         initialized = true;
     }
@@ -99,6 +103,8 @@ public class WorldElement : MonoBehaviour
         infoText.text = element.ShortName + chargeSign;
 
         MassMultiplier = element.Weight;
+
+        interact.ElementDisplay.SetData(element);
 
         if (element.ElementType != ElementType.Particle)
             SetColor(element.Color);
