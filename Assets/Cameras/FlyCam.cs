@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System;
-using System.Collections;
 
+public enum MouseButton { Left = 0, Right = 1 }
 public class FlyCam : MonoBehaviour
 {
 
@@ -10,6 +10,8 @@ public class FlyCam : MonoBehaviour
     private float speedSprint = 0;
     int forwardDir = 1, strafeDir = 1, levDir = 1;
     public Vector3 Velocity { get; private set; }
+    public MouseButton cameraMouseButton = MouseButton.Right;
+    public bool LockAim = false;
 
     private DateTime lastMovementTime;
 
@@ -22,7 +24,7 @@ public class FlyCam : MonoBehaviour
     // Update is called once per frame
     protected void Update()
     {
-        if (!HUD.LockedFocus)
+        if (!LockAim)
             UpdateAim();
 
         UpdateMovement();
@@ -30,7 +32,7 @@ public class FlyCam : MonoBehaviour
 
     void UpdateAim()
     {
-        if (Input.GetMouseButton(1))
+        if (Input.GetMouseButton((int)cameraMouseButton))
         {
             transform.Rotate(new Vector3(0, Input.GetAxis("Mouse X") * xSensitivity, 0) * Time.deltaTime, Space.World);
             transform.Rotate(new Vector3(Input.GetAxis("Mouse Y") * -ySensitivity, 0, 0) * Time.deltaTime, Space.Self);
@@ -39,6 +41,10 @@ public class FlyCam : MonoBehaviour
 
     void UpdateMovement()
     {
+        forwardDir = 0;
+        strafeDir = 0;
+        levDir = 0;
+
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S))
         {
             if (Input.GetKey(KeyCode.W))
@@ -48,8 +54,6 @@ public class FlyCam : MonoBehaviour
 
             lastMovementTime = DateTime.Now;
         }
-        else
-            forwardDir = 0;
 
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
         {
@@ -60,8 +64,6 @@ public class FlyCam : MonoBehaviour
 
             lastMovementTime = DateTime.Now;
         }
-        else
-            strafeDir = 0;
 
         if (Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.E))
         {
@@ -72,8 +74,21 @@ public class FlyCam : MonoBehaviour
 
             lastMovementTime = DateTime.Now;
         }
-        else
-            levDir = 0;
+
+        if (forwardDir != 0 || strafeDir != 0 || levDir != 0)
+        {
+            EditorSelect.SetDragSelectEnabled(true);
+
+            var orbitCam = Camera.main.GetComponent<OrbitCam>();
+
+            if (orbitCam != null)
+            {
+                var cameraTransform = Camera.main.transform;
+                cameraTransform.parent = cameraTransform.parent == orbitCam.TrackedObject ? null : cameraTransform.parent;
+                orbitCam.TrackedObject = null;
+                LockAim = false;
+            }
+        }
 
         if (Input.GetKey(KeyCode.LeftShift))
             speedSprint = Mathf.Lerp(speedSprint, speedSprint * accelerationMultiplier, Time.deltaTime);

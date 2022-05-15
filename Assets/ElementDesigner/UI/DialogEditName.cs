@@ -32,13 +32,13 @@ public class DialogEditName : MonoBehaviour
         gameObject.SetActive(true);
         title.text = "Name your " + FileSystem.ActiveElement.ElementType.ToString();
         inputName.text = FileSystem.ActiveElement.Name;
-        HUD.LockedFocus = true;
+        HUD.LockFocus();
     }
 
     public void Close()
     {
         gameObject.SetActive(false);
-        HUD.LockedFocus = false;
+        HUD.ClearFocus();
     }
 
     public void Accept()

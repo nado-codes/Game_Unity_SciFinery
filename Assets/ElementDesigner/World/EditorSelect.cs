@@ -18,7 +18,7 @@ public class EditorSelect : MonoBehaviour
             return selectionBoxRect;
         }
     }
-    private static bool dragSelectIsEnabled = true;
+    private static bool dragSelectIsEnabled = false;
     private DragState dragState = DragState.None;
     private BoxCollider dragSelectCollider;
     private Vector2 dragSelectStartPosition, endDragSelectPosition;
@@ -64,7 +64,7 @@ public class EditorSelect : MonoBehaviour
         }
     }
 
-    public static void SetDragSelectEnabled(bool enable) => dragSelectIsEnabled = enable;
+    public static void SetDragSelectEnabled(bool enable) => dragSelectIsEnabled = false;
 
     void HandleDragSelect()
     {
@@ -164,15 +164,31 @@ public class EditorSelect : MonoBehaviour
         dragSelectCollider.isTrigger = false;
     }
 
-    public static void Hover(Interact objectToHover)
+    public static void Hover(Interact hoverObject)
     {
-        if (!hoveredObjects.Contains(objectToHover))
-            hoveredObjects.Add(objectToHover);
+        Assertions.AssertNotNull(hoverObject, "hoverObject (Interact)");
+        if (!hoveredObjects.Contains(hoverObject))
+            hoveredObjects.Add(hoverObject);
     }
 
-    public static void RemoveHover(Interact objectToDehover)
+    public static void RemoveHover(Interact hovered)
     {
-        hoveredObjects.Remove(objectToDehover);
+        Assertions.AssertNotNull(hovered, "hovered (Interact)");
+        hoveredObjects.Remove(hovered);
+    }
+
+    public static void RemoveHover(WorldElement element)
+    {
+        Assertions.AssertNotNull(element, "element");
+        var interact = element.GetComponent<Interact>();
+
+        if (interact != null)
+            RemoveHover(interact);
+    }
+
+    public static void ClearAllHovered()
+    {
+        hoveredObjects.Clear();
     }
 
     public static void Select(Interact objectToSelect) => Select(new Interact[1] { objectToSelect });
@@ -233,5 +249,10 @@ public class EditorSelect : MonoBehaviour
 
         if (interact != null)
             Deselect(interact);
+    }
+
+    public static void ClearAllSelected()
+    {
+        _selectedObjects.Clear();
     }
 }

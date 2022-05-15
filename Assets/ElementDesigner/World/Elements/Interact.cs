@@ -1,6 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+using System;
 using UnityEngine;
 
 public class Interact : MonoBehaviour
@@ -21,8 +19,8 @@ public class Interact : MonoBehaviour
     public bool isHovered = false;
     private bool isSelected = false;
 
-    private ElementGridItem elementDisplay;
-    public ElementGridItem ElementDisplay
+    private GridItem elementDisplay;
+    public GridItem ElementDisplay
     {
         get
         {
@@ -32,13 +30,15 @@ public class Interact : MonoBehaviour
                 var rotorTransform = bodyTransform?.Find("Rotor");
                 var infoCanvasTransform = rotorTransform?.Find("InfoCanvas");
                 var elementLayoutTransform = infoCanvasTransform?.Find("ElementLayout");
-                elementDisplay = elementLayoutTransform?.GetComponent<ElementGridItem>();
+                elementDisplay = elementLayoutTransform?.GetComponent<GridItem>();
                 Assertions.AssertNotNull(elementDisplay, "ElementDisplay");
                 elementDisplay.gameObject.SetActive(false);
             }
             return elementDisplay;
         }
     }
+
+    private DateTime lastClickStart;
 
     protected void Start()
     {
@@ -67,13 +67,8 @@ public class Interact : MonoBehaviour
         if (!Input.GetMouseButton(0) && !isHovered)
             highlightCube?.SetActive(false);
 
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            var orbitCam = Camera.main.GetComponent<OrbitCam>();
-
-            if (orbitCam != null)
-                orbitCam.TrackedObject = transform;
-        }
+        if (Input.GetKeyDown(KeyCode.F) && isSelected)
+            focusCamera();
     }
 
     // Hover behaviour
@@ -130,6 +125,28 @@ public class Interact : MonoBehaviour
 
         Select();
     }
+    protected void OnMouseUp()
+    {
+        var nowTime = DateTime.Now;
+        if ((nowTime - lastClickStart).Milliseconds < 200)
+            onDoubleClick();
 
+        lastClickStart = nowTime;
+    }
+
+    private void onDoubleClick()
+    {
+        focusCamera();
+    }
+
+    private void focusCamera()
+    {
+        var orbitCam = Camera.main.GetComponent<OrbitCam>();
+
+        if (orbitCam != null)
+            orbitCam.TrackedObject = transform;
+
+        EditorSelect.SetDragSelectEnabled(false);
+    }
 
 }

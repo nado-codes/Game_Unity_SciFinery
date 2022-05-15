@@ -100,7 +100,7 @@ public class DialogPeriodicTable : MonoBehaviour
             }
         }
 
-        HUD.LockedFocus = true;
+        HUD.LockFocus();
         OpenPage1();
     }
     public async void HandleLoadSelectedItemClicked()
@@ -168,7 +168,7 @@ public class DialogPeriodicTable : MonoBehaviour
     public void Close()
     {
         gameObject.SetActive(false);
-        HUD.LockedFocus = false;
+        HUD.ClearFocus();
 
         page1GridItems.ForEach(gi => gi.SetData(null));
         page2GridItems.ForEach(gi => gi.SetData(null));

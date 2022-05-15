@@ -30408,6 +30408,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseSpeed: 10
   accelerationMultiplier: 1
+  cameraMouseButton: 0
 --- !u!114 &612247311
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30456,7 +30457,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 612247306}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 36d4db403bbc77e4ea0b9e731d135fbf, type: 3}
@@ -30557,6 +30558,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e703b9a088c62454cb7191443b5cad8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lookSensitivity: 10
 --- !u!1 &614774375
 GameObject:
   m_ObjectHideFlags: 0

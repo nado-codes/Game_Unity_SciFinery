@@ -2,67 +2,65 @@ using UnityEngine;
 
 public class OrbitCam : MonoBehaviour
 {
-    public Transform TrackedObject { get; set; }
-    private Vector3 trackedObjectPosition => TrackedObject?.position ?? Vector3.zero;
+    private Transform trackedObject;
+    public Transform TrackedObject
+    {
+        get => trackedObject;
+        set
+        {
+            transform.parent = value;
+            trackedObject = value;
+        }
+    }
+
+    private Vector3 _trackedPosition;
+    private Vector3 trackedPosition => TrackedObject?.position ?? Vector3.zero;
 
     private float xAngle = 0;
     private float yAngle = 0;
-    private Vector3 localRotation;
-
-    void Start()
-    {
-
-    }
+    private float zoomAmount = 10;
+    public float lookSensitivity = 10;
 
     void Update()
     {
-        //if (Input.GetMouseButton(1))
-        UpdateAim();
-
-        yAngle = Mathf.Clamp(yAngle, 0, 90);
-
-        var xPosH = Mathf.Sin(xAngle) * 10;
-        var zPosH = Mathf.Cos(xAngle) * 10;
-        var posH = new Vector3(xPosH, 0, zPosH);
-
-        var yPosV = Mathf.Sin(yAngle) * 10;
-        var zPosV = Mathf.Cos(yAngle) * 10;
-        var posV = new Vector3(0, yPosV, 0) + (transform.forward * zPosV);
-
-        transform.position = trackedObjectPosition + posH + posV;
-        transform.LookAt(trackedObjectPosition);
-
-        /* if (mouseX != 0 || mouseY != 0)
+        if (Input.GetMouseButton(0))
         {
-            localRotation.x += mouseX * 10;
-            localRotation.y -= mouseY * 10;
-
-            localRotation.y = Mathf.Clamp(localRotation.y, 0, 90f);
+            xAngle += Input.GetAxis("Mouse X") * lookSensitivity * Time.deltaTime;
+            yAngle -= Input.GetAxis("Mouse Y") * lookSensitivity * .5f * Time.deltaTime;
+            yAngle = Mathf.Clamp(yAngle, -1, 1);
         }
 
-        float cameraDistance = 0;
-
-        if (Input.GetAxis("Mouse ScrollWheel") != 0f)
+        if (TrackedObject != null)
         {
-            float scrollAmount = Input.GetAxis("Mouse ScrollWheel") * 10;
-            scrollAmount *= (cameraDistance * .3f);
-
-            cameraDistance += scrollAmount * -1f;
-            // .. no closer than 1.5m, no further than 100m
-            cameraDistance = Mathf.Clamp(cameraDistance, 1.5f, 100f);
+            UpdateOrbit();
+            HUD.LockFocus();
         }
 
-        Quaternion QT = Quaternion.Euler(localRotation.y,localRotation.x,0);
-        transform */
+        UpdateZoom();
     }
 
-    void UpdateAim()
+    void UpdateOrbit()
     {
-        var mouseX = Input.GetAxis("Mouse X");
-        var mouseY = Input.GetAxis("Mouse Y");
+        var xPosH = Mathf.Sin(xAngle) * zoomAmount;
+        var zPosH = Mathf.Cos(xAngle) * zoomAmount;
+        var yPosV = Mathf.Sin(yAngle) * zoomAmount;
+        var posH = new Vector3(xPosH, yPosV, zPosH);
+        transform.localPosition = posH;
+        transform.LookAt(trackedPosition);
+    }
 
-        xAngle += mouseX * Time.deltaTime;
-        yAngle -= mouseY * Time.deltaTime;
+    void UpdateZoom()
+    {
+        var scroll = Input.mouseScrollDelta.y;
+        var isZoomIn = scroll < 0;
+        var isZoomOut = scroll > 0;
+        var zoomFactor = 100 + (zoomAmount * .003f);
 
+        if (isZoomIn)
+            zoomAmount += zoomFactor * Time.deltaTime;
+        if (isZoomOut)
+            zoomAmount -= zoomFactor * Time.deltaTime;
+
+        zoomAmount = Mathf.Clamp(zoomAmount, 5, 50);
     }
 }

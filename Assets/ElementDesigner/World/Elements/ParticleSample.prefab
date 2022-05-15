@@ -282,7 +282,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7146690427435291073}
-  - component: {fileID: 6179123606421171339}
+  - component: {fileID: 7652341606984649152}
   m_Layer: 5
   m_Name: ElementLayout
   m_TagString: Untagged
@@ -310,7 +310,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &6179123606421171339
+--- !u!114 &7652341606984649152
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -319,18 +319,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 2836825295006613791}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9a2759e69f4a374386bbe46ccfa3ee7, type: 3}
+  m_Script: {fileID: 11500000, guid: 23d216e0d1ae6db4da78d5a44d8bacdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hasData: 0
-  elementData:
-    Id: -1
-    Name: 
-    ElementType: 1
-    SubElementType: 0
-    ChildIds: 
-    defaultColor: {r: 1, g: 1, b: 1, a: 1}
-  elementDataType: 0
 --- !u!1 &5937348740721008375
 GameObject:
   m_ObjectHideFlags: 0

@@ -178,6 +178,14 @@ public class Editor : MonoBehaviour
         SubElements.Remove(element);
         FileSystem.UpdateActiveElement();
         PanelName.SetElementData(FileSystem.ActiveElement);
+
+        var orbitCam = Camera.main.GetComponent<OrbitCam>();
+        if (orbitCam != null && orbitCam?.TrackedObject == element.transform)
+            orbitCam.TrackedObject = null;
+
+        EditorSelect.Deselect(element);
+        EditorSelect.RemoveHover(element);
+
         GameObject.Destroy(element.gameObject);
     }
     private static bool validateDeletion(Element elementToDelete)
