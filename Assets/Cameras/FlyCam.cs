@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 using System;
+using System.Collections.Generic;
 
 public enum MouseButton { Left = 0, Right = 1 }
+public enum Direction { Up = 0, Down = 1, Left = 2, Right = 3 }
 public class FlyCam : MonoBehaviour
 {
 
@@ -12,6 +14,12 @@ public class FlyCam : MonoBehaviour
     public Vector3 Velocity { get; private set; }
     public MouseButton cameraMouseButton = MouseButton.Right;
     public bool LockAim = false;
+    private Dictionary<Direction, bool> manualMove = new Dictionary<Direction, bool>() {
+        {Direction.Up, false},
+        {Direction.Down, false},
+        {Direction.Left, false},
+        {Direction.Right,false}
+    };
 
     private DateTime lastMovementTime;
 
@@ -104,5 +112,10 @@ public class FlyCam : MonoBehaviour
         transform.Translate(forwardVelocity * Time.deltaTime);
         transform.Translate(strafeVelocity * Time.deltaTime);
         transform.Translate(verticalVelocity * Time.deltaTime);
+    }
+
+    public void Move(Direction dir, bool active)
+    {
+
     }
 }
