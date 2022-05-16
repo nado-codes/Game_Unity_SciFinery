@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 
 public enum MouseButton { Left = 0, Right = 1 }
-public enum Direction { Up = 0, Down = 1, Left = 2, Right = 3 }
+public enum Direction { Forward = 0, Back = 1, Left = 2, Right = 3, Up = 4, Down = 5 }
 public class FlyCam : MonoBehaviour
 {
 
@@ -15,8 +15,8 @@ public class FlyCam : MonoBehaviour
     public MouseButton cameraMouseButton = MouseButton.Right;
     public bool LockAim = false;
     private Dictionary<Direction, bool> manualMove = new Dictionary<Direction, bool>() {
-        {Direction.Up, false},
-        {Direction.Down, false},
+        {Direction.Forward, false},
+        {Direction.Back, false},
         {Direction.Left, false},
         {Direction.Right,false}
     };
@@ -26,7 +26,16 @@ public class FlyCam : MonoBehaviour
     // Use this for initialization
     protected void Start()
     {
-
+        // TODO: "Multi-input for touch devices"
+        /* var movementButtonsTransform = GameObject.Find("movementButtons").transform;
+        var btnFwd = movementButtonsTransform?.Find("btnForward");
+        Assertions.AssertNotNull(btnFwd, "btnFwd");
+        var btnBack = movementButtonsTransform?.Find("btnBackward");
+        Assertions.AssertNotNull(btnBack, "btnBack");
+        var btnLeft = movementButtonsTransform?.Find("btnLeft");
+        Assertions.AssertNotNull(btnLeft, "btnLeft");
+        var btnRight = movementButtonsTransform?.Find("btnRight");
+        Assertions.AssertNotNull(btnRight, "btnRight"); */
     }
 
     // Update is called once per frame
@@ -52,6 +61,8 @@ public class FlyCam : MonoBehaviour
         forwardDir = 0;
         strafeDir = 0;
         levDir = 0;
+
+        // var isForward = Input.GetKey(KeyCode.W) || manualMove[Direction.Forward];
 
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S))
         {
@@ -116,6 +127,6 @@ public class FlyCam : MonoBehaviour
 
     public void Move(Direction dir, bool active)
     {
-
+        manualMove[dir] = active;
     }
 }

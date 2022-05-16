@@ -104,6 +104,7 @@ public class PanelCreate : MonoBehaviour, IPointerExitHandler
     {
         if (creationState == CreationState.Drag)
         {
+            HUD.LockFocus();
             // zoom
             float scroll = Input.mouseScrollDelta.y;
 
@@ -134,6 +135,7 @@ public class PanelCreate : MonoBehaviour, IPointerExitHandler
                 currentWorldElement = null;
                 creationState = CreationState.None;
                 EditorSelect.SetDragSelectEnabled(true);
+                HUD.ClearFocus();
             }
         }
     }
