@@ -282,7 +282,7 @@ public class Editor : MonoBehaviour
             try
             {
                 // TODO: later, positions will be able to be saved and re-loaded the next time an element loads
-                var radius = subElement.Charge >= 0 ? 1 : 20;
+                var radius = subElement.Charge >= 0 ? 1 : 1.1f;
                 var randPos = UnityEngine.Random.insideUnitSphere * radius;
                 var worldElement = CreateSubElement(subElement, randPos);
             }
