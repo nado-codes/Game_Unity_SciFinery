@@ -91,6 +91,9 @@ public class Editor : MonoBehaviour
             });
         }
 
+        Camera.main.transform.position = SubElements.Select(e => e.transform.position).Average() - (Vector3.forward * 30);
+        Camera.main.transform.rotation = Quaternion.Euler(0, 0, 0);
+
         PanelName.SetElementData(element);
         TextNotification.Show($"Loaded \"{element.Name}\"");
         HasUnsavedChanges = false;
@@ -161,7 +164,6 @@ public class Editor : MonoBehaviour
 
         return element;
     }
-
     public void HandleDeleteSubElementClicked(WorldElement element)
     {
         EditorSelect.Deselect(element);
@@ -171,8 +173,6 @@ public class Editor : MonoBehaviour
         RemoveSubElement(element);
         HasUnsavedChanges = true;
     }
-
-    // TODO: implement removing world elements
     public static void RemoveSubElement(WorldElement element)
     {
         SubElements.Remove(element);
