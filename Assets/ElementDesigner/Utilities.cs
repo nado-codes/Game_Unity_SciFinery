@@ -8,15 +8,16 @@ public static class Utilities
     public static Vector3 ForceBetween(this WorldElement element, WorldElement otherElement)
     {
         var effectiveCharge = otherElement.Charge * element.Charge;
+        var isNucleic = otherElement.Charge >= 0 && element.Charge >= 0;
         var xBody = otherElement.transform.Find("Body");
         var body = element.transform.Find("Body");
-        var massOffset = 1 / (body.lossyScale.magnitude / xBody.lossyScale.magnitude) / element.MassMultiplier;
+        var massOffset = 1 / (body.lossyScale.magnitude / xBody.lossyScale.magnitude) * element.MassMultiplier;
 
         var distanceToParticle = Vector3.Distance(xBody.transform.position, element.transform.position);
         var distanceOffset = 1 / (distanceToParticle > 0 ? distanceToParticle : 1);
 
-        // .. comment this out to enable repulsive forces
-        //effectiveCharge = effectiveCharge == 1 ? -1 : effectiveCharge;
+        // .. if nucleic particles (proton, neutron) are close enough, attract rather than repel
+        effectiveCharge = distanceToParticle < 2 && isNucleic ? -1 : effectiveCharge;
 
         var dirTo = element.transform.position - otherElement.transform.position;
 

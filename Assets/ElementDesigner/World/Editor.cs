@@ -84,8 +84,6 @@ public class Editor : MonoBehaviour
                 var forces = nuclei.Select(otherEl => el.ForceBetween(otherEl));
                 var effectiveForce = forces.Average();
                 var perpForce = Vector3.Cross(effectiveForce, Vector3.up).normalized * effectiveForce.magnitude;
-                Debug.DrawRay(el.transform.position, effectiveForce, Color.red, 30);
-                Debug.DrawRay(el.transform.position, perpForce, Color.yellow, 30);
                 var motor = el.GetComponent<WorldElementMotor>();
                 motor.AddVelocity(perpForce);
             });
@@ -282,7 +280,7 @@ public class Editor : MonoBehaviour
             try
             {
                 // TODO: later, positions will be able to be saved and re-loaded the next time an element loads
-                var radius = subElement.Charge >= 0 ? 1 : 1.1f;
+                var radius = subElement.Charge >= 0 ? 1 : 20;
                 var randPos = UnityEngine.Random.insideUnitSphere * radius;
                 var worldElement = CreateSubElement(subElement, randPos);
             }
