@@ -36,8 +36,10 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="Assets\Cameras\CameraFacer.cs" />
      <Compile Include="Assets\ElementDesigner\World\Elements\WorldElement.cs" />
      <Compile Include="Assets\ElementDesigner\DemoController.cs" />
+     <Compile Include="Assets\Cameras\OrbitCam.cs" />
      <Compile Include="Assets\ElementDesigner\World\Elements\WorldParticle.cs" />
      <Compile Include="Assets\ElementDesigner\FileSystem\FileSystem.cs" />
      <Compile Include="Assets\ElementDesigner\FileSystem\Elements\Particle.cs" />
@@ -56,6 +58,7 @@
      <Compile Include="Assets\ElementDesigner\FileSystem\FileSystemLoader.cs" />
      <Compile Include="Assets\ElementDesigner\World\Elements\Interact.cs" />
      <Compile Include="Assets\ElementDesigner\UI\GridItem\GridItem.cs" />
+     <Compile Include="Assets\ElementDesigner\World\Elements\WorldElementReactor.cs" />
      <Compile Include="Assets\ElementDesigner\UI\HUD.cs" />
      <Compile Include="Assets\ElementDesigner\World\Editor.cs" />
      <Compile Include="Assets\ElementDesigner\UI\GridItem\IsotopeGridItem.cs" />
@@ -75,14 +78,12 @@
      <Compile Include="Assets\ElementDesigner\UI\GridItem\MoleculeGridItem.cs" />
      <Compile Include="Assets\ElementDesigner\UI\TextNotification.cs" />
      <Compile Include="Assets\ElementDesigner\FileSystem\Elements\Element.cs" />
+     <Compile Include="Assets\Cameras\FlyCam.cs" />
+     <Compile Include="Assets\Cameras\PanCam.cs" />
      <Compile Include="Assets\ElementDesigner\UI\Tabs.cs" />
      <Compile Include="Assets\ElementDesigner\World\Elements\WorldElementMotor.cs" />
      <Compile Include="Assets\ElementDesigner\World\EditorSelect.cs" />
      <Compile Include="Assets\ElementDesigner\FileSystem\Elements\Molecule.cs" />
-     <Compile Include="Assets\Cameras\OrbitCam.cs" />
-     <Compile Include="Assets\Cameras\PanCam.cs" />
-     <Compile Include="Assets\Cameras\CameraFacer.cs" />
-     <Compile Include="Assets\Cameras\FlyCam.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
