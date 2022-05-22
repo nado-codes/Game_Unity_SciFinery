@@ -81,6 +81,7 @@ public class Editor : MonoBehaviour
             SubElements.ForEach(el =>
             {
                 var nuclei = SubElements.Where(otherEl => otherEl.Data.Id != el.Data.Id && otherEl.Data.Charge > 0);
+
                 var forces = nuclei.Select(otherEl => el.ForceBetween(otherEl));
                 var effectiveForce = forces.Average();
                 var perpForce = Vector3.Cross(effectiveForce, Vector3.up).normalized * effectiveForce.magnitude;
