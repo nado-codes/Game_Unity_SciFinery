@@ -65,6 +65,10 @@ public class Editor : MonoBehaviour
         // with the correct elements and displays
         HandleChangeDesignTypeClicked(ElementType.Atom);
         designTypeTabs.SelectTab((int)ElementType.Atom);
+
+        // .. uncomment to load a specific atom at game start
+        var allAtoms = FileSystemLoader.LoadElementsOfType<Atom>();
+        // LoadElement(allAtoms.FirstOrDefault(a => a.Name == "Helium"));
     }
     public static void LoadElement<T>(T element) where T : Element
     {
