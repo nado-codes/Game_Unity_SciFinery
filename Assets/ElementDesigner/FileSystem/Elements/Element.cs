@@ -11,6 +11,8 @@ public class Element
 
     ///<summary>The unique id of this element in the element cache</summary>
     public int Id = -1;
+    ///<summary>Whether or not this element is visible or usable. Allows dependent elements to keep referencing it.</summary>
+    public bool IsDeleted = false;
     ///<summary>A shorthand abbreviated version of [Name] e.g. Hydrogen->HY</summary>
     public string ShortName =>
         string.Join("", Name.Substring(0, 2).Select((c, i) => i == 0 ? c.ToString().ToUpper() : c.ToString().ToLower()
