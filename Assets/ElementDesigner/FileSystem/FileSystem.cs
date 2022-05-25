@@ -156,7 +156,7 @@ public class FileSystem : MonoBehaviour
 
         var atomParticles = subElements.Cast<Particle>();
         var atomNeutronCount = atomParticles.Where(particle => particle.Charge == 0).Count();
-        var parentAtomIsotopes = FileSystemCache.GetOrLoadElementsOfTypeByIds<Atom>(parentAtom.IsotopeIds);
+        var parentAtomIsotopes = FileSystemCache.GetOrLoadElementsOfTypeByIds<Atom>(parentAtom.IsotopeIds).Where(i => !i.IsDeleted);
         var existingIsotope = parentAtomIsotopes.FirstOrDefault(iso =>
         {
             var isotopeParticles = FileSystemCache.GetOrLoadSubElementsOfTypeByIds<Particle>(iso.ChildIds);
@@ -240,7 +240,7 @@ public class FileSystem : MonoBehaviour
                 deleteAtom(elementData as Atom);
                 break;
             default:
-                DeleteElement(elementData);
+                deleteElement(elementData);
                 break;
         }
         FileSystemCache.RemoveElementOfTypeById(elementData.Id, elementData.ElementType);
@@ -260,7 +260,13 @@ public class FileSystem : MonoBehaviour
         if (!File.Exists(elementFilePath))
             throw new ArgumentException($"The file at path \"{elementFilePath}\" doesn't exist in call to deleteElement");
 
-        File.Delete(elementFilePath);
+        var elementJSON = File.ReadAllText(elementFilePath);
+        var element = JsonUtility.FromJson<Element>(elementJSON);
+
+        element.IsDeleted = true;
+
+        elementJSON = JsonUtility.ToJson(element);
+        File.WriteAllText(elementFilePath, elementJSON);
     }
 
     private static void deleteAtom(Atom atom)

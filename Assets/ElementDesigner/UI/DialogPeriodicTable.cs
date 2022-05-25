@@ -72,7 +72,7 @@ public class DialogPeriodicTable : MonoBehaviour
         VerifyInitialize();
         gameObject.SetActive(true);
 
-        var loadedElements = loadElementsOfType(Editor.DesignType);
+        var loadedElements = loadElementsOfType(Editor.DesignType).Where(el => !el.IsDeleted);
 
         page1GridItems.ForEach(gi => gi.SetActive(false));
 
@@ -110,7 +110,7 @@ public class DialogPeriodicTable : MonoBehaviour
     }
     public void HandleDeleteSelectedItemClicked()
     {
-        var dialogBody = "Deleting an element means that it is gone forever! Are you sure?";
+        var dialogBody = "A deleted element can't be used, but you can get it back later if you want. Continue with deletion?";
         DialogYesNo.Open("Delete Element", dialogBody, handleDeleteSelectedItem);
     }
     public void OpenPage1()
@@ -132,7 +132,7 @@ public class DialogPeriodicTable : MonoBehaviour
 
         var allAtoms = FileSystemCache.GetOrLoadElementsOfType<Atom>();
         var allIsotopes = allAtoms.Where(a => a.ParentId != -1);
-        var selectedAtomIsotopes = allIsotopes.Where(i => i.ParentId == selectedElementData.Id);
+        var selectedAtomIsotopes = allIsotopes.Where(i => i.ParentId == selectedElementData.Id && !i.IsDeleted);
 
         if (!selectedAtomIsotopes.Any())
             return;

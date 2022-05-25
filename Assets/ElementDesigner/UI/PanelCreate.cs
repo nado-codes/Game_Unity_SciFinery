@@ -168,12 +168,12 @@ public class PanelCreate : MonoBehaviour, IPointerExitHandler
     }
     private void LoadElements(IEnumerable<Element> elements)
     {
-        loadedElements = elements.ToList();
+        loadedElements = elements.Where(el => !el.IsDeleted).ToList();
         var numGridItems = elementButtons.Count;
-        visibleLoadedElements = elements.Where((_, i) => i >= 0 && i < numGridItems).ToList();
+        visibleLoadedElements = loadedElements.Where((_, i) => i >= 0 && i < numGridItems).ToList();
         renderVisibleElements();
 
-        var enableScrollButtons = elements.Count() > elementButtons.Count;
+        var enableScrollButtons = loadedElements.Count() > elementButtons.Count;
         btnNext.interactable = enableScrollButtons;
         btnPrev.interactable = enableScrollButtons;
     }
