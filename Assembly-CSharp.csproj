@@ -65,6 +65,7 @@
      <Compile Include="Assets\Main\WorldGen.cs" />
      <Compile Include="Assets\ElementDesigner\UI\PanelName.cs" />
      <Compile Include="Assets\Main\Tile.cs" />
+     <Compile Include="Assets\btnIsDeleted.cs" />
      <Compile Include="Assets\ElementDesigner\UI\GridItem\AtomGridItem.cs" />
      <Compile Include="Assets\ElementDesigner\FileSystem\Elements\Product.cs" />
      <Compile Include="Assets\Main\CoilAnim.cs" />
@@ -85,7 +86,6 @@
      <Compile Include="Assets\ElementDesigner\World\Elements\WorldElementMotor.cs" />
      <Compile Include="Assets\ElementDesigner\World\EditorSelect.cs" />
      <Compile Include="Assets\ElementDesigner\FileSystem\Elements\Molecule.cs" />
-     <Compile Include="Assets\btnIsDeleted.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
