@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class BtnIsDeleted : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class BtnIsDeleted : ImageButton
 {
     private Element data;
     private Image deletedIdle, deletedUndo;
@@ -11,18 +11,18 @@ public class BtnIsDeleted : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     void Start()
     {
         deletedIdle = transform.Find("DeletedIdle").GetComponent<Image>();
-        Assertions.AssertNotNull(deletedIdle, "deletedIdle");
+        //Assertions.AssertNotNull(deletedIdle, "deletedIdle");
         deletedUndo = transform.Find("DeletedUndo").GetComponent<Image>();
-        Assertions.AssertNotNull(deletedUndo, "deletedUndo");
+        //Assertions.AssertNotNull(deletedUndo, "deletedUndo");
         button = GetComponent<Button>();
-        Assertions.AssertNotNull(button, "button");
+        //Assertions.AssertNotNull(button, "button");
         buttonImage = GetComponent<Image>();
-        Assertions.AssertNotNull(buttonImage, "buttonImage");
+        //Assertions.AssertNotNull(buttonImage, "buttonImage");
 
         button.onClick.AddListener(HandleRecycleClicked);
         // SetActive(false);
     }
-    public void OnPointerEnter(PointerEventData ev)
+    public override void OnPointerEnter(PointerEventData ev)
     {
         Debug.Log("POINTER ENTER");
         // if (data != null && data.IsDeleted)
@@ -30,12 +30,16 @@ public class BtnIsDeleted : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         deletedIdle.gameObject.SetActive(false);
         deletedUndo.gameObject.SetActive(true);
         //}
+
+        base.OnPointerEnter(ev);
     }
 
-    public void OnPointerExit(PointerEventData ev)
+    public override void OnPointerExit(PointerEventData ev)
     {
         // if (data != null && data.IsDeleted)
         setIdle();
+
+        base.OnPointerExit(ev);
     }
 
     void setIdle()

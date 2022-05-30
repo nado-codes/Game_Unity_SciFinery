@@ -62,6 +62,7 @@
      <Compile Include="Assets\ElementDesigner\UI\HUD.cs" />
      <Compile Include="Assets\ElementDesigner\World\Editor.cs" />
      <Compile Include="Assets\ElementDesigner\UI\GridItem\IsotopeGridItem.cs" />
+     <Compile Include="Assets\ElementDesigner\UI\BtnIsDeleted.cs" />
      <Compile Include="Assets\Main\WorldGen.cs" />
      <Compile Include="Assets\ElementDesigner\UI\PanelName.cs" />
      <Compile Include="Assets\Main\Tile.cs" />
@@ -86,7 +87,7 @@
      <Compile Include="Assets\ElementDesigner\World\Elements\WorldElementMotor.cs" />
      <Compile Include="Assets\ElementDesigner\World\EditorSelect.cs" />
      <Compile Include="Assets\ElementDesigner\FileSystem\Elements\Molecule.cs" />
-     <Compile Include="Assets\ElementDesigner\UI\BtnIsDeleted.cs" />
+     <Compile Include="Assets\ElementDesigner\UI\ImageButton.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
