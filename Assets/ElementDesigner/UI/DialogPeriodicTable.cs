@@ -205,6 +205,6 @@ public class DialogPeriodicTable : MonoBehaviour
     private void handleDeleteSelectedItem()
     {
         selectedGridItem.GetGridItemForType(selectedElementData.ElementType).SetActive(false);
-        FileSystem.DeleteElement(selectedElementData);
+        FileSystem.RecycleRestoreElement(selectedElementData, true);
     }
 }

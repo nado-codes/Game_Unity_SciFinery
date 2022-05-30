@@ -229,7 +229,7 @@ public class FileSystem : MonoBehaviour
         return false;
     }
 
-    public static void DeleteElement(Element elementData)
+    public static void RecycleRestoreElement(Element elementData, bool isDeleted)
     {
         if (elementData == null)
             throw new ArgumentException("Expected elementData in call to DeleteElement, got null");
@@ -237,23 +237,23 @@ public class FileSystem : MonoBehaviour
         switch (elementData.ElementType)
         {
             case ElementType.Atom:
-                deleteAtom(elementData as Atom);
+                recycleRestoreAtom(elementData as Atom, isDeleted);
                 break;
             default:
-                deleteElement(elementData);
+                recycleElement(elementData, isDeleted);
                 break;
         }
         FileSystemCache.RemoveElementOfTypeById(elementData.Id, elementData.ElementType);
         TextNotification.Show($"Deleted \"{elementData.Name}\"");
     }
 
-    private static void deleteElement(Element element)
+    private static void recycleElement(Element element, bool isDeleted)
     {
         var elementFilePath = GetElementFilePath(element);
-        deleteElement(elementFilePath);
+        recycleRestoreElement(elementFilePath, isDeleted);
     }
 
-    private static void deleteElement(string elementFilePath)
+    private static void recycleRestoreElement(string elementFilePath, bool isDeleted)
     {
         if (string.IsNullOrEmpty(elementFilePath))
             throw new ArgumentException("elementFilePath cannot be null or empty in call to deleteElement");
@@ -263,13 +263,13 @@ public class FileSystem : MonoBehaviour
         var elementJSON = File.ReadAllText(elementFilePath);
         var element = JsonUtility.FromJson<Element>(elementJSON);
 
-        element.IsDeleted = true;
+        element.IsDeleted = isDeleted;
 
         elementJSON = JsonUtility.ToJson(element);
         File.WriteAllText(elementFilePath, elementJSON);
     }
 
-    private static void deleteAtom(Atom atom)
+    private static void recycleRestoreAtom(Atom atom, bool isDeleted)
     {
         if (atom == null)
             throw new ArgumentException("Expected an atom in call to deleteAtom, got null");
@@ -279,6 +279,6 @@ public class FileSystem : MonoBehaviour
         var parentAtom = FileSystemCache.GetOrLoadElementOfTypeById<Atom>(atom.ParentId);
         var elementFilePath = isIsotope ? GetIsotopeFilePath(atom, parentAtom) : GetElementFilePath(atom);
 
-        deleteElement(elementFilePath);
+        recycleRestoreElement(elementFilePath, isDeleted);
     }
 }
