@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class BtnIsDeleted : ImageButton
+public class BtnIsDeleted : ImageButton, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     private Element data;
     private Image deletedIdle, deletedUndo;
@@ -20,9 +20,9 @@ public class BtnIsDeleted : ImageButton
         //Assertions.AssertNotNull(buttonImage, "buttonImage");
 
         button.onClick.AddListener(HandleRecycleClicked);
-        // SetActive(false);
+        SetActive(true);
     }
-    public override void OnPointerEnter(PointerEventData ev)
+    public new void OnPointerEnter(PointerEventData ev)
     {
         Debug.Log("POINTER ENTER");
         // if (data != null && data.IsDeleted)
