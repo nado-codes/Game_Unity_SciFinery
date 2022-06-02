@@ -11,6 +11,7 @@ public class ImageButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
     private Color normalColor, selectedColor, hoverColor, disabledColor;
     private bool hovered = false, selected = false;
     public bool Disabled = false;
+    public bool StickySelect = false;
 
     void Awake()
     {
@@ -32,7 +33,7 @@ public class ImageButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
     {
         if (Disabled) return;
 
-        image.color = (!hovered && !selected) ? hoverColor : image.color;
+        image.color = !hovered && (!selected || !StickySelect) ? hoverColor : image.color;
         hovered = true;
     }
 
@@ -40,7 +41,7 @@ public class ImageButton : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
     {
         if (Disabled) return;
 
-        image.color = !selected ? normalColor : image.color;
+        image.color = !selected || !StickySelect ? normalColor : image.color;
         hovered = false;
     }
 
