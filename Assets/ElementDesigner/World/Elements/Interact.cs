@@ -4,6 +4,7 @@ using UnityEngine;
 public class Interact : MonoBehaviour
 {
     enum InteractionState { None, Highlight, Select }
+    private bool initialized = false;
 
     public bool Selectable = true;
 
@@ -40,8 +41,10 @@ public class Interact : MonoBehaviour
 
     private DateTime lastClickStart;
 
-    protected void Start()
+    private void VerifyInitialize()
     {
+        if (initialized) return;
+
         Material tMat = Resources.Load("ElementDesigner/TransparentWhite.mat", typeof(Material)) as Material;
 
         highlightCube = GameObject.CreatePrimitive(PrimitiveType.Cube);
@@ -54,7 +57,11 @@ public class Interact : MonoBehaviour
 
         highlightCube.transform.localScale = Vector3.one * 1.1f;
 
-
+        initialized = true;
+    }
+    protected void Start()
+    {
+        VerifyInitialize();
     }
     public void Update()
     {
@@ -74,6 +81,7 @@ public class Interact : MonoBehaviour
     // Hover behaviour
     public void Hover()
     {
+        VerifyInitialize();
         if (!isSelected)
             highlightCubeRenderer.material.color = HighlightedColor;
         ElementDisplay.gameObject.SetActive(true);
@@ -92,6 +100,7 @@ public class Interact : MonoBehaviour
     // Unhover behaviour
     public void ClearHover()
     {
+        VerifyInitialize();
         if (!isSelected)
             highlightCube?.SetActive(false);
 
@@ -109,11 +118,13 @@ public class Interact : MonoBehaviour
     // Select behaviour
     public void Select()
     {
+        VerifyInitialize();
         highlightCubeRenderer.material.color = SelectedColor;
         isSelected = true;
     }
     public void Deselect()
     {
+        VerifyInitialize();
         isSelected = false;
         highlightCube.SetActive(false);
         ElementDisplay.gameObject.SetActive(false);
