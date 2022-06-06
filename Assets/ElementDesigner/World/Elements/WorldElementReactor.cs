@@ -18,6 +18,24 @@ public class WorldElementReactor : MonoBehaviour
         }
     }
 
+    private ArcLight _arcLight;
+    private ArcLight arcLight
+    {
+        get
+        {
+            if (_arcLight == null)
+            {
+                var bodyTransform = transform.Find("Body");
+                var arcLightTransform = bodyTransform?.Find("ArcLight");
+                _arcLight = arcLightTransform?.GetComponent<ArcLight>();
+            }
+            if (_arcLight == null && WorldElement.Data.ElementType == ElementType.Particle)
+                throw new ApplicationException("WorldElementMotor requires an ArcLight to work properly. Please add one first.");
+
+            return _arcLight;
+        }
+    }
+
 
     void Update()
     {
@@ -30,19 +48,28 @@ public class WorldElementReactor : MonoBehaviour
 
         if (!isNucleic) return;
 
-        // Apply nuclear forces
         var worldMotors = Editor.SubElements;
         var otherWorldMotors = worldMotors.Where(x => x != this).ToList();
 
-        var effectiveForce = Vector3.zero;
         otherWorldMotors.ForEach(otherElement =>
         {
-            var forceBetween = WorldElement.ForceBetween(otherElement);
-
             // .. if nucleic particles (proton, neutron) are close enough, attract rather than repel
-            // effectiveCharge = distanceToParticle < 2 && isNucleic ? -1 : effectiveCharge;
+            var distance = Vector3.Distance(otherElement.transform.position, transform.position);
+            var bothNucleic = isNucleic && otherElement.Data.Charge >= 0;
+            var useNuclear = distance < 2 && bothNucleic;
 
-            effectiveForce += forceBetween;
+            if (useNuclear && !arcLight.Active)
+                arcLight.SetActive(true);
+            if (!useNuclear && arcLight.Active)
+                arcLight.SetActive(false);
+
+            var dirTo = (WorldElement.transform.position - otherElement.transform.position).normalized;
+            arcLight.transform.position = dirTo;
         });
+    }
+
+    void OnCollisionEnter(Collision col)
+    {
+        Debug.Log("COLLIDED: " + col.transform.name);
     }
 }

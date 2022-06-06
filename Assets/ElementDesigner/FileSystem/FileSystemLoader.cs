@@ -122,7 +122,7 @@ public class FileSystemLoader
         {
             Id = 1,
             Name = "Proton",
-            Weight = 0.001f,
+            Weight = 1f,
             ElementType = ElementType.Particle,
             Charge = 1,
             Size = 1,
