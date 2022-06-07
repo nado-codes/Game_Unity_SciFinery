@@ -18,6 +18,8 @@ public class WorldElementMotor : MonoBehaviour
         }
     }
 
+    private WorldElementReactor reactor => GetComponent<WorldElementReactor>();
+
     private Vector3 velocity = Vector3.zero;
     public Vector3 Velocity => new Vector3(velocity.x, velocity.y, velocity.z);
 
@@ -25,6 +27,12 @@ public class WorldElementMotor : MonoBehaviour
     {
         transform.Translate(velocity * Time.deltaTime);
 
+        if (reactor == null || !reactor.IsFused)
+            UpdateVelocity();
+    }
+
+    void UpdateVelocity()
+    {
         // Apply charges
         var worldMotors = Editor.SubElements.Where(e => e.GetComponent<WorldElementMotor>() != null);
         var otherWorldMotors = worldMotors.Where(x => x.GetComponent<WorldElementMotor>() != this).ToList();
@@ -37,7 +45,6 @@ public class WorldElementMotor : MonoBehaviour
         });
 
         velocity += effectiveForce * Time.deltaTime;
-
     }
 
     public void AddVelocity(Vector3 force)

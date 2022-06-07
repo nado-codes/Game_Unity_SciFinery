@@ -36,10 +36,27 @@ public class WorldElementReactor : MonoBehaviour
         }
     }
 
+    public bool IsFused = false;
+
+    private AudioSource _popAudio;
+    private AudioSource popAudio
+    {
+        get
+        {
+            if (_popAudio == null)
+            {
+                var audioSources = GetComponents<AudioSource>();
+                _popAudio = audioSources.FirstOrDefault(a => a.clip.name == "Pop");
+            }
+            return _popAudio;
+        }
+    }
+
 
     void Update()
     {
-
+        if (!IsFused)
+            UpdateNuclearForces();
     }
 
     void UpdateNuclearForces()
@@ -70,6 +87,12 @@ public class WorldElementReactor : MonoBehaviour
 
     void OnCollisionEnter(Collision col)
     {
-        Debug.Log("COLLIDED: " + col.transform.name);
+        IsFused = true;
+        transform.parent = col.transform.parent;
+
+        // TODO: apply spin velocity to recently-fused particles 
+
+        if (popAudio == null) return;
+        popAudio.Play();
     }
 }
