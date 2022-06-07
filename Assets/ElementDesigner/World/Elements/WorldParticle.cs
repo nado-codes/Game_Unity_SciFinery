@@ -30,7 +30,7 @@ public class WorldParticle : WorldElement
 
     protected override void Update()
     {
-        var audioSource = GetComponent<AudioSource>();
+        var audioSource = GetComponentsInChildren<AudioSource>().FirstOrDefault(a => a.clip.name == "PowerlineNoise");
         if (Data.Charge < 0 && audioSource != null)
         {
             if (!audioSource.isPlaying)

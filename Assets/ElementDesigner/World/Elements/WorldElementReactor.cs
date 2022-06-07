@@ -88,11 +88,12 @@ public class WorldElementReactor : MonoBehaviour
     void OnCollisionEnter(Collision col)
     {
         IsFused = true;
-        transform.parent = col.transform.parent;
+        transform.parent = col.collider.transform;
 
         // TODO: apply spin velocity to recently-fused particles 
 
         if (popAudio == null) return;
+        popAudio.enabled = true;
         popAudio.Play();
     }
 }

@@ -17,7 +17,7 @@ public static class Utilities
         var distanceOffset = 1 / (distanceToParticle > 0 ? distanceToParticle : 1);
 
         var dirTo = element.transform.position - otherElement.transform.position;
-        var useNuclear = isNucleic && distanceToParticle < 2;
+        var useNuclear = isNucleic && distanceToParticle < 10; //2;
         effectiveCharge = useNuclear ? effectiveCharge * -1 : effectiveCharge;
 
         return dirTo * effectiveCharge * massOffset * distanceOffset;
