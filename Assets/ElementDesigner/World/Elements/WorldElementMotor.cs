@@ -33,18 +33,26 @@ public class WorldElementMotor : MonoBehaviour
 
     void UpdateVelocity()
     {
-        // Apply charges
-        var worldMotors = Editor.SubElements.Where(e => e.GetComponent<WorldElementMotor>() != null);
-        var otherWorldMotors = worldMotors.Where(x => x.GetComponent<WorldElementMotor>() != this).ToList();
-
-        var effectiveForce = Vector3.zero;
-        otherWorldMotors.ForEach(otherElement =>
+        try
         {
-            var forceBetween = WorldElement.ForceBetween(otherElement);
-            effectiveForce += forceBetween;
-        });
+            // .. TODO: this method will break if two elements merge together e.g. transform.parent = newparent
+            // .. Q: does changing parent in unity delete the original object, or does it move it?
+            var worldMotors = Editor.SubElements.Where(e => e.GetComponent<WorldElementMotor>() != null);
+            var otherWorldMotors = worldMotors.Where(x => x.GetComponent<WorldElementMotor>() != this).ToList();
 
-        velocity += effectiveForce * Time.deltaTime;
+            var effectiveForce = Vector3.zero;
+            otherWorldMotors.ForEach(otherElement =>
+            {
+                var forceBetween = WorldElement.ForceBetween(otherElement);
+                effectiveForce += forceBetween;
+            });
+
+            velocity += effectiveForce * Time.deltaTime;
+        }
+        catch (Exception e)
+        {
+            throw e;
+        }
     }
 
     public void AddVelocity(Vector3 force)
