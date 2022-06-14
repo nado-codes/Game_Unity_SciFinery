@@ -72,8 +72,7 @@ public class WorldElementReactor : MonoBehaviour
         {
             // .. if nucleic particles (proton, neutron) are close enough, attract rather than repel
             var distance = Vector3.Distance(otherElement.transform.position, transform.position);
-            var bothNucleic = isNucleic && otherElement.Data.Charge >= 0;
-            var useNuclear = distance < 2 && bothNucleic;
+            var useNuclear = WorldUtilities.CanFuse(WorldElement, otherElement);
 
             if (useNuclear && !arcLight.Active)
                 arcLight.SetActive(true);
@@ -87,10 +86,17 @@ public class WorldElementReactor : MonoBehaviour
 
     void OnCollisionEnter(Collision col)
     {
+        var colWorldElement = col.gameObject.GetComponent<WorldElement>();
+        if (colWorldElement == null || IsFused) return;
+        if (!WorldUtilities.CanFuse(WorldElement, colWorldElement)) return;
         IsFused = true;
-        transform.parent = col.collider.transform;
+        transform.parent = col.transform;
 
         // TODO: apply spin velocity to recently-fused particles 
+        // - create a "ghost" particle that is pre-parented, for physics calculation
+        // - collide both objects. object B will have correct spin applied
+        // - remove the ghost, parent the object
+        // - apply braking force to the particle group over time (lerp to 0)
 
         if (popAudio == null) return;
         popAudio.enabled = true;

@@ -5,24 +5,6 @@ using System;
 
 public static class Utilities
 {
-    public static Vector3 ForceBetween(this WorldElement element, WorldElement otherElement)
-    {
-        var effectiveCharge = otherElement.Charge * element.Charge;
-        var isNucleic = otherElement.Charge >= 0 && element.Charge >= 0;
-        var xBody = otherElement.transform.Find("Body");
-        var body = element.transform.Find("Body");
-        var massOffset = 1 / (body.lossyScale.magnitude / xBody.lossyScale.magnitude) * element.MassMultiplier;
-
-        var distanceToParticle = Vector3.Distance(xBody.transform.position, element.transform.position);
-        var distanceOffset = 1 / (distanceToParticle > 0 ? distanceToParticle : 1);
-
-        var dirTo = element.transform.position - otherElement.transform.position;
-        var useNuclear = isNucleic && distanceToParticle < 10; //2;
-        effectiveCharge = useNuclear ? effectiveCharge * -1 : effectiveCharge;
-
-        return dirTo * effectiveCharge * massOffset * distanceOffset;
-    }
-
     public static Vector3 Average(this IEnumerable<Vector3> vectors)
     {
         var length = vectors.Count();
