@@ -301,4 +301,48 @@ public class Editor : MonoBehaviour
         var elementsToDelete = new List<WorldElement>(SubElements);
         elementsToDelete.ForEach(p => RemoveSubElement(p));
     }
+
+    public static void FuseElements(WorldElement elA, WorldElement elB)
+    {
+        Debug.Log("Fusing " + elA.Data.Name + " to " + elB.Data.Name);
+        var elementGroup = new GameObject();
+        elementGroup.name = "ElementGroup";
+        elementGroup.transform.position = elA.transform.position - elB.transform.position;
+        elementGroup.transform.parent = elA.transform.parent;
+        var collider = elementGroup.AddComponent<SphereCollider>();
+
+        var elABody = elA.transform.Find("Body");
+        var elBBody = elB.transform.Find("Body");
+        var elASize = elABody.lossyScale.magnitude;
+        var elBSize = elBBody.localScale.magnitude;
+        var elADistance = Vector3.Distance(elA.transform.position, elementGroup.transform.position);
+        var elBDistance = Vector3.Distance(elB.transform.position, elementGroup.transform.position);
+        collider.radius = Mathf.Max(elADistance, elBDistance) + Mathf.Max(elASize, elBSize);
+
+        var elAMotor = elA.GetComponent<WorldElementMotor>();
+        var elBMotor = elB.GetComponent<WorldElementMotor>();
+        var elAReactor = elA.GetComponent<WorldElementReactor>();
+        var elBReactor = elB.GetComponent<WorldElementReactor>();
+        var elARB = elA.GetComponent<Rigidbody>();
+        var elBRB = elB.GetComponent<Rigidbody>();
+
+        elAMotor.Stop();
+        elBMotor.Stop();
+        elARB.velocity = Vector3.zero;
+        elBRB.velocity = Vector3.zero;
+        elARB.detectCollisions = false;
+        elBRB.detectCollisions = false;
+        elAMotor.enabled = false;
+        elBMotor.enabled = false;
+        elAReactor.enabled = false;
+        elBReactor.enabled = false;
+
+        elA.transform.parent = elementGroup.transform;
+        elB.transform.parent = elementGroup.transform;
+    }
+
+    public static void SplitElement(WorldElement element)
+    {
+        // .. TODO
+    }
 }

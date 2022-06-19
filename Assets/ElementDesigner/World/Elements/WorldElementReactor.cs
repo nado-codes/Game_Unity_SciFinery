@@ -87,10 +87,14 @@ public class WorldElementReactor : MonoBehaviour
     void OnCollisionEnter(Collision col)
     {
         var colWorldElement = col.gameObject.GetComponent<WorldElement>();
+        var colReactor = col.gameObject.GetComponent<WorldElementReactor>();
         if (colWorldElement == null || IsFused) return;
         if (!WorldUtilities.CanFuse(WorldElement, colWorldElement)) return;
         IsFused = true;
-        transform.parent = col.transform;
+        colReactor.IsFused = true;
+
+        if (WorldElement.GetHashCode() > colWorldElement.GetHashCode())
+            Editor.FuseElements(WorldElement, colWorldElement);
 
         // TODO: apply spin velocity to recently-fused particles 
         // - create a "ghost" particle that is pre-parented, for physics calculation

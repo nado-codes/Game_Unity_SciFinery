@@ -21,8 +21,24 @@ public static class WorldUtilities
 
         var dir = element.transform.position - otherElement.transform.position;
         var useNuclear = CanFuse(element, otherElement);
+
         effectiveCharge = useNuclear ? effectiveCharge * -1 : effectiveCharge;
 
         return dir * effectiveCharge * massOffset * distanceScalar;
+    }
+
+    public static WorldElement FuseTo(this WorldElement el, WorldElement otherEl)
+    {
+        var newWorldElement = new WorldElement();
+        var elData = el.Data;
+        var otherElData = otherEl.Data;
+        var newElement = new Element()
+        {
+            Weight = elData.Weight + otherElData.Weight,
+            Charge = elData.Charge + otherElData.Charge,
+        };
+
+        newWorldElement.SetData(newElement);
+        return newWorldElement;
     }
 }

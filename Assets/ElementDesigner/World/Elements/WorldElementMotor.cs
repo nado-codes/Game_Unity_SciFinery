@@ -59,4 +59,9 @@ public class WorldElementMotor : MonoBehaviour
     {
         velocity += force;
     }
+
+    public void Stop()
+    {
+        velocity = Vector3.zero;
+    }
 }
