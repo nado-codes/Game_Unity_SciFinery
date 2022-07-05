@@ -68,7 +68,13 @@ public class Editor : MonoBehaviour
 
         // .. uncomment to load a specific atom at game start
         var allAtoms = FileSystemLoader.LoadElementsOfType<Atom>();
-        LoadElement(allAtoms.FirstOrDefault(a => a.Name == "Helium"));
+        var testAtom = new Element()
+        {
+            Name = "TestAtom",
+            ElementType = ElementType.Atom,
+            ChildIds = new int[] { 1, 1, 2, 2 }
+        };
+        LoadElement(testAtom);
     }
     public static void LoadElement<T>(T element) where T : Element
     {

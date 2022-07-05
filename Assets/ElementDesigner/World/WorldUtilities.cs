@@ -22,6 +22,8 @@ public static class WorldUtilities
         var dir = element.transform.position - otherElement.transform.position;
         var useNuclear = CanFuse(element, otherElement);
 
+        if (useNuclear) Debug.DrawLine(element.transform.position, otherElement.transform.position, Color.red, 5000);
+
         effectiveCharge = useNuclear ? effectiveCharge * -1 : effectiveCharge;
 
         return dir * effectiveCharge * massOffset * distanceScalar;

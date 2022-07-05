@@ -64,6 +64,9 @@ public class PanelName : MonoBehaviour
     {
         Instance.VerifyInitialize();
 
+        if (element == null)
+            throw new NullReferenceException("Expected an element in call to SetElementData, got undefined");
+
         switch (element.ElementType)
         {
             case ElementType.Atom:
