@@ -68,13 +68,14 @@ public class Editor : MonoBehaviour
 
         // .. uncomment to load a specific atom at game start
         var allAtoms = FileSystemLoader.LoadElementsOfType<Atom>();
-        var testAtom = new Element()
+        LoadElement(allAtoms.FirstOrDefault(a => a.Name == "Helium"));
+        var testAtom = new Atom()
         {
             Name = "TestAtom",
             ElementType = ElementType.Atom,
             ChildIds = new int[] { 1, 1, 2, 2 }
         };
-        LoadElement(testAtom);
+        // LoadElement(testAtom);
     }
     public static void LoadElement<T>(T element) where T : Element
     {
@@ -313,17 +314,16 @@ public class Editor : MonoBehaviour
         Debug.Log("Fusing " + elA.Data.Name + " to " + elB.Data.Name);
         var elementGroup = new GameObject();
         elementGroup.name = "ElementGroup";
-        elementGroup.transform.position = elA.transform.position - elB.transform.position;
-        elementGroup.transform.parent = elA.transform.parent;
+
         var collider = elementGroup.AddComponent<SphereCollider>();
 
+        // .. FOREACH THESE
         var elABody = elA.transform.Find("Body");
         var elBBody = elB.transform.Find("Body");
         var elASize = elABody.lossyScale.magnitude;
         var elBSize = elBBody.localScale.magnitude;
         var elADistance = Vector3.Distance(elA.transform.position, elementGroup.transform.position);
         var elBDistance = Vector3.Distance(elB.transform.position, elementGroup.transform.position);
-        collider.radius = Mathf.Max(elADistance, elBDistance) + Mathf.Max(elASize, elBSize);
 
         var elAMotor = elA.GetComponent<WorldElementMotor>();
         var elBMotor = elB.GetComponent<WorldElementMotor>();
@@ -345,6 +345,64 @@ public class Editor : MonoBehaviour
 
         elA.transform.parent = elementGroup.transform;
         elB.transform.parent = elementGroup.transform;
+
+        // AGGREGATE THESE
+        elementGroup.transform.position = elA.transform.position - elB.transform.position;
+        elementGroup.transform.parent = elA.transform.parent;
+        collider.radius = Mathf.Max(elADistance, elBDistance) + Mathf.Max(elASize, elBSize);
+
+
+    }
+
+    public static void FuseElements(List<WorldElement> elements)
+    {
+        if (elements == null)
+            throw new ArgumentException("Expected a list of elements in call to FuseElements, got undefined");
+        if (elements.Count() < 2)
+            throw new ArgumentException("Must be at least 2 elements in order to fuse");
+
+        var elementGroup = new GameObject();
+        elementGroup.name = "ElementGroup";
+        elementGroup.transform.parent = elements[0].transform.parent;
+        var collider = elementGroup.AddComponent<SphereCollider>();
+
+        elements.ForEach(el =>
+        {
+            var body = el.transform.Find("Body");
+            var elASize = body.lossyScale.magnitude;
+            var elADistance = Vector3.Distance(el.transform.position, elementGroup.transform.position);
+
+            var elAMotor = el.GetComponent<WorldElementMotor>();
+            var elAReactor = el.GetComponent<WorldElementReactor>();
+            var elARB = el.GetComponent<Rigidbody>();
+
+            elAMotor.Stop();
+            elARB.velocity = Vector3.zero;
+            elARB.detectCollisions = false;
+            elAMotor.enabled = false;
+            elAReactor.enabled = false;
+
+            el.transform.parent = elementGroup.transform;
+        });
+
+        IEnumerable<(Vector3, float, float)> groupDatas = elements.Select(el =>
+        {
+            var distance = Vector3.Distance(el.transform.position, elementGroup.transform.position);
+            var body = el.transform.Find("Body");
+            return (el.transform.position, body.lossyScale.magnitude, distance);
+        });
+        (Vector3 groupPos, float groupRadius, float) groupData = groupDatas.Aggregate((a, c) =>
+        {
+            (Vector3 agPos, float aggSize, float aggDist) = a;
+            (Vector3 cPos, float cSize, float cDist) = c;
+            var newPos = agPos - cPos;
+            var newRad = Mathf.Max(aggDist, cDist) + Mathf.Max(aggSize, cSize);
+
+            return (newPos, newRad, 0);
+        });
+
+        elementGroup.transform.position = groupData.groupPos;
+        collider.radius = groupData.groupRadius;
     }
 
     public static void SplitElement(WorldElement element)

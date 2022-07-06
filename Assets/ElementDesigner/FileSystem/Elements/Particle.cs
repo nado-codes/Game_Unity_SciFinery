@@ -1,5 +1,4 @@
 using System;
-using UnityEngine;
 
 ///<summary>[Data] Any component element which is used to construct an Atom</summary>
 [Serializable]
