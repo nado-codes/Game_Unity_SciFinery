@@ -63,19 +63,12 @@ public class Editor : MonoBehaviour
 
         // NOTE: Start the Editor in an initial state, also setting up the UI
         // with the correct elements and displays
-        HandleChangeDesignTypeClicked(ElementType.Atom);
+        // HandleChangeDesignTypeClicked(ElementType.Atom);
         designTypeTabs.SelectTab((int)ElementType.Atom);
 
         // .. uncomment to load a specific atom at game start
         var allAtoms = FileSystemLoader.LoadElementsOfType<Atom>();
         LoadElement(allAtoms.FirstOrDefault(a => a.Name == "Helium"));
-        var testAtom = new Atom()
-        {
-            Name = "TestAtom",
-            ElementType = ElementType.Atom,
-            ChildIds = new int[] { 1, 1, 2, 2 }
-        };
-        // LoadElement(testAtom);
     }
     public static void LoadElement<T>(T element) where T : Element
     {
@@ -105,6 +98,7 @@ public class Editor : MonoBehaviour
         Camera.main.transform.rotation = Quaternion.Euler(0, 0, 0);
 
         PanelName.SetElementData(element);
+        FuseElements(SubElements);
         TextNotification.Show($"Loaded \"{element.Name}\"");
         HasUnsavedChanges = false;
     }
@@ -356,6 +350,8 @@ public class Editor : MonoBehaviour
 
     public static void FuseElements(List<WorldElement> elements)
     {
+        Debug.Log("FUSING: ");
+        elements.ForEach(e => Debug.Log(" - " + e.Data.Name));
         if (elements == null)
             throw new ArgumentException("Expected a list of elements in call to FuseElements, got undefined");
         if (elements.Count() < 2)
