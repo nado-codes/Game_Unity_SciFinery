@@ -359,7 +359,7 @@ public class Editor : MonoBehaviour
             throw new ArgumentException("Must be at least 2 elements in order to fuse");
 
         var elementGroup = new GameObject();
-        elementGroup.name = "ElementGroup";
+        elementGroup.name = "ElementGroup_" + WorldUtilities.GetComposition(elements);
         elementGroup.transform.parent = elements[0].transform.parent;
         var collider = elementGroup.AddComponent<SphereCollider>();
 

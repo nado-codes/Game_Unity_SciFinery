@@ -1,4 +1,7 @@
 using UnityEngine;
+using System.Collections.Generic;
+using System.Linq;
+
 public static class WorldUtilities
 {
     public static bool CanFuse(WorldElement a, WorldElement b)
@@ -29,18 +32,23 @@ public static class WorldUtilities
         return dir * effectiveCharge * massOffset * distanceScalar;
     }
 
-    public static WorldElement FuseTo(this WorldElement el, WorldElement otherEl)
-    {
-        var newWorldElement = new WorldElement();
-        var elData = el.Data;
-        var otherElData = otherEl.Data;
-        var newElement = new Element()
-        {
-            Weight = elData.Weight + otherElData.Weight,
-            Charge = elData.Charge + otherElData.Charge,
-        };
+    public static string GetComposition(this IEnumerable<WorldElement> elements)
+        => GetComposition(elements.Select(e => e.Data));
 
-        newWorldElement.SetData(newElement);
-        return newWorldElement;
+    public static string GetComposition(this Element element)
+        => GetComposition(element.Children);
+
+    public static string GetComposition(this IEnumerable<Element> elements, bool isUI = false)
+    {
+        var uniqueChildren = elements.GroupBy(ch => ch.Id).Select(ch => ch.First());
+        var composition = uniqueChildren.Select(ch =>
+        {
+            var count = elements.Count(other => other.Id == ch.Id);
+            (string start, string end) supText = ((isUI ? "<sup>" : ""), (isUI ? "</sup>" : ""));
+
+            return ch.ShortName + (count > 1 ? supText.start + count + supText.end : "");
+        });
+
+        return string.Join("", composition);
     }
 }

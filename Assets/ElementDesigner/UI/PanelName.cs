@@ -93,14 +93,7 @@ public class PanelName : MonoBehaviour
 
         nameText.text = newElementData.Name;
         weightText.text = Math.Round(newElementData.Weight) + ".00";
-
-        var uniqueChildren = newElementData.Children.GroupBy(ch => ch.Id).Select(ch => ch.First());
-        var composition = uniqueChildren.Select(ch =>
-        {
-            var count = newElementData.Children.Count(other => other.Id == ch.Id);
-            return ch.ShortName + (count > 1 ? "<sup>" + count + "</sup>" : "");
-        });
-        compositionText.text = string.Join("", composition);
+        compositionText.text = WorldUtilities.GetComposition(newElementData.Children, true);
 
         // TODO: implement classification
         // instance.classificationText.text = newElementData.Classification;
