@@ -30,7 +30,7 @@ public class Editor : MonoBehaviour
     [Header("Other")]
     private Button btnSave;
     // PARTICLES
-    public static GameObject elementGameObject;
+    public static GameObject subElementParent;
     public static List<WorldElement> SubElements { get => Instance.subElements; }
 
     private static Editor instance;
@@ -65,8 +65,8 @@ public class Editor : MonoBehaviour
         // with the correct elements and displays
         // HandleChangeDesignTypeClicked(ElementType.Atom);
         designTypeTabs.SelectTab((int)ElementType.Atom);
-        elementGameObject = GameObject.Find("SubElements");
-        Assertions.AssertNotNull(elementGameObject, "elementGameObject");
+        subElementParent = GameObject.Find("SubElements") ?? new GameObject("SubElements");
+        Assertions.AssertNotNull(subElementParent, "elementGameObject");
 
         // .. uncomment to load a specific atom at game start
         var allAtoms = FileSystemLoader.LoadElementsOfType<Atom>();
@@ -100,7 +100,7 @@ public class Editor : MonoBehaviour
         Camera.main.transform.rotation = Quaternion.Euler(0, 0, 0);
 
         PanelName.SetElementData(element);
-        FuseElements(SubElements);
+        FuseElements(SubElements.Where(e => e.Charge >= 0).ToList());
         TextNotification.Show($"Loaded \"{element.Name}\"");
         HasUnsavedChanges = false;
     }
@@ -148,7 +148,8 @@ public class Editor : MonoBehaviour
             else
                 throw new NotImplementedException($"Element of type {elementData.ElementType} is not yet implemented in call to Editor.CreateWorldElement");
 
-            newWorldElementGO.transform.parent = elementGameObject.transform;
+            newWorldElementGO.transform.parent = subElementParent.transform;
+            newWorldElementGO.name = elementData.ElementType + "_" + elementData.Name;
             newWorldElement.SetData(elementData);
 
             FileSystem.UpdateActiveElement();
@@ -237,7 +238,6 @@ public class Editor : MonoBehaviour
     {
         await CheckUnsaved();
         clearSubElements();
-        createNewElementOfType(Editor.DesignType);
     }
     public async void HandleClearSubElementsClicked()
     {
@@ -269,8 +269,8 @@ public class Editor : MonoBehaviour
     private void createNewElementOfType<T>() where T : Element, new()
     {
         var typeName = typeof(T).FullName;
-        elementGameObject = GameObject.Find($"{typeName}") ?? new GameObject();
-        elementGameObject.name = $"{typeName}New{typeName}";
+        subElementParent = GameObject.Find($"{typeName}") ?? new GameObject();
+        subElementParent.name = $"{typeName}New{typeName}";
 
         var newElement = FileSystem.CreateElementOfType<T>();
         LoadElement(newElement);
