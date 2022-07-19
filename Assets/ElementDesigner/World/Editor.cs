@@ -65,6 +65,8 @@ public class Editor : MonoBehaviour
         // with the correct elements and displays
         // HandleChangeDesignTypeClicked(ElementType.Atom);
         designTypeTabs.SelectTab((int)ElementType.Atom);
+        elementGameObject = GameObject.Find("SubElements");
+        Assertions.AssertNotNull(elementGameObject, "elementGameObject");
 
         // .. uncomment to load a specific atom at game start
         var allAtoms = FileSystemLoader.LoadElementsOfType<Atom>();
@@ -114,11 +116,10 @@ public class Editor : MonoBehaviour
 
         WorldElement newWorldElement = null;
         GameObject newWorldElementGO = null;
-        var elementType = elementData.ElementType;
 
         try
         {
-            if (elementType == ElementType.Particle)
+            if (elementData.ElementType == ElementType.Particle)
             {
                 newWorldElementGO = Instantiate(Instance.particlePrefab);
 
@@ -129,7 +130,7 @@ public class Editor : MonoBehaviour
                 newWorldElement = newWorldParticle;
                 SubElements.Add(newWorldParticle);
             }
-            else if (elementType == ElementType.Atom)
+            else if (elementData.ElementType == ElementType.Atom)
             {
                 newWorldElementGO = Instantiate(Instance.atomPrefab);
 
@@ -145,7 +146,7 @@ public class Editor : MonoBehaviour
                 SubElements.Add(newWorldAtom);
             }
             else
-                throw new NotImplementedException($"Element of type {elementType} is not yet implemented in call to Editor.CreateWorldElement");
+                throw new NotImplementedException($"Element of type {elementData.ElementType} is not yet implemented in call to Editor.CreateWorldElement");
 
             newWorldElementGO.transform.parent = elementGameObject.transform;
             newWorldElement.SetData(elementData);
@@ -246,7 +247,7 @@ public class Editor : MonoBehaviour
     public async void HandleChangeDesignTypeClicked(ElementType newDesignType)
     {
         await CheckUnsaved();
-        createNewElementOfType(newDesignType);
+        // createNewElementOfType(newDesignType);
         PanelCreate.SetDesignType(newDesignType);
         designType = newDesignType;
         TextNotification.Show("Design Type: " + newDesignType);
