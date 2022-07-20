@@ -63,7 +63,7 @@ public class Editor : MonoBehaviour
 
         // NOTE: Start the Editor in an initial state, also setting up the UI
         // with the correct elements and displays
-        // HandleChangeDesignTypeClicked(ElementType.Atom);
+        HandleChangeDesignTypeClicked(ElementType.Atom);
         designTypeTabs.SelectTab((int)ElementType.Atom);
         subElementParent = GameObject.Find("SubElements") ?? new GameObject("SubElements");
         Assertions.AssertNotNull(subElementParent, "elementGameObject");
@@ -307,18 +307,11 @@ public class Editor : MonoBehaviour
     public static void FuseElements(WorldElement elA, WorldElement elB)
     {
         Debug.Log("Fusing " + elA.Data.Name + " to " + elB.Data.Name);
-        var elementGroup = new GameObject();
-        elementGroup.name = "ElementGroup";
 
-        var collider = elementGroup.AddComponent<SphereCollider>();
-
-        // .. FOREACH THESE
         var elABody = elA.transform.Find("Body");
         var elBBody = elB.transform.Find("Body");
         var elASize = elABody.lossyScale.magnitude;
         var elBSize = elBBody.localScale.magnitude;
-        var elADistance = Vector3.Distance(elA.transform.position, elementGroup.transform.position);
-        var elBDistance = Vector3.Distance(elB.transform.position, elementGroup.transform.position);
 
         var elAMotor = elA.GetComponent<WorldElementMotor>();
         var elBMotor = elB.GetComponent<WorldElementMotor>();
@@ -331,22 +324,54 @@ public class Editor : MonoBehaviour
         elBMotor.Stop();
         elARB.velocity = Vector3.zero;
         elBRB.velocity = Vector3.zero;
-        elARB.detectCollisions = false;
+
         elBRB.detectCollisions = false;
-        elAMotor.enabled = false;
         elBMotor.enabled = false;
-        elAReactor.enabled = false;
         elBReactor.enabled = false;
 
-        elA.transform.parent = elementGroup.transform;
-        elB.transform.parent = elementGroup.transform;
+        // .. if fusing two single elements, create a new group
+        if (elA.Data.Children.Count() == 0 && elB.Data.Children.Count() == 0)
+        {
+            var elementGroup = CreateElementGroup(new List<WorldElement>() { elA, elB });
 
-        // AGGREGATE THESE
-        elementGroup.transform.position = elA.transform.position - elB.transform.position;
-        elementGroup.transform.parent = elA.transform.parent;
-        collider.radius = Mathf.Max(elADistance, elBDistance) + Mathf.Max(elASize, elBSize);
+            var collider = elementGroup.GetComponent<SphereCollider>();
 
+            elAMotor.enabled = false;
+            elARB.detectCollisions = false;
+            elAReactor.enabled = false;
 
+            elA.transform.parent = elementGroup.transform;
+            elB.transform.parent = elementGroup.transform;
+
+            elementGroup.transform.position = elA.transform.position - elB.transform.position;
+            elementGroup.transform.parent = elA.transform.parent;
+
+            var elADistance = Vector3.Distance(elA.transform.position, elementGroup.transform.position);
+            var elBDistance = Vector3.Distance(elB.transform.position, elementGroup.transform.position);
+            collider.radius = Mathf.Max(elADistance, elBDistance) + Mathf.Max(elASize, elBSize);
+        }
+        else // .. if t
+        {
+            // .. TODO, if either of the elements are a GROUP, we need to split out all the elements and then make 
+            // a new group, recalculating all the colliders and physics
+        }
+    }
+
+    private static GameObject CreateElementGroup(IEnumerable<WorldElement> elements)
+    {
+        if (elements == null)
+            throw new ArgumentException("Expected a list of elements in call to CreateElementGroup, got undefined");
+        if (elements.Count() < 1)
+            throw new ArgumentException("There must be at least 1 element");
+
+        var elementGroup = new GameObject();
+        elementGroup.name = "ElementGroup_" + WorldUtilities.GetComposition(elements);
+        elementGroup.transform.parent = elements.FirstOrDefault().transform.parent;
+        elementGroup.AddComponent<SphereCollider>();
+        elementGroup.AddComponent<WorldElement>();
+        elementGroup.AddComponent<WorldElementReactor>();
+
+        return elementGroup;
     }
 
     public static void FuseElements(List<WorldElement> elements)
@@ -358,10 +383,8 @@ public class Editor : MonoBehaviour
         if (elements.Count() < 2)
             throw new ArgumentException("Must be at least 2 elements in order to fuse");
 
-        var elementGroup = new GameObject();
-        elementGroup.name = "ElementGroup_" + WorldUtilities.GetComposition(elements);
-        elementGroup.transform.parent = elements[0].transform.parent;
-        var collider = elementGroup.AddComponent<SphereCollider>();
+        var elementGroup = CreateElementGroup(elements);
+        var collider = elementGroup.GetComponent<SphereCollider>();
 
         elements.ForEach(el =>
         {
