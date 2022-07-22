@@ -348,12 +348,19 @@ public class Editor : MonoBehaviour
 
             var elADistance = Vector3.Distance(elA.transform.position, elementGroup.transform.position);
             var elBDistance = Vector3.Distance(elB.transform.position, elementGroup.transform.position);
-            collider.radius = Mathf.Max(elADistance, elBDistance) + Mathf.Max(elASize, elBSize);
+
+            var scalar = 2 * (Mathf.Max(elADistance, elBDistance) + Mathf.Max(elASize, elBSize));
+            var elementGroupBody = elementGroup.transform.Find("Body");
+            // .. set the size of the elemtnGroupBody to cover all the elements inside it
+            elementGroupBody.localScale = Vector3.one * scalar;
         }
-        else // .. if t
+        else
         {
-            // .. TODO, if either of the elements are a GROUP, we need to split out all the elements and then make 
-            // a new group, recalculating all the colliders and physics
+            var elementGroup = new WorldElement[] { elA, elB }.Max((a) => a.Data.Children.Count());
+
+            // .. TODO ... ideally we should take the largest group and add all the smaller elements to it
+            // .. element groups will then need to have their scale recalculated to encompas all the elements
+            // .. this could be a complicated one
         }
     }
 
@@ -364,9 +371,14 @@ public class Editor : MonoBehaviour
         if (elements.Count() < 1)
             throw new ArgumentException("There must be at least 1 element");
 
-        var elementGroup = new GameObject();
-        elementGroup.name = "ElementGroup_" + WorldUtilities.GetComposition(elements);
+        var groupName = "ElementGroup_" + WorldUtilities.GetComposition(elements);
+        var elementGroup = new GameObject(groupName);
         elementGroup.transform.parent = elements.FirstOrDefault().transform.parent;
+
+        var body = new GameObject("Body");
+        body.transform.parent = elementGroup.transform;
+        body.transform.localPosition = Vector3.zero;
+
         elementGroup.AddComponent<SphereCollider>();
         elementGroup.AddComponent<WorldElement>();
         elementGroup.AddComponent<WorldElementReactor>();
@@ -384,7 +396,6 @@ public class Editor : MonoBehaviour
             throw new ArgumentException("Must be at least 2 elements in order to fuse");
 
         var elementGroup = CreateElementGroup(elements);
-        var collider = elementGroup.GetComponent<SphereCollider>();
 
         elements.ForEach(el =>
         {
@@ -422,7 +433,10 @@ public class Editor : MonoBehaviour
         });
 
         elementGroup.transform.position = groupData.groupPos;
-        collider.radius = groupData.groupRadius;
+        var elementGroupBody = elementGroup.transform.Find("Body");
+
+        // .. set the size of the elemtnGroupBody to cover all the elements inside it
+        elementGroupBody.transform.localScale = Vector3.one * groupData.groupRadius;
     }
 
     public static void SplitElement(WorldElement element)
