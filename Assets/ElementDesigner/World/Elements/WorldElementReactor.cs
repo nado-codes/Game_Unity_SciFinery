@@ -86,6 +86,7 @@ public class WorldElementReactor : MonoBehaviour
 
     void OnCollisionEnter(Collision col)
     {
+        return;
         var colWorldElement = col.gameObject.GetComponent<WorldElement>();
         var colReactor = col.gameObject.GetComponent<WorldElementReactor>();
         if (colWorldElement == null || IsFused) return;

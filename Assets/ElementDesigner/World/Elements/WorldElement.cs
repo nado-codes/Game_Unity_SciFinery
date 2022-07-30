@@ -83,7 +83,10 @@ public class WorldElement : MonoBehaviour
         VerifyInitialize();
 
         var emphasisColor = Data.ElementType != ElementType.Particle ? newColor.Emphasise() : newColor;
-        bodyLight.color = emphasisColor;
+
+        if (bodyLight != null)
+            bodyLight.color = emphasisColor;
+
         bodyMR.material.SetColor("_EmissionColor", emphasisColor);
 
         bodyMR.material.color = newColor;

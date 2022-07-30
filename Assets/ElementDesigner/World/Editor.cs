@@ -378,7 +378,7 @@ public class Editor : MonoBehaviour
         elementGroup.transform.parent = elements.FirstOrDefault().transform.parent;
 
         var elementGroupWE = elementGroup.GetComponent<WorldElement>();
-        elementGroupWE.SetData(new Element()
+        elementGroupWE.SetData(new Atom()
         {
             Name = compo,
             ElementType = ElementType.Atom
@@ -404,15 +404,15 @@ public class Editor : MonoBehaviour
             var elASize = body.lossyScale.magnitude;
             var elADistance = Vector3.Distance(el.transform.position, elementGroup.transform.position);
 
-            var elAMotor = el.GetComponent<WorldElementMotor>();
-            var elAReactor = el.GetComponent<WorldElementReactor>();
-            var elARB = el.GetComponent<Rigidbody>();
+            var motor = el.GetComponent<WorldElementMotor>();
+            var reactor = el.GetComponent<WorldElementReactor>();
+            var rigidBody = el.GetComponent<Rigidbody>();
 
-            elAMotor.Stop();
-            elARB.velocity = Vector3.zero;
-            elARB.detectCollisions = false;
-            elAMotor.enabled = false;
-            elAReactor.enabled = false;
+            motor.Stop();
+            rigidBody.velocity = Vector3.zero;
+            rigidBody.detectCollisions = false;
+            motor.enabled = false;
+            reactor.enabled = false;
 
             el.transform.parent = elementGroup.transform;
         });
