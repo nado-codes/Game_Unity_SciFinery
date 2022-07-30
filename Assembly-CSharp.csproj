@@ -89,7 +89,6 @@
      <Compile Include="Assets\ElementDesigner\World\Elements\WorldElementMotor.cs" />
      <Compile Include="Assets\ElementDesigner\World\EditorSelect.cs" />
      <Compile Include="Assets\ElementDesigner\FileSystem\Elements\Molecule.cs" />
-     <Compile Include="Assets\ElementDesigner\World\Elements\ElementGroup.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />

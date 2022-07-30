@@ -4,7 +4,7 @@ using System;
 
 public class WorldElement : MonoBehaviour
 {
-    public Element Data { get; private set; }
+    public Element Data { get; private set; } = new Element();
 
     private Transform bodyTransform;
     public Transform BodyTransform
@@ -41,8 +41,8 @@ public class WorldElement : MonoBehaviour
 
         bodyMR = BodyTransform?.GetComponent<MeshRenderer>();
         Assertions.AssertNotNull(bodyMR, "bodyMR (MeshRenderer)");
-        bodyLight = BodyTransform?.Find("Light").GetComponent<Light>();
-        Assertions.AssertNotNull(bodyLight, "bodyLight");
+        bodyLight = BodyTransform?.Find("Light")?.GetComponent<Light>();
+        // Assertions.AssertNotNull(bodyLight, "bodyLight");
 
         var rotorTransform = BodyTransform.Find("Rotor");
         var infoCanvasTransform = rotorTransform?.Find("InfoCanvas");

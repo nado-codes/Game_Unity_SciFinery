@@ -26,7 +26,7 @@ public class Editor : MonoBehaviour
     [Header("Prefabs")]
     public GameObject particlePrefab;
     public GameObject atomPrefab;
-    public GameObject moleculePrefab;
+    public GameObject elementGroupPrefab;
     [Header("Other")]
     private Button btnSave;
     // PARTICLES
@@ -371,17 +371,18 @@ public class Editor : MonoBehaviour
         if (elements.Count() < 1)
             throw new ArgumentException("There must be at least 1 element");
 
-        var groupName = "ElementGroup_" + WorldUtilities.GetComposition(elements);
-        var elementGroup = new GameObject(groupName);
+        var compo = WorldUtilities.GetComposition(elements);
+        var groupName = "ElementGroup_" + compo;
+        var elementGroup = Instantiate(Instance.elementGroupPrefab);
+        elementGroup.name = groupName;
         elementGroup.transform.parent = elements.FirstOrDefault().transform.parent;
 
-        var body = new GameObject("Body");
-        body.transform.parent = elementGroup.transform;
-        body.transform.localPosition = Vector3.zero;
-
-        elementGroup.AddComponent<SphereCollider>();
-        elementGroup.AddComponent<WorldElement>();
-        elementGroup.AddComponent<WorldElementReactor>();
+        var elementGroupWE = elementGroup.GetComponent<WorldElement>();
+        elementGroupWE.SetData(new Element()
+        {
+            Name = compo,
+            ElementType = ElementType.Atom
+        });
 
         return elementGroup;
     }

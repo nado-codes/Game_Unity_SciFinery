@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311912, g: 0.3807398, b: 0.3587271, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -28511,7 +28511,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -33.796875, y: 121.30078}
+  m_AnchoredPosition: {x: -33.796753, y: 121.30078}
   m_SizeDelta: {x: -1246.7, y: -861.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &568360981
@@ -30802,7 +30802,8 @@ MonoBehaviour:
     type: 3}
   atomPrefab: {fileID: 3007222311888095228, guid: ab9a0b7e858f4c64e85583d2696ac8cd,
     type: 3}
-  moleculePrefab: {fileID: 0}
+  elementGroupPrefab: {fileID: 9056266128716195521, guid: 3bce070522e82164f9759f3975d0c819,
+    type: 3}
 --- !u!114 &612247312
 MonoBehaviour:
   m_ObjectHideFlags: 0
