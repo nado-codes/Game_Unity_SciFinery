@@ -100,7 +100,11 @@ public class Editor : MonoBehaviour
         Camera.main.transform.rotation = Quaternion.Euler(0, 0, 0);
 
         PanelName.SetElementData(element);
-        FuseElements(SubElements.Where(e => e.Charge >= 0).ToList());
+        var elementsToFuse = SubElements.Where(e => e.Charge >= 0).ToList();
+
+        if (elementsToFuse.Count() >= 2)
+            FuseElements(elementsToFuse);
+
         TextNotification.Show($"Loaded \"{element.Name}\"");
         HasUnsavedChanges = false;
     }
@@ -247,7 +251,7 @@ public class Editor : MonoBehaviour
     public async void HandleChangeDesignTypeClicked(ElementType newDesignType)
     {
         await CheckUnsaved();
-        // createNewElementOfType(newDesignType);
+        createNewElementOfType(newDesignType);
         PanelCreate.SetDesignType(newDesignType);
         designType = newDesignType;
         TextNotification.Show("Design Type: " + newDesignType);
@@ -268,10 +272,6 @@ public class Editor : MonoBehaviour
     }
     private void createNewElementOfType<T>() where T : Element, new()
     {
-        var typeName = typeof(T).FullName;
-        subElementParent = GameObject.Find($"{typeName}") ?? new GameObject();
-        subElementParent.name = $"{typeName}New{typeName}";
-
         var newElement = FileSystem.CreateElementOfType<T>();
         LoadElement(newElement);
 
@@ -380,6 +380,7 @@ public class Editor : MonoBehaviour
         var elementGroupWE = elementGroup.GetComponent<WorldElement>();
         elementGroupWE.SetData(new Atom()
         {
+            Id = 0,
             Name = compo,
             ElementType = ElementType.Atom
         });
@@ -415,6 +416,7 @@ public class Editor : MonoBehaviour
             reactor.enabled = false;
 
             el.transform.parent = elementGroup.transform;
+            el.HideInfo = true;
         });
 
         IEnumerable<(Vector3, float, float)> groupDatas = elements.Select(el =>

@@ -37,7 +37,6 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\Cameras\CameraFacer.cs" />
-     <Compile Include="Assets\ElementDesigner\World\Elements\WorldParticleGroup.cs" />
      <Compile Include="Assets\ElementDesigner\World\Elements\WorldElement.cs" />
      <Compile Include="Assets\ElementDesigner\DemoController.cs" />
      <Compile Include="Assets\Cameras\OrbitCam.cs" />

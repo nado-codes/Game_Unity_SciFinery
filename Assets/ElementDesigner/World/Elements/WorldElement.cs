@@ -26,6 +26,7 @@ public class WorldElement : MonoBehaviour
 
     protected string infoString { get; private set; }
     protected Text infoText { get; private set; }
+    public bool HideInfo { get; set; }
 
     private Canvas signCanvas;
     private Light bodyLight;
@@ -75,7 +76,7 @@ public class WorldElement : MonoBehaviour
         var dist = Vector3.Distance(transform.position, Camera.main.transform.position) * .075f;
         signCanvasRect.localScale = new Vector3(1 + dist, 1 + dist, 1 + dist) * (1 / body.localScale.magnitude * .5f);
 
-        infoText.gameObject.SetActive(dist > 5);
+        infoText.gameObject.SetActive(dist > 5 && !HideInfo);
     }
 
     protected virtual void SetColor(Color newColor)
