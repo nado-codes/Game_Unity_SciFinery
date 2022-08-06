@@ -376,6 +376,7 @@ public class Editor : MonoBehaviour
         var elementGroup = Instantiate(Instance.elementGroupPrefab);
         elementGroup.name = groupName;
         elementGroup.transform.parent = elements.FirstOrDefault().transform.parent;
+        SubElements.Add(elementGroup.GetComponent<WorldElement>());
 
         var elementGroupWE = elementGroup.GetComponent<WorldElement>();
         elementGroupWE.SetData(new Atom()
