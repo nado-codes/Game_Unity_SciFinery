@@ -63,10 +63,11 @@ public class Editor : MonoBehaviour
 
         // NOTE: Start the Editor in an initial state, also setting up the UI
         // with the correct elements and displays
-        HandleChangeDesignTypeClicked(ElementType.Atom);
-        designTypeTabs.SelectTab((int)ElementType.Atom);
         subElementParent = GameObject.Find("SubElements") ?? new GameObject("SubElements");
         Assertions.AssertNotNull(subElementParent, "elementGameObject");
+        HandleChangeDesignTypeClicked(ElementType.Atom);
+        designTypeTabs.SelectTab((int)ElementType.Atom);
+
 
         // .. uncomment to load a specific atom at game start
         var allAtoms = FileSystemLoader.LoadElementsOfType<Atom>();
@@ -121,44 +122,47 @@ public class Editor : MonoBehaviour
         WorldElement newWorldElement = null;
         GameObject newWorldElementGO = null;
 
+        if (elementData.ElementType == ElementType.Particle)
+        {
+            newWorldElementGO = Instantiate(Instance.particlePrefab);
+
+            var particleData = elementData as Particle;
+            var newWorldParticle = newWorldElementGO.GetComponent<WorldParticle>();
+            newWorldParticle.SetParticleData(particleData);
+
+            newWorldElement = newWorldParticle;
+            SubElements.Add(newWorldParticle);
+        }
+        else if (elementData.ElementType == ElementType.Atom)
+        {
+            newWorldElementGO = Instantiate(Instance.atomPrefab);
+
+            var atomData = elementData as Atom;
+            var newWorldAtom = newWorldElementGO.GetComponent<WorldElement>();
+
+            if (newWorldAtom == null)
+                throw new ApplicationException("The WorldAtom needs a WorldElement component!");
+
+            newWorldAtom.SetData(atomData);
+
+            newWorldElement = newWorldAtom;
+            SubElements.Add(newWorldAtom);
+        }
+        else
+            throw new NotImplementedException($"Element of type {elementData.ElementType} is not yet implemented in call to Editor.CreateWorldElement");
+
+        Assertions.AssertNotNull(newWorldElementGO, "newWorldElementGO");
+        newWorldElementGO.transform.parent = subElementParent.transform;
+        newWorldElementGO.name = elementData.ElementType + "_" + elementData.Name;
+        newWorldElement.SetData(elementData);
+
+        FileSystem.UpdateActiveElement();
+        PanelName.SetElementData(FileSystem.ActiveElement);
+        HasUnsavedChanges = true;
+
         try
         {
-            if (elementData.ElementType == ElementType.Particle)
-            {
-                newWorldElementGO = Instantiate(Instance.particlePrefab);
 
-                var particleData = elementData as Particle;
-                var newWorldParticle = newWorldElementGO.GetComponent<WorldParticle>();
-                newWorldParticle.SetParticleData(particleData);
-
-                newWorldElement = newWorldParticle;
-                SubElements.Add(newWorldParticle);
-            }
-            else if (elementData.ElementType == ElementType.Atom)
-            {
-                newWorldElementGO = Instantiate(Instance.atomPrefab);
-
-                var atomData = elementData as Atom;
-                var newWorldAtom = newWorldElementGO.GetComponent<WorldElement>();
-
-                if (newWorldAtom == null)
-                    throw new ApplicationException("The WorldAtom needs a WorldElement component!");
-
-                newWorldAtom.SetData(atomData);
-
-                newWorldElement = newWorldAtom;
-                SubElements.Add(newWorldAtom);
-            }
-            else
-                throw new NotImplementedException($"Element of type {elementData.ElementType} is not yet implemented in call to Editor.CreateWorldElement");
-
-            newWorldElementGO.transform.parent = subElementParent.transform;
-            newWorldElementGO.name = elementData.ElementType + "_" + elementData.Name;
-            newWorldElement.SetData(elementData);
-
-            FileSystem.UpdateActiveElement();
-            PanelName.SetElementData(FileSystem.ActiveElement);
-            HasUnsavedChanges = true;
         }
         catch (Exception e)
         {
