@@ -11,7 +11,10 @@ public class PanelName : MonoBehaviour
     {
         get
         {
-            initInstance();
+            if (instance == null)
+                instance = FindObjectOfType<PanelName>();
+            if (instance == null)
+                throw new ApplicationException("Expected an instance of PanelName, but found nothing in call to PanelName.initInstance");
             return instance;
         }
     }
@@ -23,15 +26,11 @@ public class PanelName : MonoBehaviour
 
     private static void initInstance()
     {
-        if (instance == null)
-            instance = FindObjectOfType<PanelName>();
-        if (instance == null)
-            throw new ApplicationException("Expected an instance of PanelName, but found nothing in call to PanelName.initInstance");
+
     }
     public void VerifyInitialize()
     {
-        initInstance();
-        var instanceTransform = instance.transform;
+        var instanceTransform = Instance.transform;
 
         numberText = instanceTransform.Find("Number")?.GetComponent<Text>();
         Assertions.AssertNotNull(numberText, "numberText");
@@ -67,12 +66,8 @@ public class PanelName : MonoBehaviour
         if (element == null)
             throw new NullReferenceException("Expected an element in call to SetElementData, got undefined");
 
-        switch (element.ElementType)
-        {
-            case ElementType.Atom:
-                Instance.setAtomData(element as Atom);
-                break;
-        }
+        if (element.ElementType == ElementType.Atom)
+            Instance.setAtomData(element as Atom);
 
         Instance.setElementData(element);
     }
@@ -95,11 +90,23 @@ public class PanelName : MonoBehaviour
         weightText.text = Math.Round(newElementData.Weight) + ".00";
         compositionText.text = WorldUtilities.GetComposition(newElementData.Children, true);
 
-        // TODO: implement classification
-        // instance.classificationText.text = newElementData.Classification;
+        //2n(2)
+        //2x1(2) = 2
+        //2x2(2) = 8
+        //sqrt(8 / 2)
+        var numElectrons = newElementData.Children.Count(c => c.Charge < 0);
+        var outerShell = Convert.ToInt32(Math.Sqrt(numElectrons / 2) + 1);
+
+        var maxElectrons = 2 * Math.Pow(outerShell, 2);
+        var classification = numElectrons > 2 ? "Metal" : "Non-Metal";
+        instance.classificationText.text = classification;
         // TODO: implement stability/radioactivity
         // instance.stabilityText = newElementData.Stability;
         chargeText.text = newElementData.Charge.ToString();
+
+        Debug.Log("numElectrons: " + numElectrons);
+        Debug.Log("outer shell: " + outerShell);
+        Debug.Log("max electrons: " + maxElectrons);
 
         setActive(true);
     }

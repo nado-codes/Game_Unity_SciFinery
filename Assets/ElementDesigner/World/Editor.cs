@@ -158,6 +158,7 @@ public class Editor : MonoBehaviour
 
         FileSystem.UpdateActiveElement();
         PanelName.SetElementData(FileSystem.ActiveElement);
+        PanelProperties.SetElementData(FileSystem.ActiveElement);
         HasUnsavedChanges = true;
 
         return newWorldElement;
@@ -377,7 +378,6 @@ public class Editor : MonoBehaviour
             Id = -1,
             Name = composition,
             ElementType = ElementType.Atom,
-            Charge = elements.Select(e => e.Charge).Aggregate((a, c) => a + c)
         });
         SubElements.Add(groupWE);
 
