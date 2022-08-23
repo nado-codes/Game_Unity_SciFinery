@@ -95,16 +95,16 @@ public class Editor : MonoBehaviour
                 var motor = el.GetComponent<WorldElementMotor>();
                 motor.AddVelocity(perpForce);
             });
+
+            var elementsToFuse = SubElements.Where(e => e.Charge >= 0).ToList();
+            if (elementsToFuse.Count() >= 2)
+                FuseElements(elementsToFuse);
         }
 
         Camera.main.transform.position = SubElements.Select(e => e.transform.position).Average() - (Vector3.forward * 30);
         Camera.main.transform.rotation = Quaternion.Euler(0, 0, 0);
 
         PanelName.SetElementData(element);
-        var elementsToFuse = SubElements.Where(e => e.Charge >= 0).ToList();
-
-        if (elementsToFuse.Count() >= 2)
-            FuseElements(elementsToFuse);
 
         TextNotification.Show($"Loaded \"{element.Name}\"");
         HasUnsavedChanges = false;
@@ -159,15 +159,6 @@ public class Editor : MonoBehaviour
         FileSystem.UpdateActiveElement();
         PanelName.SetElementData(FileSystem.ActiveElement);
         HasUnsavedChanges = true;
-
-        try
-        {
-
-        }
-        catch (Exception e)
-        {
-            Debug.LogError(e);
-        }
 
         return newWorldElement;
     }
@@ -375,28 +366,26 @@ public class Editor : MonoBehaviour
         if (elements.Count() < 1)
             throw new ArgumentException("There must be at least 1 element");
 
-        var compo = WorldUtilities.GetComposition(elements);
-        var groupName = "ElementGroup_" + compo;
         var elementGroup = Instantiate(Instance.elementGroupPrefab);
-        elementGroup.name = groupName;
+        var composition = WorldUtilities.GetComposition(elements);
+        elementGroup.name = "ElementGroup_" + composition;
         elementGroup.transform.parent = elements.FirstOrDefault().transform.parent;
-        SubElements.Add(elementGroup.GetComponent<WorldElement>());
 
-        var elementGroupWE = elementGroup.GetComponent<WorldElement>();
-        elementGroupWE.SetData(new Atom()
+        var groupWE = elementGroup.GetComponent<WorldElement>();
+        groupWE.SetData(new Atom()
         {
-            Id = 0,
-            Name = compo,
-            ElementType = ElementType.Atom
+            Id = -1,
+            Name = composition,
+            ElementType = ElementType.Atom,
+            Charge = elements.Select(e => e.Charge).Aggregate((a, c) => a + c)
         });
+        SubElements.Add(groupWE);
 
         return elementGroup;
     }
 
     public static void FuseElements(List<WorldElement> elements)
     {
-        Debug.Log("FUSING: ");
-        elements.ForEach(e => Debug.Log(" - " + e.Data.Name));
         if (elements == null)
             throw new ArgumentException("Expected a list of elements in call to FuseElements, got undefined");
         if (elements.Count() < 2)

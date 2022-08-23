@@ -20,7 +20,7 @@ public class WorldElement : MonoBehaviour
         }
     }
     // TODO: maybe 'charge' could be determined by weight?
-    public float Charge { get; private set; }
+    public int Charge { get; private set; }
     public Color Color { get; private set; }
     public float MassMultiplier { get; private set; }
 

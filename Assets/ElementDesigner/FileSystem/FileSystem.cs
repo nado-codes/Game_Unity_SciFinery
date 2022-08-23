@@ -78,7 +78,7 @@ public class FileSystem : MonoBehaviour
         if (Editor.SubElements.Any(el => el.Data == null))
             throw new ApplicationException("At least one WorldElement is missing data");
 
-        var newChildIds = Editor.SubElements.Select(el => el.Data.Id);
+        var newChildIds = Editor.SubElements.Select(el => el.Data.Id).Where(i => i > -1);
         ActiveElement.ChildIds = newChildIds.ToArray();
     }
     private static Element updateElement(Element element)
@@ -92,10 +92,8 @@ public class FileSystem : MonoBehaviour
 
         return cacheRef;
     }
-    public static Task<bool> SaveActiveElement(IEnumerable<Element> subElements)
-    {
-        return saveElement(ActiveElement, subElements);
-    }
+    public static async Task<bool> SaveActiveElement(IEnumerable<Element> subElements)
+        => await saveElement(ActiveElement, subElements);
     private static void assertValidSubElements(ElementType elementType, IEnumerable<Element> subElements)
     {
         switch (elementType)
