@@ -95,18 +95,16 @@ public class PanelName : MonoBehaviour
         //2x2(2) = 8
         //sqrt(8 / 2)
         var numElectrons = newElementData.Children.Count(c => c.Charge < 0);
-        var outerShell = Convert.ToInt32(Math.Sqrt(numElectrons / 2) + 1);
+        var currentShell = Math.Sqrt(numElectrons / 2f);
+        var shellRange = Enumerable.Range(1, (int)currentShell).Select(s => 2 * Math.Pow(s, 2));
+        var maxElectrons = shellRange.Sum();
 
-        var maxElectrons = 2 * Math.Pow(outerShell, 2);
-        var classification = numElectrons > 2 ? "Metal" : "Non-Metal";
+        var classification = currentShell > 1 && numElectrons > maxElectrons ? "Metal" : "Non-Metal";
         instance.classificationText.text = classification;
+
         // TODO: implement stability/radioactivity
         // instance.stabilityText = newElementData.Stability;
         chargeText.text = newElementData.Charge.ToString();
-
-        Debug.Log("numElectrons: " + numElectrons);
-        Debug.Log("outer shell: " + outerShell);
-        Debug.Log("max electrons: " + maxElectrons);
 
         setActive(true);
     }
