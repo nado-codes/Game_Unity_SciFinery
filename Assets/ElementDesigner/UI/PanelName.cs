@@ -102,6 +102,10 @@ public class PanelName : MonoBehaviour
         var classification = currentShell > 1 && numElectrons > maxElectrons ? "Metal" : "Non-Metal";
         instance.classificationText.text = classification;
 
+        Console.WriteLine("currentShell=" + currentShell);
+        Console.WriteLine("maxElectrons=" + maxElectrons);
+        Console.WriteLine("CLASSIFICATION=" + classification);
+
         // TODO: implement stability/radioactivity
         // instance.stabilityText = newElementData.Stability;
         chargeText.text = newElementData.Charge.ToString();
