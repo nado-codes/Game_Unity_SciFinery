@@ -1,5 +1,6 @@
 using System.Linq;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -90,21 +91,11 @@ public class PanelName : MonoBehaviour
         weightText.text = Math.Round(newElementData.Weight) + ".00";
         compositionText.text = WorldUtilities.GetComposition(newElementData.Children, true);
 
-        //2n(2)
-        //2x1(2) = 2
-        //2x2(2) = 8
-        //sqrt(8 / 2)
-        var numElectrons = newElementData.Children.Count(c => c.Charge < 0);
-        var currentShell = Math.Sqrt(numElectrons / 2f);
-        var shellRange = Enumerable.Range(1, (int)currentShell).Select(s => 2 * Math.Pow(s, 2));
-        var maxElectrons = shellRange.Sum();
-
-        var classification = currentShell > 1 && numElectrons > maxElectrons ? "Metal" : "Non-Metal";
-        instance.classificationText.text = classification;
-
-        Console.WriteLine("currentShell=" + currentShell);
-        Console.WriteLine("maxElectrons=" + maxElectrons);
-        Console.WriteLine("CLASSIFICATION=" + classification);
+        if (newElementData is Atom)
+        {
+            var classification = (newElementData as Atom).GetClassification() == Classification.Metal ? "Metal" : "Non-Metal";
+            instance.classificationText.text = classification;
+        }
 
         // TODO: implement stability/radioactivity
         // instance.stabilityText = newElementData.Stability;

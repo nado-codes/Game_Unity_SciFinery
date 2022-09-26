@@ -4,14 +4,20 @@ using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
 
-public class MyTest
+public class PanelNameTests
 {
+
+    [SetUp]
+    public void Init()
+    {
+        Debug.Log("RAN SETUP");
+    }
     // A Test behaves as an ordinary method
     [Test]
-    public void MyTestSimplePasses()
+    public void ClassificationTest()
     {
         // Use the Assertions.Assert class to test conditions
-
+        // var panelName = new Panel();
 
     }
 
