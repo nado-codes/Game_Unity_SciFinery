@@ -1,15 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityCamera = UnityEngine.Camera;
 
 public class CameraFacer : MonoBehaviour
 {
 
-    Camera mainCam;
+    UnityCamera mainCam;
 
     // Use this for initialization
     void Start()
     {
-        mainCam = GameObject.Find("Main Camera").GetComponent<Camera>();
+        mainCam = GameObject.Find("Main Camera").GetComponent<UnityCamera>();
     }
 
     // Update is called once per frame

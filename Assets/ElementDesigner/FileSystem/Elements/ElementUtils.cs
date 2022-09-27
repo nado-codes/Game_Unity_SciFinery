@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 
-public static class WorldUtilities
+public static class ElementUtils
 {
     public static bool CanFuse(WorldElement a, WorldElement b)
     {

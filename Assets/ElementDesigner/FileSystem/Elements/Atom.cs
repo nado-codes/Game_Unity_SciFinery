@@ -5,7 +5,6 @@ using System.Linq;
 public enum BondType { None = 0, Covalent = 1, Ionic = 2, Metallic = 3 }
 public enum Classification { NonMetal = 0, Metal = 1 }
 
-
 [Serializable]
 public class Atom : Element
 {

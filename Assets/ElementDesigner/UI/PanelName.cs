@@ -89,7 +89,7 @@ public class PanelName : MonoBehaviour
 
         nameText.text = newElementData.Name;
         weightText.text = Math.Round(newElementData.Weight) + ".00";
-        compositionText.text = WorldUtilities.GetComposition(newElementData.Children, true);
+        compositionText.text = ElementUtils.GetComposition(newElementData.Children, true);
 
         if (newElementData is Atom)
         {

@@ -51,7 +51,7 @@ public class WorldElement : MonoBehaviour
         Assertions.AssertNotNull(signCanvas, "signCanvas");
 
         var mainCameraTransform = Camera.main.transform;
-        var uiCamera = mainCameraTransform?.Find("UICamera")?.GetComponent<Camera>();
+        var uiCamera = mainCameraTransform?.Find("UICamera")?.GetComponent<UnityEngine.Camera>();
         Assertions.AssertNotNull(uiCamera, "uiCamera");
         signCanvas.worldCamera = uiCamera;
 

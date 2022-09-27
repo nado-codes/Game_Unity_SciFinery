@@ -368,7 +368,7 @@ public class Editor : MonoBehaviour
             throw new ArgumentException("There must be at least 1 element");
 
         var elementGroup = Instantiate(Instance.elementGroupPrefab);
-        var composition = WorldUtilities.GetComposition(elements);
+        var composition = ElementUtils.GetComposition(elements);
         elementGroup.name = "ElementGroup_" + composition;
         elementGroup.transform.parent = elements.FirstOrDefault().transform.parent;
 

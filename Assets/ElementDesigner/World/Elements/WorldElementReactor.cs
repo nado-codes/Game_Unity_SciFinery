@@ -72,7 +72,7 @@ public class WorldElementReactor : MonoBehaviour
         {
             // .. if nucleic particles (proton, neutron) are close enough, attract rather than repel
             var distance = Vector3.Distance(otherElement.transform.position, transform.position);
-            var useNuclear = WorldUtilities.CanFuse(WorldElement, otherElement);
+            var useNuclear = ElementUtils.CanFuse(WorldElement, otherElement);
 
             if (useNuclear && !arcLight.Active)
                 arcLight.SetActive(true);
@@ -90,7 +90,7 @@ public class WorldElementReactor : MonoBehaviour
         var colWorldElement = col.gameObject.GetComponent<WorldElement>();
         var colReactor = col.gameObject.GetComponent<WorldElementReactor>();
         if (colWorldElement == null || IsFused) return;
-        if (!WorldUtilities.CanFuse(WorldElement, colWorldElement)) return;
+        if (!ElementUtils.CanFuse(WorldElement, colWorldElement)) return;
         IsFused = true;
         colReactor.IsFused = true;
 

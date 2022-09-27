@@ -15,7 +15,12 @@ public class FileSystemCache : MonoBehaviour
                 var newFileSystem = FindObjectOfType<FileSystemCache>();
 
                 if (newFileSystem == null)
+                {
+                    if (Camera.main == null)
+                        throw new NullReferenceException("Camera must be present in the scene");
+
                     newFileSystem = Camera.main.gameObject.AddComponent<FileSystemCache>();
+                }
 
                 instance = newFileSystem;
             }
